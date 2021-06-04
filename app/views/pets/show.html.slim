@@ -1,0 +1,18 @@
+p id="notice" 
+  = notice
+
+table
+  thead
+    tr
+      th colspan="3"
+      | 名前 種類 体重 誕生日 
+    tbody
+      tr
+        td = @pet.name
+        td = @pet.breed
+        td = @pet.weight
+        td = @pet.birthday
+
+= link_to 'Edit', edit_pet_path(@pet)
+| |
+= link_to 'Back', pets_path

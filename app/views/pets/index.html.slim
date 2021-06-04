@@ -1,0 +1,24 @@
+p id="notice"
+  = notice
+
+h1 Pets
+
+table
+  thead
+    tr
+      th colspan="3"
+      | 名前 種類 体重 誕生日 
+    tbody
+      - @pets.each do |pet| 
+        tr
+          td = pet.name
+          td = pet.breed
+          td = pet.weight
+          td = pet.birthday
+          td = link_to 'Show', pet 
+          td = link_to 'Edit', edit_pet_path(pet) 
+          td = link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } 
+
+br
+
+= link_to 'New Pet', new_pet_path 

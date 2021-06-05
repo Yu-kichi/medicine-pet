@@ -1,24 +1,33 @@
 p id="notice"
   = notice
-
-h1 Pets
-
-table
-  thead
-    tr
-      th colspan="3"
-      | 名前 種類 体重 誕生日 
+div.container
+  h1.is-size-1
+    | ペット一覧
+  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
+    thead
+      tr
+        th.abbr 番号
+        th.abbr 名前
+        th.abbr 性別
+        th.abbr 種類
+        th.abbr 体重
+        th.abbr 誕生日
+        th.abbr 詳細
+        th.abbr 編集
+        th.abbr 削除
     tbody
-      - @pets.each do |pet| 
-        tr
-          td = pet.name
-          td = pet.breed
-          td = pet.weight
-          td = pet.birthday
-          td = link_to 'Show', pet 
-          td = link_to 'Edit', edit_pet_path(pet) 
-          td = link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } 
+    - @pets.each_with_index do |pet,index| 
+      tr
+        th.abbr = index+1
+        td = pet.name
+        td = pet.sex
+        td = pet.breed
+        td = pet.weight
+        td = pet.birthday
+        td = link_to 'Show', pet 
+        td = link_to 'Edit', edit_pet_path(pet) 
+        td = link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } 
 
-br
-
-= link_to 'New Pet', new_pet_path 
+  br
+  .button.is-link
+    = link_to 'New Pet', new_pet_path, class:"has-text-white"

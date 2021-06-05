@@ -1,7 +1,8 @@
-h1 Editing Pet
+div.container
+  h1.is-size-1
+    | ペット情報編集
+  = render 'form', pet: @pet
 
-= render 'form', pet: @pet 
-
-= link_to 'Show', @pet
-| | 
-= link_to 'Back', pets_path 
+  = link_to 'Show', @pet
+  |  |  
+  = link_to 'Back', pets_path 

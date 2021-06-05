@@ -1,11 +1,32 @@
-nav
-  .nav-wrapper
-    a.brand-logo[href=""]
-      | Logo
-    ul#nav-mobile.right.hide-on-med-and-down
-      li
-        a[href=""]
-          | PET
-      li
-        a[href=""]
-          | sass
+nav.navbar.is-link aria-label=("main navigation") role="navigation" 
+  .navbar-brand
+    a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
+      span aria-hidden="true" 
+      span aria-hidden="true" 
+      span aria-hidden="true"
+  #navbarBasicExample.navbar-menu
+    .navbar-start
+      a.navbar-item
+        = link_to 'ペット一覧', @pet , class: 'a navbar-item has-text-white'
+      a.navbar-item
+        | Documentation
+      .navbar-item.has-dropdown.is-hoverable
+        a.navbar-link
+          | More
+        .navbar-dropdown
+          a.navbar-item
+            | About
+          a.navbar-item
+            | Jobs
+          a.navbar-item
+            | Contact
+          hr.navbar-divider/
+          a.navbar-item
+            | Report an issue
+    .navbar-end
+      .navbar-item
+        .buttons
+          a.button.is-primary
+            strong Sign up
+          a.button.is-light
+            | Log in

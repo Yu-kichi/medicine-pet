@@ -1,16 +1,16 @@
 = form_with(model: pet, local: true) do |f| 
   .form__items
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "input"
     = f.label :sex
     | オス
-    = f.radio_button :sex,1
+    = f.radio_button :sex,1 ,class: "radio"
     | メス
-    = f.radio_button :sex,2
+    = f.radio_button :sex,2 ,class: "radio"
     = f.label :breed
-    = f.text_field :breed
+    = f.text_field :breed, class: "input"
     = f.label :weight
-    = f.text_field :weight
+    = f.text_field :weight, class: "input"
     = f.label :birthday
     = f.date_select :birthday
 
@@ -23,7 +23,8 @@
         ul
           pet.errors.full_messages.each do |message| 
             li = message /li
+  br
 
-  div class="actions"
-    = f.submit 
+  div.actions
+    = f.submit class:"button is-link is-outlined"
 

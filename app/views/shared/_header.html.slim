@@ -1,4 +1,4 @@
-nav.navbar.is-link aria-label=("main navigation") role="navigation" 
+nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation" 
   .navbar-brand
     a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
       span aria-hidden="true" 
@@ -7,9 +7,9 @@ nav.navbar.is-link aria-label=("main navigation") role="navigation"
   #navbarBasicExample.navbar-menu
     .navbar-start
       a.navbar-item
-        = link_to 'ペット一覧', @pet , class: 'a navbar-item has-text-white'
+        = link_to 'ペット一覧', pets_path , class: 'a navbar-item has-text-white'
       a.navbar-item
-        | Documentation
+        = link_to '病院一覧', clinics_path , class: 'a navbar-item has-text-white'
       .navbar-item.has-dropdown.is-hoverable
         a.navbar-link
           | More

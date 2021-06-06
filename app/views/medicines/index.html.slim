@@ -1,0 +1,27 @@
+div.container
+  h1.is-size-1
+    | お薬情報一覧
+  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
+    thead
+      tr
+        th.abbr 番号
+        th.abbr 薬の名前
+        th.abbr 分量
+        th.abbr メモ
+        th.abbr 詳細
+        th.abbr 編集
+        th.abbr 削除
+    tbody
+    - @medicines.each_with_index do |medicine,index| 
+      tr
+        th.abbr = index+1
+        td = medicine.name
+        td = medicine.quantity
+        td = medicine.memo
+        td = link_to 'Show', medicine 
+        td = link_to 'Edit', edit_medicine_path(medicine) 
+        td = link_to 'Destroy', medicine, method: :delete, data: { confirm: 'Are you sure?' } 
+
+  br
+  .button.is-link
+    = link_to 'New medicine', new_medicine_path, class:"has-text-white"

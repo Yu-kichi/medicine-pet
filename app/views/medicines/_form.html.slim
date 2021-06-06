@@ -1,0 +1,28 @@
+= form_with(model: medicine, local: true) do |f| 
+  .form__items
+    div.field
+      = f.label :name, class: "label"
+      div.control
+        = f.text_field :name, class: "input"
+    div.field    
+      = f.label :quantity,class: "label"
+      div.control
+        = f.number_field :quantity,class: "input"
+    div.field
+      = f.label :memo,class: "label"
+      div.control
+        = f.text_area :memo, class: "textarea"
+    br
+    - if medicine.errors.any? 
+      div id="error_explanation"
+        h2 
+          = pluralize(medicine.errors.count, "error") 
+          prohibited this medicine from being saved:
+  
+        ul
+          medicine.errors.full_messages.each do |message| 
+            li = message /li
+  br
+
+  div.actions
+    = f.submit class:"button is-link is-outlined"

@@ -31,14 +31,14 @@ class MedicinesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @medicine.destroy
     redirect_to medicines_url, notice: "Medicine was successfully destroyed."
   end
 
   private
     def set_medicine
-      @medicine = medicine.find(params[:id])
+      @medicine = Medicine.find(params[:id])
     end
 
     def medicine_params

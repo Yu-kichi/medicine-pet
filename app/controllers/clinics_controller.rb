@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit destroy]
   def index
@@ -10,7 +12,7 @@ class ClinicsController < ApplicationController
   def new
     @clinic = Clinic.new
   end
-  
+
   def create
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
@@ -25,9 +27,9 @@ class ClinicsController < ApplicationController
 
   def update
     if @clinic.update(clinic_params)
-      redirect_to @clinic, notice: "Clinic was successfully updated." 
+      redirect_to @clinic, notice: "Clinic was successfully updated."
     else
-      render :edit, status: :unprocessable_entity 
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -37,11 +39,11 @@ class ClinicsController < ApplicationController
   end
 
   private
-  def set_clinic
-    @clinic = Clinic.find(params[:id])
-  end
-  
-  def clinic_params
-    params.require(:clinic).permit(:name, :prescription_date, :doctor_name, :medical_fee, :medicine_fee, :memo)
-  end
+    def set_clinic
+      @clinic = Clinic.find(params[:id])
+    end
+
+    def clinic_params
+      params.require(:clinic).permit(:name, :prescription_date, :doctor_name, :medical_fee, :medicine_fee, :memo)
+    end
 end

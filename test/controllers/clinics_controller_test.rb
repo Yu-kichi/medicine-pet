@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ClinicsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -35,5 +37,4 @@ class ClinicsControllerTest < ActionDispatch::IntegrationTest
     get clinics_delete_url
     assert_response :success
   end
-
 end

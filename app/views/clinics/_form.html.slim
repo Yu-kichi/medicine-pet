@@ -1,0 +1,30 @@
+= form_with(model: clinic, local: true) do |f| 
+  .form__items
+    = f.label :prescription_date
+    = f.date_select :prescription_date
+    = f.label :name
+    = f.text_field :name, class: "input"
+    = f.label :doctor_name
+    = f.text_field :doctor_name, class: "input"
+    = f.label :medical_fee
+    = f.text_field :medical_fee 
+    |  円
+    = f.label :medicine_fee
+    = f.text_field :medicine_fee 
+    |  円
+    br
+    //ここでvueで合計が表示できるようにする。| 合計 円 
+    - if clinic.errors.any? 
+      div id="error_explanation"
+        h2 
+          = pluralize(clinic.errors.count, "error") 
+          prohibited this clinic from being saved:
+  
+        ul
+          clinic.errors.full_messages.each do |message| 
+            li = message /li
+  br
+
+  div.actions
+    = f.submit class:"button is-link is-outlined"
+

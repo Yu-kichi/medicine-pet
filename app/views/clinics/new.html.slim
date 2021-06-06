@@ -1,0 +1,7 @@
+div.container
+  .card.has-background-white-bis
+    h1.is-size-1.has-background-white-ter.mb-4
+      | 病院情報登録
+    = render 'form', clinic: @clinic 
+
+  = link_to 'Back', clinics_path

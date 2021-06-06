@@ -1,0 +1,36 @@
+div.container
+  h1.is-size-1
+    | 病院一覧
+  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
+    thead
+      tr
+        th.abbr 番号
+        th.abbr 病院名
+        th.abbr 医者名
+        th.abbr 診療日
+        th.abbr 診療代
+        th.abbr 薬代
+        th.abbr 合計
+        th.abbr 詳細
+        th.abbr 編集
+        th.abbr 削除
+    tbody
+    - @clinics.each_with_index do |clinic,index| 
+      tr
+        th.abbr = index+1
+        td = clinic.name
+        td = clinic.doctor_name
+        td = clinic.prescription_date
+        td = clinic.medical_fee
+        td = clinic.medicine_fee
+        - if clinic.medical_fee || clinic.medicine_fee
+          td = clinic.medical_fee + clinic.medicine_fee
+        - else 
+          td = nil
+        td = link_to 'Show', clinic 
+        td = link_to 'Edit', edit_clinic_path(clinic) 
+        td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' } 
+
+  br
+  .button.is-link
+    = link_to 'New clinic', new_clinic_path, class:"has-text-white"

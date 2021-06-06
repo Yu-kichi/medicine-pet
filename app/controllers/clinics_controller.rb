@@ -33,7 +33,7 @@ class ClinicsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @clinic.destroy
     redirect_to clinics_url, notice: "Clinic was successfully destroyed."
   end

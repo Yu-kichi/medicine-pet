@@ -7,24 +7,24 @@ div.container
         | まずペット情報を登録しましょう！
     - if @clinics.present?
       - @clinics.each do |clinic|
+        div.mt-4.mb-4.is-size-4
+          = clinic.prescription_date
         div.card
           h2.is-size-3.mb-4.has-background-link-light.card-content
-            = clinic.prescription_date
+            | 病院名:
+            = clinic.name
           div.card-content
-            div.subtitle
-              | 病院名:
-              = clinic.name
-            div.subtitle
+            div.subtitle.is-size-5
               | 医者名:
               = clinic.doctor_name
-            div.columns  
-              div.subtitle.column
+            div.columns
+              div.subtitle.column.is-size-5
                 | 診療代:  
                 = clinic.medical_fee
-              div.subtitle.column
+              div.subtitle.column.is-size-5
                 | お薬代:  
                 = clinic.medicine_fee
-              div.subtitle.column
+              div.subtitle.column.is-size-5
                 - if clinic.medical_fee || clinic.medicine_fee
                   | 合計:
                   td = clinic.medical_fee + clinic.medicine_fee
@@ -35,7 +35,7 @@ div.container
             div.subtitle
               | 分量:
             div.subtitle  
-              | メモ:
+              | メモ:    
     - else
       div.card
         h2.is-size-3.mb-4.has-background-link-light.card-content

@@ -2,6 +2,6 @@ div.container
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       | 病院情報編集
-    = render 'form', clinic: @clinic 
+    = render 'form', {clinic: @clinic, pet: @pet}
 
     = link_to 'Back', clinics_path

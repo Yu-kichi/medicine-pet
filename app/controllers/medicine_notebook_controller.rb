@@ -4,7 +4,6 @@ class MedicineNotebookController < ApplicationController
   def index
     # @pet = Pet.find(params[:pet_id])
     @pet = Pet.find_by(id: params[:pet_id])
-    @clinics  = Clinic.all
-    # @pet_clinics = @pet.clinic
+    @clinics = @pet.clinics if @pet
   end
 end

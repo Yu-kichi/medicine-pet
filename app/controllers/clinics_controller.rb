@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ClinicsController < ApplicationController
-  before_action :set_clinic, only: %i[show edit destroy]
+  before_action :set_clinic, only: %i[show edit update destroy]
   def index
     @clinics = Clinic.all
   end

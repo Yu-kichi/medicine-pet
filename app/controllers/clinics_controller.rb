@@ -11,13 +11,13 @@ class ClinicsController < ApplicationController
 
   def new
     @clinic = Clinic.new
-    @pet = Pet.find_by(id: params[:pet_id])#これがないとformでエラー
+    @pet = Pet.find_by(id: params[:pet_id]) # これがないとformでエラー
   end
 
   def create
-    #form_withではペットのidがparamsで通常送られてこない。
-    #そのためペットidを抜き出してそれをparamsとしてhiddenで送らせる
-    #もしくはcurrent_userのような仕組みでsesionn情報からidを取得する？
+    # form_withではペットのidがparamsで通常送られてこない。
+    # そのためペットidを抜き出してそれをparamsとしてhiddenで送らせる
+    # もしくはcurrent_userのような仕組みでsesionn情報からidを取得する？
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
       redirect_to @clinic, notice:  "Clinic was successfully created."
@@ -31,7 +31,7 @@ class ClinicsController < ApplicationController
   end
 
   def update
-    #@clinic = Clinic.new(clinic_params)
+    # @clinic = Clinic.new(clinic_params)
     if @clinic.update(clinic_params)
       redirect_to @clinic, notice: "Clinic was successfully updated."
     else

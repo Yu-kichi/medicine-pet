@@ -5,6 +5,8 @@ div.container
     thead
       tr
         th.abbr 番号
+        th.abbr ペット番号
+        th.abbr 病院番号
         th.abbr 薬の名前
         th.abbr 分量
         th.abbr メモ
@@ -15,6 +17,8 @@ div.container
     - @medicines.each_with_index do |medicine,index| 
       tr
         th.abbr = index+1
+        td = medicine.pet_id
+        td = medicine.clinic_id
         td = medicine.name
         td = medicine.quantity
         td = medicine.memo

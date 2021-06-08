@@ -2,8 +2,7 @@
 
 Rails.application.routes.draw do
   root "medicine_notebook#index"
-  #get "medicine_notebook/index"
-  
+
   resources :pets do
     resources :medicine_notebook, only: %i(index)
     resources :clinics

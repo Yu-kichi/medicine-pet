@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "medicine_notebook/index"
+  root "medicine_notebook#index"
+
   resources :pets do
-    resources :medicine_notebook
+    resources :medicine_notebook, only: %i(index)
     resources :clinics
   end
 
+  resources :clinics do
+    resources :medicines
+  end
+
   resources :medicines
-  resources :clinics
   resources :pets
 end

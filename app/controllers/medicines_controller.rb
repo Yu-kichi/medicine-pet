@@ -11,6 +11,7 @@ class MedicinesController < ApplicationController
 
   def new
     @medicine = Medicine.new
+    @clinic = Clinic.find_by(id: params[:clinic_id])
   end
 
   def create
@@ -44,6 +45,6 @@ class MedicinesController < ApplicationController
     end
 
     def medicine_params
-      params.require(:medicine).permit(:name, :quantity, :memo)
+      params.require(:medicine).permit(:name, :quantity, :memo, :clinic_id, :pet_id)
     end
 end

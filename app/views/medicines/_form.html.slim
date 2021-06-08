@@ -12,6 +12,9 @@
       = f.label :memo,class: "label"
       div.control
         = f.text_area :memo, class: "textarea"
+      div
+        = f.hidden_field :clinic_id, value: "#{clinic.id}"
+        = f.hidden_field :pet_id, value: "#{clinic.pet_id}"  
     br
     - if medicine.errors.any? 
       div id="error_explanation"

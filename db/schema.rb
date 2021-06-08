@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_125938) do
+ActiveRecord::Schema.define(version: 2021_06_08_133129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 2021_06_07_125938) do
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "clinic_id"
+    t.bigint "pet_id"
+    t.index ["clinic_id"], name: "index_medicines_on_clinic_id"
+    t.index ["pet_id"], name: "index_medicines_on_pet_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -49,4 +53,5 @@ ActiveRecord::Schema.define(version: 2021_06_07_125938) do
   end
 
   add_foreign_key "clinics", "pets"
+  add_foreign_key "medicines", "pets"
 end

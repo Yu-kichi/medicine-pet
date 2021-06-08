@@ -1,0 +1,66 @@
+div.container
+  .card.has-background-white-bis
+    h1.is-size-1.has-background-white-ter.mb-4
+      - if @pet
+        = "#{@pet.name}ちゃんのお薬手帳"
+      - else
+        | まずペット情報を登録しましょう！
+    - if @clinics.present?
+      - @clinics.each do |clinic|
+        div.mt-4.mb-4.is-size-4
+          = clinic.prescription_date
+        div.card
+          h2.is-size-3.mb-4.has-background-link-light.card-content
+            | 病院名:
+            = clinic.name
+          div.card-content
+            div.subtitle.is-size-5
+              | 医者名:
+              = clinic.doctor_name
+            div.columns
+              div.subtitle.column.is-size-5
+                | 診療代:  
+                = clinic.medical_fee
+              div.subtitle.column.is-size-5
+                | お薬代:  
+                = clinic.medicine_fee
+              div.subtitle.column.is-size-5
+                - if clinic.medical_fee || clinic.medicine_fee
+                  | 合計:
+                  td = clinic.medical_fee + clinic.medicine_fee
+        div.card
+          h2.is-size-3.mb-4.has-background-link-light.card-content
+            | 薬の名前:
+          div.card-content
+            div.subtitle
+              | 分量:
+            div.subtitle  
+              | メモ:    
+    - else
+      div.card
+        h2.is-size-3.mb-4.has-background-link-light.card-content
+          | 診療日:
+        div.card-content
+          div.subtitle
+            | 病院名:
+          div.subtitle
+            | 医者名:
+          div.columns
+            div.subtitle.column
+              | 診療代:
+            div.subtitle.column
+              | お薬代:
+            div.subtitle.column
+              | 合計:
+      div.card
+        h2.is-size-3.mb-4.has-background-link-light.card-content
+          | 薬の名前:
+        div.card-content
+          div.subtitle
+            | 分量:
+          div.subtitle  
+            | メモ:
+  - if @pet
+    .button.is-link.mt-4
+       = link_to '新しくお薬手帳に登録する', new_pet_clinic_path(@pet.id), class:"has-text-white"
+  

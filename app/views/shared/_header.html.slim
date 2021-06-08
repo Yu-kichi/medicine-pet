@@ -7,6 +7,8 @@ nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation"
   #navbarBasicExample.navbar-menu
     .navbar-start
       a.navbar-item
+        = link_to 'お薬手帳', medicine_notebook_index_path, class: 'a navbar-item has-text-white'
+      a.navbar-item
         = link_to 'ペット一覧', pets_path , class: 'a navbar-item has-text-white'
       a.navbar-item
         = link_to '病院一覧', clinics_path , class: 'a navbar-item has-text-white'

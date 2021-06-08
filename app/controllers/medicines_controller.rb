@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MedicinesController < ApplicationController
-  before_action :set_medicine, only: %i[show edit destroy]
+  before_action :set_medicine, only: %i[show edit update destroy]
   def index
     @medicines = Medicine.all
   end

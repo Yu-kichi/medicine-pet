@@ -5,6 +5,7 @@ div.container
     thead
       tr
         th.abbr 番号
+        th.abbr ペットの名前
         th.abbr 病院名
         th.abbr 医者名
         th.abbr 診療日
@@ -12,12 +13,13 @@ div.container
         th.abbr 薬代
         th.abbr 合計
         th.abbr 詳細
-        th.abbr 編集
+        //th.abbr 編集このページからはできない。管理者ならできるようにする？
         th.abbr 削除
     tbody
     - @clinics.each_with_index do |clinic,index| 
       tr
         th.abbr = index+1
+        td = clinic.pet.name
         td = clinic.name
         td = clinic.doctor_name
         td = clinic.prescription_date
@@ -28,9 +30,8 @@ div.container
         - else 
           td = nil
         td = link_to 'Show', clinic 
-        td = link_to 'Edit', edit_clinic_path(clinic) 
-        td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' } 
-
-  br
-  .button.is-link
-    = link_to 'New clinic', new_clinic_path, class:"has-text-white"
+        //td = link_to 'Edit', edit_clinic_path(clinic) 
+        td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' }
+  / br
+  / .button.is-link
+  /   = link_to 'New clinic', new_clinic_path, class:"has-text-white"

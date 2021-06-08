@@ -20,7 +20,9 @@ class ClinicsController < ApplicationController
     # もしくはcurrent_userのような仕組みでsesionn情報からidを取得する？
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
-      redirect_to @clinic, notice:  "Clinic was successfully created."
+      #ここで薬登録ページに進む
+      redirect_to new_clinic_medicine_path(@clinic), notice:  "Clinic was successfully created."
+      #redirect_to @clinic, notice:  "Clinic was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

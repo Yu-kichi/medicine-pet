@@ -38,4 +38,7 @@
   br
 
   div.actions
-    = f.submit class:"button is-link is-outlined"
+    - if action_name == "new"
+      = f.submit "お薬登録に進む",class:"button is-link is-outlined"
+    - else
+      = f.submit "編集する", class:"button is-link is-outlined"

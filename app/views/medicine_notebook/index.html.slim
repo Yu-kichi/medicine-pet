@@ -28,18 +28,18 @@ div.container
                 - if clinic.medical_fee || clinic.medicine_fee
                   | 合計:
                   td = clinic.medical_fee + clinic.medicine_fee
-      - if @medicines.present?
-        - @medicines.each do |medicine|          
-          div.card
-            h2.is-size-3.mb-4.has-background-link-light.card-content
-              | 薬の名前:
-              = medicine.name
-            div.card-content
-              div.subtitle
-                | 分量:
-                | medicine.quantity
-              div.subtitle  
-                | メモ:    
+          - clinic.medicines.each do |medicine|
+            div.card
+              h2.is-size-3.mb-4.has-background-link-light.card-content
+                | 薬の名前:
+                = medicine.name
+              div.card-content
+                div.subtitle
+                  | 分量:
+                  = "#{medicine.quantity}日分"
+                div.subtitle
+                  | メモ:
+                  = medicine.memo
     - else
       div.card
         h2.is-size-3.mb-4.has-background-link-light.card-content

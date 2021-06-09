@@ -4,6 +4,7 @@ class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[show edit update destroy]
   def index
     @medicines = Medicine.all
+    @pets = Pet.all
   end
 
   def show

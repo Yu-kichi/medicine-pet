@@ -5,7 +5,9 @@ div.container
     thead
       tr
         th.abbr 番号
-        th.abbr ペット番号
+        /そもそもユーザーページで薬の一覧を表示させる必要ないので、消す予定。
+        -if @pet
+          th.abbr ペットの名前
         th.abbr 病院番号
         th.abbr 薬の名前
         th.abbr 分量
@@ -17,15 +19,21 @@ div.container
     - @medicines.each_with_index do |medicine,index| 
       tr
         th.abbr = index+1
-        td = medicine.pet_id
+        - if @pet
+          td = @pet.name
         td = medicine.clinic_id
         td = medicine.name
         td = medicine.quantity
         td = medicine.memo
-        td = link_to 'Show', medicine 
-        td = link_to 'Edit', edit_medicine_path(medicine) 
-        td = link_to 'Destroy', medicine, method: :delete, data: { confirm: 'Are you sure?' } 
+        - if @pet
+          td = link_to 'Show', pet_medicine_path(@pet,medicine)
+          td = link_to 'Edit', edit_pet_medicine_path(@pet,medicine) 
+          td = link_to 'Destroy', pet_medicine_path(@pet,medicine), method: :delete, data: { confirm: 'Are you sure?' }
+        - else
+          td = link_to 'Show', pet_medicine_path(medicine.pet_id,medicine)
+          td = link_to 'Edit', edit_pet_medicine_path(medicine.pet_id,medicine) 
+          td = link_to 'Destroy', medicine, method: :delete, data: { confirm: 'Are you sure?' } 
 
-  br
-  .button.is-link
-    = link_to 'New medicine', new_medicine_path, class:"has-text-white"
+  /br
+  / .button.is-link
+  /   = link_to 'New medicine', new_medicine_path, class:"has-text-white"

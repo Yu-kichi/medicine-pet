@@ -13,7 +13,7 @@ div.container
         th.abbr 薬代
         th.abbr 合計
         th.abbr 詳細
-        //th.abbr 編集このページからはできない。管理者ならできるようにする？
+        th.abbr 編集
         th.abbr 削除
     tbody
     - @clinics.each_with_index do |clinic,index| 
@@ -29,9 +29,14 @@ div.container
           td = clinic.medical_fee + clinic.medicine_fee
         - else 
           td = nil
-        td = link_to 'Show', clinic 
-        //td = link_to 'Edit', edit_clinic_path(clinic) 
-        td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' }
+        - if @pet
+          td = link_to 'Show', pet_clinic_path(@pet,clinic)
+          td = link_to 'Edit', edit_pet_clinic_path(@pet,clinic) 
+          td = link_to 'Destroy', pet_clinic_path(@pet,clinic), method: :delete, data: { confirm: 'Are you sure?' }
+        - else
+          td = link_to 'Show', pet_clinic_path(clinic.pet_id,clinic)
+          td = link_to 'Edit', edit_pet_clinic_path(clinic.pet_id,clinic)  
+          td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' }
   / br
   / .button.is-link
   /   = link_to 'New clinic', new_clinic_path, class:"has-text-white"

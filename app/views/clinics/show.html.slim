@@ -20,6 +20,6 @@ div.container.mt-5
         td = @clinic.medical_fee + @clinic.medicine_fee
     br
     .card-footer-item
-      = link_to 'Edit', edit_clinic_path(@clinic) 
+      = link_to 'Edit', edit_pet_clinic_path(@pet,@clinic) 
       = link_to 'Destroy', @clinic, method: :delete, data: { confirm: 'Are you sure?' } 
       = link_to 'Back', clinics_path

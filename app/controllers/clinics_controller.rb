@@ -3,11 +3,17 @@
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit update destroy]
   def index
-    @clinics = Clinic.all
     @pets = Pet.all
+    @pet = Pet.find_by(id: params[:pet_id])
+    if @pet
+      @clinics = @pet.clinics
+    else
+      @clinics = Clinic.all
+    end
   end
 
   def show
+    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def new
@@ -33,17 +39,21 @@ class ClinicsController < ApplicationController
   end
 
   def update
-    # @clinic = Clinic.new(clinic_params)
     if @clinic.update(clinic_params)
-      redirect_to @clinic, notice: "Clinic was successfully updated."
+      redirect_to pet_clinic_path(@clinic.pet_id, @clinic), notice: "Clinic was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @pet = Pet.find_by(id: params[:pet_id])
     @clinic.destroy
-    redirect_to clinics_url, notice: "Clinic was successfully destroyed."
+    if @pet
+      redirect_to pet_medicine_notebook_index_path(@pet), notice: "Clinic was successfully destroyed."
+    else
+      redirect_to clinics_url, notice: "Clinic was successfully destroyed."
+    end
   end
 
   private

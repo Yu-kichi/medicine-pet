@@ -2,6 +2,5 @@ div.container
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       | お薬情報編集
-    = render 'form', medicine: @medicine 
-
+    = render 'form', {medicine: @medicine, pet: @pet }
     = link_to 'Back', medicines_path

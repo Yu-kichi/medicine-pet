@@ -1,39 +1,70 @@
-div class="select is-rounded mt-4 mb-4 ml-4"
-  select onChange="location.href=value;"
-    option ペットを選択してください。
-    - if @pets
-      - @pets.each do |pet|
-        option value="/pets/#{pet.id}/medicine_notebook" = pet.name
-
+div.has-background-white-ter.mb-3
+  div.has-background-white-ter.columns
+    div class="mt-4 ml-4 has-background-white-ter column"
+      div class="select is-rounded "
+        select onChange="location.href=value;"
+          - if @pet
+            option = "選択中のペット：#{@pet.name}"
+          - else
+            option ペットを選択してください。
+          - if @pets
+            - @pets.each do |pet|
+              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+    div.column.center.mt-5
+      - if @pet
+        = "選択中のペット：#{@pet.name}"
 nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation" 
   .navbar-brand
     a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
       span aria-hidden="true" 
       span aria-hidden="true" 
-      span aria-hidden="true"å
+      span aria-hidden="true"
   #navbarBasicExample.navbar-menu
     .navbar-start
-      a.navbar-item
-        = link_to 'お薬手帳', root_path, class: 'a navbar-item has-text-white'
-      a.navbar-item
-        = link_to 'ペット一覧', pets_path , class: 'a navbar-item has-text-white'
-      a.navbar-item
-        = link_to '病院一覧', clinics_path , class: 'a navbar-item has-text-white'
-      a.navbar-item
-        = link_to 'お薬一覧', medicines_path , class: 'a navbar-item has-text-white'  
-      .navbar-item.has-dropdown.is-hoverable
-        a.navbar-link
-          | More
-        .navbar-dropdown
-          a.navbar-item
-            | About
-          a.navbar-item
-            | Jobs
-          a.navbar-item
-            | Contact
-          hr.navbar-divider/
-          a.navbar-item
-            | Report an issue
+      - if @pet
+        a.navbar-item
+          = link_to "#{@pet.name}ちゃんのお薬手帳", pet_medicine_notebook_index_path(@pet), class: 'a navbar-item has-text-white'
+        a.navbar-item
+          = link_to "#{@pet.name}ちゃんの病院一覧", pet_clinics_path(@pet) , class: 'a navbar-item has-text-white'
+        a.navbar-ite
+          = link_to "#{@pet.name}ちゃんのお薬一覧", pet_medicines_path(@pet) , class: 'a navbar-item has-text-white'
+        a.navbar-item
+          = link_to 'ペット選択解除', root_path, class: 'a navbar-item has-text-white'  
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            | More
+          .navbar-dropdown
+            a.navbar-item
+              | About
+            a.navbar-item
+              | Jobs
+            a.navbar-item
+              | Contact
+            hr.navbar-divider/
+            a.navbar-item
+              | Report an issue
+      - else
+        a.navbar-item
+          = link_to 'お薬手帳', root_path, class: 'a navbar-item has-text-white'
+        a.navbar-item
+          = link_to 'ペット一覧', pets_path , class: 'a navbar-item has-text-white'
+        a.navbar-item
+          = link_to '病院一覧', clinics_path , class: 'a navbar-item has-text-white'
+        a.navbar-item
+          = link_to 'お薬一覧', medicines_path , class: 'a navbar-item has-text-white'  
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            | More
+          .navbar-dropdown
+            a.navbar-item
+              | About
+            a.navbar-item
+              | Jobs
+            a.navbar-item
+              | Contact
+            hr.navbar-divider/
+            a.navbar-item
+              | Report an issue
     .navbar-end
       .navbar-item
         .buttons

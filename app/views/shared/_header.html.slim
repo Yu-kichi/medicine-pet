@@ -1,18 +1,32 @@
-div.has-background-white-ter.mb-3
-  div.has-background-white-ter.columns
-    div class="mt-4 ml-4 has-background-white-ter column"
-      div class="select is-rounded "
-        select onChange="location.href=value;"
-          - if @pet
-            option = "選択中のペット：#{@pet.name}"
-          - else
-            option ペットを選択してください。
-          - if @pets
-            - @pets.each do |pet|
-              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
-    div.column.center.mt-5
-      - if @pet
-        = "選択中のペット：#{@pet.name}"
+- if user_signed_in?
+  div.has-background-white-ter.mb-3
+    div.has-background-white-ter.columns
+      div class="mt-4 ml-4 has-background-white-ter column is-half"
+        div class="select is-rounded "
+          select onChange="location.href=value;"
+            - if @pet
+              option = "選択中のペット：#{@pet.name}"
+            - else
+              option ペットを選択してください。
+            - if @pets
+              - @pets.each do |pet|
+                option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+      div.column.center.mt-5.is-two-fifths
+        - if @pet
+          = "選択中のペット：#{@pet.name}"
+      div.column.mt-4
+        - if user_signed_in?
+          div class="dropdown is-right is-hoverable "
+            div class="dropdown-trigger"
+              i class="fas fa-user-edit fa-2x has-text-info "
+              span class="icon is-small has-text-info"
+                i class="fas fa-angle-down" aria-hidden="true"
+            div class="dropdown-menu" id="dropdown-menu4" role="menu"
+              div class="dropdown-content"
+                div class="dropdown-item"
+                  | ユーザー情報編集 
+                div class="dropdown-item"
+                  = link_to 'Log out', destroy_user_session_path, method: :delete   
 nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation" 
   .navbar-brand
     a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
@@ -42,19 +56,6 @@ nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation"
     .navbar-end
       .navbar-item
         - if user_signed_in?
-          .navbar-item.has-dropdown.is-hoverable
-            a.navbar-link
-              | More
-            .navbar-dropdown
-              a.navbar-item
-                | About
-              a.navbar-item
-                | Jobs
-              .navbar-item
-                = link_to 'Log out', destroy_user_session_path, method: :delete
-              hr.navbar-divider/
-              a.navbar-item
-                | Report an issue
         - else
           .buttons
             .button.is-primary.strong

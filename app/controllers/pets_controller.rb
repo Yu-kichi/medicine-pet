@@ -2,6 +2,7 @@
 
 class PetsController < ApplicationController
   before_action :set_pet, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
   def index
     @pets = Pet.all
   end

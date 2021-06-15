@@ -19,11 +19,11 @@ div.container
                 .navbar-item.has-dropdown.is-hoverable
                   a.navbar-link
                   .navbar-dropdown
-                    a.navbar-item
+                    .navbar-item
                       = link_to '病院情報編集', edit_pet_clinic_path(@pet,clinic)
-                    a.navbar-item
+                    .navbar-item
                       = link_to '病院情報削除', pet_clinic_path(@pet,clinic), method: :delete, data: { confirm: 'Are you sure?' }   
-                    a.navbar-item
+                    .navbar-item
                       | コピー
           div.card-content
             div.subtitle.is-size-5
@@ -51,13 +51,13 @@ div.container
                     .navbar-item.has-dropdown.is-hoverable  
                       a.navbar-link
                       .navbar-dropdown
-                        a.navbar-item
+                        .navbar-item
                           = link_to 'お薬情報編集', edit_pet_medicine_path(@pet,medicine)
-                        a.navbar-item  
+                        .navbar-item  
                           = link_to 'お薬情報削除', pet_medicine_path(@pet,medicine), method: :delete, data: { confirm: 'Are you sure?' }    
-                        a.navbar-item
+                        .navbar-item
                           = link_to 'お薬追加登録', new_clinic_medicine_path(clinic)
-                        a.navbar-item
+                        .navbar-item
                           | コピー
               div.card-content
                 div.subtitle

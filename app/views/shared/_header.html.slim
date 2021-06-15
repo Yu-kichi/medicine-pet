@@ -29,20 +29,7 @@ nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation"
         a.navbar-ite
           = link_to "#{@pet.name}ちゃんのお薬一覧", pet_medicines_path(@pet) , class: 'a navbar-item has-text-white'
         a.navbar-item
-          = link_to 'ペット選択解除', root_path, class: 'a navbar-item has-text-white'  
-        .navbar-item.has-dropdown.is-hoverable
-          a.navbar-link
-            | More
-          .navbar-dropdown
-            a.navbar-item
-              | About
-            a.navbar-item
-              | Jobs
-            a.navbar-item
-              | Contact
-            hr.navbar-divider/
-            a.navbar-item
-              | Report an issue
+          = link_to 'ペット選択解除', root_path, class: 'a navbar-item has-text-white'
       - else
         a.navbar-item
           = link_to 'お薬手帳', root_path, class: 'a navbar-item has-text-white'
@@ -51,24 +38,29 @@ nav.navbar.is-link.mb-4 aria-label=("main navigation") role="navigation"
         a.navbar-item
           = link_to '病院一覧', clinics_path , class: 'a navbar-item has-text-white'
         a.navbar-item
-          = link_to 'お薬一覧', medicines_path , class: 'a navbar-item has-text-white'  
-        .navbar-item.has-dropdown.is-hoverable
-          a.navbar-link
-            | More
-          .navbar-dropdown
-            a.navbar-item
-              | About
-            a.navbar-item
-              | Jobs
-            a.navbar-item
-              | Contact
-            hr.navbar-divider/
-            a.navbar-item
-              | Report an issue
+          = link_to 'お薬一覧', medicines_path , class: 'a navbar-item has-text-white'
     .navbar-end
       .navbar-item
-        .buttons
-          a.button.is-primary
-            strong Sign up
-          a.button.is-light
-            | Log in
+        - if user_signed_in?
+          .navbar-item.has-dropdown.is-hoverable
+            a.navbar-link
+              | More
+            .navbar-dropdown
+              a.navbar-item
+                | About
+              a.navbar-item
+                | Jobs
+              .navbar-item
+                = link_to 'Log out', destroy_user_session_path, method: :delete
+              hr.navbar-divider/
+              a.navbar-item
+                | Report an issue
+        - else
+          .buttons
+            .button.is-primary.strong
+              strong = link_to 'Sign up', new_user_registration_path, class:"has-text-white"
+            .button.is-light
+              = link_to 'Log in', new_user_session_path
+          / .button.is-light
+          /   = link_to 'Log out', destroy_user_session_path, method: :delete
+

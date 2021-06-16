@@ -1,0 +1,30 @@
+section.hero.is-fullheight
+  .hero-body
+    .container
+      .columns.is-centered
+        .column.is-5-tablet.is-4-desktop.is-3-widescreen
+          .card
+            h2.title.has-background-primary.has-text-white.has-text-centered.p-2
+              | Log in
+            div.pl-3.pr-3.mb-3
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                .field
+                  = f.label :email, class:"label"
+                  .control.has-icons-left
+                    = f.email_field :email, :placeholder => "****@gmail.com",autofocus: true, autocomplete: "email", required: true,  class:"input"
+                    span.icon.is-small.is-left
+                      i.fa.fa-envelope
+                .field
+                  = f.label :password,class:"label"
+                  .control.has-icons-left
+                    = f.password_field :password, autocomplete: "current-password",class: "input",required: true,:placeholder=>"*******"
+                    span.icon.is-small.is-left
+                      i.fa.fa-lock
+                - if devise_mapping.rememberable?
+                  .field
+                    = f.label  :remember_me
+                      = f.check_box :remember_me 
+                      | remember_me
+                .actions
+                  = f.submit "Log in" ,class:"button is-success"
+              = render "devise/shared/links"

@@ -2,9 +2,8 @@ div.container
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       = "#{@pet.name}ちゃんのプロフィール"
-    div.control.label
-      | 番号
-    = @pet.id
+    div
+      = image_tag @pet.image
     div.control.label
       | 性別
     = @pet.sex

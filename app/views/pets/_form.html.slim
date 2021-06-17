@@ -13,6 +13,10 @@
     = f.text_field :weight, class: "input"
     = f.label :birthday
     = f.date_select :birthday
+    div
+      | 画像
+    div
+      = f.file_field :image
     = f.hidden_field :user_id, value: "#{current_user.id}"
 
     - if pet.errors.any? 

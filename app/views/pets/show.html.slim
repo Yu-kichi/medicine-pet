@@ -3,7 +3,7 @@ div.container
     h1.is-size-1.has-background-white-ter.mb-4
       = "#{@pet.name}ちゃんのプロフィール"
     div
-      = image_tag @pet.image
+      = image_tag @pet.image.variant(gravity:'center',resize_to_limit: [100, 100])
     div.control.label
       | 性別
     = @pet.sex

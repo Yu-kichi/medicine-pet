@@ -13,7 +13,7 @@
                 option value="/pets/#{pet.id}/medicine_notebook" = pet.name
       div.column.center.mt-5.is-two-fifths
         - if @pet
-          = "選択中のペット：#{@pet.name}"
+          = image_tag @pet.image,class:"pet_image_icon"
       div.column.mt-4
         - if user_signed_in?
           div class="dropdown is-right is-hoverable "

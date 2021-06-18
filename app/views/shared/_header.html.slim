@@ -5,7 +5,7 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
     - if user_signed_in?
       .navbar-item
-        div class="select is-rounded "
+        div class="select "
           select onChange="location.href=value;"
             - if @pet
               option = "#{@pet.name}"

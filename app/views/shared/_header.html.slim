@@ -11,7 +11,7 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
           - if @pets
             - @pets.each do |pet|
               option value="/pets/#{pet.id}/medicine_notebook" = pet.name
-    .navber-item.ml-4.mt-4
+    .navber-item.ml-4.mt-5
       - if @pet
         = image_tag @pet.image,class:"pet_image_icon"     
     a.navbar-burger.mt-5 aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 

@@ -1,18 +1,26 @@
-nav.navbar.is-dark.p-3.mb-4 aria-label=("main navigation") role="navigation" 
-  .navbar-brand
-    = image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
-    - if @pets
-      - @pets.each do |pet|
-        .navbar-brand.ml-3.mr-3
-          = link_to image_tag(pet.image,class:"pet_image_icon"), pet_medicine_notebook_index_path(pet)
-    a.navbar-burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
+nav.navbar.is-dark aria-label=("main navigation") role="navigation"
+  .navbar-brand.mr-4.ml-4
+    .navbar-item.title.has-text-white.mt-4
+      | メディペット
+      /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
+    .navbar-item
+      div class="select is-rounded "
+        select onChange="location.href=value;"
+          - if @pet
+            option = "#{@pet.name}"
+          - if @pets
+            - @pets.each do |pet|
+              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+    .navber-item.ml-4.mt-4
+      - if @pet
+        = image_tag @pet.image,class:"pet_image_icon"     
+    a.navbar-burger.mt-5 aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
       span aria-hidden="true" 
       span aria-hidden="true" 
-      span aria-hidden="true"     
+      span aria-hidden="true"         
   .navbar-menu
-    .navbar-start
     .navbar-end
-      .navbar-item
+      .navbar-item.mr-4
         - if user_signed_in?
           div class="dropdown is-right is-hoverable "
              div class="dropdown-trigger"
@@ -39,5 +47,3 @@ nav.navbar.is-dark.p-3.mb-4 aria-label=("main navigation") role="navigation"
               strong = link_to 'Sign up', new_user_registration_path, class:"has-text-white"
             .button.is-light
               = link_to 'Log in', new_user_session_path
-          / .button.is-light
-          /   = link_to 'Log out', destroy_user_session_path, method: :delete

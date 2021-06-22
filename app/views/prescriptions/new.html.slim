@@ -1,0 +1,7 @@
+div.container
+  .card.has-background-white-bis
+    h1.is-size-1.has-background-white-ter.mb-4
+      | 病院情報登録
+    = render 'form', {prescription: @prescription, pet: @pet}
+
+  = link_to 'Back', pet_medicine_notebook_index_path(@pet)

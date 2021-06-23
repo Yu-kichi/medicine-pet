@@ -1,0 +1,19 @@
+div.container.mt-5
+  .card.has-background-white-bis
+    h1.is-size-1.has-background-white-ter.mb-4
+      | お薬名：
+      = @prescription_detail.medicine.name
+    div.subtitle
+      | 錠数:
+      = @prescription_detail.quantity
+    div.subtitle
+      | 何日分:
+      = @prescription_detail.for_days
+    div.subtitle
+      | メモ:
+      = @prescription_detail.memo
+    br
+    .card-footer-item
+      = link_to 'Edit', edit_prescription_prescription_detail_path(@prescription_detail.prescription_id,@prescription_detail)
+      = link_to 'Destroy', prescription_prescription_detail_path(@prescription_detail.prescription_id,@prescription_detail), method: :delete, data: { confirm: 'Are you sure?' } 
+      = link_to 'Back', pet_medicine_notebook_index_path(@pet)

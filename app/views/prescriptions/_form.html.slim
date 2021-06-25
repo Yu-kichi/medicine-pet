@@ -35,6 +35,7 @@
               li = message /li
 
   div.actions
+    /これだと一度エラーがでて登録し直す時にnewではなくなってしまう。indexに飛んでる。
     - if action_name == "new"
       = f.submit "お薬登録に進む",class:"button is-link is-outlined"
     - else

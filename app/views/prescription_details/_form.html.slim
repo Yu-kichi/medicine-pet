@@ -6,7 +6,7 @@
       div.column.is-one-third
         = f.collection_select :medicine_id, Medicine.all, :id, :name ,include_blank: "選択して下さい"
       div.column
-         = link_to "新しく薬の名前を登録する",new_medicine_path,class:"button is-link is-outlined"  
+        = link_to "新しく薬の名前を登録する",new_medicine_path,class:"button is-link is-outlined"  
     div.field
       = f.label :quantity,"1日の使用量",class: "label"
       div.control
@@ -34,8 +34,14 @@
           prescription_detail.errors.full_messages.each do |message| 
             li = message /li
   /複数登録もできるようにする。ボタン押すと下に同じformができるイメージ。そして一括登録。
+
   div.actions
     - if action_name == "new"
-      = f.submit "お薬情報を登録する",class:"button is-link is-outlined"
+      div.columns
+        div.column.is-one-third
+          = f.submit "お薬情報を登録する",class:"button is-link is-outlined"
+        div.column
+          div.button.is-primary.is-outlined
+            | 追加で登録する
     - else
       = f.submit "編集する", class:"button is-link is-outlined"

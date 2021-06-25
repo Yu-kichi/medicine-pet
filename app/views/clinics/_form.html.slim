@@ -1,44 +1,14 @@
 = form_with(model: clinic, local: true) do |f| 
   .form__items
     div.field
-      = f.label :prescription_date, class: "label"
-      div.control
-        = f.date_select :prescription_date
-    div.field    
       = f.label :name, class: "label"
       div.control
         = f.text_field :name, class: "input"
-    div.field    
-      = f.label :doctor_name, class: "label"
-      div.control  
-        = f.text_field :doctor_name, class: "input"
-    div.field    
-      = f.label :medical_fee, class: "label"
-      div.control  
-        = f.text_field :medical_fee 
-        |  円
-    div.field    
-      = f.label :medicine_fee, class: "label"
-      div.control  
-        = f.text_field :medicine_fee
-        |  円
-      div
-        = f.hidden_field :pet_id, value: "#{pet.id}"
-           //hidden_fieldを使うとclinicの方にpet_idが情報として送ることになり、clinicはそのカラムがないので取得できない。
-      //ここでvueで合計が表示できるようにする。| 合計 円 
-      - if clinic.errors.any? 
-        div id="error_explanation"
-          h2 
-            = pluralize(clinic.errors.count, "error") 
-            prohibited this clinic from being saved:
-    
           ul
             clinic.errors.full_messages.each do |message| 
               li = message /li
   br
 
   div.actions
-    - if action_name == "new"
-      = f.submit "お薬登録に進む",class:"button is-link is-outlined"
-    - else
-      = f.submit "編集する", class:"button is-link is-outlined"
+    = f.submit "登録する",class:"button is-link is-outlined"
+

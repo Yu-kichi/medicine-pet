@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class Pet < ApplicationRecord
-  has_many :clinics, dependent: :destroy
-  has_many :medicines, dependent: :destroy
+  has_many :prescriptions, dependent: :destroy
   belongs_to :user
   has_one_attached :image
-
+  validates :name, uniqueness: true
   validate :image_type
 
   def image_type

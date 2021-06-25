@@ -9,15 +9,16 @@ Rails.application.routes.draw do
   root "medicine_notebook#index"
 
   resources :pets do
+    resources :prescriptions
     resources :medicine_notebook, only: %i(index)
-    resources :clinics
-    resources :medicines
   end
 
-  resources :clinics do
-    resources :medicines
+  resources :prescriptions do
+    resources :prescription_details
   end
 
+  #resources :prescription_details
+  resources :clinics
   resources :medicines
   resources :pets
 end

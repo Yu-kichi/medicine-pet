@@ -1,11 +1,11 @@
 nav.navbar.is-dark aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
-    .navbar-item.title.has-text-white.mt-4
-      | メディペット
+    .navbar-item.title.mt-4
+      = link_to "メディペット", root_path, class:"has-text-white"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
     - if user_signed_in?
       .navbar-item
-        div class="select is-rounded "
+        div class="select "
           select onChange="location.href=value;"
             - if @pet
               option = "#{@pet.name}"
@@ -14,7 +14,8 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
                 option value="/pets/#{pet.id}/medicine_notebook" = pet.name
     .navber-item.ml-4.mt-5
       - if @pet
-        = image_tag @pet.image,class:"pet_image_icon"     
+        - if !@pet.id.nil?
+          = link_to image_tag(@pet.image,class:"pet_image_icon"), pet_medicine_notebook_index_path(@pet),class:"pet_image_icon" 
     a.navbar-burger.mt-5 aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
       span aria-hidden="true" 
       span aria-hidden="true" 

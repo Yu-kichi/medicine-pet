@@ -5,41 +5,41 @@ div.box
       - else
         | まずペット情報を登録しましょう！
   .card.has-background-white-bis
-    - if @clinics.present?
-      - @clinics.each do |clinic|
-        div.mt-4.mb-4.is-size-4
-          = clinic.prescription_date
-        div.card
-          h2.is-size-3.mb-4.has-background-link-light.card-content
-            div.columns
-              div.column.is-four-fifths
-                | 病院名:
-                = clinic.name
-              div.column
-                .navbar-item.has-dropdown.is-hoverable
-                  a.navbar-link
-                  .navbar-dropdown
-                    .navbar-item
-                      = link_to '病院情報編集', edit_pet_clinic_path(@pet,clinic)
-                    .navbar-item
-                      = link_to '病院情報削除', pet_clinic_path(@pet,clinic), method: :delete, data: { confirm: 'Are you sure?' }   
-                    .navbar-item
-                      | コピー
-          div.card-content
-            div.subtitle.is-size-5
-              | 医者名:
-              = clinic.doctor_name
-            div.columns
-              div.subtitle.column.is-size-5
-                | 診療代:  
-                = clinic.medical_fee
-              div.subtitle.column.is-size-5
-                | お薬代:  
-                = clinic.medicine_fee
-              div.subtitle.column.is-size-5
-                - if clinic.medical_fee || clinic.medicine_fee
-                  | 合計:
-                  td = clinic.medical_fee + clinic.medicine_fee
+    / - if @clinics.present?
+    /   - @clinics.each do |clinic|
+    /     div.mt-4.mb-4.is-size-4
+    /       = clinic.prescription_date
+    /     div.card
+    /       h2.is-size-3.mb-4.has-background-link-light.card-content
+    /         div.columns
+    /           div.column.is-four-fifths
+    /             | 病院名:
+    /             = clinic.name
+    /           div.column
+    /             .navbar-item.has-dropdown.is-hoverable
+    /               a.navbar-link
+    /               .navbar-dropdown
+    /                 .navbar-item
+    /                   = link_to '病院情報編集', edit_pet_clinic_path(@pet,clinic)
+    /                 .navbar-item
+    /                   = link_to '病院情報削除', pet_clinic_path(@pet,clinic), method: :delete, data: { confirm: 'Are you sure?' }   
+    /                 .navbar-item
+    /                   | コピー
+    /       div.card-content
+    /         div.subtitle.is-size-5
+    /           | 医者名:
+    /           = clinic.doctor_name
+    /         div.columns
+    /           div.subtitle.column.is-size-5
+    /             | 診療代:  
+    /             = clinic.medical_fee
+    /           div.subtitle.column.is-size-5
+    /             | お薬代:  
+    /             = clinic.medicine_fee
+    /           div.subtitle.column.is-size-5
+    /             - if clinic.medical_fee || clinic.medicine_fee
+    /               | 合計:
+    /               td = clinic.medical_fee + clinic.medicine_fee
           - clinic.medicines.each do |medicine|
             div.card
               h2.is-size-3.mb-4.has-background-link-light.card-content
@@ -66,7 +66,7 @@ div.box
                 div.subtitle
                   | メモ:
                   = medicine.memo
-    - else
+    / - else
       div.card
         h2.is-size-3.mb-4.has-background-link-light.card-content
           | 診療日:

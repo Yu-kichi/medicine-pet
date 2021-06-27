@@ -51,6 +51,7 @@ group :development do
   gem "bullet"
   gem "rubocop-rails", require: false
   gem "slim_lint"
+  gem 'rails-erd'
 end
 
 group :test do

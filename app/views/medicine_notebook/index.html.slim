@@ -1,10 +1,10 @@
-div.container
-  .card.has-background-white-bis
-    h1.is-size-2.has-background-white-ter.mb-4
+div.box
+  h1.is-size-2.has-background-white-ter.mb-4
       - if @pet
         = "#{@pet.name}ちゃんのお薬手帳"
       - else
         | まずペット情報を登録しましょう！
+  .card.has-background-white-bis
     - if @clinics.present?
       - @clinics.each do |clinic|
         div.mt-4.mb-4.is-size-4
@@ -93,4 +93,3 @@ div.container
   - if @pet
     .button.is-link.mt-4
        = link_to '新しくお薬手帳に登録する', new_pet_clinic_path(@pet.id), class:"has-text-white"
-  

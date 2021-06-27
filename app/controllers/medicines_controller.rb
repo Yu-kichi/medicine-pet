@@ -4,7 +4,7 @@ class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[show edit update destroy]
   before_action :authenticate_user!
   def index
-    @pets = Pet.includes(:clinics, :medicines)
+    @pets = current_user.pets.includes(:clinics, :medicines)
     @pet = @pets.find_by(id: params[:pet_id])
     if @pet
       @medicines = @pet.medicines

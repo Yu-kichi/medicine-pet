@@ -3,14 +3,15 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
     .navbar-item.title.has-text-white.mt-4
       | メディペット
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
-    .navbar-item
-      div class="select is-rounded "
-        select onChange="location.href=value;"
-          - if @pet
-            option = "#{@pet.name}"
-          - if @pets
-            - @pets.each do |pet|
-              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+    - if user_signed_in?
+      .navbar-item
+        div class="select is-rounded "
+          select onChange="location.href=value;"
+            - if @pet
+              option = "#{@pet.name}"
+            - if @pets
+              - @pets.each do |pet|
+                option value="/pets/#{pet.id}/medicine_notebook" = pet.name
     .navber-item.ml-4.mt-5
       - if @pet
         = image_tag @pet.image,class:"pet_image_icon"     

@@ -4,7 +4,7 @@ class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit update destroy]
   before_action :authenticate_user!
   def index
-    @pets = Pet.all
+    @pets = current_user.pets
     @pet = Pet.find_by(id: params[:pet_id])
     if @pet
       @clinics = @pet.clinics

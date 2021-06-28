@@ -43,7 +43,7 @@ div.box
                 - if prescription.medical_fee && prescription.medicine_fee
                   | 合計:
                   td = "#{prescription.medical_fee + prescription.medicine_fee}円"
-          - prescription.prescription_details.each do |detail|
+          - prescription.prescriptions_medicines.each do |detail|
             div.card
               h2.is-size-3.mb-4.has-background-link-light.card-content
                 div.columns
@@ -55,20 +55,20 @@ div.box
                       a.navbar-link
                       .navbar-dropdown
                         .navbar-item
-                          = link_to 'お薬情報編集', edit_prescription_prescription_detail_path(detail.prescription_id,detail)
+                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail)
                         .navbar-item  
-                          = link_to 'お薬情報削除', prescription_prescription_detail_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
+                          = link_to 'お薬情報削除', prescription_prescriptions_medicine_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
                         .navbar-item
-                          = link_to 'お薬追加登録', new_prescription_prescription_detail_path(detail.prescription_id)
+                          = link_to 'お薬追加登録', new_prescription_prescriptions_medicine_path(detail.prescription_id)
                         .navbar-item
                           | コピー
               div.card-content
                 div.subtitle
                   | 1日の使用量:
-                  = "#{detail.quantity}錠"
+                  = "#{detail.dose}錠"
                 div.subtitle
                   | 総量:
-                  = "#{detail.for_days}日分"  
+                  = "#{detail.total_amount}日分"  
                 div.subtitle
                   | メモ:
                   = detail.memo

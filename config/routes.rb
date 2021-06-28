@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   end
 
   resources :prescriptions do
-    resources :prescription_details
+    resources :prescriptions_medicines
   end
 
-  #resources :prescription_details
+  #resources :prescriptions_medicines
   resources :clinics
   resources :medicines
   resources :pets

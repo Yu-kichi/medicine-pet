@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
 class Medicine < ApplicationRecord
-  has_many :prescription_details
-  validates :name, uniqueness: true
+  has_many :prescriptions_medicines
 end

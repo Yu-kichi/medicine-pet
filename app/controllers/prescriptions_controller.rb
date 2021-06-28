@@ -18,7 +18,7 @@ class PrescriptionsController < ApplicationController
     @prescription = Prescription.new(prescription_params)
     @pet = @prescription.pet
     if @prescription.save
-      redirect_to new_prescription_prescription_detail_path(@prescription, @pet), notice:  "prescription was successfully created."
+      redirect_to new_prescription_prescriptions_medicine_path(@prescription), notice:  "prescription was successfully created."
     else
       #ここでindexのURLに飛んでしまう。
       #render 'prescriptions/edit', id: params[:id]

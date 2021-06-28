@@ -3,5 +3,5 @@
 class Prescription < ApplicationRecord
   belongs_to :pet
   belongs_to :clinic
-  has_many :prescription_details, dependent: :destroy
+  has_many :prescriptions_medicines, dependent: :destroy
 end

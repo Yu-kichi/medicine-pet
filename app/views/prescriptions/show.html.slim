@@ -1,0 +1,24 @@
+div.container.mt-5
+  .card.has-background-white-bis
+    h1.is-size-1.has-background-white-ter.mb-4
+      = @prescription.clinic.name
+    div.subtitle
+      | 診療日:
+      = @prescription.date
+    div.subtitle
+      div.subtitle.column.is-size-5
+        | 診療代:
+        - if @prescription.medical_fee
+          = "#{@prescription.medical_fee}円"
+      div.subtitle.column.is-size-5
+        | お薬代:
+        - if @prescription.medicine_fee
+          = "#{@prescription.medicine_fee}円"
+      div.subtitle.column.is-size-5
+        - if @prescription.medical_fee && @prescription.medicine_fee
+          | 合計:
+          td = "#{@prescription.medical_fee + @prescription.medicine_fee}円"
+    .card-footer-item
+      = link_to 'Edit', edit_pet_prescription_path(@pet,@prescription) 
+      = link_to 'Destroy', @prescription, method: :delete, data: { confirm: 'Are you sure?' } 
+      = link_to 'Back', pet_medicine_notebook_index_path(@pet)

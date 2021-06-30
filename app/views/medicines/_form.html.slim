@@ -4,22 +4,6 @@
       = f.label :name, class: "label"
       div.control
         = f.text_field :name, class: "input"
-    div.field    
-      = f.label :quantity,class: "label"
-      div.control
-        = f.number_field :quantity,class: "input"
-    div.field
-      = f.label :memo,class: "label"
-      div.control
-        = f.text_area :memo, class: "textarea"
-      div
-        - if action_name == "new"
-          = f.hidden_field :clinic_id, value: "#{clinic.id}"
-          = f.hidden_field :pet_id, value: "#{pet.id}"
-        - else
-          = f.hidden_field :clinic_id, value: "#{medicine.clinic_id}"
-          = f.hidden_field :pet_id, value: "#{medicine.pet_id}"
-    br
     - if medicine.errors.any? 
       div id="error_explanation"
         h2 
@@ -29,7 +13,6 @@
         ul
           medicine.errors.full_messages.each do |message| 
             li = message /li
-  br
 
   div.actions
     = f.submit class:"button is-link is-outlined"

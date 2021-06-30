@@ -4,13 +4,9 @@ class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[show edit update destroy]
   before_action :authenticate_user!
   def index
-    @pets = current_user.pets.includes(:clinics, :medicines)
+    @pets = current_user.pets
     @pet = @pets.find_by(id: params[:pet_id])
-    if @pet
-      @medicines = @pet.medicines
-    else
-      @medicines = Medicine.all
-    end
+    @medicines = Medicine.all
   end
 
   def show
@@ -18,16 +14,18 @@ class MedicinesController < ApplicationController
   end
 
   def new
+    @pets = current_user.pets
     @medicine = Medicine.new
-    @clinic = Clinic.find_by(id: params[:clinic_id])
-    @pet = Pet.find_by(id: @clinic.pet_id)
+    session[:previous_url] = request.referer
   end
 
   def create
     @medicine = Medicine.new(medicine_params)
+    @session = session[:previous_url]
     if @medicine.save
       # redirect_to @medicine, notice:  "Medicine was successfully created."
-      redirect_to pet_medicine_path(@medicine.pet_id, @medicine), notice: "Medicine was successfully updated."
+      redirect_to @session, notice: "Medicine was successfully updated."
+      session[:previous_url].clear
     else
       render :new, status: :unprocessable_entity
     end
@@ -62,6 +60,6 @@ class MedicinesController < ApplicationController
     end
 
     def medicine_params
-      params.require(:medicine).permit(:name, :quantity, :memo, :clinic_id, :pet_id)
+      params.require(:medicine).permit(:name)
     end
 end

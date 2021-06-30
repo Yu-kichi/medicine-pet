@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_170246) do
+ActiveRecord::Schema.define(version: 2021_06_28_105058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_170246) do
     t.bigint "prescription_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "memo"
     t.index ["medicine_id"], name: "index_prescriptions_medicines_on_medicine_id"
     t.index ["prescription_id"], name: "index_prescriptions_medicines_on_prescription_id"
   end

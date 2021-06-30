@@ -5,91 +5,101 @@ div.box
       - else
         | まずペット情報を登録しましょう！
   .card.has-background-white-bis
-    / - if @clinics.present?
-    /   - @clinics.each do |clinic|
-    /     div.mt-4.mb-4.is-size-4
-    /       = clinic.prescription_date
-    /     div.card
-    /       h2.is-size-3.mb-4.has-background-link-light.card-content
-    /         div.columns
-    /           div.column.is-four-fifths
-    /             | 病院名:
-    /             = clinic.name
-    /           div.column
-    /             .navbar-item.has-dropdown.is-hoverable
-    /               a.navbar-link
-    /               .navbar-dropdown
-    /                 .navbar-item
-    /                   = link_to '病院情報編集', edit_pet_clinic_path(@pet,clinic)
-    /                 .navbar-item
-    /                   = link_to '病院情報削除', pet_clinic_path(@pet,clinic), method: :delete, data: { confirm: 'Are you sure?' }   
-    /                 .navbar-item
-    /                   | コピー
-    /       div.card-content
-    /         div.subtitle.is-size-5
-    /           | 医者名:
-    /           = clinic.doctor_name
-    /         div.columns
-    /           div.subtitle.column.is-size-5
-    /             | 診療代:  
-    /             = clinic.medical_fee
-    /           div.subtitle.column.is-size-5
-    /             | お薬代:  
-    /             = clinic.medicine_fee
-    /           div.subtitle.column.is-size-5
-    /             - if clinic.medical_fee || clinic.medicine_fee
-    /               | 合計:
-    /               td = clinic.medical_fee + clinic.medicine_fee
-          - clinic.medicines.each do |medicine|
+  - if @pet.present?
+    - if @pet.prescriptions.present?
+      - @pet.prescriptions.each do |prescription|
+        div.mt-4.mb-4.is-size-4
+          = prescription.date
+        div.card.mr-4.ml-4
+          h2.is-size-3.mb-4.has-background-link-light.card-content
+            div.columns
+              div.column.is-four-fifths
+                | 病院名:
+                = prescription.clinic.name
+              div.column
+                .navbar-item.has-dropdown.is-hoverable
+                  a.navbar-link
+                  .navbar-dropdown
+                    .navbar-item
+                      = link_to '病院情報編集', edit_pet_prescription_path(@pet,prescription)
+                    .navbar-item
+                      = link_to '病院情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }   
+                    .navbar-item
+                      | コピー
+          div.card-content
+            div.subtitle.is-size-5
+            /  | 医者名:
+            /  = clinic.doctor_name
+            div.columns
+              div.subtitle.column.is-size-5
+                | 診療代:
+                - if prescription.medical_fee
+                  = "#{prescription.medical_fee}円"
+              div.subtitle.column.is-size-5
+                | お薬代:
+                - if prescription.medicine_fee
+                  = "#{prescription.medicine_fee}円"
+              div.subtitle.column.is-size-5
+                - if prescription.medical_fee && prescription.medicine_fee
+                  | 合計:
+                  td = "#{prescription.medical_fee + prescription.medicine_fee}円"
+          - prescription.prescriptions_medicines.each do |detail|
             div.card
               h2.is-size-3.mb-4.has-background-link-light.card-content
                 div.columns
                   div.column.is-four-fifths
                     | 薬の名前:
-                    = medicine.name
+                    = detail.medicine.name
                   div.column
                     .navbar-item.has-dropdown.is-hoverable  
                       a.navbar-link
                       .navbar-dropdown
                         .navbar-item
-                          = link_to 'お薬情報編集', edit_pet_medicine_path(@pet,medicine)
+                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicines_path(detail.prescription_id,detail)
                         .navbar-item  
-                          = link_to 'お薬情報削除', pet_medicine_path(@pet,medicine), method: :delete, data: { confirm: 'Are you sure?' }    
+                          = link_to 'お薬情報削除', prescription_prescriptions_medicines_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
                         .navbar-item
-                          = link_to 'お薬追加登録', new_clinic_medicine_path(clinic)
+                          = link_to 'お薬追加登録', new_prescription_prescriptions_medicines_path(detail.prescription_id)
                         .navbar-item
                           | コピー
               div.card-content
                 div.subtitle
-                  | 分量:
-                  = "#{medicine.quantity}日分"
+                  | 1日の使用量:
+                  = "#{detail.quantity}錠"
+                div.subtitle
+                  | 総量:
+                  = "#{detail.for_days}日分"  
                 div.subtitle
                   | メモ:
-                  = medicine.memo
-    / - else
-      div.card
-        h2.is-size-3.mb-4.has-background-link-light.card-content
-          | 診療日:
-        div.card-content
-          div.subtitle
+                  = detail.memo
+  - else
+    div.mt-4.mb-4.is-size-4
+      | 診療日:
+    div.card
+      h2.is-size-3.mb-4.has-background-link-light.card-content
+        div.columns
+          div.column.is-four-fifths
             | 病院名:
-          div.subtitle
-            | 医者名:
-          div.columns
-            div.subtitle.column
-              | 診療代:
-            div.subtitle.column
-              | お薬代:
-            div.subtitle.column
-              | 合計:
+          div.column  
+      div.card-content
+        div.subtitle.is-size-5
+        div.columns
+          div.subtitle.column.is-size-5
+            | 診療代:
+          div.subtitle.column.is-size-5
+            | お薬代:
+          div.subtitle.column.is-size-5
+            | 合計:
       div.card
         h2.is-size-3.mb-4.has-background-link-light.card-content
           | 薬の名前:
         div.card-content
           div.subtitle
-            | 分量:
+            | 1日の使用量:
+          div.subtitle
+            | 総量:
           div.subtitle  
             | メモ:
   - if @pet
     .button.is-link.mt-4
-       = link_to '新しくお薬手帳に登録する', new_pet_clinic_path(@pet.id), class:"has-text-white"
+       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet.id), class:"has-text-white"

@@ -55,20 +55,20 @@ div.box
                       a.navbar-link
                       .navbar-dropdown
                         .navbar-item
-                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicines_path(detail.prescription_id,detail)
+                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail)
                         .navbar-item  
-                          = link_to 'お薬情報削除', prescription_prescriptions_medicines_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
+                          = link_to 'お薬情報削除', prescription_prescriptions_medicine_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
                         .navbar-item
-                          = link_to 'お薬追加登録', new_prescription_prescriptions_medicines_path(detail.prescription_id)
+                          = link_to 'お薬追加登録', new_prescription_prescriptions_medicine_path(detail.prescription_id)
                         .navbar-item
                           | コピー
               div.card-content
                 div.subtitle
                   | 1日の使用量:
-                  = "#{detail.quantity}錠"
+                  = "#{detail.dose}錠"
                 div.subtitle
                   | 総量:
-                  = "#{detail.for_days}日分"  
+                  = "#{detail.total_amount}日分"  
                 div.subtitle
                   | メモ:
                   = detail.memo
@@ -102,4 +102,4 @@ div.box
             | メモ:
   - if @pet
     .button.is-link.mt-4
-       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet.id), class:"has-text-white"
+       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet), class:"has-text-white"

@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   resources :clinics
   resources :medicines
-  resources :pets
+
 end

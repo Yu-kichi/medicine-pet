@@ -17,7 +17,7 @@ class ClinicsController < ApplicationController
     @pets = current_user.pets
     @clinic = Clinic.new
     session[:previous_url] = request.referer
-    @pet = Pet.find_by(id: params[:pet_id]) 
+    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def create

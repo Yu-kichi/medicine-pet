@@ -36,6 +36,11 @@
   /複数登録もできるようにする。ボタン押すと下に同じformができるイメージ。そして一括登録。
   div.actions
     - if action_name == "new"
-      = f.submit "お薬情報を登録する",class:"button is-link is-outlined"
+      div.columns
+        div.column.is-one-third
+          = f.submit "お薬情報を登録する",class:"button is-link is-outlined"
+        div.column
+          div.button.is-primary.is-outlined
+            | 追加で登録する
     - else
       = f.submit "編集する", class:"button is-link is-outlined"

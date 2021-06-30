@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_171617) do
+ActiveRecord::Schema.define(version: 2021_06_28_105058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,27 +39,14 @@ ActiveRecord::Schema.define(version: 2021_06_16_171617) do
 
   create_table "clinics", force: :cascade do |t|
     t.string "name", null: false
-    t.date "prescription_date", null: false
-    t.string "doctor_name"
-    t.integer "medical_fee"
-    t.integer "medicine_fee"
-    t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "pet_id"
-    t.index ["pet_id"], name: "index_clinics_on_pet_id"
   end
 
   create_table "medicines", force: :cascade do |t|
     t.string "name", null: false
-    t.string "quantity", null: false
-    t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "clinic_id"
-    t.bigint "pet_id"
-    t.index ["clinic_id"], name: "index_medicines_on_clinic_id"
-    t.index ["pet_id"], name: "index_medicines_on_pet_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -73,6 +60,30 @@ ActiveRecord::Schema.define(version: 2021_06_16_171617) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.date "date", null: false
+    t.integer "medical_fee"
+    t.integer "medicine_fee"
+    t.bigint "pet_id"
+    t.bigint "clinic_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_prescriptions_on_clinic_id"
+    t.index ["pet_id"], name: "index_prescriptions_on_pet_id"
+  end
+
+  create_table "prescriptions_medicines", force: :cascade do |t|
+    t.integer "total_amount"
+    t.integer "dose"
+    t.bigint "medicine_id"
+    t.bigint "prescription_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "memo"
+    t.index ["medicine_id"], name: "index_prescriptions_medicines_on_medicine_id"
+    t.index ["prescription_id"], name: "index_prescriptions_medicines_on_prescription_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,7 +100,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_171617) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "clinics", "pets"
-  add_foreign_key "medicines", "pets"
   add_foreign_key "pets", "users"
+  add_foreign_key "prescriptions", "clinics"
+  add_foreign_key "prescriptions", "pets"
+  add_foreign_key "prescriptions_medicines", "medicines"
+  add_foreign_key "prescriptions_medicines", "prescriptions"
 end

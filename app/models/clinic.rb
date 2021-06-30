@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class Clinic < ApplicationRecord
-  belongs_to :pet
-  has_many :medicines
+  has_many :prescriptions
+  validates :name, uniqueness: true
 end

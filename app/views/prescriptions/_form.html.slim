@@ -1,0 +1,41 @@
+= form_with(model: prescription,local: true) do |f| 
+  .form__items
+    div.field
+      = f.label :date, class: "label"
+      div.control
+        = f.date_select :date
+    div.field    
+      = f.label :clinic_id, "病院名",class: "label"
+      div.control.columns
+        div.column.is-one-third
+         = f.collection_select :clinic_id, Clinic.all, :id, :name ,include_blank: "選択して下さい"
+        div.column
+          = link_to "新しく病院名を登録する",new_clinic_path,class:"button is-link is-outlined"
+    div.field
+      = f.label :medical_fee, class: "label"
+      div.control
+        = f.text_field :medical_fee 
+        |  円
+    div.field    
+      = f.label :medicine_fee, class: "label"
+      div.control
+        = f.text_field :medicine_fee
+        |  円
+      div
+        = f.hidden_field :pet_id, value: pet.id
+      //ここで合計が表示できるようにする。| 合計 円
+      - if prescription.errors.any? 
+        div id="error_explanation"
+          h2 
+            = pluralize(prescription.errors.count, "error") 
+            prohibited this prescription from being saved:
+
+          ul
+            prescription.errors.full_messages.each do |message| 
+              li = message /li
+
+  div.actions
+    - if action_name == "new"
+      = f.submit "お薬登録に進む",class:"button is-link is-outlined"
+    - else
+      = f.submit "編集する", class:"button is-link is-outlined"

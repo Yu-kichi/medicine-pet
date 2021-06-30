@@ -9,12 +9,13 @@ div.box
     - if @pet.prescriptions.present?
       - @pet.prescriptions.each do |prescription|
         div.mt-4.mb-4.is-size-4
-          = prescription.date
+          /= prescription.date
         div.card.mr-4.ml-4
           h2.is-size-3.mb-4.has-background-link-light.card-content
             div.columns
               div.column.is-four-fifths
-                | 病院名:
+                = prescription.date
+                br
                 = prescription.clinic.name
               div.column
                 .navbar-item.has-dropdown.is-hoverable
@@ -45,7 +46,7 @@ div.box
                   td = "#{prescription.medical_fee + prescription.medicine_fee}円"
           - prescription.prescriptions_medicines.each do |detail|
             div.card
-              h2.is-size-3.mb-4.has-background-link-light.card-content
+              h2.is-size-5.mb-4.card-content
                 div.columns
                   div.column.is-four-fifths
                     | 薬の名前:
@@ -66,9 +67,9 @@ div.box
                 div.subtitle
                   | 1日の使用量:
                   = "#{detail.dose}錠"
-                div.subtitle
-                  | 総量:
-                  = "#{detail.total_amount}日分"  
+                / div.subtitle
+                /   | 総量:
+                /   = "#{detail.total_amount}日分"  
                 div.subtitle
                   | メモ:
                   = detail.memo

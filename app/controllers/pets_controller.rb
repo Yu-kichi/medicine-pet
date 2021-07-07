@@ -28,6 +28,7 @@ class PetsController < ApplicationController
   end
 
   def update
+    @pets = current_user.pets
     if @pet.update(pet_params)
       redirect_to @pet, notice: "Pet was successfully updated."
     else
@@ -46,6 +47,6 @@ class PetsController < ApplicationController
     end
 
     def pet_params
-      params.require(:pet).permit(:name, :sex, :breed, :weight, :birthday, :user_id, :image,:remove_image)
+      params.require(:pet).permit(:name, :sex, :breed, :weight, :birthday, :user_id, :image, :remove_image)
     end
 end

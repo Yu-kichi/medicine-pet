@@ -1,23 +1,43 @@
-= form_with(model: pet, local: true) do |f| 
-  .form__items
-    = f.label :name
-    = f.text_field :name, class: "input"
+= form_with(model: pet, local: true) do |f|
+  .field
+    .label
+      = f.label :name
+    .control
+      = f.text_field :name, class: "input"
+  .field    
     = f.label :sex
     | オス
     = f.radio_button :sex,1 ,class: "radio"
     | メス
     = f.radio_button :sex,2 ,class: "radio"
-    = f.label :breed
-    = f.text_field :breed, class: "input"
-    = f.label :weight
-    = f.text_field :weight, class: "input"
-    = f.label :birthday
-    = f.date_select :birthday
-    div
+  .field  
+    .label
+      = f.label :breed
+    .control
+      = f.text_field :breed, class: "input"
+  .field  
+    .label
+      = f.label :weight
+    .control
+      = f.text_field :weight, class: "input"
+  .field  
+    .label    
+      = f.label :birthday
+    .control  
+      = f.date_select :birthday
+  .field  
+    .label
       | 画像
-    div
+    - if @pet.image.attached? && @pet.image.blob&.persisted?
+      = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
+    .mt-3
       = f.file_field :image
     = f.hidden_field :user_id, value: "#{current_user.id}"
+    - if @pet.image.attached? && @pet.image.blob&.persisted?
+      label.checkbox.mt-3
+        type.checkbox
+          = f.check_box :remove_image
+          | 画像を削除する
 
     - if pet.errors.any? 
       div id="error_explanation"
@@ -28,7 +48,6 @@
         ul
           pet.errors.full_messages.each do |message| 
             li = message /li
-  br
 
   div.actions
     = f.submit class:"button is-link is-outlined"

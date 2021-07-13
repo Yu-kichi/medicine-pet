@@ -7,10 +7,7 @@ div.container
         = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
     div.control.label
       | 性別
-    = @pet.sex
-    div.control.label
-      | 番号
-    = @pet.id
+    = @pet.sex == 1 ? "オス" : "メス"
     div.control.label
       | 種類
     = @pet.breed

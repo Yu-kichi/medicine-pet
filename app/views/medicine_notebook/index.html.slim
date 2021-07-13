@@ -1,5 +1,5 @@
 div.box.has-background-white-bis
-  h1.is-size-2.mb-4
+  h1.is-size-3.mb-4
       - if @pet
         = "#{@pet.name}ちゃんのお薬手帳"
       - else
@@ -9,7 +9,7 @@ div.box.has-background-white-bis
     - if @pet.prescriptions.present?
       - @pet.prescriptions.each do |prescription|
         div.card.ml-4.mb-4
-          h2.is-size-3.has-background-link-light.card-content
+          h2.is-size-4.has-background-link-light.card-content
             div.columns
               div.column.is-four-fifths
                 = prescription.date
@@ -17,7 +17,7 @@ div.box.has-background-white-bis
                 = prescription.clinic.name
               div.column
                 .navbar-item.has-dropdown.is-hoverable
-                  a.navbar-link
+                  a ...
                   .navbar-dropdown
                     .navbar-item
                       = link_to '病院情報編集', edit_pet_prescription_path(@pet,prescription)
@@ -29,7 +29,7 @@ div.box.has-background-white-bis
                       | コピー
           - prescription.prescriptions_medicines.each do |detail|
             div.card
-              h2.is-size-4.card-content
+              h2.is-size-5.card-content
                 div.columns
                   div.column.is-four-fifths
                     = detail.medicine.name
@@ -41,7 +41,7 @@ div.box.has-background-white-bis
                       = "#{detail.dose}錠"
                   div.column
                     .navbar-item.has-dropdown.is-hoverable  
-                      a.navbar-link
+                      a ...
                       .navbar-dropdown
                         .navbar-item
                           = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail)

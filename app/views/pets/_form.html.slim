@@ -4,13 +4,15 @@
       = f.label :name
     .control
       = f.text_field :name, class: "input"
-  .field    
-    = f.label :sex
-    | オス
-    = f.radio_button :sex,1 ,class: "radio"
-    | メス
-    = f.radio_button :sex,2 ,class: "radio"
-  .field  
+  .field
+    .label
+      | 性別
+    .label
+      = f.label :sex_1,"オス"
+      = f.radio_button :sex,1 ,class: "radio"
+      = f.label :sex_2,"メス"
+      = f.radio_button :sex,2 ,class: "radio"
+  .field
     .label
       = f.label :breed
     .control

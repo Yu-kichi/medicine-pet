@@ -1,21 +1,21 @@
-div.container
+.container
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       = "#{@pet.name}ちゃんのプロフィール"
     - if @pet.image.attached?
       div
         = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
-    div.control.label
-      | 性別
-    = @pet.sex == 1 ? "オス" : "メス"
-    div.control.label
-      | 種類
+    .control.label
+      = Pet.human_attribute_name(:sex)
+    = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+    .control.label
+      = Pet.human_attribute_name(:breed)
     = @pet.breed
-    div.control.label
-      | 体重
+    .control.label
+      = Pet.human_attribute_name(:weight)
     = @pet.weight
-    div.control.label
-      | 誕生日
+    .control.label
+      = Pet.human_attribute_name(:birthday)
     = @pet.birthday
 
   = link_to 'Edit', edit_pet_path(@pet), class:"button is-link is-outlined"

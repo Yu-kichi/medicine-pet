@@ -1,23 +1,23 @@
-div.box.has-background-white-bis
+.box.has-background-white-bis
   h1.is-size-3.mb-4
       - if @pet
-        = "#{@pet.name}ちゃんのお薬手帳"
+        = "#{@pet.name}のお薬手帳"
       - else
-        | まずペット情報を登録しましょう！
+        = link_to "まずペット情報を登録しましょう！",new_pet_path
   .card.has-background-white-bis
   - if @pet.present?
     - if @pet.prescriptions.present?
       - @pet.prescriptions.each do |prescription|
-        div.card.ml-4.mb-4
+        .card.ml-4.mb-4
           h2.is-size-4.has-background-link-light.card-content
-            div.columns
-              div.column.is-four-fifths
-                = prescription.date
-                br
-                = prescription.clinic.name
-              div.column
+            .columns
+              .column.is-four-fifths
+                = l(prescription.date)
+                p
+                  = prescription.clinic.name
+              .column
                 .navbar-item.has-dropdown.is-hoverable
-                  a ...
+                  a.is-size-3 ...
                   .navbar-dropdown
                     .navbar-item
                       = link_to '病院情報編集', edit_pet_prescription_path(@pet,prescription)
@@ -28,18 +28,17 @@ div.box.has-background-white-bis
                     .navbar-item
                       | コピー
           - prescription.prescriptions_medicines.each do |detail|
-            div.card
+            .card
               h2.is-size-5.card-content
-                div.columns
-                  div.column.is-four-fifths
+                .columns
+                  .column.is-four-fifths
                     = detail.medicine.name
-                    / br
-                    / | 用途:
                     br
                     .is-size-5
-                      | 1日の使用量:
+                      = PrescriptionsMedicine.human_attribute_name(:dose)
+                      | :
                       = "#{detail.dose}錠"
-                  div.column
+                  .column
                     .navbar-item.has-dropdown.is-hoverable  
                       a ...
                       .navbar-dropdown
@@ -50,32 +49,33 @@ div.box.has-background-white-bis
                         .navbar-item
                           | コピー
   - else
-    div.mt-4.mb-4.is-size-4
-      | 診療日:
-    div.card
+    .mt-4.mb-4.is-size-4
+      = Prescription.human_attribute_name(:date)
+      | :
+    .card
       h2.is-size-3.mb-4.has-background-link-light.card-content
-        div.columns
-          div.column.is-four-fifths
+        .columns
+          .column.is-four-fifths
             | 病院名:
-          div.column  
-      div.card-content
-        div.subtitle.is-size-5
-        div.columns
-          div.subtitle.column.is-size-5
+          .column  
+      .card-content
+        .subtitle.is-size-5
+        .columns
+          .subtitle.column.is-size-5
             | 診療代:
-          div.subtitle.column.is-size-5
+          .subtitle.column.is-size-5
             | お薬代:
-          div.subtitle.column.is-size-5
+          .subtitle.column.is-size-5
             | 合計:
-      div.card
+      .card
         h2.is-size-3.mb-4.has-background-link-light.card-content
           | 薬の名前:
-        div.card-content
-          div.subtitle
+        .card-content
+          .subtitle
             | 1日の使用量:
-          div.subtitle
+          .subtitle
             | 総量:
-          div.subtitle  
+          .subtitle  
             | メモ:
   - if @pet
     .button.is-link.mt-4

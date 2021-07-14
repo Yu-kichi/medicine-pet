@@ -1,18 +1,21 @@
-div.container.mt-5
+.container.mt-5
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
-      | お薬名：
+      = PrescriptionsMedicine.human_attribute_name(:medicine_id) 
+      | :
       = @prescriptions_medicine.medicine.name
-    div.subtitle
-      | 錠数:
-      = @prescriptions_medicine.dose
-    div.subtitle
-      | 何日分:
+    .subtitle
+      = PrescriptionsMedicine.human_attribute_name(:dose)
+      | :
+      = "#{@prescriptions_medicine.dose}"
+    .subtitle
+      = PrescriptionsMedicine.human_attribute_name(:total_amount)
+      | :
       = @prescriptions_medicine.total_amount
-    div.subtitle
-      | メモ:
+    .subtitle
+      = PrescriptionsMedicine.human_attribute_name(:memo)
+      | :
       = @prescriptions_medicine.memo
-    br
     .card-footer-item
       = link_to 'Edit', edit_prescription_prescriptions_medicine_path(@prescriptions_medicine.prescription_id,@prescriptions_medicine)
       = link_to 'Destroy', prescription_prescriptions_medicine_path(@prescriptions_medicine.prescription_id,@prescriptions_medicine), method: :delete, data: { confirm: 'Are you sure?' } 

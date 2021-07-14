@@ -6,12 +6,12 @@
       = f.text_field :name, class: "input"
   .field
     .label
-      | 性別
+      = Pet.human_attribute_name(:sex)
     .label
-      = f.label :sex_1,"オス"
-      = f.radio_button :sex,1 ,class: "radio"
-      = f.label :sex_2,"メス"
-      = f.radio_button :sex,2 ,class: "radio"
+      = f.label :sex_1
+      = f.radio_button :sex_1 ,class: "radio"
+      = f.label :sex_2 
+      = f.radio_button :sex_2 ,class: "radio"
   .field
     .label
       = f.label :breed
@@ -51,6 +51,6 @@
           pet.errors.full_messages.each do |message| 
             li = message /li
 
-  div.actions
+  .actions
     = f.submit class:"button is-link is-outlined"
 

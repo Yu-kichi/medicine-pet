@@ -1,13 +1,7 @@
-div.container.mt-5
+.container.mt-5
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       = @medicine.name
-    div.subtitle
-      | 分量:
-      = @medicine.quantity
-    div.subtitle
-      | メモ:
-      = @medicine.memo
     br
     .card-footer-item
       = link_to 'Edit', edit_pet_medicine_path(@pet,@medicine) 

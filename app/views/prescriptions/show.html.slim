@@ -1,20 +1,23 @@
-div.container.mt-5
+.container.mt-5
   .card.has-background-white-bis
     h1.is-size-1.has-background-white-ter.mb-4
       = @prescription.clinic.name
-    div.subtitle
-      | 診療日:
-      = @prescription.date
-    div.subtitle
-      div.subtitle.column.is-size-5
-        | 診療代:
+    .subtitle.is-size-3
+      = Prescription.human_attribute_name(:date)
+      | :
+      = l(@prescription.date)
+    .subtitle
+      .subtitle.column.is-size-5
+        = Prescription.human_attribute_name(:medical_fee)
+        | :
         - if @prescription.medical_fee
           = "#{@prescription.medical_fee}円"
-      div.subtitle.column.is-size-5
-        | お薬代:
+      .subtitle.column.is-size-5
+        = Prescription.human_attribute_name(:medicine_fee)
+        | :
         - if @prescription.medicine_fee
           = "#{@prescription.medicine_fee}円"
-      div.subtitle.column.is-size-5
+      .subtitle.column.is-size-5
         - if @prescription.medical_fee && @prescription.medicine_fee
           | 合計:
           td = "#{@prescription.medical_fee + @prescription.medicine_fee}円"

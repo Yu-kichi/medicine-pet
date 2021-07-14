@@ -3,9 +3,9 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
     .navbar-item.title.mt-4
       = link_to "メディペット", root_path, class:"has-text-white"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
-    - if user_signed_in?
+    - if user_signed_in? && @pets.present?
       .navbar-item
-        div class="select "
+        .select
           select onChange="location.href=value;"
             - if @pet
               option = "#{@pet.name}"
@@ -24,25 +24,25 @@ nav.navbar.is-dark aria-label=("main navigation") role="navigation"
     .navbar-end
       .navbar-item.mr-4
         - if user_signed_in?
-          div class="dropdown is-right is-hoverable "
-             div class="dropdown-trigger"
-               i class="fas fa-user-edit fa-2x  "
-               span class="icon is-small "
-                 i class="fas fa-angle-down" aria-hidden="true"
-             div class="dropdown-menu" id="dropdown-menu4" role="menu"
-               div.dropdown-content
-                 div.dropdown-item
-                   | ユーザー情報編集
-                 / div.dropdown-item
-                 /   = link_to 'ペット選択解除', root_path
-                 div.dropdown-item  
-                   = link_to 'ペット一覧', pets_path 
-                 div.dropdown-item  
-                   = link_to '病院一覧', clinics_path 
-                 div.dropdown-item  
-                   = link_to 'お薬一覧', medicines_path 
-                 div class="dropdown-item"
-                   = link_to 'Log out', destroy_user_session_path, method: :delete
+          .dropdown.is-right.is-hoverable
+            .dropdown-trigger
+              i.fas.fa-user-edit.fa-2x
+                span.icon.is-small
+                  i.fas.fa-angle-down aria-hidden="true"
+              .dropdown-menu id="dropdown-menu4" role="menu"
+                .dropdown-content
+                  .dropdown-item
+                    | ユーザー情報編集
+                  / div.dropdown-item
+                  /   = link_to 'ペット選択解除', root_path
+                  .dropdown-item  
+                    = link_to 'ペット一覧', pets_path 
+                  .dropdown-item  
+                    = link_to '病院一覧', clinics_path 
+                  .dropdown-item  
+                    = link_to 'お薬一覧', medicines_path 
+                  .dropdown-item
+                    = link_to 'Log out', destroy_user_session_path, method: :delete
         - else
           .buttons
             .button.is-primary.strong

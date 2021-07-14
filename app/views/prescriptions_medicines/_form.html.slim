@@ -1,23 +1,23 @@
 = form_with(model: [prescription,prescriptions_medicine], local: true) do |f| 
   .form__items
-    div.field
+    .field
       = f.label :medicine_id, "薬の名前",class: "label"
-    div.control.columns
-      div.column.is-one-third
-        = f.collection_select :medicine_id, Medicine.all, :id, :name ,include_blank: "選択して下さい"
-      div.column
+    .control.columns
+      .column.is-one-third
+        = f.select(:medicine_id, medicine_options, {} , {class: 'choices-remove-button'})
+      .column
          = link_to "新しく薬の名前を登録する",new_medicine_path,class:"button is-link is-outlined"  
-    div.field
+    .field
       = f.label :dose,"1日の使用量",class: "label"
-      div.control
+      .control
         = f.number_field :dose ,class: "input"
-    div.field
+    .field
       = f.label :total_amount,"総量",class: "label"
-      div.control
+      .control
         = f.number_field :total_amount, class: "input"  
-    div.field
+    .field
       = f.label :memo,class: "label"
-      div.control
+      .control
         = f.text_area :memo, class: "textarea"
 
     div
@@ -34,13 +34,13 @@
           prescriptions_medicine.errors.full_messages.each do |message| 
             li = message /li
   /複数登録もできるようにする。ボタン押すと下に同じformができるイメージ。そして一括登録。
-  div.actions
+  .actions
     - if action_name == "new"
-      div.columns
-        div.column.is-one-third
+      .columns
+        .column.is-one-third
           = f.submit "お薬情報を登録する",class:"button is-link is-outlined"
-        div.column
-          div.button.is-primary.is-outlined
+        .column
+          .button.is-primary.is-outlined
             | 追加で登録する
     - else
       = f.submit "編集する", class:"button is-link is-outlined"

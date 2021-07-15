@@ -1,7 +1,8 @@
-nav.navbar.is-dark aria-label=("main navigation") role="navigation"
+nav.navbar.is-white aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
-    .navbar-item.title.mt-4
-      = link_to "メディペット", root_path, class:"has-text-white"
+    .navbar-item.title.mt-3
+      /ここでペットのidを渡さないとペットがリセットされてしまう。
+      = link_to "メディペット", root_path, class:"has-text-black"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
     - if user_signed_in? && @pets.present?
       .navbar-item

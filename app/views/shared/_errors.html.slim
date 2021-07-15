@@ -1,0 +1,10 @@
+- if obj.errors.present?
+  article class="message is-danger"
+    div class="message-header"
+      h3 エラーがあります
+      button class="delete" aria-label="delete"
+    div class="message-body"
+      ul
+        - obj.errors.full_messages.each do |msg|
+          li 
+            = msg

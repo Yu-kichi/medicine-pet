@@ -1,18 +1,12 @@
+= render "shared/errors", obj: medicine
 = form_with(model: medicine, local: true) do |f| 
   .form__items
     .field
-      = f.label :name, class: "label"
+      .label 
+        = f.label :name
+        | *
       .control
         = f.text_field :name, class: "input"
-    - if medicine.errors.any?
-      div id="error_explanation"
-        h2
-          = pluralize(medicine.errors.count, "error") 
-          prohibited this medicine from being saved:
-  
-        ul
-          medicine.errors.full_messages.each do |message| 
-            li = message /li
 
   .actions
     = f.submit class:"button is-link is-outlined"

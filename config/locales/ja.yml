@@ -24,11 +24,13 @@ ja:
         breed: 品種
         weight: 体重
         birthday: 誕生日
+        image: 画像
       clinic:
         name: 病院名  
       medicine:
         name: 薬の名前
       prescription:
+        clinic: 病院名
         date: 診療日
         clinic_id: 病院名
         medical_fee: 診察料
@@ -38,6 +40,3 @@ ja:
         total_amount: 総量
         memo: メモ
         medicine_id: 薬の名前
-
-        
-

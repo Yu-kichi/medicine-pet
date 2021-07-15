@@ -1,10 +1,13 @@
+= render "shared/errors", obj: prescriptions_medicine
 = form_with(model: [prescription,prescriptions_medicine], local: true) do |f| 
   .form__items
     .field
-      = f.label :medicine_id, "薬の名前",class: "label"
+      .label
+        = f.label :medicine_id, "薬の名前"
+        | *
     .control.columns
       .column.is-one-third
-        = f.select(:medicine_id, medicine_options, {} , {class: 'choices-remove-button'})
+        = f.select(:medicine_id, medicine_options, {required: true} , {class: 'choices-remove-button'})
       .column
          = link_to "新しく薬の名前を登録する",new_medicine_path,class:"button is-link is-outlined"  
     .field
@@ -24,15 +27,6 @@
       - if action_name == "new"
         = f.hidden_field :prescription_id, value: prescription.id
     br
-    - if prescriptions_medicine.errors.any? 
-      div id="error_explanation"
-        h2 
-          = pluralize(prescriptions_medicine.errors.count, "error") 
-          prohibited this medicine from being saved:
-
-        ul
-          prescriptions_medicine.errors.full_messages.each do |message| 
-            li = message /li
   /複数登録もできるようにする。ボタン押すと下に同じformができるイメージ。そして一括登録。
   .actions
     - if action_name == "new"

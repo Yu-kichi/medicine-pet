@@ -1,11 +1,16 @@
+= render "shared/errors", obj: prescription
 = form_with(model: prescription,local: true) do |f| 
   .form__items
     .field
-      = f.label :date, class: "label"
+      .label
+        = f.label :date
+        | *
       .control
-        = f.date_select :date
-    .field    
-      = f.label :clinic_id,class: "label"
+        = f.date_select :date, required: true
+    .field
+      .label
+        = f.label :clinic_id
+        | *
       .control.columns
         .column.is-one-third
           = f.collection_select :clinic_id, Clinic.all, :id, :name ,include_blank: "選択して下さい"
@@ -24,16 +29,6 @@
       div
         = f.hidden_field :pet_id, value: pet.id
       //ここで合計が表示できるようにする。| 合計 円
-      - if prescription.errors.any? 
-        div id="error_explanation"
-          h2 
-            = pluralize(prescription.errors.count, "error") 
-            prohibited this prescription from being saved:
-
-          ul
-            prescription.errors.full_messages.each do |message| 
-              li = message /li
-
   .actions
     - if action_name == "new"
       = f.submit "お薬登録に進む",class:"button is-link is-outlined"

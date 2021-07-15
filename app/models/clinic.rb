@@ -2,5 +2,5 @@
 
 class Clinic < ApplicationRecord
   has_many :prescriptions
-  validates :name, uniqueness: true
+  validates :name, presence: true
 end

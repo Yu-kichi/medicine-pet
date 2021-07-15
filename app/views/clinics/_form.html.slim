@@ -1,13 +1,13 @@
+= render "shared/errors", obj: clinic
 = form_with(model: clinic, local: true) do |f| 
   .form__items
-    div.field
-      = f.label :name, class: "label"
-      div.control
-        = f.text_field :name, class: "input"
-          ul
-            clinic.errors.full_messages.each do |message| 
-              li = message /li
+    .field
+      .label
+        = f.label :name
+        | *
+      .control
+        = f.text_field :name, class: "input", required: true
   br
 
-  div.actions
+  .actions
     = f.submit "登録する",class:"button is-link is-outlined"

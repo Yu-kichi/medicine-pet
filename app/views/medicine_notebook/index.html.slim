@@ -1,4 +1,4 @@
-.box.has-background-white-bis
+.box.has-background.back-color
   h1.is-size-3.mb-4
       - if @pet
         = "#{@pet.name}のお薬手帳"
@@ -9,7 +9,7 @@
     - if @pet.prescriptions.present?
       - @pet.prescriptions.each do |prescription|
         .card.ml-4.mb-4
-          h2.is-size-4.has-background-link-light.card-content
+          h2.is-size-4.card-content
             .columns
               .column.is-four-fifths
                 = l(prescription.date)

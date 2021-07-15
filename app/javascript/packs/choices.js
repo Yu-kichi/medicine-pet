@@ -1,4 +1,5 @@
 import * as Choices from 'choices.js'
+
 document.addEventListener('turbolinks:load', function () {
   new Choices('.choices-remove-button', {
     removeItemButton: true,

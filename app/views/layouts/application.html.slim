@@ -9,9 +9,9 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'shared/header'
-    p.notice
-      = notice
-    p.alert
-      = alert
     div.background
+      p.notice
+        = notice
+      p.alert
+        = alert
       = yield

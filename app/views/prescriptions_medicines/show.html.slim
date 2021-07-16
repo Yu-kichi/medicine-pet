@@ -15,7 +15,7 @@
     .subtitle
       = PrescriptionsMedicine.human_attribute_name(:memo)
       | :
-      = @prescriptions_medicine.memo
+      = auto_link(simple_format(h(@prescriptions_medicine.memo),{},sanitize: false))
     .card-footer-item
       = link_to 'Edit', edit_prescription_prescriptions_medicine_path(@prescriptions_medicine.prescription_id,@prescriptions_medicine)
       = link_to 'Destroy', prescription_prescriptions_medicine_path(@prescriptions_medicine.prescription_id,@prescriptions_medicine), method: :delete, data: { confirm: 'Are you sure?' } 

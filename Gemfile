@@ -18,6 +18,7 @@ gem "image_processing", "~> 1.2"
 gem "active_storage_validations", "~> 0.8.8"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "rails-i18n"
+gem "rails_autolink"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

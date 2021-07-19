@@ -4,14 +4,19 @@ class PrescriptionsController < ApplicationController
   before_action :set_prescription, only: %i[show edit update destroy]
   before_action :authenticate_user!
   before_action :set_user_pets
+  before_action :set_selected_pet, only: %i[show new edit destroy]
+  
+  def index
+    redirect_to root_path
+    #@petの情報をリロードに取得できる方法がわかればこっち。
+    #redirect_to new_pet_prescription_path(@pet)
+  end
 
   def show
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def new
     @prescription = Prescription.new
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def create
@@ -25,7 +30,6 @@ class PrescriptionsController < ApplicationController
   end
 
   def edit
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def update
@@ -34,11 +38,11 @@ class PrescriptionsController < ApplicationController
       redirect_to pet_prescription_path(@prescription.pet_id, @prescription), notice: "prescription was successfully updated."
     else
       render :edit, status: :unprocessable_entity
+      #ここでrenderした後にリロードした後にエラーになる処理はまだ未解決。
     end
   end
 
   def destroy
-    @pet = Pet.find_by(id: params[:pet_id])
     @prescription.destroy
     if @pet
       redirect_to pet_medicine_notebook_index_path(@pet), notice: "prescription was successfully destroyed."
@@ -58,5 +62,9 @@ class PrescriptionsController < ApplicationController
 
     def set_user_pets
       @pets = current_user.pets
+    end
+
+    def set_selected_pet
+      @pet = Pet.find_by(id: params[:pet_id])
     end
 end

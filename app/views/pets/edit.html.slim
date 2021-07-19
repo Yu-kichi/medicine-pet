@@ -1,4 +1,5 @@
 .container
+  = render "shared/errors", obj: @pet
   h1.is-size-1
     | ペット情報編集
   = render 'form', pet: @pet

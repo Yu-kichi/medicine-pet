@@ -1,18 +1,20 @@
 nav.navbar.is-white aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
     .navbar-item.title.mt-3
-      /ここでペットのidを渡さないとペットがリセットされてしまう。
-      = link_to "メディペット", root_path, class:"has-text-black"
+      - if @pets.present? && @pet
+        = link_to "メディペット", pet_medicine_notebook_index_path(@pet), class:"has-text-black"
+      - else
+        = link_to "メディペット", root_path, class:"has-text-black"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
-    - if user_signed_in? && @pets.present?
+      /仕様が決定したらhelper_methodにする
+    - if user_signed_in? && @pets.present? && @pets.size >= 2
       .navbar-item
         .select
           select onChange="location.href=value;"
-            - if @pet
-              option = "#{@pet.name}"
-            - if @pets
-              - @pets.each do |pet|
-                option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+            /- if @pets
+            option = "お薬手帳を開く"
+            - @pets.each do |pet|
+              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
     .navber-item.ml-4.mt-5
       - if @pet
         - if @pet.image.attached? && @pet.image.blob&.persisted?
@@ -34,8 +36,6 @@ nav.navbar.is-white aria-label=("main navigation") role="navigation"
                 .dropdown-content
                   .dropdown-item
                     | ユーザー情報編集
-                  / div.dropdown-item
-                  /   = link_to 'ペット選択解除', root_path
                   .dropdown-item  
                     = link_to 'ペット一覧', pets_path 
                   .dropdown-item  

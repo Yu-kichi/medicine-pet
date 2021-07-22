@@ -6,6 +6,16 @@
         | *
       .control
         = f.text_field :name, class: "input", required: true
+      .label
+        = f.label :address
+        | *
+      .control
+        = f.text_field :address, class: "input", required: true
+      .label
+        = f.label :telephone_number
+        | *
+      .control
+        = f.text_field :telephone_number, class: "input", required: true  
   br
 
   .actions

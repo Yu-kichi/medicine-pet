@@ -1,0 +1,1 @@
+json.clinics @clinics

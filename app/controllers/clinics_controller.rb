@@ -54,7 +54,7 @@ class ClinicsController < ApplicationController
     end
 
     def clinic_params
-      params.require(:clinic).permit(:name)
+      params.require(:clinic).permit(:name,:address,:telephone_number)
     end
 
     def set_request_from

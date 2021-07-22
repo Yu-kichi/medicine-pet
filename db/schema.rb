@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_105058) do
+ActiveRecord::Schema.define(version: 2021_07_22_055002) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +40,10 @@ ActiveRecord::Schema.define(version: 2021_06_28_105058) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address", null: false
+    t.string "telephone_number", null: false
+    t.bigint "prefecture_id"
+    t.index ["prefecture_id"], name: "index_clinics_on_prefecture_id"
   end
 
   create_table "medicines", force: :cascade do |t|
@@ -60,6 +63,12 @@ ActiveRecord::Schema.define(version: 2021_06_28_105058) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prescriptions", force: :cascade do |t|
@@ -100,6 +109,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_105058) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "clinics", "prefectures"
   add_foreign_key "pets", "users"
   add_foreign_key "prescriptions", "clinics"
   add_foreign_key "prescriptions", "pets"

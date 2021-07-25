@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace "api" do
+    #resources :clinics, only: %i(index), controller: "/api/clinics"
+    #resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。
+    get 'prefectures/index'
+  end
+
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions"
@@ -10,10 +16,6 @@ Rails.application.routes.draw do
   
   resources :prefectures, only: [] do
     resources :clinics, only: :index
-  end
-
-  namespace "api" do
-    resources :clinics, only: %i(index)
   end
   
   resources :pets do

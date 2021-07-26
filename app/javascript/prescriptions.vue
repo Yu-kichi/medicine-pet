@@ -1,15 +1,12 @@
 <template>
 <div id="app">
     <VueMultiselect
-      v-model="selectedKey" :options="options1" @select="onSelect" :value="value" track-by="name" label="name">
-      <template slot="singleLabel" slot-scope="{ option }"><strong>{{ option.name }}</strong> is written in<strong>  {{ option.name }}</strong></template>
+      v-model="selectedKey" :options="options1" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" >
     </VueMultiselect>
-    
     <br>
     <VueMultiselect
-      v-model="selectedItem" :options="options2" >
+      v-model="selectedItem" :options="options2" track-by="name" label="name" placeholder="県名を選択した後に選択してください">
     </VueMultiselect>
-
 </div>
 </template>
 
@@ -21,9 +18,8 @@ export default {
   components: { VueMultiselect },
   data() {
     return{
-        selectedKey: '',
+        selectedKey: null,
         selectedItem:'',
-        value: [],
         options1:[],
         options2:[],
         items:[],
@@ -33,26 +29,22 @@ export default {
     this.updateContents();
   },
   methods:{
-    onSelect(value) {
-      //this.options2 = this.replaceChildrenOptions()
-      //this.options2 = this.items[value];
-    },
     updateContents() {
       Axios.get("/api/prefectures/index.json").then(
       response => {
       const responseData = response.data;
-      //console.log(responseData["prefectures"][0]["name"])
       this.options1 = responseData["prefectures"]
-
       }
     )},
-    replaceChildrenOptions(){
-      var selectChildren = this.selectedKey
-      if (selectChildren){
-      }else{
-      replaceSelectOptions(selectChildren, [])
+    onSelect(prefecture){
+      const id = prefecture.id
+      Axios.get(`/api/clinics/index.json/?id=${id}`).then(
+      response => {
+      const responseData = response.data;
+      console.log(responseData)
+      this.options2 = responseData["clinics"]
       }
-    }
+    )},
   },
 }
 </script>

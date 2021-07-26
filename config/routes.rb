@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace "api" do
     #resources :clinics, only: %i(index), controller: "/api/clinics"
     #resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。
+    get 'clinics/index'
     get 'prefectures/index'
   end
 

@@ -13,26 +13,26 @@ import * as Choices from 'choices.js'
 
 
 //できたけどむしろ遅い。。
-document.addEventListener('turbolinks:load', function () {
-  var singleXhrRemove = new Choices('.choices-remove-button', {
-    removeItemButton: true,
-    searchPlaceholderValue: "病院名を検索できます",
-  }).setChoices(function(callback) {
-    //childrenPath = $(@).find('option:selected').data().childrenPath
-    //$selectChildren = $(@).closest('form').find('.select-children')
-    return fetch(
-      `/api/clinics`
-    )
-      .then(function(res) {
-        return res.json();
-      })
-      .then(function(data) {
-        return data.clinics.map(function(clinic) {
-          return { label: clinic.name, value: clinic.name };
-        });
-      });
-  });
-});
+// document.addEventListener('turbolinks:load', function () {
+//   var singleXhrRemove = new Choices('.choices-remove-button', {
+//     removeItemButton: true,
+//     searchPlaceholderValue: "病院名を検索できます",
+//   }).setChoices(function(callback) {
+//     //childrenPath = $(@).find('option:selected').data().childrenPath
+//     //$selectChildren = $(@).closest('form').find('.select-children')
+//     return fetch(
+//       `/api/clinics`
+//     )
+//       .then(function(res) {
+//         return res.json();
+//       })
+//       .then(function(data) {
+//         return data.clinics.map(function(clinic) {
+//           return { label: clinic.name, value: clinic.name };
+//         });
+//       });
+//   });
+// });
 
 
 // $(function() {

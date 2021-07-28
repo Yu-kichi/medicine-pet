@@ -5,11 +5,11 @@ class PrescriptionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user_pets
   before_action :set_selected_pet, only: %i[show new edit destroy]
-  
+
   def index
     redirect_to root_path
-    #@petの情報をリロードに取得できる方法がわかればこっち。
-    #redirect_to new_pet_prescription_path(@pet)
+    # @petの情報をリロードに取得できる方法がわかればこっち。
+    # redirect_to new_pet_prescription_path(@pet)
   end
 
   def show
@@ -17,16 +17,6 @@ class PrescriptionsController < ApplicationController
 
   def new
     @prescription = Prescription.new
-  end
-
-  def create
-    @prescription = Prescription.new(prescription_params)
-    @pet = @prescription.pet
-    if @prescription.save
-      redirect_to new_prescription_prescriptions_medicine_path(@prescription), notice: "prescription was successfully created."
-    else
-      render :new, status: :unprocessable_entity
-    end
   end
 
   def edit
@@ -38,7 +28,7 @@ class PrescriptionsController < ApplicationController
       redirect_to pet_prescription_path(@prescription.pet_id, @prescription), notice: "prescription was successfully updated."
     else
       render :edit, status: :unprocessable_entity
-      #ここでrenderした後にリロードした後にエラーになる処理はまだ未解決。
+      # ここでrenderした後にリロードした後にエラーになる処理はまだ未解決。
     end
   end
 

@@ -12,8 +12,8 @@
         | *
       .control.columns
         .column.is-one-third
-          - category_options = Prefecture.order(:id).map { |p| [p.name, p.id, data: { children_path: prefecture_clinics_path(p) }] }
-          = f.select :category_id, category_options, { include_blank: true }, class: 'prefecture-list'
+          //- category_options = Prefecture.order(:id).map { |p| [p.name, p.id, data: { children_path: prefecture_clinics_pat(p) }] }
+          //= f.select :category_id, category_options, { include_blank: true }, class: 'prefecture-list'
     .field
       .label
         = f.label :clinic_id
@@ -23,7 +23,7 @@
           /= f.collection_select :clinic_id, Clinic.all, :id, :name ,include_blank: "選択して下さい"
           = f.select(:clinic_id, clinic_options, {required: true} , {class: 'choices-remove-button'})
         .column
-          = link_to "新しく病院名を登録する",new_clinic_path,class:"button is-link is-outlined"
+           = link_to "新しく病院名を登録する",new_clinic_path,class:"button is-link is-outlined"
     .field
       = f.label :medical_fee, class: "label"
       .control
@@ -42,3 +42,4 @@
       = f.submit "お薬登録に進む",class:"button is-link is-outlined"
     - else
       = f.submit "編集する", class:"button is-link is-outlined"
+

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def prefectures(num)
   {
     "1" => "北海道",
@@ -52,15 +54,15 @@ end
 
 file_names = []
 
-Dir.foreach('db/seeds/clinics') do |item|
-  next if item == '.' or item == '..'
-  file_names << ("db/seeds/clinics/" + item )
+Dir.foreach("db/seeds/clinics") do |item|
+  next if (item == ".") || (item == "..")
+  file_names << ("db/seeds/clinics/" + item)
 end
 
-#一つ一つはいいが、連続して大量にやろうとするとエラーが出る。。
-#file_names = %w(db/seeds/clinics/001_aomori.text)
+# 一つ一つはいいが、連続して大量にやろうとするとエラーが出る。。
+# file_names = %w(db/seeds/clinics/001_aomori.text)
 
-#単品ならいいいが全ファイルはメモリエラー、ここで新しく001ファイルを作る
+# 単品ならいいいが全ファイルはメモリエラー、ここで新しく001ファイルを作る
 # file_names.each_with_index do |file,i|
 #   File.foreach(file).each_with_index do |line,num|
 #     line.chomp
@@ -80,7 +82,7 @@ end
 #   end
 # end
 #  pp ten
-#pp clinics
+# pp clinics
 
 # end
-#pp clinics
+# pp clinics

@@ -20,9 +20,11 @@
                   a.is-size-3 ...
                   .navbar-dropdown
                     .navbar-item
-                      = link_to '病院情報編集', edit_pet_prescription_path(@pet,prescription)
+                      = link_to '処方箋情報詳細', pet_prescription_path(@pet,prescription)
                     .navbar-item
-                      = link_to '病院情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }
+                      = link_to '処方箋情報編集', edit_pet_prescription_path(@pet,prescription)
+                    .navbar-item
+                      = link_to '処方箋情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }
                     .navbar-item
                       = link_to 'お薬追加登録', new_prescription_prescriptions_medicine_path(prescription)  
                     .navbar-item
@@ -79,4 +81,5 @@
             | メモ:
   - if @pet
     .button.is-link.mt-4
-       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet), class:"has-text-white"
+       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet), class:"has-text-white", data: {"turbolinks" => false} 
+    //リンクでturbolinksをfalseにしないと上手くjsが表示されない。

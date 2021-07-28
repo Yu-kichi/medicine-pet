@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 prefectures = %w(
     北海道
     青森県

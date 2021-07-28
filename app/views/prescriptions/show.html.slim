@@ -1,11 +1,17 @@
 .container.mt-5
   .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
-      = @prescription.clinic.name
-    .subtitle.is-size-3
-      = Prescription.human_attribute_name(:date)
-      | :
-      = l(@prescription.date)
+    h1.is-size-3.has-background-white-ter.mb-4
+      / = Prescription.human_attribute_name(:date)
+      / | :
+      .ml-3
+        = l(@prescription.date)
+        = @prescription.clinic.name
+    .is-size-5.mb-4.ml-3
+      | 住所：
+      = @prescription.clinic.address
+    .is-size-5.mb-2.ml-3
+      | 電話番号：
+      = @prescription.clinic.telephone_number
     .subtitle
       .subtitle.column.is-size-5
         = Prescription.human_attribute_name(:medical_fee)

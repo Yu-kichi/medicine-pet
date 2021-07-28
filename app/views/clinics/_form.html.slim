@@ -7,6 +7,11 @@
       .control
         = f.text_field :name, class: "input", required: true
       .label
+        = f.label :prefecture_id
+        | *
+      .control
+        = f.number_field :prefecture_id, class: "input", required: true  
+      .label
         = f.label :address
         | *
       .control

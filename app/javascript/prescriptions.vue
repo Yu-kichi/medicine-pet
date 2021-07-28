@@ -1,49 +1,68 @@
 <template>
-  <div class = "container">
+  <div v-if='loaded === false'>
+    <p>ロード中</p>
+  </div>
+  <div v-else class="container" >
+    <p v-if="errors.length">
+    <b>入力情報に誤りがあります</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+    </p>
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
-        処方箋情報登録
+        <p>処方箋情報登録</p>
       </h1>
       <div class="form__items">
         <div class="field">
           <div class="label">
-            日付 *
+            <p>診療日 *</p>
           </div>
+          <div class="control ">
+            <input v-model="date" class="input" type="date" style="width: 50%;" >
+          </div>  
         </div>
         <div class="field">
           <div class="label">
-            県名 *
+            <p>県名 *</p>
           </div>
         </div>
           <VueMultiselect
-              v-model="selectedKey" :options="options1" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" >
+              v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" style="width: 50%;">
           </VueMultiselect>
           <div class="label">
-            病院名 *
+            <p>病院名 *</p>
           </div>
-          <VueMultiselect
-              v-model="selectedItem" :options="options2" track-by="name" label="name" placeholder="県名を選択した後に選択してください">
-          </VueMultiselect>   
+          <div class=" control columns">
+            <div class="column is-three-fifths">
+              <VueMultiselect 
+                  v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" style="width: 85%;">
+              </VueMultiselect>
+            </div>
+            <div class="actions column">
+              <a href="/clinics/new" class="button is-outlined" >病院を新規登録する</a>
+            </div>
+          </div>
         <div class="field">
           <div class="label">
-            診察料
+            <p>診察料</p>
           </div>
           <div class="control">
-            <input v-model="medical_fee" placeholder="" class="">
-            円
+            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number" style="width: 20%;" min="0">
+            <span>円</span>
           </div>
         </div>
         <div class="field">
           <div class="label">
-            処方料
+            <p>処方料</p>
           </div>
-          <div class="control">
-            <input v-model="medicine_fee" placeholder="" class="">
-            円
+          <div class="control ">
+            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 20%;" min="0">
+            <span>円</span>
           </div>
         </div>
         <div class="actions">
-          <button @click="createPrescription" class="actions">お薬登録へ進む</button>
+          <button @click="createPrescription" class="button is-link is-outlined" >お薬登録へ進む</button>
         </div>
       </div>
     </div>
@@ -58,58 +77,62 @@ export default {
   components: { VueMultiselect },
   data() {
     return{
-        selectedKey: null,
-        selectedItem:'',
-        options1:[],
-        options2:[],
-        items:[],
-        date: "20210722",
+        errors: [],
+        selectedPrefecture: null,
+        selectedClinic:'',
+        prefectures:[],
+        clinics:[],
+        date: '',
         medical_fee:'',
         medicine_fee: '',
+        loaded: false,
     }
   },
+  props: {
+    petId:{type: Number, required: true},
+  },
   created: function() {
-    this.updateContents();
+    this.fetchPrefectures();
   },
   methods:{
-    updateContents() {
+    fetchPrefectures() {
       Axios.get("/api/prefectures/index.json").then(
       response => {
         const responseData = response.data;
-        this.options1 = responseData["prefectures"]
-      }
-    )},
+        this.prefectures = responseData["prefectures"]
+        this.loaded = true
+      })
+    },
     onSelect(prefecture){
       const id = prefecture.id
       Axios.get(`/api/clinics/index.json/?id=${id}`).then(
       response => {
         const responseData = response.data;
-        //console.log(responseData)
-        this.options2 = responseData["clinics"]
+        this.clinics = responseData["clinics"]
       }
     )},
+    validation: function(e){
+      this.errors =[]
+      if(!this.selectedClinic){
+        this.errors.push('病院名を選んでください');
+      }if(!this.date){
+        this.errors.push('診療日を選んでください');
+      }
+      //e.preventDefault();
+    },
     createPrescription(){
-      //console.log(this.selectedItem.id)
+      if(this.validation()){
+      }
       Axios.post('/api/prescriptions', {
         prescription: {
           date: this.date,
-          clinic_id: this.selectedItem.id,
-          pet_id: 1,
+          clinic_id: this.selectedClinic.id,
+          pet_id: this.petId,
           medical_fee: this.medical_fee,
           medicine_fee: this.medicine_fee,
         }
       }).then((response) => {
-        console.log(response)
-        //Flash.set({ notice: response.data.notice });
         Turbolinks.visit(response.data.location);
-        // self.items.unshift(response.data)
-        // this.newItems = ''
-        // const status = JSON.stringify(response.status)
-        // if (status === '201') {
-        //   const url = JSON.stringify(response.data.id)
-        //   const urlRep = url.replace(/\"/g, '')
-        //   const redirectURL = ('users/new?e=' + urlRep)
-        //   location.href = redirectURL
       }, (error) => {
         console.log(error, response)
       })

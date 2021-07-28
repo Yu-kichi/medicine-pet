@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from '../prescriptions.vue';
 
 document.addEventListener("DOMContentLoaded", () => {
-    const app = createApp(App);
+    const node = document.getElementById("app");
+    const petId = JSON.parse(node.getAttribute("pet-id"));
+    const app = createApp(App, { petId: petId})
     app.mount("#app");
 });

@@ -6,7 +6,7 @@
         | *
     .control.columns
       .column.is-one-third
-        = f.select(:medicine_id, medicine_options, {required: true} , {class: 'choices-remove-button'})
+        = f.select(:medicine_id, medicine_options, {required: true} )
       .column
          = link_to "新しく薬の名前を登録する",new_medicine_path,class:"button is-link is-outlined"  
     .field

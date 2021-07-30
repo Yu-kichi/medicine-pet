@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from '../prescriptions.vue';
+import App from '../prescriptionsNew.vue';
 
 document.addEventListener("DOMContentLoaded", () => {
     const node = document.getElementById("app");

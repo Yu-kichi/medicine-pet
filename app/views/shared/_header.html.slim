@@ -2,9 +2,9 @@ nav.navbar.is-white aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
     .navbar-item.title.mt-3
       - if @pets.present? && @pet
-        = link_to "メディペット", pet_medicine_notebook_index_path(@pet), class:"has-text-black"
+        = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class:" Mali"
       - else
-        = link_to "メディペット", root_path, class:"has-text-black"
+        = link_to "MediPet", root_path, class:"has-text-black Mali"
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
       /仕様が決定したらhelper_methodにする
     - if user_signed_in? && @pets.present? && @pets.size >= 2

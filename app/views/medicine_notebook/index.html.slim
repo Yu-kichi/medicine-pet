@@ -22,7 +22,7 @@
                     .navbar-item
                       = link_to '処方箋情報詳細', pet_prescription_path(@pet,prescription)
                     .navbar-item
-                      = link_to '処方箋情報編集', edit_pet_prescription_path(@pet,prescription)
+                      = link_to '処方箋情報編集', edit_pet_prescription_path(@pet,prescription) ,data: {"turbolinks" => false}
                     .navbar-item
                       = link_to '処方箋情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }
                     .navbar-item

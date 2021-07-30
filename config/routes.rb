@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  namespace "api" do
+  namespace "api", { format: "json" } do
     # resources :clinics, only: %i(index), controller: "/api/clinics"
     # resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。
     get "clinics/index"
     get "prefectures/index"
-    resources :prescriptions, only: %i(index create update destroy)
+    resources :prescriptions, only: %i(index create update edit)
   end
 
   devise_for :users, controllers: {

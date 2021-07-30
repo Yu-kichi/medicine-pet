@@ -86,7 +86,6 @@ export default {
         medical_fee:'',
         medicine_fee: '',
         loaded: false,
-        prescriptions:{},
     }
   },
   props: {
@@ -97,23 +96,11 @@ export default {
     this.fetchPrescriptions()
     this.fetchPrefectures();
   },
-  mounted: function(){
-        //選択した時に下のような形で入るのでこの形で初期入力してあげれば入ってくれる。
-        //this.selectedPrefecture = {id: 6, name: "山形県"}
-        //this.selectedClinic = {id: 1, name: " まつい犬猫病院 (北海道)"}
-        
-  },
   methods:{
     fetchPrescriptions(){
-      //Axios.get(`pets/${this.petId}/prescriptions/${this.prescriptionId}.json`).then(
-      //Axios.get(`/pets/1/prescriptions/2/edit.json`).then(ここで県名などが結びついてない
-      //下のやつだとapiじゃない方のコントローラから受け取る。
-      //Axios.get(`edit.json`).then(
       Axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
       response => {
         const responseData = response.data;
-        console.log(responseData)
-        this.prescriptions = responseData
         this.selectedClinic= responseData.clinic
         this.selectedPrefecture = responseData.prefecture
         this.date = responseData.prescription.date
@@ -127,9 +114,6 @@ export default {
         const responseData = response.data;
         this.prefectures = responseData["prefectures"]
         this.loaded = true
-      }).then((response) => {
-        //this.fetchPrescriptions();
-        //console.log(this.selectedPrefecture)
       })
     },
     fetchClinics(prefecture){
@@ -147,8 +131,6 @@ export default {
       }if(!this.date){
         this.errors.push('診療日を選んでください');
       }
-      //console.log(this.selectedPrefecture)
-      //console.log(this.selectedClinic)
       //e.preventDefault();
     },
     updatePrescription(){

@@ -11,7 +11,7 @@
     </p>
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
-        <p>処方箋情報登録</p>
+        <p>処方箋情報編集</p>
       </h1>
       <div class="form__items">
         <div class="field">

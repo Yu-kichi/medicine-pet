@@ -10,8 +10,6 @@ capybara-*.html
 *.orig
 rerun.txt
 pickle-email-*.html
-db/seeds/clinics
-
 
 # Ignore all logfiles and tempfiles.
 /log/*

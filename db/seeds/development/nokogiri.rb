@@ -58,31 +58,30 @@ Dir.foreach("db/seeds/clinics") do |item|
   next if (item == ".") || (item == "..")
   file_names << ("db/seeds/clinics/" + item)
 end
-
+clinics = []
+ten = []
 # 一つ一つはいいが、連続して大量にやろうとするとエラーが出る。。
-# file_names = %w(db/seeds/clinics/001_aomori.text)
+file_names = %w(db/seeds/clinics/001_akita.text)
 
-# 単品ならいいいが全ファイルはメモリエラー、ここで新しく001ファイルを作る
-# file_names.each_with_index do |file,i|
-#   File.foreach(file).each_with_index do |line,num|
-#     line.chomp
-#     if num % 5 == 1
-#       #p line
-#      ac = line.match(/<a(?: .+?)?>/).post_match
-#      prefecture = prefectures("9")
-#      clinics << ac.match(/<\/a>/).pre_match + " (#{prefecture})"
-#     elsif num % 5 == 3
-#       clinics << line.chomp.split[2].gsub(",","")
-#     elsif num % 5 == 4
-#       ak = line.chomp.match(/:/).post_match
-#       clinics << ak.gsub(',',"").gsub(' ',"")
-#       ten << clinics
-#       clinics = []
-#     end
-#   end
-# end
-#  pp ten
-# pp clinics
-
-# end
+# 単品ならいいいが全ファイルはメモリエラー、ここで新しくファイルを作る
+# 適当に作ったファイルから[]と"を削除
+file_names.each_with_index do |file, i|
+  File.foreach(file).each_with_index do |line, num|
+    line.chomp
+    if num % 5 == 1
+      # p line
+      ac = line.match(/<a(?: .+?)?>/).post_match
+      prefecture = prefectures("5")
+      clinics << ac.match(/<\/a>/).pre_match + " (#{prefecture})"
+    elsif num % 5 == 3
+      clinics << line.chomp.split[2].gsub(",", "")
+    elsif num % 5 == 4
+      ak = line.chomp.match(/:/).post_match
+      clinics << ak.gsub(",", "").gsub(" ", "")
+      ten << clinics
+      clinics = []
+    end
+  end
+end
+pp ten
 # pp clinics

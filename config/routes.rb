@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     # resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。
     get "clinics/index"
     get "prefectures/index"
+    get "medicines/index"
     resources :prescriptions, only: %i(index create update edit)
+    resources :prescriptions_medicines, only: %i(index create update edit)
   end
 
   devise_for :users, controllers: {

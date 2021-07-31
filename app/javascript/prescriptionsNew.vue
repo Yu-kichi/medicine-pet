@@ -3,12 +3,6 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <p v-if="errors.length">
-    <b>入力情報に誤りがあります</b>
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-    </p>
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
         <p>処方箋情報登録</p>
@@ -20,7 +14,12 @@
           </div>
           <div class="control ">
             <input v-model="date" class="input" type="date" style="width: 50%;" >
-          </div>  
+          </div>
+          <p v-if="dateErrors.length">
+          <ul>
+            <li v-for="error in dateErrors" class="has-text-danger">{{ error }}</li>
+          </ul>
+          </p>
         </div>
         <div class="field">
           <div class="label">
@@ -38,9 +37,15 @@
               <VueMultiselect 
                   v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" style="width: 85%;">
               </VueMultiselect>
+              <p class="has-text-grey-light">*ひらがなで見つからない時はカタカナで検索してみましょう</p>
+              <p v-if="clinicErrors.length">
+              <ul>
+                <li v-for="error in clinicErrors" class="has-text-danger">{{ error }}</li>
+              </ul>
+              </p>
             </div>
             <div class="actions column">
-              <a href="/clinics/new" class="button is-outlined" >病院を新規登録する</a>
+              <a href="/clinics/new" class="button is-outlined" >病院名が見つからない時はこちらで登録できます</a>
             </div>
           </div>
         <div class="field">
@@ -77,7 +82,8 @@ export default {
   components: { VueMultiselect },
   data() {
     return{
-        errors: [],
+        dateErrors: [],
+        clinicErrors:[],
         selectedPrefecture: null,
         selectedClinic:'',
         prefectures:[],
@@ -111,17 +117,21 @@ export default {
         this.clinics = responseData["clinics"]
       }
     )},
-    validation: function(e){
-      this.errors =[]
-      if(!this.selectedClinic){
-        this.errors.push('病院名を選んでください');
-      }if(!this.date){
-        this.errors.push('診療日を選んでください');
+    validationDate: function(e){
+      if(!this.date){
+        this.dateErrors.push('診療日を選んでください');
       }
       //e.preventDefault();
     },
+    validationClinic: function(e){
+      if(!this.selectedClinic){
+        this.clinicErrors.push('病院名を選んでください');
+      }
+    },
     createPrescription(){
-      if(this.validation()){
+      if(this.validationDate()){
+      }
+      if(this.validationClinic()){
       }
       Axios.post('/api/prescriptions', {
         prescription: {

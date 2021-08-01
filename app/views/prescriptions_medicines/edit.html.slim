@@ -1,8 +1,4 @@
-.container
-  = render "shared/errors", obj: @prescriptions_medicine
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
-      | お薬情報編集
-    = render 'form', {prescriptions_medicine: @prescriptions_medicine, pet: @pet,prescription: @prescription}
+= javascript_pack_tag 'prescriptionsMedicinesEdit_vue.js' 
+#app(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}" prescriptions-medicine-id="#{@prescriptions_medicine.id}")
 
-  = link_to 'Back', pet_medicine_notebook_index_path(@pet)
+= link_to 'Back', pet_medicine_notebook_index_path(@pet)

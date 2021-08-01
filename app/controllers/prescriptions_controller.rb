@@ -6,12 +6,6 @@ class PrescriptionsController < ApplicationController
   before_action :set_user_pets
   before_action :set_selected_pet, only: %i[show new edit destroy]
 
-  def index
-    redirect_to root_path
-    # @petの情報をリロードに取得できる方法がわかればこっち。
-    # redirect_to new_pet_prescription_path(@pet)
-  end
-
   def show
   end
 

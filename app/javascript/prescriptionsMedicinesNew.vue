@@ -10,7 +10,7 @@
       <div class="form__items">
         <div class="field">
           <div class="label">
-            <p>お薬 *</p>
+            <p>お薬名 *</p>
           </div>
           <div class="control columns">
             <div class="column is-three-fifths">
@@ -80,8 +80,8 @@ export default {
         selectedMedicine:'',
         medicines:[],
         dose: null,
-        memo:'',
         total_amount: null,
+        memo:'',
         loaded: false,
     }
   },
@@ -97,7 +97,6 @@ export default {
       Axios.get("/api/medicines/index.json").then(
       response => {
         const responseData = response.data;
-        //console.log(responseData)
         this.medicines = responseData["medicines"]
         this.loaded = true
       })

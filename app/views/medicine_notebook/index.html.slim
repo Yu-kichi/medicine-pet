@@ -45,7 +45,7 @@
                       a ...
                       .navbar-dropdown
                         .navbar-item
-                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail)
+                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail) ,data: {"turbolinks" => false}
                         .navbar-item  
                           = link_to 'お薬情報削除', prescription_prescriptions_medicine_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
                         .navbar-item

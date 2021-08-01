@@ -5,7 +5,7 @@
   <div v-else class="container" >
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
-        <p>お薬情報登録</p>
+        <p>お薬情報編集</p>
       </h1>
       <div class="form__items">
         <div class="field">
@@ -54,12 +54,7 @@
         <div class="columns">
           <div class="column is-one-third">
             <div class="actions">
-              <button @click="createPrescriptionsMedicines" class="button is-link is-outlined" >お薬情報を登録する</button>
-            </div>
-          </div>
-          <div class="column">
-            <div class="actions">
-              <button class="button is-primary is-outlined">続けて登録する</button>
+              <button @click="updatePrescriptionsMedicines" class="button is-link is-outlined" >お薬情報を編集する</button>
             </div>
           </div>
         </div>
@@ -88,11 +83,23 @@ export default {
   props: {
     petId:{type: Number, required: true},
     prescriptionId:{type: Number, required: true},
+    prescriptionsMedicineId:{type: Number, required: true},
   },
   created: function() {
     this.fetchMedicines();
+    this.fetchPrescriptionsMedicine();
   },
   methods:{
+    fetchPrescriptionsMedicine(){
+      Axios.get(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}/edit`).then(
+      response => {
+        const responseData = response.data;
+        this.selectedMedicine = responseData.medicine
+        this.dose = responseData.prescriptions_medicine.dose
+        this.total_amount = responseData.prescriptions_medicine.total_amount
+        this.memo = responseData.prescriptions_medicine.memo
+      })
+    },
     fetchMedicines() {
       Axios.get("/api/medicines/index.json").then(
       response => {
@@ -108,10 +115,10 @@ export default {
       }
       //e.preventDefault();
     },
-    createPrescriptionsMedicines(){
+    updatePrescriptionsMedicines(){
       if(this.validation()){
       }
-      Axios.post('/api/prescriptions_medicines', {
+      Axios.patch(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`, {
         prescriptions_medicine: {
           medicine_id: this.selectedMedicine.id,
           prescription_id: this.prescriptionId,

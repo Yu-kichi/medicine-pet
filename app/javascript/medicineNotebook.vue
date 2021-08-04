@@ -35,11 +35,11 @@
         </h2>
         <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id'>
           <div class="card">
-            <h3 class="is-size-5 card-content" @click="showOnMedicine(index)">
+            <h3 class="is-size-5 card-content" @click="clickedMedicine=!clickedMedicine">
               <div class="columns">
                 <div class="column is-four-fifths">
                   <p>{{medicine.medicine_name}}</p>
-                  <div class="is-size-5" v-show="index === clickedMedicine" >
+                  <div class="is-size-5" v-show="clickedMedicine" >
                     <p v-if="medicine.prescriptions_medicines.dose">一回の使用量:{{medicine.prescriptions_medicines.dose}}錠</p>
                     <p v-if="medicine.prescriptions_medicines.total_amount">総量:{{medicine.prescriptions_medicines.total_amount}}日分</p>
                     <p v-if="medicine.prescriptions_medicines.memo">メモ:{{medicine.prescriptions_medicines.memo}}</p>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="column">
                   <div type="button">...</div>
-                  <div  class="" v-show="index === clickedMedicine">
+                  <div  class="" v-show="clickedMedicine">
                     <a style="display: block" class="mb-4 mt-4" :href='`${medicine.edit_prescriptions_medicine_path}`' data-turbolinks='false' >お薬情報編集 > </a>
                     <div class="">コピー</div>
                   </div>
@@ -81,7 +81,7 @@ export default {
       prescriptions: [],
       show: false,
       clickedPrescription: "",
-      clickedMedicine: ""
+      clickedMedicine: false,
     }
   },
   props: {
@@ -110,13 +110,13 @@ export default {
         this.clickedPrescription = ""
       }
     },
-    showOnMedicine(index){
-      if(this.clickedMedicine === ""){
-        this.clickedMedicine = index
-      }else{
-        this.clickedMedicine = ""
-      }
-    }
+    // showOnMedicine(index){
+    //   if(this.clickedMedicine === ""){
+    //     this.clickedMedicine = index
+    //   }else{
+    //     this.clickedMedicine = ""
+    //   }
+    // }
   }
 }
 </script>

@@ -17,7 +17,7 @@ class Api::PrescriptionsController < ApplicationController
   end
 
   def update
-    if Prescription.update(prescription_params)
+    if @prescription.update(prescription_params)
       render json: { location: pet_prescription_path(@prescription.pet_id, @prescription), notice: "処方箋情報を編集しました。" }
     else
       head :bad_request

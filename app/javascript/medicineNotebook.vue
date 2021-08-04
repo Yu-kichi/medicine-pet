@@ -110,13 +110,6 @@ export default {
         this.clickedPrescription = ""
       }
     },
-    // showOnMedicine(index){
-    //   if(this.clickedMedicine === ""){
-    //     this.clickedMedicine = index
-    //   }else{
-    //     this.clickedMedicine = ""
-    //   }
-    // }
   }
 }
 </script>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get "clinics/index"
     get "prefectures/index"
     get "medicines/index"
+    get "medicine_notebook/index"
     resources :prescriptions, only: %i(index create update edit)
     resources :prescriptions_medicines, only: %i(index create update edit)
   end

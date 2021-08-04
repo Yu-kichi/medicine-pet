@@ -1,85 +1,89 @@
-.box.has-background.back-color
-  h1.is-size-3.mb-4
-      - if @pet
-        = "#{@pet.name}のお薬手帳"
-      - else
-        = link_to "まずペット情報を登録しましょう！",new_pet_path
-  .card.has-background-white-bis
-  - if @pet.present?
-    - if @pet.prescriptions.present?
-      - @pet.prescriptions.each do |prescription|
-        .card.ml-4.mb-4
-          h2.is-size-4.card-content
-            .columns
-              .column.is-four-fifths
-                = l(prescription.date)
-                p
-                  = prescription.clinic.name
-              .column
-                .navbar-item.has-dropdown.is-hoverable
-                  a.is-size-3 ...
-                  .navbar-dropdown
-                    .navbar-item
-                      = link_to '処方箋情報詳細', pet_prescription_path(@pet,prescription)
-                    .navbar-item
-                      = link_to '処方箋情報編集', edit_pet_prescription_path(@pet,prescription) ,data: {"turbolinks" => false}
-                    .navbar-item
-                      = link_to '処方箋情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }
-                    .navbar-item
-                      = link_to 'お薬追加登録', new_prescription_prescriptions_medicine_path(prescription) ,data: {"turbolinks" => false}
-                    .navbar-item
-                      | コピー
-          - prescription.prescriptions_medicines.each do |detail|
-            .card
-              h2.is-size-5.card-content
-                .columns
-                  .column.is-four-fifths
-                    = detail.medicine.name
-                    br
-                    .is-size-5
-                      = PrescriptionsMedicine.human_attribute_name(:dose)
-                      | :
-                      = "#{detail.dose}錠"
-                  .column
-                    .navbar-item.has-dropdown.is-hoverable  
-                      a ...
-                      .navbar-dropdown
-                        .navbar-item
-                          = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail) ,data: {"turbolinks" => false}
-                        .navbar-item  
-                          = link_to 'お薬情報削除', prescription_prescriptions_medicine_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
-                        .navbar-item
-                          | コピー
-  - else
-    .mt-4.mb-4.is-size-4
-      = Prescription.human_attribute_name(:date)
-      | :
-    .card
-      h2.is-size-3.mb-4.has-background-link-light.card-content
-        .columns
-          .column.is-four-fifths
-            | 病院名:
-          .column  
-      .card-content
-        .subtitle.is-size-5
-        .columns
-          .subtitle.column.is-size-5
-            | 診療代:
-          .subtitle.column.is-size-5
-            | お薬代:
-          .subtitle.column.is-size-5
-            | 合計:
-      .card
-        h2.is-size-3.mb-4.has-background-link-light.card-content
-          | 薬の名前:
-        .card-content
-          .subtitle
-            | 1日の使用量:
-          .subtitle
-            | 総量:
-          .subtitle  
-            | メモ:
-  - if @pet
-    .button.is-link.mt-4
-       = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet), class:"has-text-white", data: {"turbolinks" => false} 
-    //リンクでturbolinksをfalseにしないと上手くjsが表示されない。
+= javascript_pack_tag 'medicineNotebook_vue.js' 
+#app(pet-id="#{@pet.id}")
+
+
+/ .box.has-background.back-color
+/   h1.is-size-3.mb-4
+/     - if @pet
+/       = "#{@pet.name}のお薬手帳"
+/     - else
+/       = link_to "まずペット情報を登録しましょう！",new_pet_path
+/   .card.has-background-white-bis
+/   - if @pet.present?
+/     - if @pet.prescriptions.present?
+/       - @pet.prescriptions.each do |prescription|
+/         .card.ml-4.mb-4
+/           h2.is-size-4.card-content
+/             .columns
+/               .column.is-four-fifths
+/                 = l(prescription.date)
+/                 p
+/                   = prescription.clinic.name
+/               .column
+/                 .navbar-item.has-dropdown.is-hoverable
+/                   a.is-size-3 ...
+/                   .navbar-dropdown
+/                     .navbar-item
+/                       = link_to '処方箋情報詳細', pet_prescription_path(@pet,prescription)
+/                     .navbar-item
+/                       = link_to '処方箋情報編集', edit_pet_prescription_path(@pet,prescription) ,data: {"turbolinks" => false}
+/                     .navbar-item
+/                       = link_to '処方箋情報削除', pet_prescription_path(@pet,prescription), method: :delete, data: { confirm: 'Are you sure?' }
+/                     .navbar-item
+/                       = link_to 'お薬追加登録', new_prescription_prescriptions_medicine_path(prescription) ,data: {"turbolinks" => false}
+/                     .navbar-item
+/                       | コピー
+/           - prescription.prescriptions_medicines.each do |detail|
+/             .card
+/               h2.is-size-5.card-content
+/                 .columns
+/                   .column.is-four-fifths
+/                     = detail.medicine.name
+/                     br
+/                     .is-size-5
+/                       = PrescriptionsMedicine.human_attribute_name(:dose)
+/                       | :
+/                       = "#{detail.dose}錠"
+/                   .column
+/                     .navbar-item.has-dropdown.is-hoverable  
+/                       a ...
+/                       .navbar-dropdown
+/                         .navbar-item
+/                           = link_to 'お薬情報編集', edit_prescription_prescriptions_medicine_path(detail.prescription_id,detail) ,data: {"turbolinks" => false}
+/                         .navbar-item  
+/                           = link_to 'お薬情報削除', prescription_prescriptions_medicine_path(detail.prescription_id,detail), method: :delete, data: { confirm: 'Are you sure?' }    
+/                         .navbar-item
+/                           | コピー
+/   - else
+/     .mt-4.mb-4.is-size-4
+/       = Prescription.human_attribute_name(:date)
+/       | :
+/     .card
+/       h2.is-size-3.mb-4.has-background-link-light.card-content
+/         .columns
+/           .column.is-four-fifths
+/             | 病院名:
+/           .column  
+/       .card-content
+/         .subtitle.is-size-5
+/         .columns
+/           .subtitle.column.is-size-5
+/             | 診療代:
+/           .subtitle.column.is-size-5
+/             | お薬代:
+/           .subtitle.column.is-size-5
+/             | 合計:
+/       .card
+/         h2.is-size-3.mb-4.has-background-link-light.card-content
+/           | 薬の名前:
+/         .card-content
+/           .subtitle
+/             | 1日の使用量:
+/           .subtitle
+/             | 総量:
+/           .subtitle  
+/             | メモ:
+/   - if @pet
+/     .button.is-link.mt-4
+/        = link_to '新しくお薬手帳に登録する', new_pet_prescription_path(@pet), class:"has-text-white", data: {"turbolinks" => false} 
+/     //リンクでturbolinksをfalseにしないと上手くjsが表示されない。

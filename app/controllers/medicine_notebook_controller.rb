@@ -5,9 +5,9 @@ class MedicineNotebookController < ApplicationController
   def index
     @pets = current_user.pets
     if params[:pet_id]
-      @pet = Pet.includes(:prescriptions, prescriptions: [:clinic, prescriptions_medicines: :medicine]).find_by(id: params[:pet_id])
+      @pet = Pet.find_by(id: params[:pet_id])
     elsif @pets.present?
-      @pet = current_user.pets.includes(:prescriptions, prescriptions: [:clinic, prescriptions_medicines: :medicine]).first
+      @pet = current_user.pets.first
     end
   end
 end

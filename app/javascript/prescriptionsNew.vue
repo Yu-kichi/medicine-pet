@@ -142,7 +142,7 @@ export default {
           medicine_fee: this.medicine_fee,
         }
       }).then((response) => {
-        Turbolinks.visit(response.data.location);
+        window.location.href = response.data.location
       }, (error) => {
         console.log(error, response)
       })

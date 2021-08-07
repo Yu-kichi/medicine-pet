@@ -120,7 +120,7 @@ export default {
           memo: this.memo,
         }
       }).then((response) => {
-        Turbolinks.visit(response.data.location);
+        window.location.href = response.data.location
       }, (error) => {
         console.log(error, response)
       })

@@ -54,7 +54,15 @@
         <div class="columns">
           <div class="column is-one-third">
             <div class="actions">
-              <button @click="updatePrescriptionsMedicines" class="button is-link is-outlined" >お薬情報を編集する</button>
+              <button @click="updatePrescriptionsMedicine" class="button is-link is-outlined" >お薬情報を編集する</button>
+            </div>
+          </div>
+          <div class="column">
+            <div class="actions">
+              <button @click="showModal = true" class="button is-outlined">削除する</button>
+              <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">
+                <template v-slot:body>本当に削除しますか？</template>
+              </modal>
             </div>
           </div>
         </div>
@@ -66,9 +74,13 @@
 <script>
 import VueMultiselect from 'vue-multiselect'
 import Axios from "axios";
+import Modal from 'Modal.vue'
 
 export default {
-  components: { VueMultiselect },
+  components: {
+     VueMultiselect,
+     Modal,
+  },
   data() {
     return{
         errors: [],
@@ -78,6 +90,7 @@ export default {
         total_amount: null,
         memo:'',
         loaded: false,
+        showModal: false,
     }
   },
   props: {
@@ -115,7 +128,7 @@ export default {
       }
       //e.preventDefault();
     },
-    updatePrescriptionsMedicines(){
+    updatePrescriptionsMedicine(){
       if(this.validation()){
       }
       Axios.patch(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`, {
@@ -127,11 +140,23 @@ export default {
           memo: this.memo,
         }
       }).then((response) => {
-        Turbolinks.visit(response.data.location);
+        window.location.href = response.data.location
       }, (error) => {
         console.log(error, response)
       })
-    }
+    },
+    deletePrescriptionsMedicine: function() {
+      Axios.delete(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`)
+        .then(response => {
+          window.location.href = `/pets/${this.petId}/medicine_notebook`
+        })
+        .catch(error => {
+          console.error(error);
+          if (error.response.data && error.response.data.errors) {
+            this.errors = error.response.data.errors;
+          }
+      });
+    },
   },
 }
 </script>

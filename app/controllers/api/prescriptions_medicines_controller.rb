@@ -2,7 +2,7 @@
 
 class Api::PrescriptionsMedicinesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_prescriptions_medicine, only: %i[edit update]
+  before_action :set_prescriptions_medicine, only: %i[edit update destroy] 
 
   def create
     @prescriptions_medicine = PrescriptionsMedicine.new(prescriptions_medicine_params)
@@ -22,6 +22,11 @@ class Api::PrescriptionsMedicinesController < ApplicationController
     else
       head :bad_request
     end
+  end
+  
+  def destroy
+    @prescriptions_medicine.destroy!
+    head :no_content
   end
 
   private

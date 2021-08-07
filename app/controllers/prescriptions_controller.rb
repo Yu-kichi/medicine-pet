@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class PrescriptionsController < ApplicationController
-  before_action :set_prescription, only: %i[show edit destroy]
+  before_action :set_prescription, only: %i[show edit]
   before_action :authenticate_user!
   before_action :set_user_pets
-  before_action :set_selected_pet, only: %i[show new edit destroy]
+  before_action :set_selected_pet, only: %i[show new edit ]
 
   def show
   end
@@ -15,15 +15,6 @@ class PrescriptionsController < ApplicationController
 
   def edit
     @prefecture = @prescription.clinic
-  end
-
-  def destroy
-    @prescription.destroy
-    if @pet
-      redirect_to pet_medicine_notebook_index_path(@pet), notice: "prescription was successfully destroyed."
-    else
-      redirect_to prescriptions_url, notice: "prescription was successfully destroyed."
-    end
   end
 
   private

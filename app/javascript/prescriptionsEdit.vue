@@ -40,7 +40,7 @@
               </VueMultiselect>
             </div>
             <div class="actions column">
-              <a href="/clinics/new" class="button is-outlined" >病院を新規登録する</a>
+              <a href="/clinics/new" class="button is-outlined" >病院名が見つからない時はこちらで登録できます</a>
             </div>
           </div>
         <div class="field">
@@ -61,8 +61,20 @@
             <span>円</span>
           </div>
         </div>
-        <div class="actions">
-          <button @click="updatePrescription" class="button is-link is-outlined" >編集する</button>
+        <div class="columns mt-4 mb-4">
+          <div class="column is-three-fifths">
+            <div class="actions">
+              <button @click="updatePrescription" class="button is-link is-outlined" >編集する</button>
+            </div>
+          </div>
+          <div class="column">
+            <div class="actions">
+              <button @click="showModal = true" class="button is-outlined">削除する</button>
+              <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescription(); showModal = false;">
+                <template v-slot:body>本当に削除しますか？</template>
+              </modal>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -72,9 +84,13 @@
 <script>
 import VueMultiselect from 'vue-multiselect'
 import Axios from "axios";
+import Modal from 'Modal.vue'
 
 export default {
-  components: { VueMultiselect },
+  components: { 
+    VueMultiselect,
+    Modal,
+  },
   data() {
     return{
         errors: [],
@@ -86,6 +102,7 @@ export default {
         medical_fee:'',
         medicine_fee: '',
         loaded: false,
+        showModal: false,
     }
   },
   props: {
@@ -149,7 +166,19 @@ export default {
       }, (error) => {
         console.log(error, response)
       })
-    }
+    },
+    deletePrescription: function() {
+      Axios.delete(`/api/prescriptions/${this.prescriptionId}`)
+        .then(response => {
+          window.location.href = `/pets/${this.petId}/medicine_notebook`
+        })
+        .catch(error => {
+          console.error(error);
+          if (error.response.data && error.response.data.errors) {
+            this.errors = error.response.data.errors;
+          }
+        });
+      },
   },
 }
 </script>

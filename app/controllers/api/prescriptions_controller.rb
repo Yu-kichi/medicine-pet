@@ -2,7 +2,7 @@
 
 class Api::PrescriptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_prescription, only: %i[edit update]
+  before_action :set_prescription, only: %i[edit update destroy]
 
   def create
     @prescription = Prescription.new(prescription_params)
@@ -23,6 +23,11 @@ class Api::PrescriptionsController < ApplicationController
       head :bad_request
     end
   end
+
+  def destroy
+    @prescription.destroy!
+    head :no_content
+  end 
 
   private
     def prescription_params

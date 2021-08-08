@@ -5,7 +5,14 @@ class Api::PrescriptionsController < ApplicationController
   before_action :set_prescription, only: %i[edit update destroy]
 
   def create
-    @prescription = Prescription.new(prescription_params)
+    if params[:id]
+      past_prescription = Prescription.find(params[:id])
+      @prescription = Prescription.new(prescription_params)
+      @prescription.copy_from(past_prescription)
+    else
+      @prescription = Prescription.new(prescription_params)
+    end
+
     if @prescription.save
       render json: { location: new_prescription_prescriptions_medicine_path(@prescription), notice: "処方箋情報を作成しました。" }
     else
@@ -27,7 +34,7 @@ class Api::PrescriptionsController < ApplicationController
   def destroy
     @prescription.destroy!
     head :no_content
-  end 
+  end
 
   private
     def prescription_params

@@ -26,9 +26,10 @@
               <div class="is-size-5" v-show="index === clickedPrescription" >
                 <a style="display: block" class="mb-4 mt-4" data-turbolinks='false' 
                 :href='`${prescription.edit_prescription_path}`'>処方箋情報編集 > </a>
-                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false' 
+                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false'
                 :href='`${prescription.new_medicine_path}`'>お薬追加登録 > </a>
-                <div class="">コピー</div>
+                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false' 
+                :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>薬の情報を全てコピーして新しく処方箋を作成する > </a>
               </div>
             </div>  
           </div>

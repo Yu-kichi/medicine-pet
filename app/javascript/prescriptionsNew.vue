@@ -5,7 +5,13 @@
   <div v-else class="container" >
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
-        <p>処方箋情報登録</p>
+        <div v-if="prescriptionId">前回の情報を元に薬を一括登録する
+          <div class="is-size-5">
+          このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。<br>
+          病院や日付に変更がある場合には再入力をお願い致します。
+          </div>
+        </div>
+        <div v-else>処方箋情報登録</div>
       </h1>
       <div class="form__items">
         <div class="field">
@@ -66,7 +72,10 @@
             <span>円</span>
           </div>
         </div>
-        <div class="actions">
+        <div v-if="prescriptionId" class="actions">
+          <button @click="copyPrescription" class="button is-link is-outlined" >薬の情報を一括登録する</button>
+        </div>
+        <div v-else class="actions">
           <button @click="createPrescription" class="button is-link is-outlined" >お薬登録へ進む</button>
         </div>
       </div>
@@ -92,6 +101,7 @@ export default {
         medical_fee:'',
         medicine_fee: '',
         loaded: false,
+        prescriptionId: '',
     }
   },
   props: {
@@ -99,6 +109,7 @@ export default {
   },
   created: function() {
     this.fetchPrefectures();
+    this.fetchPrescriptions();
   },
   methods:{
     fetchPrefectures() {
@@ -108,6 +119,20 @@ export default {
         this.prefectures = responseData["prefectures"]
         this.loaded = true
       })
+    },
+    fetchPrescriptions(){
+      if(location.search){
+      this.prescriptionId = location.search.match(/[0-9]+/)
+      Axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
+      response => {
+        const responseData = response.data;
+        this.selectedClinic= responseData.clinic
+        this.selectedPrefecture = responseData.prefecture
+        this.date = responseData.prescription.date
+        this.medical_fee = responseData.prescription.medical_fee
+        this.medicine_fee = responseData.prescription.medicine_fee
+      })
+      }
     },
     onSelect(prefecture){
       const id = prefecture.id
@@ -143,6 +168,25 @@ export default {
         }
       }).then((response) => {
         window.location.href = response.data.location
+      }, (error) => {
+        console.log(error, response)
+      })
+    },
+    copyPrescription(){
+      if(this.validationDate()){
+      }
+      if(this.validationClinic()){
+      }
+      Axios.post(`/api/prescriptions/?id=${this.prescriptionId}`, {
+        prescription: {
+          date: this.date,
+          clinic_id: this.selectedClinic.id,
+          pet_id: this.petId,
+          medical_fee: this.medical_fee,
+          medicine_fee: this.medicine_fee,
+        }
+      }).then((response) => {
+        window.location.href = `/pets/${this.petId}/medicine_notebook`
       }, (error) => {
         console.log(error, response)
       })

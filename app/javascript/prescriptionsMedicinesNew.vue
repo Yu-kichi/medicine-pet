@@ -3,6 +3,20 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
+    <div class= "card mb-4">
+      <div class="card-title is-size-3 ">
+        <p class="ml-4">既に登録している情報</p>
+      </div>
+      <div v-if='clinic_name' class="is-size-5 ml-4">
+        <p>{{prescribedDate(prescription_date)}}</p>
+        <p>{{clinic_name}}</p>
+      </div>
+      <div v-if='registered.length'>
+        <div v-for="medicine in registered" :key='medicine.id' class="is-size-5 ml-4">
+          <p>{{medicine.medicine_name}}</p>
+        </div>
+      </div>
+    </div>
     <div class= "card has-background-white-bis">
       <h1 class="is-size-1 has-background-white-ter mb-4">
         <p>お薬情報登録</p>
@@ -54,12 +68,12 @@
         <div class="columns">
           <div class="column is-one-third">
             <div class="actions">
-              <button @click="createPrescriptionsMedicines" class="button is-link is-outlined" >お薬情報を登録する</button>
+              <button @click="createPrescriptionsMedicines()" class="button is-link is-outlined" >お薬情報を登録する</button>
             </div>
           </div>
           <div class="column">
             <div class="actions">
-              <button class="button is-primary is-outlined">続けて登録する</button>
+              <button @click="createPrescriptionsMedicines('again')" class="button is-primary is-outlined">追加でお薬を登録する</button>
             </div>
           </div>
         </div>
@@ -71,6 +85,9 @@
 <script>
 import VueMultiselect from 'vue-multiselect'
 import Axios from "axios";
+import dayjs from 'dayjs';
+import ja from 'dayjs/locale/ja'
+dayjs.locale(ja)
 
 export default {
   components: { VueMultiselect },
@@ -83,6 +100,9 @@ export default {
         total_amount: null,
         memo:'',
         loaded: false,
+        registered:[],
+        clinic_name: null,
+        prescription_date: "",
     }
   },
   props: {
@@ -91,6 +111,7 @@ export default {
   },
   created: function() {
     this.fetchMedicines();
+    this.fetchPrescriptionsMedicines();
   },
   methods:{
     fetchMedicines() {
@@ -101,6 +122,15 @@ export default {
         this.loaded = true
       })
     },
+    fetchPrescriptionsMedicines(){
+      Axios.get(`/api/prescriptions_medicines/${this.prescriptionId}`).then(
+      response => {
+        const responseData = response.data;
+        this.registered = responseData["medicines"]
+        this.clinic_name = responseData["prescription_clinic"]
+        this.prescription_date = responseData["prescription_date"]
+      })
+    },
     validation: function(e){
       this.errors =[]
       if(!this.selectedMedicine){
@@ -108,7 +138,7 @@ export default {
       }
       //e.preventDefault();
     },
-    createPrescriptionsMedicines(){
+    createPrescriptionsMedicines(again){
       if(this.validation()){
       }
       Axios.post('/api/prescriptions_medicines', {
@@ -120,11 +150,18 @@ export default {
           memo: this.memo,
         }
       }).then((response) => {
+        if (again){
+        window.location.href = `/prescriptions/${this.prescriptionId}/prescriptions_medicines/new`
+        }else{
         window.location.href = response.data.location
+        }
       }, (error) => {
         console.log(error, response)
       })
-    }
+    },
+    prescribedDate(date) {
+      return dayjs(date).format('YYYY年MM月DD日(dd)')
+    },
   },
 }
 </script>

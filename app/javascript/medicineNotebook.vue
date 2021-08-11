@@ -8,7 +8,10 @@
         <a style="display: block" :href='`/pets/new`' >まずペット情報を登録しましょう！ > </a>
       </div>
     </h1>
-      <div v-for="(prescription, index) in prescriptions" :key='prescription.id' class="card mb-4">
+      <VueMultiselect
+        v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect" placeholder="病院名で絞り込み" style="width: 50%;" class="mb-4">
+      </VueMultiselect>
+      <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4">
         <h2 class="is-size-4 card-content" @click="showOnPrescription(index)">
           <div class="columns">
             <div class="column is-four-fifths ">
@@ -72,6 +75,8 @@
 import Axios from "axios";
 import dayjs from 'dayjs';
 import ja from 'dayjs/locale/ja'
+import VueMultiselect from 'vue-multiselect'
+
 dayjs.locale(ja)
 
 export default {
@@ -80,10 +85,15 @@ export default {
       name: "",
       loaded: false,
       prescriptions: [],
-      show: false,
       clickedPrescription: "",
       clickedMedicine: false,
+      searchTarget:"",
+      showPrescriptions:[],
+      clinicName:[],
     }
+  },
+  components: {
+     VueMultiselect,
   },
   props: {
     petId:{type: Number, required: true},
@@ -96,10 +106,24 @@ export default {
       Axios.get(`/api/medicine_notebook/index/?pet_id=${this.petId}`).then(
       response => {
         const responseData = response.data;
-        console.log(responseData)
+        this.clinicName = responseData.clinic_name 
         this.name = responseData.pet.name
         this.prescriptions = responseData.prescriptions
+        this.showPrescriptions = this.prescriptions 
       })
+    },
+    onSelect(searchTarget){
+      var prescriptions = [];
+        for(var i in this.prescriptions) {
+            var prescription = this.prescriptions[i].clinic_name;
+            if(prescription === searchTarget ) {
+                prescriptions.push(this.prescriptions[i]);
+            }
+        }
+      return this.showPrescriptions = prescriptions
+    },
+    offSelect(){
+       this.showPrescriptions = this.prescriptions 
     },
     prescribedDate(date) {
       return dayjs(date).format('YYYY年MM月DD日(dd)')
@@ -115,5 +139,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>

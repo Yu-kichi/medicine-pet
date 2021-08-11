@@ -5,7 +5,7 @@ json.pet @pet
 clinic_name = @pet.prescriptions.map do |prescription|
   prescription.clinic.name
 end
-json.clinic_name  clinic_name.uniq
+json.clinic_name clinic_name.uniq
 
 json.prescriptions @pet.prescriptions.each do |prescription|
   json.prescription prescription

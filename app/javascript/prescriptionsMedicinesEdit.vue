@@ -15,7 +15,7 @@
           <div class="control columns">
             <div class="column is-three-fifths">
               <VueMultiselect
-                v-model="selectedMedicine" :options="medicines"  placeholder="お薬を選択してください" style="width: 50%;">
+                v-model="selectedMedicine" :options="medicines" track-by="name" label="name" placeholder="お薬を選択してください" style="width: 50%;">
               </VueMultiselect>
               <p class="has-text-grey-light">*ひらがなで見つからない時はカタカナで検索してみましょう</p>
               <p v-if="errors.length">

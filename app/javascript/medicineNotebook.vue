@@ -9,60 +9,38 @@
       </div>
     </h1>
       <VueMultiselect
-        v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect" placeholder="病院名で絞り込み" style="width: 50%;" class="mb-4">
+        v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect" placeholder="病院名で絞り込み"  class="mb-4">
       </VueMultiselect>
-      <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4">
-        <h2 class="is-size-4 card-content" @click="showOnPrescription(index)">
-          <div class="columns">
-            <div class="column is-four-fifths ">
-              <p>{{prescribedDate(prescription.prescription.date)}}</p>
-              <p>{{prescription.clinic_name}}</p>
-              <div class="is-size-5" v-show="index === clickedPrescription" >
-                <p>{{prescription.clinic_address}}</p>
-                <p>{{prescription.clinic_telephone_number}}</p>
-                <p v-if="prescription.prescription.medical_fee">診察料：{{prescription.prescription.medical_fee}}円</p>
-                <p v-if="prescription.prescription.medical_fee">処方料：{{prescription.prescription.medicine_fee}}円</p>
-              </div>
-            </div>
-            <div class="column">
-              <div type="button">...</div>
-              <div class="is-size-5" v-show="index === clickedPrescription" >
-                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false' 
-                :href='`${prescription.edit_prescription_path}`'>処方箋情報編集 > </a>
-                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false'
-                :href='`${prescription.new_medicine_path}`'>お薬追加登録 > </a>
-                <a style="display: block" class="mb-4 mt-4" data-turbolinks='false' 
-                :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>薬の情報を全てコピーして新しく処方箋を作成する > </a>
-              </div>
-            </div>  
-          </div>
-        </h2>
-        <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id'>
-          <div class="card">
-            <h3 class="is-size-5 card-content" @click="clickedMedicine=!clickedMedicine">
-              <div class="columns">
-                <div class="column is-four-fifths">
-                  <p>{{medicine.medicine_name}}</p>
-                  <div class="is-size-5" v-show="clickedMedicine" >
-                    <p v-if="medicine.prescriptions_medicines.dose">一回の使用量:{{medicine.prescriptions_medicines.dose}}錠</p>
-                    <p v-if="medicine.prescriptions_medicines.total_amount">総量:{{medicine.prescriptions_medicines.total_amount}}日分</p>
-                    <p v-if="medicine.prescriptions_medicines.memo">メモ:{{medicine.prescriptions_medicines.memo}}</p>
-                  </div>
-                </div>
-                <div class="column">
-                  <div type="button">...</div>
-                  <div  class="" v-show="clickedMedicine">
-                    <a style="display: block" class="mb-4 mt-4" :href='`${medicine.edit_prescriptions_medicine_path}`' data-turbolinks='false' >お薬情報編集 > </a>
-                    <div class="">コピー</div>
-                  </div>
-                </div>
-              </div>
-            </h3>
+    <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4">
+      <div class="columns prescription-header is-mobile" @click="showOnPrescription(index)">
+        <div class="column is-three-quarters-mobile">
+          <div class="pl-4 pt-4 ">
+            <p class="is-size-5">{{prescription.clinic_name}}</p>
+            <p class="is-size-6">{{prescribedDate(prescription.prescription.date)}}</p>
           </div>
         </div>
+        <div class="column mt-5">...</div>
       </div>
+      <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="ml-4">
+        <p>{{medicine.medicine_name}}</p>
+      </div>
+      <div class="ml-4 mb-4 mr-4" @click="showOnPrescription(index)">
+        <div class="button mt-4 has-background-info is-fullwidth" v-show="index === clickedPrescription" >
+          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
+            :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>処方箋詳細</a>
+        </div>
+        <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
+          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false'
+            :href='`${prescription.new_medicine_path}`'>お薬追加登録</a>
+        </div>
+        <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
+          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
+          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>コピーする </a>
+        </div>
+      </div>
+    </div>
     <div v-if="petId">
-      <div class="button mt-4 has-background-primary">
+      <div class="button mt-4 has-background-primary  is-fullwidth">
         <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
           :href='`/pets/${petId}/prescriptions/new`'>新しくお薬手帳に登録する
         </a>

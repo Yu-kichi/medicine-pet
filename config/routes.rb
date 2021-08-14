@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "prefectures/index"
     get "medicines/index"
     get "medicine_notebook/index"
-    resources :prescriptions, only: %i(index create update edit destroy)
+    resources :prescriptions, only: %i(index show create update edit destroy)
     resources :prescriptions_medicines, only: %i(index create update edit destroy show)
   end
 

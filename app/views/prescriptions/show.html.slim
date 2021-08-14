@@ -1,33 +1,5 @@
-.container.mt-5
-  .card.has-background-white-bis
-    h1.is-size-3.has-background-white-ter.mb-4
-      / = Prescription.human_attribute_name(:date)
-      / | :
-      .ml-3
-        = l(@prescription.date)
-        = @prescription.clinic.name
-    .is-size-5.mb-4.ml-3
-      | 住所：
-      = @prescription.clinic.address
-    .is-size-5.mb-2.ml-3
-      | 電話番号：
-      = @prescription.clinic.telephone_number
-    .subtitle
-      .subtitle.column.is-size-5
-        = Prescription.human_attribute_name(:medical_fee)
-        | :
-        - if @prescription.medical_fee
-          = "#{@prescription.medical_fee}円"
-      .subtitle.column.is-size-5
-        = Prescription.human_attribute_name(:medicine_fee)
-        | :
-        - if @prescription.medicine_fee
-          = "#{@prescription.medicine_fee}円"
-      .subtitle.column.is-size-5
-        - if @prescription.medical_fee && @prescription.medicine_fee
-          | 合計:
-          td = "#{@prescription.medical_fee + @prescription.medicine_fee}円"
-    .card-footer-item
-      = link_to 'Edit', edit_pet_prescription_path(@pet,@prescription) 
-      = link_to 'Destroy', @prescription, method: :delete, data: { confirm: 'Are you sure?' } 
-      = link_to 'Back', pet_medicine_notebook_index_path(@pet)
+= javascript_pack_tag 'prescriptionsShow_vue.js' 
+#app(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}")
+
+.card-footer-item
+  = link_to 'Back', pet_medicine_notebook_index_path(@pet)

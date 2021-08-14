@@ -4,6 +4,10 @@ class Api::PrescriptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_prescription, only: %i[edit update destroy]
 
+  def show
+    @prescription = Prescription.includes([:clinic, prescriptions_medicines: :medicine]).find(params[:id])
+  end
+
   def create
     if params[:id]
       past_prescription = Prescription.find(params[:id])

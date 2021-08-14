@@ -1,6 +1,6 @@
 <template>
   <div class="box has-background back-color">
-    <h1 class="is-size-3 mb-4" >
+    <h1 class="is-size-5 mb-4" >
       <div v-if="petId">
         {{`${name}のお薬手帳`}}
       </div>
@@ -15,27 +15,27 @@
       <div class="columns prescription-header is-mobile" @click="showOnPrescription(index)">
         <div class="column is-three-quarters-mobile">
           <div class="pl-4 pt-4 ">
-            <p class="is-size-5">{{prescription.clinic_name}}</p>
-            <p class="is-size-6">{{prescribedDate(prescription.prescription.date)}}</p>
+            <p class="is-size-6">{{prescription.clinic_name}}</p>
+            <p class="is-size-7">{{prescribedDate(prescription.prescription.date)}}</p>
           </div>
         </div>
         <div class="column mt-5">...</div>
       </div>
-      <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="ml-4">
+      <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="ml-4 is-size-7">
         <p>{{medicine.medicine_name}}</p>
       </div>
       <div class="ml-4 mb-4 mr-4" @click="showOnPrescription(index)">
         <div class="button mt-4 has-background-info is-fullwidth" v-show="index === clickedPrescription" >
           <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
-            :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>処方箋詳細</a>
+            :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>> 処方箋詳細</a>
         </div>
         <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
           <a class="mb-4 mt-4 has-text-white" data-turbolinks='false'
-            :href='`${prescription.new_medicine_path}`'>お薬追加登録</a>
+            :href='`${prescription.new_medicine_path}`'>+ お薬追加登録</a>
         </div>
         <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
           <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
-          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>コピーする </a>
+          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>+ コピーする </a>
         </div>
       </div>
     </div>

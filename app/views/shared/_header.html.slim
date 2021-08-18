@@ -1,8 +1,10 @@
 nav.navbar.is-white aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
     .navbar-item.title.mt-3
-      - if @pets.present? && @pet
+      - if @pets.present? && @pet&.id
         = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class:" Mali",data: {"turbolinks" => false}
+      - elsif @pets.present? 
+        = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class:" Mali",data: {"turbolinks" => false}
       - else
         = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
@@ -12,7 +14,7 @@ nav.navbar.is-white aria-label=("main navigation") role="navigation"
         .select
           select onChange="location.href=value;"
             /- if @pets
-            option = "お薬手帳を開く"
+            option = "お薬手帳を開く" 
             - @pets.each do |pet|
               option value="/pets/#{pet.id}/medicine_notebook" = pet.name
     .navber-item.ml-4.mt-5
@@ -37,11 +39,11 @@ nav.navbar.is-white aria-label=("main navigation") role="navigation"
                   .dropdown-item
                     | ユーザー情報編集
                   .dropdown-item  
-                    = link_to 'ペット一覧', pets_path 
-                  .dropdown-item  
-                    = link_to '病院一覧', clinics_path 
-                  .dropdown-item  
-                    = link_to 'お薬一覧', medicines_path 
+                    = link_to 'ペット一覧', pets_path
+                  / .dropdown-item確認用のため管理者のみ閲覧可にするか消す
+                  /   = link_to '病院一覧', clinics_path
+                  / .dropdown-item  
+                  /   = link_to 'お薬一覧', medicines_path
                   .dropdown-item
                     = link_to 'Log out', destroy_user_session_path, method: :delete
         - else

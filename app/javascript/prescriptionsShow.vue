@@ -39,6 +39,10 @@
         </div>
       </div>
     </div>
+    <div class="mr-4 ml-4 pb-4 pt-2">
+      <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
+        :href='`/pets/${petId}/medicine_notebook`' >お薬手帳に戻る</a>
+    </div>
   </div>
 </template>
 

@@ -4,7 +4,8 @@ class PetsController < ApplicationController
   before_action :set_pet, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   def index
-    @pets = current_user.pets
+    pets = current_user.pets
+    @pets = pets.with_attached_image.order(:id)
   end
 
   def show
@@ -12,6 +13,7 @@ class PetsController < ApplicationController
   end
 
   def new
+    @pets = current_user.pets
     @pet = Pet.new
   end
 
@@ -25,6 +27,7 @@ class PetsController < ApplicationController
   end
 
   def edit
+    @pets = current_user.pets
   end
 
   def update

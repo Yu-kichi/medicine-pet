@@ -1,24 +1,28 @@
 .container
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
-      = "#{@pet.name}ちゃんのプロフィール"
+  .box.has-background-white-ter.mb-4
+    h1.is-size-4.mb-4
+      = "#{@pet.name}のプロフィール"
     - if @pet.image.attached?
       div
         = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
-    .control.label
+    .control.label.pt-4
       = Pet.human_attribute_name(:sex)
     = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
-    .control.label
+    .control.label.pt-4
       = Pet.human_attribute_name(:breed)
     = @pet.breed
-    .control.label
+    .control.label.pt-4
       = Pet.human_attribute_name(:weight)
     = @pet.weight
-    .control.label
+    .control.label.pt-4
       = Pet.human_attribute_name(:birthday)
     = @pet.birthday
 
-  = link_to 'Edit', edit_pet_path(@pet), class:"button is-link is-outlined"
-  = link_to 'Back', pets_path, class:"button is-link is-outlined"
-  = link_to 'お薬手帳へ', pet_medicine_notebook_index_path(@pet.id), class:"button is-link is-outlined"
+    = link_to '内容変更する', edit_pet_path(@pet), class:"button is-fullwidth mt-4 is-warning"
+    div.has-text-centered.mt-4
+      = link_to '削除する' ,pet_path(@pet), class:"button is-fullwidth mt-4 is-danger", method: :delete
+    div.has-text-centered.mt-4
+      = link_to 'ペット一覧へ ', pets_path
+    div.has-text-centered.mt-4  
+      = link_to 'お薬手帳へ ', pet_medicine_notebook_index_path(@pet.id),data: {"turbolinks" => false}
 

@@ -1,9 +1,7 @@
 .container
-  = render "shared/errors", obj: @pet
-  h1.is-size-1
-    | ペット情報編集
-  = render 'form', pet: @pet
-
-  = link_to 'Show', @pet
-  |  |  
-  = link_to 'Back', pets_path
+  .box.has-background-white-ter.mb-4
+    = render "shared/errors", obj: @pet
+    h1.is-size-3.mb-4
+      | ペット情報編集
+    = render 'form', pet: @pet
+    = link_to 'キャンセル', @pet, class:"button is-outlined is-fullwidth"

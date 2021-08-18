@@ -6,22 +6,21 @@
         | *
       .control
         = f.text_field :name, class: "input", required: true
-      .label
-        = f.label :prefecture_id
+      .label.mt-3
+        = f.label :prefecture
         | *
       .control
-        = f.number_field :prefecture_id, class: "input", required: true  
-      .label
+        = f.text_field :prefecture, class: "input", required: true  
+      .label.mt-3
         = f.label :address
         | *
       .control
         = f.text_field :address, class: "input", required: true
-      .label
+      .label.mt-3
         = f.label :telephone_number
         | *
       .control
         = f.text_field :telephone_number, class: "input", required: true  
-  br
 
-  .actions
-    = f.submit "登録する",class:"button is-link is-outlined"
+  .actions.mt-6
+    = f.submit "登録する",class:"button is-link is-fullwidth",data: {"turbolinks" => false}

@@ -3,8 +3,8 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "card has-background-white-bis">
-      <h1 class="is-size-1 has-background-white-ter mb-4">
+    <div class= "box has-background-white-bis">
+      <h1 class="is-size-3 mb-4">
         <p>お薬情報編集</p>
       </h1>
       <div class="form__items">
@@ -15,17 +15,14 @@
           <div class="control columns">
             <div class="column is-three-fifths">
               <VueMultiselect
-                v-model="selectedMedicine" :options="medicines" track-by="name" label="name" placeholder="お薬を選択してください" style="width: 50%;">
+                v-model="selectedMedicine" :options="medicines" track-by="name" label="name" placeholder="お薬を選択してください">
               </VueMultiselect>
-              <p class="has-text-grey-light">*ひらがなで見つからない時はカタカナで検索してみましょう</p>
+              <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください。</p>
               <p v-if="errors.length">
               <ul>
                 <li v-for="error in errors" class="has-text-danger">{{ error }}</li>
               </ul>
               </p>
-            </div>  
-            <div class="actions column">
-              <a href="/medicines/new" class="button is-outlined" >薬の名前が見つからない時はこちらで登録できます</a>
             </div>
           </div>
         </div>
@@ -34,38 +31,31 @@
             <p>1日の使用量</p>
           </div>
         </div>
-          <input v-model="dose" placeholder="数字で入力してください" class="input is-small " type="number" style="width: 20%;" min="0">
+          <input v-model="dose" placeholder="数字で入力してください" class="input is-small " type="number" style="width: 50%;" min="0">
           <span>錠</span>
-        <div class="field">  
+        <div class="field mt-3">  
           <div class="label">
             <p>総量</p>
           </div>
         </div>  
-          <input v-model="total_amount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 20%;" min="0">
+          <input v-model="total_amount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;" min="0">
           <span>日分</span>
-        <div class="field">
+        <div class="field mt-3">
           <div class="label">
             <p>メモ</p>
           </div>
-          <div class="control">
             <textarea v-model="memo"  class="textarea" ></textarea>
-          </div>
         </div>
-        <div class="columns">
-          <div class="column is-one-third">
-            <div class="actions">
-              <button @click="updatePrescriptionsMedicine" class="button is-link is-outlined" >お薬情報を編集する</button>
-            </div>
-          </div>
-          <div class="column">
-            <div class="actions">
-              <button @click="showModal = true" class="button is-outlined">削除する</button>
-              <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">
-                <template v-slot:body>本当に削除しますか？</template>
-              </modal>
-            </div>
-          </div>
+        <div class="actions mt-4">
+          <button @click="updatePrescriptionsMedicine" class="button is-link is-fullwidth" >お薬情報を編集する</button>
         </div>
+        <div class="actions mt-4">
+          <a :href="`/medicines/new/?prescriptions_medicine_id=${prescriptionsMedicineId}`" class="button is-outlined is-fullwidth" >薬の名前が見つからない時はこちら</a>
+          <p class="is-size-7">*薬の名前が見つからない場合にはこちらから新しくお薬情報の登録ができます。</p>
+        </div>
+          <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
+            :href='`/pets/${petId}/prescriptions/${prescriptionId}`' >キャンセル
+          </a>
       </div>
     </div>
   </div>  
@@ -74,12 +64,10 @@
 <script>
 import VueMultiselect from 'vue-multiselect'
 import Axios from "axios";
-import Modal from 'Modal.vue'
 
 export default {
   components: {
      VueMultiselect,
-     Modal,
   },
   data() {
     return{
@@ -90,7 +78,6 @@ export default {
         total_amount: null,
         memo:'',
         loaded: false,
-        showModal: false,
     }
   },
   props: {
@@ -144,18 +131,6 @@ export default {
       }, (error) => {
         console.log(error, response)
       })
-    },
-    deletePrescriptionsMedicine: function() {
-      Axios.delete(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`)
-        .then(response => {
-          window.location.href = `/pets/${this.petId}/medicine_notebook`
-        })
-        .catch(error => {
-          console.error(error);
-          if (error.response.data && error.response.data.errors) {
-            this.errors = error.response.data.errors;
-          }
-      });
     },
   },
 }

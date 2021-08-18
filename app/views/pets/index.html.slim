@@ -1,33 +1,21 @@
 p id="notice"
   = notice
-div.container
-  h1.is-size-2
-    | ペット一覧
-  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
-    thead
-      tr
-        th.abbr 番号
-        th.abbr 名前
-        th.abbr 性別
-        th.abbr 種類
-        th.abbr 体重
-        th.abbr 誕生日
-        th.abbr 詳細
-        th.abbr 編集
-        th.abbr 削除
-    tbody
-    - @pets.each_with_index do |pet,index| 
-      tr
-        th.abbr = index+1
-        td = pet.name
-        td = pet.sex
-        td = pet.breed
-        td = pet.weight
-        td = pet.birthday
-        td = link_to 'Show', pet 
-        td = link_to 'Edit', edit_pet_path(pet) 
-        td = link_to 'Destroy', pet, method: :delete, data: { confirm: 'Are you sure?' } 
-
-  br
-  .button.is-link
-    = link_to 'New Pet', new_pet_path, class:"has-text-white"
+.container
+  .box.has-background-white-bis
+    h1.ml-4.is-size-3.mb-4
+      | ペット一覧
+    - if @pets
+      - @pets.each do |pet|
+        columns
+          column.pl-4
+            - if pet.image.attached? && pet.image.blob&.persisted?
+              = link_to image_tag(pet.image,class:"pet_image_icon"), pet,  class:"pet_image_icon"
+            - else
+              = link_to pet
+                i class="fa fa-address-card fa-3x"
+          column.pl-5.mb-4
+            = pet.name
+          div.mt-4
+    div.ml-4.mr-4.mt-6
+      .button.is-link.mt-4.is-fullwidth
+        = link_to 'New Pet', new_pet_path, class:"has-text-white"

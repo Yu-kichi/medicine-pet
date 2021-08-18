@@ -16,16 +16,23 @@ class MedicinesController < ApplicationController
   def new
     @pets = current_user.pets
     @medicine = Medicine.new
-    session[:previous_url] = request.referer
+    @prescription = Prescription.find_by(id: params[:prescription_id])
+    if params[:prescriptions_medicine_id]
+      @prescription_medicine = PrescriptionsMedicine.find_by(id: params[:prescriptions_medicine_id])
+      @prescription = @prescription_medicine.prescription
+    end
   end
 
   def create
     @medicine = Medicine.new(medicine_params)
-    @session = session[:previous_url]
+    prescription = params[:medicine][:prescription]
+    prescription_medicine = params[:medicine][:prescription_medicine]
     if @medicine.save
-      # redirect_to @medicine, notice:  "Medicine was successfully created."
-      redirect_to @session, notice: "Medicine was successfully updated."
-      session[:previous_url].clear
+      if prescription_medicine
+        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine), notice:  "Medicine was successfully created."
+      else
+        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "Medicine was successfully created."
+      end
     else
       render :new, status: :unprocessable_entity
     end

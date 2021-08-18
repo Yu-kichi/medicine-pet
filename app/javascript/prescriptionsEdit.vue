@@ -9,17 +9,17 @@
       <li v-for="error in errors">{{ error }}</li>
     </ul>
     </p>
-    <div class= "card has-background-white-bis">
-      <h1 class="is-size-1 has-background-white-ter mb-4">
-        <p>処方箋情報編集</p>
+    <div class= "box has-background-white-bis">
+      <h1 class="is-size-3  mb-4">
+        <p>処方箋編集</p>
       </h1>
       <div class="form__items">
         <div class="field">
           <div class="label">
             <p>診療日 *</p>
           </div>
-          <div class="control ">
-            <input v-model="date" class="input" type="date" style="width: 50%;" >
+          <div class="control">
+            <input v-model="date" class="input" type="date" >
           </div>  
         </div>
         <div class="field">
@@ -28,54 +28,45 @@
           </div>
         </div>
           <VueMultiselect
-              v-model="selectedPrefecture" :options="prefectures" @select="fetchClinics" track-by="name" label="name" placeholder="最初に県名を選択してください" style="width: 50%;">
+              v-model="selectedPrefecture" :options="prefectures" @select="fetchClinics" track-by="name" label="name" placeholder="最初に県名を選択してください" >
           </VueMultiselect>
-          <div class="label">
+        <div class="field">  
+          <div class="label mt-3">
             <p>病院名 *</p>
           </div>
-          <div class=" control columns">
-            <div class="column is-three-fifths">
-              <VueMultiselect 
-                  v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" style="width: 85%;">
-              </VueMultiselect>
-            </div>
-            <div class="actions column">
-              <a href="/clinics/new" class="button is-outlined" >病院名が見つからない時はこちらで登録できます</a>
-            </div>
+        </div>  
+          <div class="control">
+            <VueMultiselect 
+              v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" >
+            </VueMultiselect>
           </div>
-        <div class="field">
+        <div class="field mt-3">
           <div class="label">
             <p>診察料</p>
           </div>
+        </div>  
           <div class="control">
-            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number" style="width: 20%;" min="0">
+            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number" style="width: 50%;" min="0">
             <span>円</span>
           </div>
-        </div>
-        <div class="field">
+        <div class="field mt-3">
           <div class="label">
             <p>処方料</p>
           </div>
           <div class="control ">
-            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 20%;" min="0">
+            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 50%;" min="0">
             <span>円</span>
           </div>
         </div>
-        <div class="columns mt-4 mb-4">
-          <div class="column is-three-fifths">
-            <div class="actions">
-              <button @click="updatePrescription" class="button is-link is-outlined" >編集する</button>
-            </div>
+        <div class="mt-4">
+          <button @click="updatePrescription" class="button is-link is-fullwidth mt-4 mb-4" >編集する</button>
+        </div>  
+          <a :href='`/clinics/new/?pet_id=${petId}&prescription_id=${prescriptionId}`' class="button mt-4 is-fullwidth" >病院名が見つからない時はこちら</a>
+          <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
+          <div>
+            <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
+            :href='`/pets/${petId}/prescriptions/${prescriptionId}`' >キャンセル</a>
           </div>
-          <div class="column">
-            <div class="actions">
-              <button @click="showModal = true" class="button is-outlined">削除する</button>
-              <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescription(); showModal = false;">
-                <template v-slot:body>本当に削除しますか？</template>
-              </modal>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>  
@@ -84,12 +75,10 @@
 <script>
 import VueMultiselect from 'vue-multiselect'
 import Axios from "axios";
-import Modal from 'Modal.vue'
 
 export default {
   components: { 
     VueMultiselect,
-    Modal,
   },
   data() {
     return{
@@ -102,7 +91,6 @@ export default {
         medical_fee:'',
         medicine_fee: '',
         loaded: false,
-        showModal: false,
     }
   },
   props: {
@@ -162,23 +150,11 @@ export default {
           medicine_fee: this.medicine_fee,
         }
       }).then((response) => {
-        Turbolinks.visit(response.data.location);
+        window.location.href = response.data.location
       }, (error) => {
         console.log(error, response)
       })
     },
-    deletePrescription: function() {
-      Axios.delete(`/api/prescriptions/${this.prescriptionId}`)
-        .then(response => {
-          window.location.href = `/pets/${this.petId}/medicine_notebook`
-        })
-        .catch(error => {
-          console.error(error);
-          if (error.response.data && error.response.data.errors) {
-            this.errors = error.response.data.errors;
-          }
-        });
-      },
   },
 }
 </script>

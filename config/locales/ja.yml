@@ -29,6 +29,7 @@ ja:
         name: 病院名
         address: 住所
         telephone_number: 電話番号
+        prefecture: 都道府県名
       medicine:
         name: 薬の名前
       prescription:

@@ -29,7 +29,7 @@ class MedicinesController < ApplicationController
     prescription_medicine = params[:medicine][:prescription_medicine]
     if @medicine.save
       if prescription_medicine
-        redirect_to edit_prescription_prescriptions_medicine_path(prescription,prescription_medicine), notice:  "Medicine was successfully created."
+        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine), notice:  "Medicine was successfully created."
       else
         redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "Medicine was successfully created."
       end

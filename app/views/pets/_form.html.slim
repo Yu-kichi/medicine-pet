@@ -1,4 +1,4 @@
-= form_with(model: pet, local: true) do |f|
+= form_with(model: @pet, local: true) do |f|
   .field
     .label
       = f.label :name
@@ -22,7 +22,8 @@
     .label
       = f.label :weight
     .control
-      = f.text_field :weight, class: "input"
+      = f.text_field :weight, class: "input is-small" ,style: "width: 50%;"
+      span.is-size-5.ml-3 kg
   .field  
     .label    
       = f.label :birthday
@@ -35,9 +36,8 @@
       = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
     .mt-3.mb-3
       = f.file_field :image
-    | * 画像のサイズは2000*2000以下にしてください
-    br
-    | * 画像はPNG, JPG, GIF形式にしてください
+      .is-size-7 * 画像のサイズは2000*2000以下にしてください
+      .is-size-7 * 画像はPNG, JPG, GIF形式にしてください
     = f.hidden_field :user_id, value: "#{current_user.id}"
     - if @pet.image.attached? && @pet.image.blob&.persisted?
       label.checkbox.mt-3
@@ -46,5 +46,5 @@
           | 画像を削除する
 
   .actions
-    = f.submit class:"button is-link is-outlined"
+    = f.submit class:"button is-link  is-fullwidth mb-4 mt-4"
 

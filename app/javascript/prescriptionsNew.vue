@@ -3,13 +3,12 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "card has-background-white-bis">
-      <h1 class="is-size-1 has-background-white-ter mb-4">
+    <div class= "box has-background-white-bis">
+      <h1 class="is-size-3 mb-4">
         <div v-if="prescriptionId">前回の情報を元に薬を一括登録する
-          <div class="is-size-5">
-          このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。<br>
+          <p class="is-size-6">このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。<br>
           病院や日付に変更がある場合には再入力をお願い致します。
-          </div>
+          </p>
         </div>
         <div v-else>処方箋情報登録</div>
       </h1>
@@ -19,7 +18,7 @@
             <p>診療日 *</p>
           </div>
           <div class="control ">
-            <input v-model="date" class="input" type="date" style="width: 50%;" >
+            <input v-model="date" class="input" type="date" >
           </div>
           <p v-if="dateErrors.length">
           <ul>
@@ -33,33 +32,28 @@
           </div>
         </div>
           <VueMultiselect
-              v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" style="width: 50%;">
+            v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" >
           </VueMultiselect>
-          <div class="label">
+          <div class="label pt-3">
             <p>病院名 *</p>
           </div>
-          <div class=" control columns">
-            <div class="column is-three-fifths">
-              <VueMultiselect 
-                  v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" style="width: 85%;">
-              </VueMultiselect>
-              <p class="has-text-grey-light">*ひらがなで見つからない時はカタカナで検索してみましょう</p>
-              <p v-if="clinicErrors.length">
-              <ul>
-                <li v-for="error in clinicErrors" class="has-text-danger">{{ error }}</li>
-              </ul>
-              </p>
-            </div>
-            <div class="actions column">
-              <a href="/clinics/new" class="button is-outlined" >病院名が見つからない時はこちらで登録できます</a>
-            </div>
+          <div class="control">
+            <VueMultiselect 
+                v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください">
+            </VueMultiselect>
+            <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください</p>
+            <p v-if="clinicErrors.length">
+            <ul>
+              <li v-for="error in clinicErrors" class="has-text-danger">{{ error }}</li>
+            </ul>
+            </p>
           </div>
         <div class="field">
-          <div class="label">
+          <div class="label pt-3">
             <p>診察料</p>
           </div>
           <div class="control">
-            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number" style="width: 20%;" min="0">
+            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number" style="width: 50%;" min="0">
             <span>円</span>
           </div>
         </div>
@@ -68,16 +62,24 @@
             <p>処方料</p>
           </div>
           <div class="control ">
-            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 20%;" min="0">
+            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 50%;" min="0">
             <span>円</span>
           </div>
         </div>
-        <div v-if="prescriptionId" class="actions">
-          <button @click="copyPrescription" class="button is-link is-outlined" >薬の情報を一括登録する</button>
+        <div v-if="prescriptionId" class="actions pt-3">
+          <button @click="copyPrescription" class="button is-link is-fullwidth">薬の情報を一括登録する</button>
         </div>
-        <div v-else class="actions">
-          <button @click="createPrescription" class="button is-link is-outlined" >お薬登録へ進む</button>
+        <div v-else class="actions pt-3">
+          <button @click="createPrescription" class="button is-link is-fullwidth">お薬登録へ進む</button>
         </div>
+        <div class="actions">
+          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth" >病院名が見つからない時はこちら</a>
+          <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
+        </div>
+        <div>
+          <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
+            :href='`/pets/${petId}/medicine_notebook`' >戻る</a>
+        </div> 
       </div>
     </div>
   </div>  

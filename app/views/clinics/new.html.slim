@@ -1,8 +1,10 @@
 .container
-  = render "shared/errors", obj: @clinic
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
+  .box.has-background-white-ter.mb-4
+    = render "shared/errors", obj: @clinic
+    .is-size-3.mb-4
       | 病院情報登録
     = render 'form', {clinic: @clinic, pet: @pet}
-
-  = link_to 'Back', clinics_path
+    - if @prescription
+      = link_to 'キャンセル', edit_pet_prescription_path(@pet,@prescription), class:"button is-outlined is-fullwidth mt-4",data: {"turbolinks" => false}
+    - else
+      = link_to 'キャンセル', new_pet_prescription_path(@pet), class:"button is-outlined is-fullwidth mt-4",data: {"turbolinks" => false}

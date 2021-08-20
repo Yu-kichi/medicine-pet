@@ -18,18 +18,6 @@ class ClinicsController < ApplicationController
     @pet = Pet.find_by(id: params[:pet_id])
     @clinic = Clinic.new
     @prescription = Prescription.find_by(id: params[:prescription_id])
-    session[:previous_url] = request.referer
-  end
-
-  def create
-    @clinic = Clinic.new(clinic_params)
-    @session = session[:previous_url]
-    if @clinic.save
-      redirect_to @session, notice:  "Clinic was successfully created."
-      session[:previous_url].clear
-    else
-      render :new, status: :unprocessable_entity
-    end
   end
 
   def edit
@@ -58,11 +46,4 @@ class ClinicsController < ApplicationController
       params.require(:clinic).permit(:name, :address, :telephone_number, :prefecture_id)
     end
 
-    def set_request_from
-      if session[:request_from]
-        @request_from = session[:request_from]
-      end
-      # 現在のURLを保存しておく
-      session[:request_from] = request.original_url
-    end
 end

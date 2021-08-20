@@ -18,10 +18,8 @@
                 v-model="selectedMedicine" :options="medicines" track-by="name" label="name" placeholder="お薬を選択してください">
               </VueMultiselect>
               <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください。</p>
-              <p v-if="errors.length">
-              <ul>
-                <li v-for="error in errors" class="has-text-danger">{{ error }}</li>
-              </ul>
+              <p v-if="medicineError !== null ">
+                <p class="has-text-danger">{{ medicineError }}</p>
               </p>
             </div>
           </div>
@@ -71,7 +69,7 @@ export default {
   },
   data() {
     return{
-        errors: [],
+        medicineError: null,
         selectedMedicine:'',
         medicines:[],
         dose: null,
@@ -108,12 +106,10 @@ export default {
         this.loaded = true
       })
     },
-    validation: function(e){
-      this.errors =[]
+    validation: function(){
       if(!this.selectedMedicine){
-        this.errors.push('お薬を選んでください');
+        this.medicineError = 'お薬を選んでください';
       }
-      //e.preventDefault();
     },
     updatePrescriptionsMedicine(){
       if(this.validation()){

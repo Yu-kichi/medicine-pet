@@ -3,12 +3,6 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <p v-if="errors.length">
-    <b>入力情報に誤りがあります</b>
-    <ul>
-      <li v-for="error in errors">{{ error }}</li>
-    </ul>
-    </p>
     <div class= "box has-background-white-bis">
       <h1 class="is-size-3  mb-4">
         <p>処方箋編集</p>
@@ -20,6 +14,9 @@
           </div>
           <div class="control">
             <input v-model="date" class="input" type="date" >
+            <p v-if="dateError !== null ">
+              <p class="has-text-danger">{{ dateError }}</p>
+            </p>
           </div>  
         </div>
         <div class="field">
@@ -39,6 +36,10 @@
             <VueMultiselect 
               v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" >
             </VueMultiselect>
+            <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください</p>
+            <p v-if="clinicError !== null">
+              <p class="has-text-danger">{{ clinicError }}</p>
+            </p>
           </div>
         <div class="field mt-3">
           <div class="label">
@@ -82,7 +83,8 @@ export default {
   },
   data() {
     return{
-        errors: [],
+        dateError: null,
+        clinicError: null,
         selectedPrefecture: null,
         selectedClinic:'',
         prefectures:[],
@@ -129,14 +131,12 @@ export default {
         this.clinics = responseData["clinics"]
       }
     )},
-    validation: function(e){
-      this.errors =[]
-      if(!this.selectedClinic){
-        this.errors.push('病院名を選んでください');
-      }if(!this.date){
-        this.errors.push('診療日を選んでください');
+    validation: function(){
+      if(!this.date){
+        this.dateError = '診療日を選んでください';
+      }if(!this.selectedClinic){
+        this.clinicError = '病院名を選んでください';
       }
-      //e.preventDefault();
     },
     updatePrescription(){
       if(this.validation()){

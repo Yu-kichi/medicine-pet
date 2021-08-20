@@ -20,10 +20,8 @@
           <div class="control ">
             <input v-model="date" class="input" type="date" >
           </div>
-          <p v-if="dateErrors.length">
-          <ul>
-            <li v-for="error in dateErrors" class="has-text-danger">{{ error }}</li>
-          </ul>
+          <p v-if="dateError !== null ">
+            <p class="has-text-danger">{{ dateError }}</p>
           </p>
         </div>
         <div class="field">
@@ -42,10 +40,8 @@
                 v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください">
             </VueMultiselect>
             <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください</p>
-            <p v-if="clinicErrors.length">
-            <ul>
-              <li v-for="error in clinicErrors" class="has-text-danger">{{ error }}</li>
-            </ul>
+            <p v-if="clinicError !== null">
+              <p class="has-text-danger">{{ clinicError }}</p>
             </p>
           </div>
         <div class="field">
@@ -93,8 +89,8 @@ export default {
   components: { VueMultiselect },
   data() {
     return{
-        dateErrors: [],
-        clinicErrors:[],
+        dateError: null,
+        clinicError: null,
         selectedPrefecture: null,
         selectedClinic:'',
         prefectures:[],
@@ -144,21 +140,15 @@ export default {
         this.clinics = responseData["clinics"]
       }
     )},
-    validationDate: function(e){
+    validation: function(){
       if(!this.date){
-        this.dateErrors.push('診療日を選んでください');
-      }
-      //e.preventDefault();
-    },
-    validationClinic: function(e){
-      if(!this.selectedClinic){
-        this.clinicErrors.push('病院名を選んでください');
+        this.dateError = '診療日を選んでください';
+      }if(!this.selectedClinic){
+        this.clinicError = '病院名を選んでください';
       }
     },
     createPrescription(){
-      if(this.validationDate()){
-      }
-      if(this.validationClinic()){
+      if(this.validation()){
       }
       Axios.post('/api/prescriptions', {
         prescription: {

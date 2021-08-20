@@ -61,7 +61,7 @@
         <div class="mt-4">
           <button @click="updatePrescription" class="button is-link is-fullwidth mt-4 mb-4" >編集する</button>
         </div>  
-          <a :href='`/clinics/new/?pet_id=${petId}&prescription_id=${prescriptionId}`' class="button mt-4 is-fullwidth" >病院名が見つからない時はこちら</a>
+          <a :href='`/clinics/new/?pet_id=${petId}&prescription_id=${prescriptionId}`' class="button mt-4 is-fullwidth" data-turbolinks='false' >病院名が見つからない時はこちら</a>
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
           <div>
             <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
@@ -123,7 +123,7 @@ export default {
     },
     fetchClinics(prefecture){
       const id = prefecture.id
-      Axios.get(`/api/clinics/index.json/?id=${id}`).then(
+      Axios.get(`/api/clinics/${id}`).then(
       response => {
         const responseData = response.data;
         this.clinics = responseData["clinics"]

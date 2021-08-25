@@ -1,6 +1,6 @@
 <template>
   <div class="box has-background back-color">
-    <h1 class="is-size-5 mb-4" >
+    <h1 class="is-size-5 mb-4 has-text-weight-bold" >
       <div v-if="petId">
         {{`${name}のお薬手帳`}}
       </div>
@@ -12,31 +12,23 @@
         v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect" placeholder="病院名で絞り込み"  class="mb-4">
       </VueMultiselect>
     <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4">
-      <div class="columns prescription-header is-mobile" @click="showOnPrescription(index)">
+      <div class="prescription-header ">
+        <p class= "is-size-5 pl-4 mb-3 has-text-weight-bold">{{prescribedDate(prescription.prescription.date)}}</p>
+      </div>
+      <div class="columns  is-mobile pb-4 has-text-grey-darker " @click="showOnPrescription(index)" >
         <div class="column is-three-quarters-mobile">
-          <div class="pl-4 pt-4 ">
-            <p class="is-size-6">{{prescription.clinic_name}}</p>
-            <p class="is-size-7">{{prescribedDate(prescription.prescription.date)}}</p>
-          </div>
+          <a data-turbolinks='false' :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
+            <div class="pl-4 ">
+              <p class="is-size-6 has-text-weight-bold">{{prescription.clinic_name}}</p>
+              <span class="is-size-7">お薬名:</span>
+              <span v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="is-size-7">
+                <span>{{medicine.medicine_name}},</span>
+              </span>
+            </div>
+          </a>
         </div>
-        <div class="column mt-5">...</div>
-      </div>
-      <div v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="ml-4 is-size-7">
-        <p>{{medicine.medicine_name}}</p>
-      </div>
-      <div class="ml-4 mb-4 mr-4" @click="showOnPrescription(index)">
-        <div class="button mt-4 has-background-info is-fullwidth" v-show="index === clickedPrescription" >
-          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
-            :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>> 処方箋詳細</a>
-        </div>
-        <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
-          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false'
-            :href='`${prescription.new_medicine_path}`'>+ お薬追加登録</a>
-        </div>
-        <div class="button mt-4 has-background-primary is-fullwidth" v-show="index === clickedPrescription" >
-          <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
-          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>+ コピーする </a>
-        </div>
+        <a class="column mt-5" data-turbolinks='false' 
+          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>+コピー</a>
       </div>
     </div>
     <div v-if="petId">
@@ -63,8 +55,6 @@ export default {
       name: "",
       loaded: false,
       prescriptions: [],
-      clickedPrescription: "",
-      clickedMedicine: false,
       searchTarget:"",
       showPrescriptions:[],
       clinicName:[],
@@ -87,7 +77,7 @@ export default {
         this.clinicName = responseData.clinic_name 
         this.name = responseData.pet.name
         this.prescriptions = responseData.prescriptions
-        this.showPrescriptions = this.prescriptions 
+        this.showPrescriptions = this.prescriptions
       })
     },
     onSelect(searchTarget){
@@ -105,13 +95,6 @@ export default {
     },
     prescribedDate(date) {
       return dayjs(date).format('YYYY年MM月DD日(dd)')
-    },
-    showOnPrescription(index){
-      if(this.clickedPrescription === ""){
-        this.clickedPrescription = index
-      }else{
-        this.clickedPrescription = ""
-      }
     },
   }
 }

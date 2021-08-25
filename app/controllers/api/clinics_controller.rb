@@ -12,12 +12,12 @@ class Api::ClinicsController < ApplicationController
   def create
     @clinic = Clinic.new(clinic_params)
     pet_id = params[:pet_id]
-    prescription_id = params[:prescription_id] 
+    prescription_id = params[:prescription_id]
     if @clinic.save
       if prescription_id == "null"
         render json: { location: new_pet_prescription_path(pet_id), notice:  "prescription was successfully created." }
       else
-        render json: { location: edit_pet_prescription_path(pet_id,prescription_id), notice:  "prescription was successfully created." }
+        render json: { location: edit_pet_prescription_path(pet_id, prescription_id), notice:  "prescription was successfully created." }
       end
     else
       head :bad_request
@@ -25,8 +25,7 @@ class Api::ClinicsController < ApplicationController
   end
 
   private
-
-  def clinic_params
-    params.require(:clinic).permit(:name, :address, :telephone_number, :prefecture_id)
-  end
+    def clinic_params
+      params.require(:clinic).permit(:name, :address, :telephone_number, :prefecture_id)
+    end
 end

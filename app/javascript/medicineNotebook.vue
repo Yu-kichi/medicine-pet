@@ -11,24 +11,20 @@
       <VueMultiselect
         v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect" placeholder="病院名で絞り込み"  class="mb-4">
       </VueMultiselect>
-    <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4">
-      <div class="prescription-header ">
-        <p class= "is-size-5 pl-4 mb-3 has-text-weight-bold">{{prescribedDate(prescription.prescription.date)}}</p>
-      </div>
-      <div class="columns  is-mobile pb-4 has-text-grey-darker " @click="showOnPrescription(index)" >
-        <div class="column is-three-quarters-mobile">
-          <a data-turbolinks='false' :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
-            <div class="pl-4 ">
-              <p class="is-size-6 has-text-weight-bold">{{prescription.clinic_name}}</p>
-              <span class="is-size-7">お薬名:</span>
-              <span v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="is-size-7">
-                <span>{{medicine.medicine_name}},</span>
-              </span>
-            </div>
-          </a>
+    <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4 is-shadowless ">
+      <a data-turbolinks='false' :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
+        <div class="prescription-header has-text-weight-bold pl-4 is-size-6">
+          <p class= "pt-2 ">{{prescribedDate(prescription.prescription.date)}}</p>
+          <p class=" pb-2 ">{{prescription.clinic_name}}</p>
         </div>
-        <a class="column mt-5" data-turbolinks='false' 
-          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescription.prescription.id}`'>+コピー</a>
+      </a>
+      <div class="is-mobile pb-4 has-text-grey-darker " >
+          <div class="pl-4 ">
+            <span class="is-size-7">お薬名:</span>
+            <span v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="is-size-7">
+              <span>{{medicine.medicine_name}},</span>
+            </span>
+          </div>
       </div>
     </div>
     <div v-if="petId">

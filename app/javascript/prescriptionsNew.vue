@@ -165,9 +165,7 @@ export default {
       })
     },
     copyPrescription(){
-      if(this.validationDate()){
-      }
-      if(this.validationClinic()){
+      if(this.validation()){
       }
       Axios.post(`/api/prescriptions/?id=${this.prescriptionId}`, {
         prescription: {

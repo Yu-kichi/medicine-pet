@@ -1,4 +1,4 @@
-nav.navbar.is-white aria-label=("main navigation") role="navigation"
+nav.navbar.is-green  aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-4.ml-4
     .navbar-item.title.mt-3
       - if @pets.present? && @pet&.id
@@ -6,25 +6,24 @@ nav.navbar.is-white aria-label=("main navigation") role="navigation"
       - elsif @pets.present? 
         = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class:" Mali",data: {"turbolinks" => false}
       - else
-        = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}
+        = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}      
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
       /仕様が決定したらhelper_methodにする
-    - if user_signed_in? && @pets.present? && @pets.size >= 2
-      .navbar-item
-        .select
-          select onChange="location.href=value;"
-            /- if @pets
-            option = "お薬手帳を開く" 
-            - @pets.each do |pet|
-              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+    / - if user_signed_in? && @pets.present? && @pets.size >= 2
+    /   .navbar-item
+    /     .select
+    /       select onChange="location.href=value;"
+    /         /- if @pets
+    /         option = "お薬手帳を開く" 
+    /         - @pets.each do |pet|
+    /           option value="/pets/#{pet.id}/medicine_notebook" = pet.name
     .navber-item.ml-4.mt-5
       - if @pet
         - if @pet.image.attached? && @pet.image.blob&.persisted?
           = link_to image_tag(@pet.image,class:"pet_image_icon"), pet_medicine_notebook_index_path(@pet),class:"pet_image_icon" 
-    a.navbar-burger.mt-5 aria-expanded="false" aria-label="menu" data-target="navbarBasicExample" role="button" 
-      span aria-hidden="true" 
-      span aria-hidden="true" 
-      span aria-hidden="true"         
+
+    = javascript_pack_tag 'header_vue.js'
+    #head.navbar-burger.mt-5
   .navbar-menu
     .navbar-end
       .navbar-item.mr-4

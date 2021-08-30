@@ -9,23 +9,15 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
         = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}      
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
       /仕様が決定したらhelper_methodにする
+    .navber-item.mt-5
+      - if @pet
+        - if @pet.image.attached? && @pet.image.blob&.persisted?
+          = image_tag(@pet.image,class:"pet_image_icon")
     - if user_signed_in? && @pets.present? && @pets.size >= 2
-      .navbar-item
-        .select
-          select onChange="location.href=value;"
-            /- if @pets
-            option = "ペット切り替え" 
-            - @pets.each do |pet|
-              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
-    / .navber-item.mt-5
-    /   - if @pet
-    /     - if @pet.image.attached? && @pet.image.blob&.persisted?
-    /       = image_tag(@pet.image,class:"pet_image_icon")
-    = javascript_pack_tag 'selectPet_vue.js'
-    #select-pet.navber-item.mt-5
-    /   | ペット選択ここで新しくvueを作ってそこでモーダルなりを開くボタンを作成する
-    = javascript_pack_tag 'header_vue.js'
-    #head.navbar-burger.mt-5
+      = javascript_pack_tag 'selectPet_vue.js'
+      #select-pet.navber-item.mt-5.ml-3
+    = javascript_pack_tag 'menuButton_vue.js'
+    #menu-button.navbar-burger.mt-5
   .navbar-menu
     .navbar-end
       .navbar-item.mr-4
@@ -37,10 +29,10 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
                   i.fas.fa-angle-down aria-hidden="true"
               .dropdown-menu id="dropdown-menu4" role="menu"
                 .dropdown-content
-                  .dropdown-item
-                    | ユーザー情報編集
                   .dropdown-item  
                     = link_to 'ペット一覧', pets_path
+                  .dropdown-item
+                    | ユーザー情報編集  
                   / .dropdown-item確認用のため管理者のみ閲覧可にするか消す
                   /   = link_to '病院一覧', clinics_path
                   / .dropdown-item  

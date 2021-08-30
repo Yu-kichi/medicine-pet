@@ -1,0 +1,30 @@
+ .menu-link{
+  position: relative;
+ }
+ .menu-bar{
+  position: absolute;
+  top: 77px;
+  right: 2px;
+  z-index: 300;
+  width:180px;
+  height:auto;
+  background-color:white;
+  border: 1px solid #e8e8e8 ;
+  border-radius: 5px;
+  overflow: auto;
+  box-shadow: 1px 1px 2px gray;
+ }
+.navbar{
+  border-bottom: 1px solid #e8e8e8 ;
+}
+
+li{
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

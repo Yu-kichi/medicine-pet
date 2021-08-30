@@ -1,6 +1,6 @@
 nav.navbar.is-green  aria-label=("main navigation") role="navigation"
-  .navbar-brand.mr-4.ml-4
-    .navbar-item.title.mt-3
+  .navbar-brand.mr-2
+    .navbar-item.title.mt-4
       - if @pets.present? && @pet&.id
         = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class:" Mali",data: {"turbolinks" => false}
       - elsif @pets.present? 
@@ -9,19 +9,21 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
         = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}      
       /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
       /仕様が決定したらhelper_methodにする
-    / - if user_signed_in? && @pets.present? && @pets.size >= 2
-    /   .navbar-item
-    /     .select
-    /       select onChange="location.href=value;"
-    /         /- if @pets
-    /         option = "お薬手帳を開く" 
-    /         - @pets.each do |pet|
-    /           option value="/pets/#{pet.id}/medicine_notebook" = pet.name
-    .navber-item.ml-4.mt-5
-      - if @pet
-        - if @pet.image.attached? && @pet.image.blob&.persisted?
-          = link_to image_tag(@pet.image,class:"pet_image_icon"), pet_medicine_notebook_index_path(@pet),class:"pet_image_icon" 
-
+    - if user_signed_in? && @pets.present? && @pets.size >= 2
+      .navbar-item
+        .select
+          select onChange="location.href=value;"
+            /- if @pets
+            option = "ペット切り替え" 
+            - @pets.each do |pet|
+              option value="/pets/#{pet.id}/medicine_notebook" = pet.name
+    / .navber-item.mt-5
+    /   - if @pet
+    /     - if @pet.image.attached? && @pet.image.blob&.persisted?
+    /       = image_tag(@pet.image,class:"pet_image_icon")
+    = javascript_pack_tag 'selectPet_vue.js'
+    #select-pet.navber-item.mt-5
+    /   | ペット選択ここで新しくvueを作ってそこでモーダルなりを開くボタンを作成する
     = javascript_pack_tag 'header_vue.js'
     #head.navbar-burger.mt-5
   .navbar-menu

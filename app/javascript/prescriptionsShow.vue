@@ -3,11 +3,11 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <h1 class = "ml-4 is-size-4 mb-2 has-text-weight-bold"></h1>
+    <h1 class = "ml-4 is-size-4 has-text-weight-bold"></h1>
       <div class= "card is-shadowless prescription-header">
         <div class="columns is-mobile ">
           <div class="column ml-4 mr-4 pb-2 is-three-quarters-mobile">
-            <p class="is-size-4 has-text-weight-bold pt-4">{{prescribedDate(prescription_date)}}</p>
+            <p class="is-size-4 has-text-weight-bold pt-4"><i class="far fa-hospital"></i> {{prescribedDate(prescription_date)}}</p>
             <p class="is-size-4 has-text-weight-bold">{{clinic_name}}</p>
             <p>住所:{{clinic_addresss}}</p>
             <p>電話番号:{{clinic_telephone_number}}</p>
@@ -18,7 +18,7 @@
         </div>
           <div v-show="showOnClinicButton" class="pl-4 pr-4">
             <a class="mb-2 mt-4 button is-fullwidth" data-turbolinks='false' 
-            :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'>内容修正</a>
+            :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
             <div class="has-text-right pb-2" @click="showModalPrescription = true">
               <i class="fa fa-trash" ></i>
               <a class="has-text-grey-dark" data-turbolinks='false' >削除する</a>
@@ -35,7 +35,7 @@
         <div v-for="(medicine, index) in medicines" :key='medicine.id' class=" ">
           <div class="columns is-mobile mb-4">
             <div class ="column pb-2 is-three-quarters-mobile ml-4 mr-4">
-              <p class="is-size-5 mt-2 has-text-weight-bold">{{medicine.medicine_name}}</p>
+              <p class="is-size-5 mt-2 has-text-weight-bold"><i class="fas fa-capsules"></i>{{medicine.medicine_name}}</p>
               <p class="is-size-6" v-if="`${medicine.dose}`">1日の使用量:{{medicine.dose}}錠</p>
               <p class="is-size-6 ">総量:{{medicine.total_amount}}日分</p>
               <p class="is-size-6 ">メモ:{{medicine.memo}}</p>
@@ -44,7 +44,7 @@
           </div>
           <div v-show="index === clickedPrescription" class="pl-4 pr-4">
             <a class="mb-4 mt-4 button pb-2 is-fullwidth mr-4" data-turbolinks='false' 
-              :href='medicine.edit_prescriptions_medicine_path'>内容修正</a>
+              :href='medicine.edit_prescriptions_medicine_path'><i class="fas fa-pen mr-2"></i>内容修正</a>
             <div class="has-text-right" @click="showModal = true, medicineId = medicine.medicine_id">
               <i class="fa fa-trash" ></i>
               <a class="has-text-grey-dark" data-turbolinks='false' >削除する</a>

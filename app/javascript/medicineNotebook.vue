@@ -2,7 +2,7 @@
   <div class="box has-background back-color">
     <h1 class="is-size-5 mb-4 has-text-weight-bold" >
       <div v-if="petId">
-        {{`${name}のお薬手帳`}}
+        <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
       </div>
       <div v-else>
         <a style="display: block" :href='`/pets/new`' >まずペット情報を登録しましょう！ > </a>

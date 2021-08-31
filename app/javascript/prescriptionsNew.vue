@@ -3,7 +3,7 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "box has-background-white-bis">
+    <div class= "box has-background-white-bis is-shadowless">
       <h1 class="is-size-3 mb-4">
         <div v-if="prescriptionId">前回の情報を元に薬を一括登録する
           <p class="is-size-6">このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。<br>

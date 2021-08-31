@@ -3,7 +3,7 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "box has-background-white-bis">
+    <div class= "box has-background-white-bis is-shadowless">
       <h1 class="is-size-3 mb-4">
         <p>お薬情報編集</p>
       </h1>

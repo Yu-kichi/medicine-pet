@@ -3,7 +3,7 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class="box has-background-white-bis">
+    <div class="box is-shadowless">
       <p class="is-size-3">既に登録している情報</p>
       <div v-if='clinic_name' class="is-size-5">
         <p>{{prescribedDate(prescription_date)}}</p>
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class= "box has-background-white-bis">
+    <div class= "box has-background-white-bis is-shadowless">
       <h1 class="is-size-3 mb-4">
         <p>お薬情報登録</p>
       </h1>

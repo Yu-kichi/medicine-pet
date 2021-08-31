@@ -3,7 +3,7 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "box has-background-white-ter mb-4">
+    <div class= "box has-background-white-ter is-shadowless">
       <h1 class="is-size-3 mb-4">
         病院情報登録
       </h1>

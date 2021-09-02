@@ -20,7 +20,7 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     if @pet.save
-      redirect_to @pet, notice:  "Pet was successfully created."
+      redirect_to @pet, notice:  "ペットを作成しました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class PetsController < ApplicationController
   def update
     @pets = current_user.pets
     if @pet.update(pet_params)
-      redirect_to @pet, notice: "Pet was successfully updated."
+      redirect_to @pet, notice: "ペットを更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class PetsController < ApplicationController
 
   def destroy
     @pet.destroy
-    redirect_to pets_url, notice: "Pet was successfully destroyed."
+    redirect_to pets_url, alert: "ペットを削除しました"
   end
 
   private

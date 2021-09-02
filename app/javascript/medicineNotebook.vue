@@ -1,5 +1,5 @@
 <template>
-  <div class="box has-background back-color">
+  <div class="box has-background back-color is-shadowless">
     <h1 class="is-size-5 mb-4 has-text-weight-bold" >
       <div v-if="petId">
         <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}

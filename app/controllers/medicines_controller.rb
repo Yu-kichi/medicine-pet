@@ -29,9 +29,9 @@ class MedicinesController < ApplicationController
     prescription_medicine = params[:medicine][:prescription_medicine]
     if @medicine.save
       if prescription_medicine
-        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine), notice:  "Medicine was successfully created."
+        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine), notice:  "新しく薬の名前を登録しました"
       else
-        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "Medicine was successfully created."
+        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "新しく薬の名前を登録しました"
       end
     else
       render :new, status: :unprocessable_entity
@@ -44,8 +44,7 @@ class MedicinesController < ApplicationController
 
   def update
     if @medicine.update(medicine_params)
-      # redirect_to @medicine, notice: "Medicine was successfully updated."
-      redirect_to pet_medicine_path(@medicine.pet_id, @medicine), notice: "Medicine was successfully updated."
+      redirect_to pet_medicine_path(@medicine.pet_id, @medicine), notice: "薬の名前を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,9 +54,9 @@ class MedicinesController < ApplicationController
     @pet = Pet.find_by(id: params[:pet_id])
     @medicine.destroy
     if @pet
-      redirect_to pet_medicine_notebook_index_path(@pet), notice: "Medicine  was successfully destroyed."
+      redirect_to pet_medicine_notebook_index_path(@pet), notice: "薬の名前を削除しました"
     else
-      redirect_to medicines_url, notice: "Medicine was successfully destroyed."
+      redirect_to medicines_url, notice: "薬の名前を削除しました"
     end
   end
 

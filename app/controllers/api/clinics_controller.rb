@@ -15,9 +15,9 @@ class Api::ClinicsController < ApplicationController
     prescription_id = params[:prescription_id]
     if @clinic.save
       if prescription_id == "null"
-        render json: { location: new_pet_prescription_path(pet_id), notice:  "prescription was successfully created." }
+        render json: { location: new_pet_prescription_path(pet_id), notice:  "病院情報を作成しました" }
       else
-        render json: { location: edit_pet_prescription_path(pet_id, prescription_id), notice:  "prescription was successfully created." }
+        render json: { location: edit_pet_prescription_path(pet_id, prescription_id), notice:  "病院情報を作成しました" }
       end
     else
       head :bad_request

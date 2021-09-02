@@ -26,7 +26,7 @@ class ClinicsController < ApplicationController
 
   def update
     if @clinic.update(clinic_params)
-      redirect_to pet_clinic_path(@clinic.pet_id, @clinic), notice: "Clinic was successfully updated."
+      redirect_to pet_clinic_path(@clinic.pet_id, @clinic), notice: "病院情報を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class ClinicsController < ApplicationController
 
   def destroy
     @clinic.destroy
-    redirect_to clinics_url, notice: "Clinic was successfully destroyed."
+    redirect_to clinics_url, notice: "病院情報を削除しました"
   end
 
   private

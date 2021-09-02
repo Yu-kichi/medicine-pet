@@ -22,7 +22,7 @@ class PrescriptionsMedicinesController < ApplicationController
 
   def destroy
     @prescriptions_medicine.destroy
-    redirect_to pet_medicine_notebook_index_path(@prescriptions_medicine.prescription.pet_id), notice: "prescription was successfully destroyed."
+    redirect_to pet_medicine_notebook_index_path(@prescriptions_medicine.prescription.pet_id), notice: "処方箋を削除しました"
   end
 
   private

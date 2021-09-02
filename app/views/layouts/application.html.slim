@@ -12,9 +12,11 @@ html
   body
     = render 'shared/header'
     div.background
-      p.notice
-        = notice
-      p.alert
-        = alert
+      - if notice
+        .notification.is-link.is-light
+          = notice
+      - if alert
+        .notification.is-danger.is-light
+          = alert
       = yield
     = render 'shared/footer'

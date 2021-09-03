@@ -31,8 +31,8 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
                 .dropdown-content
                   .dropdown-item  
                     = link_to 'ペット一覧', pets_path
-                  .dropdown-item
-                    | ユーザー情報編集  
+                  .dropdown-item  
+                    = link_to 'ユーザー情報編集', edit_user_registration_path
                   / .dropdown-item確認用のため管理者のみ閲覧可にするか消す
                   /   = link_to '病院一覧', clinics_path
                   / .dropdown-item  

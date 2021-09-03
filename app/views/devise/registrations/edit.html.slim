@@ -1,42 +1,46 @@
-h2
-  | Edit 
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
-      br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+.container
+  .box.has-background-white-bis.is-shadowless
+    h2.title.has-background-primary-dark.has-text-white.has-text-centered.p-2.is-bold
+      | ユーザー情報編集
+    div.pl-3.pr-3.mb-3
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), 
+      html: { method: :put }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field
+          = f.label :email,class:"label"
+          .control.has-icons-left
+            = f.email_field :email, autocomplete: "email",:placeholder => "****@gmail.com", autocomplete: "email", required: true,  class:"input"
+            span.icon.is-small.is-left
+              i.fa.fa-envelope
+        .field
+          = f.label :password,class:"label"
+          .control.has-icons-left    
+            = f.password_field :password, autocomplete: "new-password",class: "input",:placeholder=>"*******"
+            span.icon.is-small.is-left
+              i.fa.fa-lock
+            i
+              | (パスワードの変更が不要なら空欄のままにしてください)
+            - if @minimum_password_length
+              em
+                | (
+                = @minimum_password_length
+                |  文字以上)     
+        .field
+          = f.label :password_confirmation,class:"label"
+          .control.has-icons-left
+            = f.password_field :password_confirmation, autocomplete: "new-password",class: "input",:placeholder=>"*******"
+            span.icon.is-small.is-left
+              i.fa.fa-lock
+        .field
+          = f.label :current_password,class:"label"
+          .control.has-icons-left
+            = f.password_field :current_password, autocomplete: "current-password", class: "input",required: true,:placeholder=>"*******"
+            span.icon.is-small.is-left
+              i.fa.fa-lock
+            i
+              | (変更の際には必ず現在のパスワードを入力してください)    
+          .actions.pt-2
+            = f.submit "変更する", class:"button is-link is-fullwidth"   
+        h3.mt-4
+          = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" },   method: :delete , class:"button is-outlined "
+          = link_to "TOPページへ戻る", root_path, class:"button is-outlined is-fullwidth mt-4 mb-4"

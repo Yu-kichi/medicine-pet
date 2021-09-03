@@ -14,6 +14,8 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "bulma-rails", "~> 0.9.1"
 gem "devise"
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem "image_processing", "~> 1.2"
 gem "active_storage_validations", "~> 0.8.8"
 gem "bootsnap", ">= 1.4.2", require: false

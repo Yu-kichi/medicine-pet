@@ -8,7 +8,7 @@
             <p><a href="/pets" data-turbolinks="false"><i class="fas fa-cat mr-2"></i>ペット一覧</a></p>
           </li>
           <li class="pb-2 mt-2">
-            <p><a><i class="far fa-address-card mr-2"></i>ユーザー情報編集</a></p>
+            <p><a href="/users/edit" data-turbolinks="false"><i class="far fa-address-card mr-2"></i>ユーザー情報編集</a></p>
           </li>
           <li class="pb-2 mt-2">
             <p>

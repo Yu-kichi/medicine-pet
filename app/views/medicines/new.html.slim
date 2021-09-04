@@ -1,7 +1,7 @@
 .container.has-background-white-bis
-  .box.is-shadowless.has-background-white-bis
+  .box.is-shadowless.has-background-white
     = render "shared/errors", obj: @medicine
-    .is-size-3.mb-4
+    .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
       | お薬名登録
     = render 'form', {medicine: @medicine, prescription: @prescription, prescription_medicine: @prescription_medicine }
     - if @prescription_medicine

@@ -3,20 +3,20 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class="box is-shadowless">
-      <p class="is-size-3">既に登録している情報</p>
-      <div v-if='clinic_name' class="is-size-5">
+    <div class="box is-shadowless has-background-white-bis">
+      <h1 class="title has-text-centered ">既に登録している情報</h1>
+      <div v-if='clinic_name' class="is-size-5 ml-3">
         <p>{{prescribedDate(prescription_date)}}</p>
         <p>{{clinic_name}}</p>
       </div>
       <div v-if='registered.length'>
-        <div v-for="medicine in registered" :key='medicine.id' class="is-size-5">
+        <div v-for="medicine in registered" :key='medicine.id' class="is-size-5 ml-3">
           <p>{{medicine.medicine_name}}</p>
         </div>
       </div>
     </div>
-    <div class= "box has-background-white-bis is-shadowless">
-      <h1 class="is-size-3 mb-4">
+    <div class= "box has-background-white is-shadowless">
+      <h1 class="title has-background-lightseagreen has-text-white has-text-centered mb-4 p-2">
         <p>お薬情報登録</p>
       </h1>
       <div class="form__items">

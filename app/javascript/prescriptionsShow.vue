@@ -2,7 +2,7 @@
   <div v-if='loaded === false'>
     <p>ロード中</p>
   </div>
-  <div v-else class="container" >
+  <div v-else class="container has-background-white" >
     <h1 class = "ml-4 is-size-4 has-text-weight-bold"></h1>
       <div class= "card is-shadowless prescription-header">
         <div class="columns is-mobile ">

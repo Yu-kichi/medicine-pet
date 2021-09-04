@@ -3,15 +3,19 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container" >
-    <div class= "box has-background-white-bis is-shadowless">
-      <h1 class="is-size-3 mb-4">
-        <div v-if="prescriptionId">前回の情報を元に薬を一括登録する
-          <p class="is-size-6">このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。<br>
-          病院や日付に変更がある場合には再入力をお願い致します。
-          </p>
+    <div class= "box has-background-white is-shadowless">
+      <div v-if="prescriptionId">
+        <h1 class="title has-background-lightseagreen has-text-white has-text-centered p-2 is-bold">
+          前回の情報を元に薬を一括登録する
+        </h1>  
+          <div class="is-size-6 mb-3" > 
+            <p>このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。</p>
+            <p>病院や日付に変更がある場合には再入力をお願い致します。</p>
+          </div>
         </div>
-        <div v-else>処方箋情報登録</div>
-      </h1>
+      <div v-else class="title has-background-lightseagreen has-text-white has-text-centered p-2 is-bold">
+        処方箋情報登録
+      </div>
       <div class="form__items">
         <div class="field">
           <div class="label">

@@ -1,28 +1,31 @@
 .container
-  .box.is-shadowless
-    h1.is-size-4.mb-4
-      = "#{@pet.name}のプロフィール"
-    - if @pet.image.attached?
-      div
-        = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
-    .control.label.pt-4
-      = Pet.human_attribute_name(:sex)
-    = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
-    .control.label.pt-4
-      = Pet.human_attribute_name(:breed)
-    = @pet.breed
-    .control.label.pt-4
-      = Pet.human_attribute_name(:weight)
-    = @pet.weight
-    .control.label.pt-4
-      = Pet.human_attribute_name(:birthday)
-    = @pet.birthday
-
-    = link_to '内容変更する', edit_pet_path(@pet), class:"button is-fullwidth mt-4 is-warning"
-    div.has-text-centered.mt-4
-      = link_to '削除する' ,pet_path(@pet), class:"button is-fullwidth mt-4 is-danger", method: :delete
-    div.has-text-centered.mt-4
-      = link_to 'ペット一覧へ ', pets_path
-    div.has-text-centered.mt-4  
-      = link_to 'お薬手帳へ ', pet_medicine_notebook_index_path(@pet.id),data: {"turbolinks" => false}
+  .box.has-background-white.is-shadowless
+    h1.title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
+      = "#{@pet.name}の"
+      br
+      | プロフィール  
+    div
+      - if @pet.image.attached?
+        div
+          = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
+      .control.label.pt-4
+        = Pet.human_attribute_name(:sex)
+      = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+      .control.label.pt-4
+        = Pet.human_attribute_name(:breed)
+      = @pet.breed
+      .control.label.pt-4
+        = Pet.human_attribute_name(:weight)
+      = @pet.weight
+      .control.label.pt-4
+        = Pet.human_attribute_name(:birthday)
+      = @pet.birthday
+  
+      = link_to '内容変更する', edit_pet_path(@pet), class:"button is-fullwidth mt-4 "
+      .has-text-centered.mt-4
+        = link_to '削除する' ,pet_path(@pet), class:"button is-fullwidth mt-4 is-danger", method: :delete
+      .has-text-centered.mt-4
+        = link_to 'ペット一覧へ ', pets_path ,class:"button is-fullwidth mt-4 "
+      .has-text-centered.mt-4  
+        = link_to 'お薬手帳へ ', pet_medicine_notebook_index_path(@pet.id),data: {"turbolinks" => false},class:"button is-fullwidth mt-4 "
 

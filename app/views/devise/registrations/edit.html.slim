@@ -1,8 +1,8 @@
 .container
-  .box.has-background-white-bis.is-shadowless
-    h2.title.has-background-primary-dark.has-text-white.has-text-centered.p-2.is-bold
+  .box.has-background-white.is-shadowless
+    h2.title.has-background-lightseagreen.has-text-white.has-text-centered.p-2.is-bold
       | ユーザー情報編集
-    div.pl-3.pr-3.mb-3
+    div
       = form_for(resource, as: resource_name, url: registration_path(resource_name), 
       html: { method: :put }) do |f|
         = render "devise/shared/error_messages", resource: resource

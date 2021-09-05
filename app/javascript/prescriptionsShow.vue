@@ -58,9 +58,9 @@
         </div>
       </div>
     <div class="mr-4 ml-4 pb-4 pt-2" >
-      <a class="button  mt-4 has-text-white is-fullwidth has-background-primary " data-turbolinks='false'
+      <a class="button  mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold" data-turbolinks='false'
             :href='`/prescriptions/${prescriptionId}/prescriptions_medicines/new`'>+ お薬追加登録</a>
-      <a class="button  mt-4 has-text-white is-fullwidth has-background-primary " data-turbolinks='false' 
+      <a class="button  mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold" data-turbolinks='false' 
           :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescriptionId}`'>+コピー</a>      
     </div>
     <div class="mr-4 ml-4 pb-4 pt-2">

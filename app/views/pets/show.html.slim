@@ -23,7 +23,7 @@
   
       = link_to '内容変更する', edit_pet_path(@pet), class:"button is-fullwidth mt-4 "
       .has-text-centered.mt-4
-        = link_to '削除する' ,pet_path(@pet), class:"button is-fullwidth mt-4 is-danger", method: :delete
+        = link_to '削除する' ,pet_path(@pet), class:"button is-fullwidth mt-4 is-danger has-text-weight-bold", method: :delete
       .has-text-centered.mt-4
         = link_to 'ペット一覧へ ', pets_path ,class:"button is-fullwidth mt-4 "
       .has-text-centered.mt-4  

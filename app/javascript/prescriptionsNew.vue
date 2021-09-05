@@ -67,10 +67,10 @@
           </div>
         </div>
         <div v-if="prescriptionId" class="actions pt-3">
-          <button @click="copyPrescription" class="button is-link is-fullwidth">薬の情報を一括登録する</button>
+          <button @click="copyPrescription" class="button is-link is-fullwidth has-text-weight-bold">薬の情報を一括登録する</button>
         </div>
         <div v-else class="actions pt-3">
-          <button @click="createPrescription" class="button is-link is-fullwidth">お薬登録へ進む</button>
+          <button @click="createPrescription" class="button is-link is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
         </div>
         <div class="actions">
           <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth" data-turbolinks='false' >病院名が見つからない時はこちら</a>

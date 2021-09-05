@@ -1,5 +1,6 @@
-= javascript_pack_tag 'medicineNotebook_vue.js' 
-#app(pet-id="#{@pet.id}")
+-if @pet
+  = javascript_pack_tag 'medicineNotebook_vue.js' 
+  #app(pet-id="#{@pet.id}")
 
 
 / .box.has-background.back-color

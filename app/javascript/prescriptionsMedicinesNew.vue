@@ -59,10 +59,10 @@
           </div>
         </div>
         <div class="actions pt-3">
-          <button @click="createPrescriptionsMedicines()" class="button is-link is-fullwidth" >お薬情報を登録する</button>
+          <button @click="createPrescriptionsMedicines()" class="button is-link is-fullwidth has-text-weight-bold" >お薬情報を登録する</button>
         </div>
         <div class="actions pt-4">
-          <button @click="createPrescriptionsMedicines('again')" class="button is-primary  is-fullwidth">追加でお薬を登録する</button>
+          <button @click="createPrescriptionsMedicines('again')" class="button is-primary  is-fullwidth has-text-weight-bold">追加でお薬を登録する</button>
         </div>
         <div class="actions mt-4">
           <a :href='`/medicines/new/?prescription_id=${prescriptionId}`' class="button is-outlined is-fullwidth" >薬の名前が見つからない時はこちら</a>

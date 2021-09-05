@@ -45,7 +45,7 @@
             <textarea v-model="memo"  class="textarea" ></textarea>
         </div>
         <div class="actions mt-4">
-          <button @click="updatePrescriptionsMedicine" class="button is-link is-fullwidth" >お薬情報を編集する</button>
+          <button @click="updatePrescriptionsMedicine" class="button is-link is-fullwidth has-text-weight-bold">お薬情報を編集する</button>
         </div>
         <div class="actions mt-4">
           <a :href="`/medicines/new/?prescriptions_medicine_id=${prescriptionsMedicineId}`" class="button is-outlined is-fullwidth" >薬の名前が見つからない時はこちら</a>

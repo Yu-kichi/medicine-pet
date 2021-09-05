@@ -45,7 +45,7 @@
           </p>
         </div>
         <div class="actions pt-3">
-          <button  @click="createClinic" class="button is-link is-fullwidth">登録する</button>
+          <button  @click="createClinic" class="button is-link is-fullwidth has-text-weight-bold">登録する</button>
         </div>
         <div>
           <a v-if='prescriptionId !== null' class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 

@@ -1,11 +1,8 @@
 <template>
   <div class="box has-background back-color is-shadowless">
     <h1 class="is-size-5 mb-4 has-text-weight-bold" >
-      <div v-if="petId">
+      <div>
         <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
-      </div>
-      <div v-else>
-        <a style="display: block" :href='`/pets/new`' >まずペット情報を登録しましょう！ > </a>
       </div>
     </h1>
       <VueMultiselect
@@ -28,8 +25,8 @@
       </div>
     </div>
     <div v-if="petId">
-      <div class="button mt-4 has-background-primary  is-fullwidth">
-        <a class="mb-4 mt-4 has-text-white" data-turbolinks='false' 
+      <div class="button mt-4 has-background-primary is-fullwidth">
+        <a class="mb-4 mt-4 has-text-white has-text-weight-bold" data-turbolinks='false' 
           :href='`/pets/${petId}/prescriptions/new`'>新しくお薬手帳に登録する
         </a>
       </div>

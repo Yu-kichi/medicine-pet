@@ -6,9 +6,7 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
       - elsif @pets.present? 
         = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class:" Mali",data: {"turbolinks" => false}
       - else
-        = link_to "MediPet", root_path, class:"has-text-black Mali",data: {"turbolinks" => false}      
-      /= image_tag 'logo.png' ,size:"60x60" ,class:"mr-4"
-      /仕様が決定したらhelper_methodにする
+        = link_to "MediPet", root_path, class:"Mali",data: {"turbolinks" => false}
     .navber-item.mt-5
       - if @pet
         - if @pet.image.attached? && @pet.image.blob&.persisted?
@@ -16,8 +14,12 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
     - if user_signed_in? && @pets.present? && @pets.size >= 2
       = javascript_pack_tag 'selectPet_vue.js'
       #select-pet.navber-item.mt-5.ml-3
-    = javascript_pack_tag 'menuButton_vue.js'
-    #menu-button.navbar-burger.mt-5
+    - if user_signed_in?
+      = javascript_pack_tag 'menuButton_vue.js'
+      #menu-button.navbar-burger.mt-5(user-id="#{current_user.id}")
+    - else
+      = javascript_pack_tag 'menuButton_vue.js'
+      #menu-button.navbar-burger.mt-5
   .navbar-menu
     .navbar-end
       .navbar-item.mr-4

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "tos", to: "welcome#tos", as: "tos"
+
   namespace "api", { format: "json" } do
     # resources :clinics, only: %i(index), controller: "/api/clinics"
     # resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。

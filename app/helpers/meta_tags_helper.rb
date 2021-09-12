@@ -3,22 +3,22 @@
 module MetaTagsHelper
   def default_meta_tags
     {
-      site: 'MediPet',
+      site: "MediPet",
       reverse: true,
-      charset: 'utf-8',
-      description: 'ペットのお薬手帳',
+      charset: "utf-8",
+      description: "ペットのお薬手帳",
       og: {
-        title: :title, 
+        title: :title,
         description: :description,
-        type: 'website',
-        url: "",#デプロイ後に設定
-        image: "",#デプロイ後に設定
-        locale: 'ja_JP',
+        type: "website",
+        url: "",  # デプロイ後に設定
+        image: "",  # デプロイ後に設定
+        locale: "ja_JP",
       },
       twitter: {
         card: "summary",
         title: "MediPet",
-        image: "",#デプロイ後に設定
+        image: "",  # デプロイ後に設定
         description: :description,
       }
     }

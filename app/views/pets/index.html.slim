@@ -2,20 +2,19 @@
 
 .container.has-background-white
   .box.is-shadowless
-    h1.title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
-      | ペット一覧
+    .title.has-background-lightseagreen.has-text-centered.mb-4.p-2
+      h1.has-text-white.has-text-weight-bold ペット一覧
     - if @pets
       - @pets.each do |pet|
-        columns
-          column
-            - if pet.image.attached? && pet.image.blob&.persisted?
-              = link_to image_tag(pet.image,class:"pet_image_icon"), pet,  class:"pet_image_icon"
-            - else
+        li
+          ol.mt-5
+            columns
               = link_to pet
-                i class="fa fa-address-card fa-3x"
-          column.pl-5.mb-4
-            = pet.name
-          .mt-6
-    .mt-6
-      .button.is-link.is-fullwidth
-        = link_to 'New Pet', new_pet_path, class:"has-text-white has-text-weight-bold"
+                column
+                  - if pet.image.attached? && pet.image.blob&.persisted?
+                    = image_tag(pet.image,class:"pet_image_icon")
+                  - else
+                    i class="fa fa-address-card fa-3x"
+                column.is-size-4.ml-4 
+                  = pet.name
+    = link_to 'New Pet', new_pet_path, class:"has-text-white has-text-weight-bold button is-link is-fullwidth mt-6"

@@ -2,18 +2,16 @@
 
 class PetsController < ApplicationController
   before_action :set_pet, only: %i[ show edit update destroy ]
+  before_action :set_pets, only: %i[index show new edit update]
   before_action :authenticate_user!
   def index
-    pets = current_user.pets
-    @pets = pets.with_attached_image.order(:id)
+    @pets = @pets.with_attached_image.order(:id)
   end
 
   def show
-    @pets = current_user.pets
   end
 
   def new
-    @pets = current_user.pets
     @pet = Pet.new
   end
 
@@ -27,11 +25,9 @@ class PetsController < ApplicationController
   end
 
   def edit
-    @pets = current_user.pets
   end
 
   def update
-    @pets = current_user.pets
     if @pet.update(pet_params)
       redirect_to @pet, notice: "ペットを更新しました"
     else

@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   get "tos", to: "welcome#tos", as: "tos"
-  get "policy", to: "welcome#policy", as:"policy"
+  get "policy", to: "welcome#policy", as: "policy"
 
   namespace "api", { format: "json" } do
     # resources :clinics, only: %i(index), controller: "/api/clinics"

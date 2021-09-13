@@ -7,7 +7,7 @@ class MedicineNotebookController < ApplicationController
     if params[:pet_id]
       @pet = Pet.find_by(id: params[:pet_id])
     elsif @pets.present?
-      @pet = current_user.pets.first
+      @pet = current_user.pets.with_attached_image.first
     end
   end
 end

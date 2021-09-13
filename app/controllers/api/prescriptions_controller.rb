@@ -10,9 +10,9 @@ class Api::PrescriptionsController < ApplicationController
 
   def create
     if params[:id]
-      past_prescription = Prescription.find(params[:id])
+      source_prescription = Prescription.find(params[:id])
       @prescription = Prescription.new(prescription_params)
-      @prescription.copy_from(past_prescription)
+      @prescription.copy_from(source_prescription)
     else
       @prescription = Prescription.new(prescription_params)
     end

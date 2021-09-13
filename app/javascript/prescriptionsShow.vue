@@ -2,10 +2,10 @@
   <div v-if='loaded === false'>
     <p>ロード中</p>
   </div>
-  <div v-else class="container has-background-white" >
+  <div v-else class="container has-background-white">
     <h1 class = "ml-4 is-size-4 has-text-weight-bold"></h1>
       <div class= "card is-shadowless prescription-header">
-        <div class="columns is-mobile ">
+        <div class="columns is-mobile">
           <div class="column ml-4 mr-4 pb-2 is-three-quarters-mobile">
             <p class="is-size-4 has-text-weight-bold pt-4"><i class="far fa-hospital"></i> {{prescribedDate(prescription_date)}}</p>
             <p class="is-size-4 has-text-weight-bold">{{clinic_name}}</p>
@@ -20,8 +20,8 @@
             <a class="mb-2 mt-4 button is-fullwidth" data-turbolinks='false' 
             :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
             <div class="has-text-right pb-2" @click="showModalPrescription = true">
-              <i class="fa fa-trash" ></i>
-              <a class="has-text-grey-dark" data-turbolinks='false' >削除する</a>
+              <i class="fa fa-trash"></i>
+              <a class="has-text-grey-dark" data-turbolinks='false'>削除する</a>
             </div>
             <modal v-if="showModalPrescription" @cancel="showModalPrescription = false" @ok="deletePrescription(); showModalPrescription = false;">
             <template v-slot:body>本当に削除しますか？</template>
@@ -47,7 +47,7 @@
               :href='medicine.edit_prescriptions_medicine_path'><i class="fas fa-pen mr-2"></i>内容修正</a>
             <div class="has-text-right" @click="showModal = true, medicineId = medicine.medicine_id">
               <i class="fa fa-trash" ></i>
-              <a class="has-text-grey-dark" data-turbolinks='false' >削除する</a>
+              <a class="has-text-grey-dark" data-turbolinks='false'>削除する</a>
             <div class="line mt-2"></div>
           </div>
             <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">

@@ -18,7 +18,7 @@
                 v-model="selectedMedicine" :options="medicines" track-by="name" label="name" placeholder="お薬を選択してください">
               </VueMultiselect>
               <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください。</p>
-              <p v-if="medicineError !== null ">
+              <p v-if="medicineError !== null">
                 <p class="has-text-danger">{{ medicineError }}</p>
               </p>
             </div>

@@ -2,19 +2,19 @@
   <div v-if='loaded === false'>
     <p>ロード中</p>
   </div>
-  <div v-else class="container" >
+  <div v-else class="container">
     <div class= "box has-background-white is-shadowless">
       <div v-if="prescriptionId">
-        <h1 class="title has-background-lightseagreen has-text-white has-text-centered p-2 is-bold">
-          前回の情報を元に薬を一括登録する
-        </h1>  
-          <div class="is-size-6 mb-3" > 
+        <div class="title has-background-lightseagreen has-text-centered p-2">
+          <h1 class="has-text-white has-text-weight-bold">前回の情報を元に薬を一括登録する</h1>
+        </div>
+          <div class="is-size-6 mb-3"> 
             <p>このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。</p>
             <p>病院や日付に変更がある場合には再入力をお願い致します。</p>
           </div>
         </div>
-      <div v-else class="title has-background-lightseagreen has-text-white has-text-centered p-2 is-bold">
-        処方箋情報登録
+      <div v-else class="title has-background-lightseagreen has-text-white has-text-centered p-2">
+        <h1 class="has-text-white has-text-weight-bold">処方箋情報登録</h1>
       </div>
       <div class="form__items">
         <div class="field">
@@ -34,7 +34,7 @@
           </div>
         </div>
           <VueMultiselect
-            v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください" >
+            v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name" label="name" placeholder="最初に県名を選択してください">
           </VueMultiselect>
           <div class="label pt-3">
             <p>病院名 *</p>
@@ -61,7 +61,7 @@
           <div class="label">
             <p>処方料</p>
           </div>
-          <div class="control ">
+          <div class="control">
             <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" style="width: 50%;" min="0">
             <span>円</span>
           </div>
@@ -73,13 +73,13 @@
           <button @click="createPrescription" class="button is-link is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
         </div>
         <div class="actions">
-          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth" data-turbolinks='false' >病院名が見つからない時はこちら</a>
+          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth" data-turbolinks='false'>病院名が見つからない時はこちら</a>
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
         </div>
         <div>
           <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
-            :href='`/pets/${petId}/medicine_notebook`' >戻る</a>
-        </div> 
+            :href='`/pets/${petId}/medicine_notebook`'>戻る</a>
+        </div>
       </div>
     </div>
   </div>  

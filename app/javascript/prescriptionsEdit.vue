@@ -2,18 +2,18 @@
   <div v-if='loaded === false'>
     <p>ロード中</p>
   </div>
-  <div v-else class="container" >
+  <div v-else class="container">
     <div class= "box has-background-white is-shadowless">
-      <h1 class="title has-background-lightseagreen has-text-white has-text-centered mb-4 p-2">
-        <p>処方箋編集</p>
-      </h1>
+      <div class="title has-background-lightseagreen has-text-centered mb-4 p-2">
+        <h1 class="has-text-white has-text-weight-bold">処方箋編集</h1>
+      </div>
       <div class="form__items">
         <div class="field">
           <div class="label">
             <p>診療日 *</p>
           </div>
           <div class="control">
-            <input v-model="date" class="input" type="date" >
+            <input v-model="date" class="input" type="date">
             <p v-if="dateError !== null ">
               <p class="has-text-danger">{{ dateError }}</p>
             </p>
@@ -34,7 +34,7 @@
         </div>  
           <div class="control">
             <VueMultiselect 
-              v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください" >
+              v-model="selectedClinic" :options="clinics" track-by="name" label="name" placeholder="県名を選択した後に選択してください">
             </VueMultiselect>
             <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください</p>
             <p v-if="clinicError !== null">
@@ -66,7 +66,7 @@
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
           <div>
             <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false' 
-            :href='`/pets/${petId}/prescriptions/${prescriptionId}`' >キャンセル</a>
+            :href='`/pets/${petId}/prescriptions/${prescriptionId}`'>キャンセル</a>
           </div>
       </div>
     </div>

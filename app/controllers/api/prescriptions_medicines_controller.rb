@@ -11,8 +11,7 @@ class Api::PrescriptionsMedicinesController < ApplicationController
   def create
     @prescriptions_medicine = PrescriptionsMedicine.new(prescriptions_medicine_params)
     if @prescriptions_medicine.save
-      render json: { location: pet_medicine_notebook_index_path(@prescriptions_medicine.prescription.pet_id),
-        notice:  "お薬情報を登録しました" }
+      head :no_content
     else
       head :bad_request
     end
@@ -23,7 +22,7 @@ class Api::PrescriptionsMedicinesController < ApplicationController
 
   def update
     if @prescriptions_medicine.update(prescriptions_medicine_params)
-      render json: { location: pet_prescription_path(@prescriptions_medicine.prescription.pet, @prescriptions_medicine.prescription), notice: "お薬情報を更新しました" }
+      head :no_content
     else
       head :bad_request
     end

@@ -3,13 +3,11 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container has-background-white">
-    <h1 class="ml-4 is-size-4 has-text-weight-bold"></h1>
     <div class="card is-shadowless prescription-header">
       <div class="columns is-mobile">
         <div class="column ml-4 mr-4 pb-2 is-three-quarters-mobile">
-          <p class="is-size-4 has-text-weight-bold pt-4"><i class="far fa-hospital"></i>
-            {{prescribedDate(prescription_date)}}</p>
-          <p class="is-size-4 has-text-weight-bold">{{clinic_name}}</p>
+          <h1 class="is-size-4 has-text-weight-bold pt-4"><i class="far fa-hospital"></i>
+            {{prescribedDate(prescription_date)}}<br>{{clinic_name}}</h1>
           <p>住所:{{clinic_addresss}}</p>
           <p>電話番号:{{clinic_telephone_number}}</p>
           <p>診察料:{{prescription.medical_fee}}円</p>

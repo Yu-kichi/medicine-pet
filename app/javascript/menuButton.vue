@@ -25,8 +25,8 @@
               </a>
             </p>
           </li>
-        </ul>  
-        <ul v-else class="mt-2 ml-3 mr-3">  
+        </ul>
+        <ul v-else class="mt-2 ml-3 mr-3">
           <li class="pb-2 mt-2">
             <p>
               <a href="/users/sign_in" data-turbolinks="false">
@@ -41,22 +41,24 @@
               </a>
             </p>
           </li>
-        </ul> 
+        </ul>
       </div>
-    </transition> 
+    </transition>
   </div>
 </template>
 
 <script>
-
-export default {
-  data() {
-    return{
-      showMenu: false,
+  export default {
+    data() {
+      return {
+        showMenu: false,
+      }
+    },
+    props: {
+      userId: {
+        type: Number,
+        required: true
+      },
     }
-  },
-  props:{
-    userId:{type: Number, required: true},
   }
-}
 </script>

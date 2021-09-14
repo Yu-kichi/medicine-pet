@@ -8,33 +8,33 @@
           <li class="pb-2 mt-2">
             <p><a :href='`/pets/${pet.id}/medicine_notebook`' data-turbolinks="false">{{pet.name}}</a></p>
           </li>
-        </ul> 
+        </ul>
       </div>
-    </transition> 
+    </transition>
   </div>
 </template>
 
 <script>
-import Axios from "axios";
+  import Axios from "axios";
 
-export default {
-  data() {
-    return{
-      showPets: false,
-      pets:[],
-    }
-  },
-  created: function() {
-    this.fetchPets();
-  },
-  methods:{
-    fetchPets(){
-      Axios.get(`/api/pets/index`).then(
-      response => {
-        const responseData = response.data;
-        this.pets = responseData["pets"]
-      })
+  export default {
+    data() {
+      return {
+        showPets: false,
+        pets: [],
+      }
     },
+    created: function () {
+      this.fetchPets();
+    },
+    methods: {
+      fetchPets() {
+        Axios.get(`/api/pets/index`).then(
+          response => {
+            const responseData = response.data;
+            this.pets = responseData["pets"]
+          })
+      },
+    }
   }
-}
 </script>

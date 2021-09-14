@@ -8,8 +8,7 @@ class PetsController < ApplicationController
     @pets = @pets.with_attached_image.order(:id)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @pet = Pet.new
@@ -24,8 +23,7 @@ class PetsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @pet.update(pet_params)

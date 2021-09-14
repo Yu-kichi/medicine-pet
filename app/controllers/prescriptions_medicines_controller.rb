@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class PrescriptionsMedicinesController < ApplicationController
-  before_action :set_prescriptions_medicine, only: %i[show edit destroy]
+  before_action :set_prescriptions_medicine, only: %i[edit destroy]
   before_action :authenticate_user!
-  before_action :set_user_pets, only: %i[show new edit ]
-
-  def show
-    @pet = Prescription.find_by(id: params[:prescription_id]).pet
-  end
+  before_action :set_pets, only: %i[new edit]
 
   def new
     @prescriptions_medicine = PrescriptionsMedicine.new
@@ -32,9 +28,5 @@ class PrescriptionsMedicinesController < ApplicationController
 
     def prescriptions_medicine_params
       params.require(:prescriptions_medicine).permit(:dose, :total_amount, :memo, :medicine_id, :prescription_id)
-    end
-
-    def set_user_pets
-      @pets = current_user.pets
     end
 end

@@ -65,8 +65,8 @@
             class="button is-link is-fullwidth has-text-weight-bold">お薬情報を登録する</button>
         </div>
         <div class="actions pt-4">
-          <button @click="createPrescriptionsMedicines('again')"
-            class="button is-primary  is-fullwidth has-text-weight-bold">追加でお薬を登録する</button>
+          <button @click="createPrescriptionsMedicines('addition')"
+            class="button is-primary is-fullwidth has-text-weight-bold">追加でお薬を登録する</button>
         </div>
         <div class="actions mt-4">
           <a :href='`/medicines/new/?prescription_id=${prescriptionId}`'
@@ -144,7 +144,7 @@
           this.medicineError = 'お薬を選んでください';
         }
       },
-      createPrescriptionsMedicines(again) {
+      createPrescriptionsMedicines(addition) {
         if (this.validation()) {}
         Axios.post('/api/prescriptions_medicines', {
           prescriptions_medicine: {
@@ -155,7 +155,7 @@
             memo: this.memo,
           }
         }).then((response) => {
-          if (again) {
+          if (addition) {
             window.location.href = `/prescriptions/${this.prescriptionId}/prescriptions_medicines/new`
           } else {
             window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`

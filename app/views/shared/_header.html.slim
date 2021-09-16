@@ -1,9 +1,9 @@
-nav.navbar.is-green  aria-label=("main navigation") role="navigation"
+nav.navbar.is-green aria-label=("main navigation") role="navigation"
   .navbar-brand.mr-2
     .navbar-item.title.mt-4
       - if @pets.present? && @pet&.id
         = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class:" Mali",data: {"turbolinks" => false}
-      - elsif @pets.present? 
+      - elsif @pets.present?
         = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class:" Mali",data: {"turbolinks" => false}
       - else
         = link_to "MediPet", root_path, class:"Mali",data: {"turbolinks" => false}
@@ -31,14 +31,10 @@ nav.navbar.is-green  aria-label=("main navigation") role="navigation"
                   i.fas.fa-angle-down aria-hidden="true"
               .dropdown-menu id="dropdown-menu4" role="menu"
                 .dropdown-content
-                  .dropdown-item  
+                  .dropdown-item
                     = link_to 'ペット一覧', pets_path
-                  .dropdown-item  
+                  .dropdown-item
                     = link_to 'ユーザー情報編集', edit_user_registration_path
-                  / .dropdown-item確認用のため管理者のみ閲覧可にするか消す
-                  /   = link_to '病院一覧', clinics_path
-                  / .dropdown-item  
-                  /   = link_to 'お薬一覧', medicines_path
                   .dropdown-item
                     = link_to 'Log out', destroy_user_session_path, method: :delete
         - else

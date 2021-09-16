@@ -74,7 +74,7 @@
         <div v-else class="actions pt-3">
           <button @click="createPrescription" class="button is-link is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
         </div>
-        <div class="actions">
+        <div v-if="!prescriptionId" class="actions">
           <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth"
             data-turbolinks='false'>病院名が見つからない時はこちら</a>
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>

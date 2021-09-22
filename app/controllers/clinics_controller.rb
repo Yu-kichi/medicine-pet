@@ -2,26 +2,22 @@
 
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit update destroy]
+  before_action :set_pets, only: %i[new]
   before_action :authenticate_user!
   def index
-    @pets = current_user.pets
-    @pet = Pet.find_by(id: params[:pet_id])
-    @clinics = Clinic.all
+    @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
   end
 
   def show
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def new
-    @pets = current_user.pets
     @pet = Pet.find_by(id: params[:pet_id])
     @clinic = Clinic.new
     @prescription = Prescription.find_by(id: params[:prescription_id])
   end
 
   def edit
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def update

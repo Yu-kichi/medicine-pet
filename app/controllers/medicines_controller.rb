@@ -3,8 +3,9 @@
 class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :set_pets, only: %i[new]
+
   def index
-    @pets = current_user.pets
     @pet = @pets.find_by(id: params[:pet_id])
     @medicines = Medicine.all
   end
@@ -14,12 +15,14 @@ class MedicinesController < ApplicationController
   end
 
   def new
-    @pets = current_user.pets
     @medicine = Medicine.new
-    @prescription = Prescription.find_by(id: params[:prescription_id])
-    if params[:prescriptions_medicine_id]
+    if params[:prescription_id]
+      @prescription = Prescription.find_by(id: params[:prescription_id])
+      @pet = @prescription.pet
+    else
       @prescription_medicine = PrescriptionsMedicine.find_by(id: params[:prescriptions_medicine_id])
       @prescription = @prescription_medicine.prescription
+      @pet = @prescription.pet
     end
   end
 
@@ -34,7 +37,11 @@ class MedicinesController < ApplicationController
         redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "新しく薬の名前を登録しました"
       end
     else
-      render :new, status: :unprocessable_entity
+      if prescription_medicine
+        redirect_to "/medicines/new/?prescriptions_medicine_id=#{prescription_medicine}", alert: @medicine.errors.full_messages[0]
+      else
+        redirect_to "/medicines/new/?prescription_id=#{prescription}", alert: @medicine.errors.full_messages[0]
+      end
     end
   end
 

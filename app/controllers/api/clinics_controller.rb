@@ -11,14 +11,8 @@ class Api::ClinicsController < ApplicationController
 
   def create
     @clinic = Clinic.new(clinic_params)
-    pet_id = params[:pet_id]
-    prescription_id = params[:prescription_id]
     if @clinic.save
-      if prescription_id == "null"
-        render json: { location: new_pet_prescription_path(pet_id), notice:  "病院情報を作成しました" }
-      else
-        render json: { location: edit_pet_prescription_path(pet_id, prescription_id), notice:  "病院情報を作成しました" }
-      end
+      head :no_content
     else
       head :bad_request
     end

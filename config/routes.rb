@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "top", to: "welcome#index", as: "top"
   get "tos", to: "welcome#tos", as: "tos"
   get "policy", to: "welcome#policy", as: "policy"
+  root "medicine_notebook#index"
 
   namespace "api", { format: "json" } do
-    # resources :clinics, only: %i(index), controller: "/api/clinics"
-    # resources :prefectures, only: %i(index) ,controller: "/api/prefectures" この書き方だとうまくjbuilderにマッチしない。。
     resources :clinics, only: %i(show create)
     get "prefectures/index"
     get "medicines/index"
@@ -21,21 +21,19 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
 
-  root "medicine_notebook#index"
-
   resources :prefectures, only: [] do
     resources :clinics, only: :index
   end
 
   resources :pets do
-    resources :prescriptions
+    resources :prescriptions, only: %i(show new create edit update destroy)
     resources :medicine_notebook, only: %i(index)
   end
 
-  resources :prescriptions do
+  resources :prescriptions, only: [] do
     resources :prescriptions_medicines
   end
 
-  resources :clinics
+  resources :clinics, only: %i(new show create update edit destroy)
   resources :medicines
 end

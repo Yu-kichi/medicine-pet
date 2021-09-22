@@ -2,10 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-li{
-  list-style: none;
-}
-
-ol{
-  border-bottom: 0.1rem  solid #e1e4e8;
+.pet-list{
+  li{
+    border-bottom: 0.1rem  solid #e1e4e8;
+    list-style: none;
+  }
 }

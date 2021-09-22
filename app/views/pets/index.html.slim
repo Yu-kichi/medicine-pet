@@ -6,15 +6,16 @@
       h1.has-text-white.has-text-weight-bold ペット一覧
     - if @pets
       - @pets.each do |pet|
-        li
-          ol.mt-5
-            columns
-              = link_to pet
-                column
-                  - if pet.image.attached? && pet.image.blob&.persisted?
-                    = image_tag(pet.image,class:"pet_image_icon")
-                  - else
-                    i class="fa fa-address-card fa-3x"
-                column.is-size-4.ml-4 
-                  = pet.name
+        .pet-list
+          li
+            ol.mt-5
+              columns
+                = link_to pet
+                  column
+                    - if pet.image.attached? && pet.image.blob&.persisted?
+                      = image_tag(pet.image,class:"pet_image_icon")
+                    - else
+                      i class="fa fa-address-card fa-3x"
+                  column.is-size-4.ml-4 
+                    = pet.name
     = link_to 'New Pet', new_pet_path, class:"has-text-white has-text-weight-bold button is-link is-fullwidth mt-6"

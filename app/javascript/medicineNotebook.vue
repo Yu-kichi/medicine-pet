@@ -1,10 +1,8 @@
 <template>
   <div class="container has-background-white">
     <div class="box has-background back-color is-shadowless">
-      <h1 class="is-size-5 mb-4 has-text-weight-bold">
-        <div>
-          <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
-        </div>
+      <h1 class="page-header-title is-size-5 mb-4 has-text-weight-bold">
+        <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
       </h1>
       <VueMultiselect v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect"
         placeholder="病院名で絞り込み" class="mb-4">
@@ -12,12 +10,12 @@
       <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4 is-shadowless ">
         <a data-turbolinks='false' :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
           <div class="prescription-header has-text-weight-bold pl-4 is-size-6">
-            <p class="pt-2 ">{{prescribedDate(prescription.prescription.date)}}</p>
-            <p class=" pb-2 ">{{prescription.clinic_name}}</p>
+            <p class="pt-2">{{prescribedDate(prescription.prescription.date)}}</p>
+            <p class="pb-2">{{prescription.clinic_name}}</p>
           </div>
         </a>
-        <div class="is-mobile pb-4 has-text-grey-darker ">
-          <div class="pl-4 ">
+        <div class="is-mobile pb-4 has-text-grey-darker">
+          <div class="pl-4">
             <span class="is-size-7">お薬名:</span>
             <span v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="is-size-7">
               <span>{{medicine.medicine_name}},</span>

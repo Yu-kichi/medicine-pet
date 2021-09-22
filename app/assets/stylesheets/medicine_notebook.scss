@@ -5,17 +5,10 @@
 .dropdown{
   z-index :100; 
 }
-//区切り線必要なら追加
-// .border{
-//   border-top :0.2px solid;
-//   border-color:#DDDDDD;
-//   margin-left: 5px;
-// }
-//.wf-nicomoji { font-family: "Nico Moji"; }
-//.ferdoka {font-family: 'Fredoka One', cursive;}
-//.Varela {font-family: 'Varela Round', sans-serif;}
-.Mali {font-family: 'Mali', cursive;
-  color:#4aa480; 
+
+.Mali {
+  font-family: 'Mali';
+  color:#4aa480;
 }
 
 a {
@@ -26,9 +19,14 @@ a {
   border:0.1rem  solid #e1e4e8;
 }
 
+.page-header-title{
+  color:teal;
+}
+
 .container{
   min-height:550px; 
  }
+ 
 .box.has-background{
   min-height:550px; 
 }

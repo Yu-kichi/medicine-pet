@@ -18,7 +18,7 @@ class Api::PrescriptionsController < ApplicationController
     end
 
     if @prescription.save
-      head :no_content
+      render json: { location: new_prescription_prescriptions_medicine_path(@prescription) }
     else
       head :bad_request
     end

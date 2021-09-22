@@ -37,7 +37,7 @@
           <li class="pb-2 mt-2">
             <p>
               <a href="/users/sign_up" data-turbolinks="false">
-                <i class="far fa-thumbs-up mr-2"></i>アカウント登録
+                <i class="far fa-thumbs-up mr-2"></i>アカウント作成
               </a>
             </p>
           </li>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "top", to: "welcome#index", as: "top"
+  get "welcome", to: "welcome#index", as: "welcome"
   get "tos", to: "welcome#tos", as: "tos"
   get "policy", to: "welcome#policy", as: "policy"
   root "medicine_notebook#index"

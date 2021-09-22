@@ -1,0 +1,31 @@
+- title "welcome"
+
+.welcome.has-text-centered.has-background-white
+  figure
+    = image_tag 'MediPet (2).png'
+  .columns.is-centered.p-6
+    .column
+      figure
+        = image_tag 'pet_woman.png', width: '60%', height: '60%'
+      h1.welcome_header.is-size-3.has-text-weight-bold
+        | ペットの <br>
+        | お薬を管理
+      p.welcome_description
+        | ペットのお薬手帳では、大切なペットの貰ったお薬の管理ができます。
+    .column
+      figure
+        = image_tag 'watch_smartphone.png', width: '60%', height: '60%'
+      h1.welcome_header.is-size-3.has-text-weight-bold
+        | スマホで <br>
+        | いつでも確認
+      p.welcome_description
+        | お薬情報をスマートフォンで確認できるため、病院での持参忘れがなく、手帳を持ち歩く必要がありません。
+    .column
+      figure
+        = image_tag 'clinic_woman.png', width: '60%', height: '60%'
+      h1.welcome_header.is-size-3.has-text-weight-bold.mt-5
+        | 簡単登録
+      p.welcome_description.mt-5
+        | 全国1万件以上の動物病院と100種類以上のお薬名が既に登録されているので、選ぶだけで簡単に登録できます。
+  .button.is-primary.strong.mb-6
+    strong = link_to 'アカウント作成', new_user_registration_path, class:"has-text-white"

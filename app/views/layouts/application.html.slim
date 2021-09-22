@@ -4,7 +4,7 @@ html
     meta content=("text/html") http-equiv="Content-Type" /
     meta name="viewport" content="width=device-width,initial-scale=1"
     title MedicinePet
-    link href="https://fonts.googleapis.com/css2?family=Mali:wght@300&display=swap" rel="stylesheet"
+    link href="https://fonts.googleapis.com/css2?family=Mali:wght@500&display=swap" rel="stylesheet"
     = csrf_meta_tags
     = csp_meta_tag
     = display_meta_tags default_meta_tags
@@ -12,7 +12,7 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body.has-background-white-bis
     = render 'shared/header'
-    div.background
+    .background
       - if notice
         .notification.is-link.is-light
           = notice

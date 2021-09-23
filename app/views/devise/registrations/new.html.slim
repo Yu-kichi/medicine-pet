@@ -8,10 +8,10 @@ section.hero.is-fullheight
           .card
             h2.title.has-background-primary.has-text-white.has-text-centered.p-2.is-bold
               | Sign up
-            div.pl-3.pr-3.mb-3
+            .pl-3.pr-3.mb-3
               = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 = render "devise/shared/error_messages", resource: resource
-                .field  
+                .field
                   = f.label :email,class:"label"
                   .control.has-icons-left
                     = f.email_field :email, autofocus: true, autocomplete: "email",:placeholder => "****@gmail.com", autocomplete: "email", required: true,  class:"input"
@@ -24,7 +24,7 @@ section.hero.is-fullheight
                       | (
                       = @minimum_password_length
                       |  characters minimum)
-                  .control.has-icons-left    
+                  .control.has-icons-left
                     = f.password_field :password, autocomplete: "new-password",class: "input",required: true,:placeholder=>"*******"
                     span.icon.is-small.is-left
                       i.fa.fa-lock

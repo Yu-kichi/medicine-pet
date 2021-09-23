@@ -1,7 +1,7 @@
 - title 'お薬手帳'
 
 - if @pet
-  = javascript_pack_tag 'medicineNotebook_vue.js' 
+  = javascript_pack_tag 'medicineNotebook_vue.js'
   #app(pet-id="#{@pet.id}")
 - else
   .box.has-background.back-color.is-shadowless
@@ -15,9 +15,9 @@
         | 2021年4月1日
         br
         | わんにゃんクリニック
-      .is-mobile.pb-4.has-text-grey-darker 
+      .is-mobile.pb-4.has-text-grey-darker
         .pl-4.is-size-7
-          span 
+          span
             | お薬名:
           span
             | ここに登録したお薬名の一覧が表示されます
@@ -26,9 +26,9 @@
         | 2021年5月1日
         br
         | わんにゃんクリニック
-      .is-mobile.pb-4.has-text-grey-darker 
+      .is-mobile.pb-4.has-text-grey-darker
         .pl-4.is-size-7
-          span 
+          span
             | お薬名:
           span
             | ここに登録したお薬名の一覧が表示されます
@@ -37,12 +37,12 @@
         | 2021年6月1日
         br
         | ペット総合病院
-      .is-mobile.pb-4.has-text-grey-darker 
+      .is-mobile.pb-4.has-text-grey-darker
         .pl-4.is-size-7
-          span 
+          span
             | お薬名:
           span
-            | ここに登録したお薬名の一覧が表示されます                
+            | ここに登録したお薬名の一覧が表示されます
     .button.mt-4.has-background-link.is-fullwidth
       .mb-4.mt-4.has-text-weight-bold
         = link_to("ペット情報登録ページへ", new_pet_path, {class:"has-text-white"})

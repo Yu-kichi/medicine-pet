@@ -324,6 +324,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails (>= 6)
   selenium-webdriver
+  slim
   slim_lint
   spring
   spring-commands-rspec

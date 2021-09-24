@@ -8,7 +8,7 @@
         br
         | プロフィール
     - if @pet.image.attached?
-      = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed    
+      = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
     .control.label.pt-4
       = Pet.human_attribute_name(:sex)
       | :
@@ -20,17 +20,17 @@
     .control.label.pt-4
       = Pet.human_attribute_name(:weight)
       | :
-      = @pet.weight 
-      - if @pet.weight 
+      = @pet.weight
+      - if @pet.weight
         | kg
     .control.label.pt-4
       = Pet.human_attribute_name(:birthday)
       | :
-      = l @pet.birthday 
-  
+      = l @pet.birthday
+
     = link_to '内容変更する', edit_pet_path(@pet), class:"button has-text-weight-bold is-fullwidth mt-4"
     = link_to 'ペット一覧へ ', pets_path ,class:"button has-text-weight-bold is-fullwidth has-text-centered mt-4"
     .has-text-right.mt-4
       = link_to pet_path(@pet), method: :delete, data: {confirm: "#{@pet.name}を削除します。よろしいですか？"} do
-        i class="fa fa-trash" 
-        | 削除する 
+        i class="fa fa-trash"
+        | 削除する

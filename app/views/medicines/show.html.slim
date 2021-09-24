@@ -4,6 +4,6 @@
       = @medicine.name
     br
     .card-footer-item
-      = link_to 'Edit', edit_pet_medicine_path(@pet,@medicine) 
-      = link_to 'Destroy', @medicine, method: :delete, data: { confirm: 'Are you sure?' } 
+      = link_to 'Edit', edit_pet_medicine_path(@pet,@medicine)
+      = link_to 'Destroy', @medicine, method: :delete, data: { confirm: 'Are you sure?' }
       = link_to 'Back', medicines_path

@@ -1,4 +1,4 @@
-div.container
+.container
   h1.is-size-2
     | 病院一覧
   table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
@@ -10,12 +10,12 @@ div.container
         th.abbr 編集
         th.abbr 削除
     tbody
-    - @clinics.each_with_index do |clinic,index| 
+    - @clinics.each_with_index do |clinic,index|
       tr
         th.abbr = index+1
         td = clinic.name
         td = link_to 'Show', clinic_path(clinic)
-        td = link_to 'Edit', edit_clinic_path(clinic)  
+        td = link_to 'Edit', edit_clinic_path(clinic)
         td = link_to 'Destroy', clinic, method: :delete, data: { confirm: 'Are you sure?' }
   / br
   / .button.is-link

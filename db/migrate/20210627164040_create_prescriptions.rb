@@ -3,7 +3,7 @@
 class CreatePrescriptions < ActiveRecord::Migration[6.0]
   def change
     create_table :prescriptions do |t|
-      t.date :date,        null: false
+      t.date :date, null: false
       t.integer :medical_fee
       t.integer :medicine_fee
       t.references :pet, foreign_key: true

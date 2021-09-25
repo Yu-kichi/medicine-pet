@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.prescription do |prescription |
+json.prescription do |prescription|
   prescription.date @prescription.date
   prescription.medical_fee @prescription.medical_fee
   prescription.medicine_fee @prescription.medicine_fee

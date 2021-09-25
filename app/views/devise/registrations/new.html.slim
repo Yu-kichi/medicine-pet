@@ -1,4 +1,4 @@
-- title 'アカウント登録'
+- title "アカウント登録"
 
 section.hero.is-fullheight
   .hero-body
@@ -12,28 +12,28 @@ section.hero.is-fullheight
               = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 = render "devise/shared/error_messages", resource: resource
                 .field
-                  = f.label :email,class:"label"
+                  = f.label :email, class: "label"
                   .control.has-icons-left
-                    = f.email_field :email, autofocus: true, autocomplete: "email",:placeholder => "****@gmail.com", autocomplete: "email", required: true,  class:"input"
+                    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "****@gmail.com", autocomplete: "email", required: true, class: "input"
                     span.icon.is-small.is-left
                       i.fa.fa-envelope
                 .field
-                  = f.label :password,class:"label"
+                  = f.label :password, class: "label"
                   - if @minimum_password_length
                     em
                       | (
                       = @minimum_password_length
                       |  characters minimum)
                   .control.has-icons-left
-                    = f.password_field :password, autocomplete: "new-password",class: "input",required: true,:placeholder=>"*******"
+                    = f.password_field :password, autocomplete: "new-password", class: "input", required: true, placeholder: "*******"
                     span.icon.is-small.is-left
                       i.fa.fa-lock
                 .field
-                  = f.label :password_confirmation,class:"label"
+                  = f.label :password_confirmation, class: "label"
                   .control.has-icons-left
-                    = f.password_field :password_confirmation, autocomplete: "new-password",class: "input",required: true,:placeholder=>"*******"
+                    = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true, placeholder: "*******"
                     span.icon.is-small.is-left
                         i.fa.fa-lock
                 .actions
-                  = f.submit "Sign up", class:"button is-success"
+                  = f.submit "Sign up", class: "button is-success"
               = render "devise/shared/links"

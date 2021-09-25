@@ -8,8 +8,7 @@ class ClinicsController < ApplicationController
     @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @pet = Pet.find_by(id: params[:pet_id])
@@ -17,8 +16,7 @@ class ClinicsController < ApplicationController
     @prescription = Prescription.find_by(id: params[:prescription_id])
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @clinic.update(clinic_params)

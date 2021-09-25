@@ -4,7 +4,7 @@ class PrescriptionsController < ApplicationController
   before_action :set_prescription, only: %i[show edit]
   before_action :authenticate_user!
   before_action :set_pets, only: %i[show new edit]
-  before_action :set_selected_pet, only: %i[show new edit ]
+  before_action :set_selected_pet, only: %i[show new edit]
 
   def show; end
 

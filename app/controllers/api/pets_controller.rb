@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-class Api::PetsController < ApplicationController
-  before_action :authenticate_user!
-  def index
-    @pets = current_user.pets
+module Api
+  class PetsController < ApplicationController
+    before_action :authenticate_user!
+    def index
+      @pets = current_user.pets
+    end
   end
 end

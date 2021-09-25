@@ -1,9 +1,9 @@
-- title 'ペット情報編集'
+- title "ペット情報編集"
 
 .container
   .box.has-background-white.is-shadowless
     = render "shared/errors", obj: @pet
     .title.has-background-lightseagreen.has-text-centered.mb-4.p-2
       h1.has-text-white.has-text-weight-bold ペット情報編集
-    = render 'form', pet: @pet
-    = link_to 'キャンセル', @pet, class:"button is-outlined is-fullwidth"
+    = render "form", pet: @pet
+    = link_to "キャンセル", @pet, class: "button is-outlined is-fullwidth"

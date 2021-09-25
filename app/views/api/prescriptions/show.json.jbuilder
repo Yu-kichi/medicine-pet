@@ -7,7 +7,7 @@ json.clinic_address @prescription.clinic.address
 json.clinic_telephone_number @prescription.clinic.telephone_number
 json.prescription_date @prescription.date
 
-json.medicines @prescription.prescriptions_medicines.each do  |medicine|
+json.medicines @prescription.prescriptions_medicines.each do |medicine|
   json.medicine_id medicine.id
   json.medicine_name medicine.medicine.name
   json.total_amount medicine.total_amount

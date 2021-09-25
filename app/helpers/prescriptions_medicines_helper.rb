@@ -3,7 +3,7 @@
 module PrescriptionsMedicinesHelper
   def medicine_options
     Medicine.all.map do |medicine|
-      ["#{medicine.name}", medicine.id]
+      [medicine.name.to_s, medicine.id]
     end
   end
 end

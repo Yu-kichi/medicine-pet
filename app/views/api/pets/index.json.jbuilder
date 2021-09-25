@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.pets @pets,  :id, :name
+json.pets @pets, :id, :name

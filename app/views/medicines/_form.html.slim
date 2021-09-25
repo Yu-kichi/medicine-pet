@@ -5,11 +5,11 @@
         = f.label :name
         | *
       .control
-        = f.hidden_field :prescription, :value => prescription.id
+        = f.hidden_field :prescription, value: prescription.id
         -if prescription_medicine
-          = f.hidden_field :prescription_medicine, :value => prescription_medicine.id
+          = f.hidden_field :prescription_medicine, value: prescription_medicine.id
       .control
-        = f.text_field :name, class: "input" ,required: true
+        = f.text_field :name, class: "input", required: true
 
   .actions.mt-5
-    = f.submit "登録する",class:"button is-link is-fullwidth has-text-weight-bold",data: {"turbolinks" => false}
+    = f.submit "登録する", class: "button is-link is-fullwidth has-text-weight-bold", data: { "turbolinks" => false }

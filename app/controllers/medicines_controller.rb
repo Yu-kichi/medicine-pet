@@ -18,12 +18,11 @@ class MedicinesController < ApplicationController
     @medicine = Medicine.new
     if params[:prescription_id]
       @prescription = Prescription.find_by(id: params[:prescription_id])
-      @pet = @prescription.pet
     else
       @prescription_medicine = PrescriptionsMedicine.find_by(id: params[:prescriptions_medicine_id])
       @prescription = @prescription_medicine.prescription
-      @pet = @prescription.pet
     end
+    @pet = @prescription.pet
   end
 
   def create
@@ -32,16 +31,16 @@ class MedicinesController < ApplicationController
     prescription_medicine = params[:medicine][:prescription_medicine]
     if @medicine.save
       if prescription_medicine
-        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine), notice:  "新しく薬の名前を登録しました"
+        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine),
+                    notice: "新しく薬の名前を登録しました"
       else
-        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice:  "新しく薬の名前を登録しました"
+        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice: "新しく薬の名前を登録しました"
       end
+    elsif prescription_medicine
+      redirect_to "/medicines/new/?prescriptions_medicine_id=#{prescription_medicine}",
+                  alert: @medicine.errors.full_messages[0]
     else
-      if prescription_medicine
-        redirect_to "/medicines/new/?prescriptions_medicine_id=#{prescription_medicine}", alert: @medicine.errors.full_messages[0]
-      else
-        redirect_to "/medicines/new/?prescription_id=#{prescription}", alert: @medicine.errors.full_messages[0]
-      end
+      redirect_to "/medicines/new/?prescription_id=#{prescription}", alert: @medicine.errors.full_messages[0]
     end
   end
 

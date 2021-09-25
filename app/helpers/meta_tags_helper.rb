@@ -11,15 +11,15 @@ module MetaTagsHelper
         title: :title,
         description: :description,
         type: "website",
-        url: "",  # デプロイ後に設定
+        url: "", # デプロイ後に設定
         image: "",  # デプロイ後に設定
-        locale: "ja_JP",
+        locale: "ja_JP"
       },
       twitter: {
         card: "summary",
         title: "MediPet",
         image: "",  # デプロイ後に設定
-        description: :description,
+        description: :description
       }
     }
   end

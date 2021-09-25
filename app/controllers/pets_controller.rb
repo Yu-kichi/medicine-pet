@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PetsController < ApplicationController
-  before_action :set_pet, only: %i[ show edit update destroy ]
+  before_action :set_pet, only: %i[show edit update destroy]
   before_action :set_pets, only: %i[index show new edit update]
   before_action :authenticate_user!
   def index
@@ -17,7 +17,7 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     if @pet.save
-      redirect_to @pet, notice:  "ペットを作成しました"
+      redirect_to @pet, notice: "ペットを作成しました"
     else
       render :new, status: :unprocessable_entity
     end

@@ -6,10 +6,10 @@ class Pet < ApplicationRecord
   has_many :prescriptions, dependent: :destroy
   validates :name, presence: true
   validates :image,
-    content_type: { in: %w[image/png image/jpg image/jpeg image/gif],
-                   message: "はPNG, JPG, GIF形式にしてください" },
-    size: { less_than_or_equal_to: 10.megabytes, message: "は10メガバイト以下にしてください" },
-    dimension: { width: { max: 2000 }, height: { max: 2000 }, message: "が大きすぎます、横と縦の長さを2000以下にしてください" }
+            content_type: { in: %w[image/png image/jpg image/jpeg image/gif],
+                            message: "はPNG, JPG, GIF形式にしてください" },
+            size: { less_than_or_equal_to: 10.megabytes, message: "は10メガバイト以下にしてください" },
+            dimension: { width: { max: 2000 }, height: { max: 2000 }, message: "が大きすぎます、横と縦の長さを2000以下にしてください" }
 
   attr_accessor :remove_image
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-medicines = %w(
+medicines = %w[
   アイボメック
   アザニン
   アスパラカリウム
@@ -25,7 +25,7 @@ medicines = %w(
   インタードッグ
   ウェルメイトL3
   ウルソ
-　エコハートチュアブル
+  　エコハートチュアブル
   エースワーカー
   エチダンシャンプー
   エニシル-F
@@ -237,7 +237,7 @@ medicines = %w(
   PE AHCC GCP
   RandU
   SX-フラクション
-)
+]
 medicines.each do |medicine|
   Medicine.create(
     name: medicine

@@ -11,14 +11,14 @@
         th.abbr 編集
         th.abbr 削除
     tbody
-    - @medicines.each_with_index do |medicine,index|
+    - @medicines.each_with_index do |medicine, index|
       tr
-        th.abbr = index+1
+        th.abbr = index + 1
         td = medicine.name
-        td = link_to 'Show', medicine_path(medicine)
-        td = link_to 'Edit', edit_medicine_path(medicine)
-        td = link_to 'Destroy', medicine, method: :delete, data: { confirm: 'Are you sure?' }
+        td = link_to "Show", medicine_path(medicine)
+        td = link_to "Edit", edit_medicine_path(medicine)
+        td = link_to "Destroy", medicine, method: :delete, data: { confirm: "Are you sure?" }
 
   /br
   / .button.is-link
-  /   = link_to 'New medicine', new_medicine_path, class:"has-text-white"
+  /   = link_to "New medicine", new_medicine_path, class:"has-text-white"

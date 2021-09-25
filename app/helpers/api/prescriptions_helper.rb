@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-module Api::PrescriptionsHelper
+module Api
+  module PrescriptionsHelper
+  end
 end

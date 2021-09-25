@@ -4,15 +4,15 @@
       = f.label :name
       | *
     .control
-      = f.text_field :name, class: "input" ,required: true
+      = f.text_field :name, class: "input", required: true
   .field
     .label
       = Pet.human_attribute_name(:sex)
     .label
       = f.label :sex_1
-      = f.radio_button :sex_1 ,class: "radio"
+      = f.radio_button :sex_1, class: "radio"
       = f.label :sex_2
-      = f.radio_button :sex_2 ,class: "radio"
+      = f.radio_button :sex_2, class: "radio"
   .field
     .label
       = f.label :breed
@@ -22,7 +22,7 @@
     .label
       = f.label :weight
     .control
-      = f.text_field :weight, class: "input is-small" ,style: "width: 50%;"
+      = f.text_field :weight, class: "input is-small", style: "width: 50%;"
       span.is-size-5.ml-3 kg
   .field
     .label
@@ -46,4 +46,4 @@
           | 画像を削除する
 
   .actions
-    = f.submit class:"button is-link is-fullwidth mb-4 mt-4 has-text-weight-bold"
+    = f.submit class: "button is-link is-fullwidth mb-4 mt-4 has-text-weight-bold"

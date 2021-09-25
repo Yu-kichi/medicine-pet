@@ -1,13 +1,13 @@
-- title 'お薬手帳'
+- title "お薬手帳"
 
 - if @pet
-  = javascript_pack_tag 'medicineNotebook_vue.js'
+  = javascript_pack_tag "medicineNotebook_vue.js"
   #app(pet-id="#{@pet.id}")
 - else
   .box.has-background.back-color.is-shadowless
     h1.is-size-4.mb-4.has-text-weight-boldfas
       i.fas.fa-cat.has-text-link.mr-2
-      = link_to("初めにペット情報を登録しましょう！", new_pet_path, {class:"has-text-link"})
+      = link_to("初めにペット情報を登録しましょう！", new_pet_path, { class: "has-text-link" })
     .mt-4.mb-4
       | 以下はサンプルです
     .card.mb-4.is-shadowless
@@ -45,4 +45,4 @@
             | ここに登録したお薬名の一覧が表示されます
     .button.mt-4.has-background-link.is-fullwidth
       .mb-4.mt-4.has-text-weight-bold
-        = link_to("ペット情報登録ページへ", new_pet_path, {class:"has-text-white"})
+        = link_to("ペット情報登録ページへ", new_pet_path, { class: "has-text-white" })

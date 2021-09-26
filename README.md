@@ -1,24 +1,23 @@
-# README
+# MediPet
+ペットのお薬手帳というサービスは、
+問題が起きないように獣医を変えた時に以前の薬の情報を提供したい、
+よく獣医に行く人向けの、記録サービスです。
+ユーザーはペットに処方された薬と量を記録ができ、
+物理的なお薬手帳とは違って、無くさないが備わっている事が特徴です。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## ローカルでの立ち上げ方
+```
+$ bin/setup
+$ rails s
+```
 
-Things you may want to cover:
+## seed(テストデータ)
+*病院情報の作成に数分かかります
+```
+$ rails db:seed
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Lint
+```
+$ bin/lint
+```

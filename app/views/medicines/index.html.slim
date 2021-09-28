@@ -1,24 +1,18 @@
 .container
-  h1.is-size-2
-    | お薬情報一覧
-  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
-    thead
-      tr
-        th.abbr 番号
-        /そもそもユーザーページで薬の一覧を表示させる必要ないので、消す予定。
-        th.abbr 薬の名前
-        th.abbr 詳細
-        th.abbr 編集
-        th.abbr 削除
-    tbody
-    - @medicines.each_with_index do |medicine, index|
-      tr
-        th.abbr = index + 1
-        td = medicine.name
-        td = link_to "Show", medicine_path(medicine)
-        td = link_to "Edit", edit_medicine_path(medicine)
-        td = link_to "Destroy", medicine, method: :delete, data: { confirm: "Are you sure?" }
-
-  /br
-  / .button.is-link
-  /   = link_to "New medicine", new_medicine_path, class:"has-text-white"
+  .box.has-background-white.is-shadowless
+    h2.title.has-background-lightseagreen.has-text-white.has-text-centered.p-2.is-bold
+      | 薬品リストに追加したお薬一覧
+    table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
+      thead
+        tr
+          th.abbr 薬の名前
+          th.abbr 編集
+          th.abbr 削除
+      tbody
+      - @medicines.each_with_index do |medicine, index|
+        tr
+          td = medicine.name
+          td = link_to edit_medicine_path(medicine), method: :get do
+            i.fas.fa-pen
+          td = link_to medicine, method: :delete, data: { confirm: "Are you sure?" }
+            i.fa.fa-trash

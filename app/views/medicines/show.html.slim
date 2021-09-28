@@ -1,9 +1,10 @@
-.container.mt-5
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
+.container
+  .box.has-background-white.is-shadowless
+    h1.title.has-background-lightseagreen.has-text-white.has-text-centered.p-2.is-bold
+      | 登録したお薬
+    .has-text-centered
       = @medicine.name
-    br
     .card-footer-item
-      = link_to "Edit", edit_pet_medicine_path(@pet, @medicine)
+      = link_to "Edit", edit_medicine_path(@medicine)
       = link_to "Destroy", @medicine, method: :delete, data: { confirm: "Are you sure?" }
       = link_to "Back", medicines_path

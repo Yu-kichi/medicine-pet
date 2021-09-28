@@ -38,6 +38,8 @@ header.header
                       .dropdown-item
                         = link_to "ユーザー情報編集", edit_user_registration_path
                       .dropdown-item
+                        = link_to "薬品リストに追加したお薬一覧", medicines_path
+                      .dropdown-item
                         = link_to "Log out", destroy_user_session_path, method: :delete
             - else
               .buttons

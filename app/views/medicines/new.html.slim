@@ -5,7 +5,21 @@
     = render "shared/errors", obj: @medicine
     .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
       | お薬名登録
-    = render "form", { medicine: @medicine, prescription: @prescription, prescription_medicine: @prescription_medicine }
+    = form_with(model: @medicine, prescription: @prescription, prescription_medicine: @prescription_medicine, local: true) do |f|
+      .form__items
+        .field
+          .label
+            = f.label :name
+            | *
+          .control
+            = f.hidden_field :prescription, value: @prescription.id
+            - if @prescription_medicine
+              = f.hidden_field :prescription_medicine, value: @prescription_medicine.id
+          .control
+            = f.text_field :name, class: "input", required: true
+      .actions.mt-5
+        = f.submit "登録する", class: "button is-link is-fullwidth has-text-weight-bold", data: { "turbolinks" => false }
+
     - if @prescription_medicine
       = link_to "キャンセル", edit_prescription_prescriptions_medicine_path(@prescription, @prescription_medicine), class: "button is-outlined is-fullwidth mt-4", data: { "turbolinks" => false }
     - else

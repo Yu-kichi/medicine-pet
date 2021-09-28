@@ -25,7 +25,7 @@ medicines = %w[
   インタードッグ
   ウェルメイトL3
   ウルソ
-  　エコハートチュアブル
+  エコハートチュアブル
   エースワーカー
   エチダンシャンプー
   エニシル-F
@@ -240,6 +240,7 @@ medicines = %w[
 ]
 medicines.each do |medicine|
   Medicine.create(
-    name: medicine
+    name: medicine,
+    user_id: 1
   )
 end

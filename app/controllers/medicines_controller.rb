@@ -3,11 +3,10 @@
 class MedicinesController < ApplicationController
   before_action :set_medicine, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  before_action :set_pets, only: %i[new]
+  before_action :set_pets, only: %i[index show new edit]
 
   def index
-    @pet = @pets.find_by(id: params[:pet_id])
-    @medicines = Medicine.all
+    @medicines = current_user.medicines
   end
 
   def show
@@ -27,6 +26,7 @@ class MedicinesController < ApplicationController
 
   def create
     @medicine = Medicine.new(medicine_params)
+    @medicine.user_id = current_user.id
     prescription = params[:medicine][:prescription]
     prescription_medicine = params[:medicine][:prescription_medicine]
     if @medicine.save
@@ -45,12 +45,11 @@ class MedicinesController < ApplicationController
   end
 
   def edit
-    @pet = Pet.find_by(id: params[:pet_id])
   end
 
   def update
     if @medicine.update(medicine_params)
-      redirect_to pet_medicine_path(@medicine.pet_id, @medicine), notice: "薬の名前を更新しました"
+      redirect_to medicines_path, notice: "薬の名前を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,9 +1,18 @@
-- title "お薬名情報編集"
+- title "お薬名編集"
 
 .container.has-background-white-bis
-  = render "shared/errors", obj: @medicine
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
-      | お薬名情報編集
-    = render "form", { medicine: @medicine, pet: @pet }
-    = link_to "Back", medicines_path
+  .box.is-shadowless.has-background-white
+    = render "shared/errors", obj: @medicine
+    .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
+      | お薬名編集
+    = form_with(model: @medicine, local: true) do |f|
+      .form__items
+        .field
+          .label
+            = f.label :name
+            | *
+          .control
+            = f.text_field :name, class: "input", required: true
+      .actions.mt-5
+        = f.submit "編集する", class: "button is-link is-fullwidth has-text-weight-bold", data: { "turbolinks" => false }
+      = link_to "キャンセル", medicines_path, class: "button is-outlined is-fullwidth mt-4", data: { "turbolinks" => false }

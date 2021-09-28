@@ -6,7 +6,7 @@
         | *
       .control
         = f.hidden_field :prescription, value: prescription.id
-        -if prescription_medicine
+        - if prescription_medicine
           = f.hidden_field :prescription_medicine, value: prescription_medicine.id
       .control
         = f.text_field :name, class: "input", required: true

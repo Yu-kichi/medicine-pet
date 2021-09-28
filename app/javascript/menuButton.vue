@@ -20,6 +20,13 @@
           </li>
           <li class="pb-2 mt-2">
             <p>
+              <a href="/medicines" data-turbolinks="false">
+                <i class="fas fa-capsules mr-2"></i>薬品リストに追加したお薬一覧
+              </a>
+            </p>
+          </li>
+          <li class="pb-2 mt-2">
+            <p>
               <a href="/users/sign_out" data-method="delete" data-turbolinks="false">
                 <i class="fas fa-sign-out-alt mr-2"></i>Log out
               </a>

@@ -1,27 +1,27 @@
-header.header
+header
   nav.navbar.is-green aria-label=("main navigation") role="navigation"
     .container
-      .navbar-brand
-        .navbar-item.title.mt-4
+      .navbar-brand.pl-2
+        .navbar-item.is-size-4
           - if @pets.present? && @pet&.id
             = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali", data: { "turbolinks" => false }
           - elsif @pets.present?
             = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "Mali", data: { "turbolinks" => false }
           - else
             = link_to "MediPet", welcome_path, class: "Mali", data: { "turbolinks" => false }
-        .navber-item.mt-5
+        .navber-item.mt-2
           - if @pet
             - if @pet.image.attached? && @pet.image.blob&.persisted?
               = image_tag(@pet.image, class: "pet_image_icon")
         - if user_signed_in? && @pets.present? && @pets.size >= 2
           = javascript_pack_tag "selectPet_vue.js"
-          #select-pet.navber-item.mt-5.ml-3
+          #select-pet.navber-item.ml-3
         - if user_signed_in?
           = javascript_pack_tag "menuButton_vue.js"
-          #menu-button.navbar-burger.mt-5(user-id="#{current_user.id}")
+          #menu-button.navbar-burger(user-id="#{current_user.id}")
         - else
           = javascript_pack_tag "menuButton_vue.js"
-          #menu-button.navbar-burger.mt-5
+          #menu-button.navbar-burger
       .navbar-menu
         .navbar-end
           .navbar-item.mr-4

@@ -1,5 +1,5 @@
 <template>
-  <div class="container has-background-white">
+  <div class="container has-background-white contents-body">
     <div class="box has-background back-color is-shadowless">
       <h1 class="page-header-title is-size-5 mb-4 has-text-weight-bold">
         <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}

@@ -21,7 +21,6 @@ gem "rails_autolink"
 gem "rails-i18n"
 gem "sass-rails", ">= 6"
 gem "slim"
-gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
 group :development, :test do

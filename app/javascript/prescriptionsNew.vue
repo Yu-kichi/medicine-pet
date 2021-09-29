@@ -75,12 +75,11 @@
           <button @click="createPrescription" class="button is-link is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
         </div>
         <div v-if="!prescriptionId" class="actions">
-          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth"
-            data-turbolinks='false'>病院名が見つからない時はこちら</a>
+          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth">病院名が見つからない時はこちら</a>
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
         </div>
         <div>
-          <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false'
+          <a class="button is-fullwidth mt-4 mb-4"
             :href='`/pets/${petId}/medicine_notebook`'>戻る</a>
         </div>
       </div>

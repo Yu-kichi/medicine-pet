@@ -6,7 +6,7 @@
       <div class="menu-pets-bar" v-show="showPets">
         <ul v-for="pet in pets" :key='pet.id' class="mt-2 ml-3 mr-3">
           <li class="pb-2 mt-2">
-            <p><a :href='`/pets/${pet.id}/medicine_notebook`' data-turbolinks="false">{{pet.name}}</a></p>
+            <p><a :href='`/pets/${pet.id}/medicine_notebook`'>{{pet.name}}</a></p>
           </li>
         </ul>
       </div>

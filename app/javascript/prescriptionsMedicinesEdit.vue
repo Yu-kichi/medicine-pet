@@ -55,7 +55,7 @@
             class="button is-outlined is-fullwidth">薬の名前が見つからない時はこちら</a>
           <p class="is-size-7">*薬の名前が見つからない場合にはこちらから新しくお薬情報の登録ができます。</p>
         </div>
-        <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false'
+        <a class="button is-fullwidth mt-4 mb-4"
           :href='`/pets/${petId}/prescriptions/${prescriptionId}`'>キャンセル
         </a>
       </div>

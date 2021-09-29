@@ -4,11 +4,11 @@ header
       .navbar-brand.pl-2
         .navbar-item.is-size-4
           - if @pets.present? && @pet&.id
-            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali", data: { "turbolinks" => false }
+            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali"
           - elsif @pets.present?
-            = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "Mali", data: { "turbolinks" => false }
+            = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "Mali"
           - else
-            = link_to "MediPet", welcome_path, class: "Mali", data: { "turbolinks" => false }
+            = link_to "MediPet", welcome_path, class: "Mali"
         .navber-item.mt-2
           - if @pet
             - if @pet.image.attached? && @pet.image.blob&.persisted?

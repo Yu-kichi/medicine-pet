@@ -8,7 +8,7 @@
         placeholder="病院名で絞り込み" class="mb-4">
       </VueMultiselect>
       <div v-for="(prescription, index) in showPrescriptions" :key='prescription.id' class="card mb-4 is-shadowless ">
-        <a data-turbolinks='false' :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
+        <a :href='`/pets/${petId}/prescriptions/${prescription.prescription.id}`'>
           <div class="prescription-header has-text-weight-bold pl-4 is-size-6">
             <p class="pt-2">{{prescribedDate(prescription.prescription.date)}}</p>
             <p class="pb-2">{{prescription.clinic_name}}</p>
@@ -25,8 +25,8 @@
       </div>
       <div v-if="petId">
         <div class="mt-6 mb-4">
-          <a class="button is-fullwidth has-background-primary has-text-white has-text-weight-bold"
-            data-turbolinks='false' :href='`/pets/${petId}/prescriptions/new`'>新しくお薬手帳に登録する
+          <a class="button is-fullwidth has-background-primary has-text-white has-text-weight-bold" 
+          :href='`/pets/${petId}/prescriptions/new`'>新しくお薬手帳に登録する
           </a>
         </div>
       </div>

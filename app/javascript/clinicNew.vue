@@ -48,9 +48,9 @@
           <button @click="createClinic" class="button is-link is-fullwidth has-text-weight-bold">登録する</button>
         </div>
         <div>
-          <a v-if='prescriptionId !== null' class="button is-fullwidth mt-4 mb-4" data-turbolinks='false'
+          <a v-if='prescriptionId !== null' class="button is-fullwidth mt-4 mb-4"
             :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'>キャンセル</a>
-          <a v-else class="button is-fullwidth mt-4 mb-4" data-turbolinks='false'
+          <a v-else class="button is-fullwidth mt-4 mb-4"
             :href='`/pets/${petId}/prescriptions/new`'>キャンセル</a>
         </div>
       </div>

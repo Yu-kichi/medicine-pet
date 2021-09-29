@@ -1,6 +1,6 @@
 - title "お薬名登録"
 
-.container.has-background-white-bis
+.container.has-background-white-bis.contents-body
   .box.is-shadowless.has-background-white
     = render "shared/errors", obj: @medicine
     .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
@@ -18,9 +18,9 @@
           .control
             = f.text_field :name, class: "input", required: true
       .actions.mt-5
-        = f.submit "登録する", class: "button is-link is-fullwidth has-text-weight-bold", data: { "turbolinks" => false }
+        = f.submit "登録する", class: "button is-link is-fullwidth has-text-weight-bold"
 
     - if @prescription_medicine
-      = link_to "キャンセル", edit_prescription_prescriptions_medicine_path(@prescription, @prescription_medicine), class: "button is-outlined is-fullwidth mt-4", data: { "turbolinks" => false }
+      = link_to "キャンセル", edit_prescription_prescriptions_medicine_path(@prescription, @prescription_medicine), class: "button is-outlined is-fullwidth mt-4"
     - else
-      = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription), class: "button is-outlined is-fullwidth mt-4", data: { "turbolinks" => false }
+      = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription), class: "button is-outlined is-fullwidth mt-4"

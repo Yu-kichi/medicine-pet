@@ -16,11 +16,11 @@
         <div class="column mt-6" @click="showOnClinicButton = !showOnClinicButton">...</div>
       </div>
       <div v-show="showOnClinicButton" class="pl-4 pr-4">
-        <a class="mb-2 mt-4 button is-fullwidth" data-turbolinks='false'
+        <a class="mb-2 mt-4 button is-fullwidth"
           :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
         <div class="has-text-right pb-2" @click="showModalPrescription = true">
           <i class="fa fa-trash"></i>
-          <a class="has-text-grey-dark" data-turbolinks='false'>削除する</a>
+          <a class="has-text-grey-dark">削除する</a>
         </div>
         <modal v-if="showModalPrescription" @cancel="showModalPrescription = false"
           @ok="deletePrescription(); showModalPrescription = false;">
@@ -44,11 +44,11 @@
             <div class="column mt-6" @click="showOnPrescription(index)">...</div>
           </div>
           <div v-show="index === clickedPrescription" class="pl-4 pr-4">
-            <a class="mb-4 mt-4 button pb-2 is-fullwidth mr-4" data-turbolinks='false'
+            <a class="mb-4 mt-4 button pb-2 is-fullwidth mr-4"
               :href='medicine.edit_prescriptions_medicine_path'><i class="fas fa-pen mr-2"></i>内容修正</a>
             <div class="has-text-right" @click="showModal = true, medicineId = medicine.medicine_id">
               <i class="fa fa-trash"></i>
-              <a class="has-text-grey-dark" data-turbolinks='false'>削除する</a>
+              <a class="has-text-grey-dark">削除する</a>
               <div class="line mt-2"></div>
             </div>
             <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">
@@ -60,12 +60,12 @@
     </div>
     <div class="mr-4 ml-4 pb-4 pt-2">
       <a class="button mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold"
-        data-turbolinks='false' :href='`/prescriptions/${prescriptionId}/prescriptions_medicines/new`'>+ お薬追加登録</a>
+         :href='`/prescriptions/${prescriptionId}/prescriptions_medicines/new`'>+ お薬追加登録</a>
       <a class="button  mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold"
-        data-turbolinks='false' :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescriptionId}`'>+コピー</a>
+         :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescriptionId}`'>+コピー</a>
     </div>
     <div class="mr-4 ml-4 pb-4 pt-2">
-      <a class="button is-fullwidth mt-4 mb-4" data-turbolinks='false'
+      <a class="button is-fullwidth mt-4 mb-4"
         :href='`/pets/${petId}/medicine_notebook`'>お薬手帳に戻る</a>
     </div>
   </div>

@@ -1,6 +1,6 @@
 - title "お薬名編集"
 
-.container.has-background-white-bis
+.container.has-background-white-bis.contents-body
   .box.is-shadowless.has-background-white
     = render "shared/errors", obj: @medicine
     .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
@@ -14,5 +14,5 @@
           .control
             = f.text_field :name, class: "input", required: true
       .actions.mt-5
-        = f.submit "編集する", class: "button is-link is-fullwidth has-text-weight-bold", data: { "turbolinks" => false }
-      = link_to "キャンセル", medicines_path, class: "button is-outlined is-fullwidth mt-4", data: { "turbolinks" => false }
+        = f.submit "編集する", class: "button is-link is-fullwidth has-text-weight-bold"
+      = link_to "キャンセル", medicines_path, class: "button is-outlined is-fullwidth mt-4"

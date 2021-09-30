@@ -22,12 +22,14 @@ gem "rails-i18n"
 gem "sass-rails", ">= 6"
 gem "slim"
 gem "webpacker", "~> 4.0"
+gem "rubocop-rspec", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "pry-byebug"
   gem "rspec-rails", "~> 5.0.0"
+  gem "factory_bot_rails"
   gem "spring-commands-rspec"
 end
 

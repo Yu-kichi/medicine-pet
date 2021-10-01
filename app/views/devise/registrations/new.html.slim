@@ -1,39 +1,39 @@
 - title "アカウント登録"
 
-section.hero.is-fullheight
+section
   .hero-body
-    .container
+    .container.contents-body
       .columns.is-centered
-        .column.is-5-tablet.is-4-desktop.is-3-widescreen
+        .column.is-7.mt-6
           .card
             h2.title.has-background-primary.has-text-white.has-text-centered.p-2.is-bold
-              | Sign up
+              | サインアップ
             .pl-3.pr-3.mb-3
               = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 = render "devise/shared/error_messages", resource: resource
-                .field
+                .field.p-2
                   = f.label :email, class: "label"
                   .control.has-icons-left
-                    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "****@gmail.com", autocomplete: "email", required: true, class: "input"
+                    = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "****@gmail.com", required: true, class: "input"
                     span.icon.is-small.is-left
                       i.fa.fa-envelope
-                .field
+                .field.pl-2.pr-2
                   = f.label :password, class: "label"
                   - if @minimum_password_length
                     em
                       | (
                       = @minimum_password_length
-                      |  characters minimum)
+                      |  文字以上で入力してください)
                   .control.has-icons-left
                     = f.password_field :password, autocomplete: "new-password", class: "input", required: true, placeholder: "*******"
                     span.icon.is-small.is-left
                       i.fa.fa-lock
-                .field
+                .field.pl-2.pr-2
                   = f.label :password_confirmation, class: "label"
                   .control.has-icons-left
                     = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", required: true, placeholder: "*******"
                     span.icon.is-small.is-left
                         i.fa.fa-lock
-                .actions
-                  = f.submit "Sign up", class: "button is-success"
+                .actions.p-2
+                  = f.submit "サインアップ", class: "button is-success is-fullwidth mt-2 mb-3 has-text-weight-bold"
               = render "devise/shared/links"

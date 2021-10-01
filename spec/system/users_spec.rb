@@ -10,7 +10,7 @@ RSpec.feature "Users", type: :system do
       fill_in "メールアドレス", with: "alice@example.com"
       fill_in "パスワード", with: "password"
       fill_in "確認用パスワード", with: "password"
-      click_button "Sign up"
+      click_button "サインアップ"
       expect(page).to have_content("アカウント登録が完了しました。")
     end
   end
@@ -23,7 +23,7 @@ RSpec.feature "Users", type: :system do
       expect(current_path).to eq "/users/sign_in"
       fill_in "メールアドレス", with: "bob@example.com"
       fill_in "パスワード", with: "password"
-      click_button "Log in"
+      click_button "ログイン"
       expect(page).to have_content("ログインしました。")
     end
   end

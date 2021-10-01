@@ -1,32 +1,32 @@
 - title "ログイン"
 
-section.hero.is-fullheight
+section
   .hero-body
-    .container
+    .container.contents-body
       .columns.is-centered
-        .column.is-5-tablet.is-4-desktop.is-3-widescreen
+        .column.is-7.mt-6
           .card
-            h2.title.has-background-primary.has-text-white.has-text-centered.p-2
-              | Log in
+            h2.title.has-background-primary.has-text-white.has-text-centered.p-2.is-bold
+              | ログイン
             .pl-3.pr-3.mb-3
               = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-                .field
+                .field.p-2
                   = f.label :email, class: "label"
                   .control.has-icons-left
                     = f.email_field :email, placeholder: "****@gmail.com", autofocus: true, autocomplete: "email", required: true, class: "input"
                     span.icon.is-small.is-left
                       i.fa.fa-envelope
-                .field
+                .field.pl-2.pr-2
                   = f.label :password, class: "label"
                   .control.has-icons-left
                     = f.password_field :password, autocomplete: "current-password", class: "input", required: true, placeholder: "*******"
                     span.icon.is-small.is-left
                       i.fa.fa-lock
                 - if devise_mapping.rememberable?
-                  .field
+                  .field.pl-2.pr-2
                     = f.label :remember_me
                       = f.check_box :remember_me
-                      | remember_me
-                .actions
-                  = f.submit "Log in", class: "button is-success"
+                      | ログインを維持する
+                .actions.p-2
+                  = f.submit "ログイン", class: "button is-success mt-2 mb-3 is-fullwidth has-text-weight-bold"
               = render "devise/shared/links"

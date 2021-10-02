@@ -4,19 +4,17 @@ require "rails_helper"
 
 RSpec.feature "Pets", type: :system do
   before do
-    create(:pet_1, name: "たろう")
+    @user = create(:user)
+    create(:pet_1, user_id: @user.id)
   end
 
   context "ペット" do
     before do
-      visit "/users/sign_in"
-      fill_in "メールアドレス", with: "test@example.com"
-      fill_in "パスワード", with: "password"
-      click_button "ログイン"
+      login_user(@user.email, @user.password)
     end
 
     scenario "ペット一覧表示" do
-      create(:pet_2, name: "ねこみ")
+      create(:pet_2, user_id: @user.id)
       visit "/pets"
       expect(page).to have_content("たろう")
       expect(page).to have_content("ねこみ")
@@ -31,7 +29,7 @@ RSpec.feature "Pets", type: :system do
       find("#pet_birthday_1i").find("option[value='2000']").select_option
       find("#pet_birthday_2i").find("option[value='1']").select_option
       find("#pet_birthday_3i").find("option[value='1']").select_option
-      attach_file "pet_image", "#{Rails.root}/spec/factories/pet_profile.png"
+      attach_file "pet_image", "#{Rails.root}/spec/factories/files/pet_profile.png"
       click_button "登録する"
       expect(page).to have_content("ペットを作成しました")
       expect(page).to have_content("わんきち")

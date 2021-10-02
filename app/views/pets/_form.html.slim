@@ -10,9 +10,9 @@
       = Pet.human_attribute_name(:sex)
     .label
       = f.label :sex_1
-      = f.radio_button :sex_1, class: "radio"
+      = f.radio_button :sex, 1, class: "radio mr-2"
       = f.label :sex_2
-      = f.radio_button :sex_2, class: "radio"
+      = f.radio_button :sex, 2, class: "radio"
   .field
     .label
       = f.label :breed
@@ -28,7 +28,9 @@
     .label
       = f.label :birthday
     .control
-      = f.date_select :birthday
+      = f.date_select(:birthday,
+        start_year: 2000,
+        end_year: (Time.now.year))
   .field
     .label
       = Pet.human_attribute_name(:image)

@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :pet_1, class: Pet do
-    user
     id { 1 }
     name { "たろう" }
     sex { "1" }
@@ -12,7 +11,6 @@ FactoryBot.define do
   end
 
   factory :pet_2, class: Pet do
-    user_id { 1 }
     id { 2 }
     name { "ねこみ" }
     sex { "2" }

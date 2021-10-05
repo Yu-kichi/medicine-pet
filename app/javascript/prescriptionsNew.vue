@@ -49,12 +49,10 @@
           </p>
         </div>
         <div class="field">
-          <div class="label pt-3">
-            <p>診察料</p>
-          </div>
+          <label for="fee" class="label pt-3">診察料</label>
           <div class="control">
             <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small" type="number"
-              style="width: 50%;" min="0">
+              style="width: 50%;" min="0" id="fee" name="prescription[medical_fee]">
             <span>円</span>
           </div>
         </div>

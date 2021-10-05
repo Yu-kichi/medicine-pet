@@ -27,10 +27,10 @@
           <p class="has-text-danger">{{clinicError}}</p>
         </p>
         <div class="field">
-          <div class="label pt-3">
-            <p>住所 *</p>
-            <input v-model="address" class="input is-fullwidth">
-          </div>
+          <label for="clinic_address" class="label pt-3">住所 *</label>
+          <div class="control">
+            <input v-model="address" class="input is-fullwidth" type="text" name="clinic[address]" id="clinic_address">
+          </div>  
           <p v-if="addressError!== null">
             <p class="has-text-danger">{{addressError}}</p>
           </p>

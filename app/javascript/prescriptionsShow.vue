@@ -20,7 +20,7 @@
           :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
         <div class="has-text-right pb-2" @click="showModalPrescription = true">
           <i class="fa fa-trash"></i>
-          <a class="has-text-grey-dark">削除する</a>
+          <a class="prescription-delete has-text-grey-dark">削除する</a>
         </div>
         <modal v-if="showModalPrescription" @cancel="showModalPrescription = false"
           @ok="deletePrescription(); showModalPrescription = false;">

@@ -1,8 +1,19 @@
 - title "welcome"
 
-.welcome.has-text-centered.has-background-white
-  figure
-    = image_tag "MediPet_title.png"
+.welcome.has-background-white.has-text-centered
+  section.p-6
+    .container
+      .columns
+        .column
+          h1.is-size-1.mt-6.Mali MediPet
+          h2.subtitle.mt-6 ペットのお薬手帳で、
+            大切なペットのお薬の管理をしましょう。
+          .button.is-primary.strong.mb-6
+            strong = link_to "アカウント作成", new_user_registration_path, class: "has-text-white"  
+        .column  
+          h2.subtitle
+            = image_tag "smartmockups_ku5fj9se.jpg", width: "60%", height: "60%"  
+            /= image_tag "スクリーンショット 2021-09-29 18.17.23.png", width: "40%", height: "40%"  
   .columns.is-centered.p-6
     .column
       figure
@@ -27,5 +38,3 @@
         | 簡単登録
       p.welcome_description.mt-5
         | 全国1万件以上の動物病院と100種類以上のお薬名が既に登録されているので、選ぶだけで簡単に登録できます。
-  .button.is-primary.strong.mb-6
-    strong = link_to "アカウント作成", new_user_registration_path, class: "has-text-white"

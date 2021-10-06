@@ -1,5 +1,5 @@
 .container
-  .box.has-background-white.is-shadowless
+  .box.has-background-white.is-shadowless.contents-body
     h2.title.has-background-lightseagreen.has-text-white.has-text-centered.p-2.is-bold
       | 薬品リストに追加したお薬一覧
     table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
@@ -14,5 +14,5 @@
           td = medicine.name
           td = link_to edit_medicine_path(medicine), method: :get do
             i.fas.fa-pen
-          td = link_to medicine, method: :delete, data: { confirm: "Are you sure?" }
+          td = link_to medicine, method: :delete, data: { confirm: "本当によろしいですか?" }
             i.fa.fa-trash

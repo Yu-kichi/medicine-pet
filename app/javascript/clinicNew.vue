@@ -9,36 +9,36 @@
       </div>
       <div class="form__items">
         <div class="field">
-          <div class="label">
-            <p>県名 *</p>
-          </div>
+          <label for="prefecture" class="label">県名 *</label>
         </div>
         <VueMultiselect v-model="selectedPrefecture" :options="prefectures" track-by="name" label="name"
-          placeholder="県名を選択してください">
+          placeholder="県名を選択してください" id="prefecture">
         </VueMultiselect>
         <p v-if="prefectureError!== null">
           <p class="has-text-danger">{{prefectureError}}</p>
         </p>
-        <div class="label pt-3">
-          <p>病院名 *</p>
-          <input v-model="name" class="input is-fullwidth">
-        </div>
-        <p v-if="clinicError!== null">
-          <p class="has-text-danger">{{clinicError}}</p>
-        </p>
         <div class="field">
-          <div class="label pt-3">
-            <p>住所 *</p>
-            <input v-model="address" class="input is-fullwidth">
-          </div>
+          <label for="clinic_name" class="label pt-3">病院名 *</label>
+          <div class="control">
+            <input v-model="name" class="input   is-fullwidth" name="clinic[name]" id="clinic_name">
+          </div>  
+          <p v-if="clinicError!== null">
+            <p class="has-text-danger">{{clinicError}}</p>
+          </p>
+        </div>  
+        <div class="field">
+          <label for="clinic_address" class="label ">住所 *</label>
+          <div class="control">
+            <input v-model="address" class="input is-fullwidth" type="text" name="clinic[address]" id="clinic_address">
+          </div> 
           <p v-if="addressError!== null">
             <p class="has-text-danger">{{addressError}}</p>
           </p>
         </div>
         <div class="field">
-          <div class="label">
-            <p>電話番号 *</p>
-            <input v-model="telephone" class="input is-fullwidth">
+          <label for="clinic_telephone" class="label">電話番号 *</label>
+          <div class="control">
+            <input v-model="telephone" class="input is-fullwidth" id="clinic_telephone" name="clinic[telephone_number]">
           </div>
           <p v-if="telephoneError!== null">
             <p class="has-text-danger">{{telephoneError}}</p>

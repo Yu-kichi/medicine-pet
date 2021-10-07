@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :medicine do
-    id { 1 }
     name { "アイボメック" }
-    user_id { 1 }
+    association :user,
+    factory: :user
   end
 end

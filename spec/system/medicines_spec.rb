@@ -20,25 +20,31 @@ RSpec.feature "Medicines", type: :system do
     expect(page).not_to have_content("薬テスト２")
   end
 
-  scenario "処方箋薬作成ページから薬品名新規登録" do
-    visit "/prescriptions/#{@prescription.id}/prescriptions_medicines/new"
-    click_link "薬の名前が見つからない時はこちら"
-    expect(page).to have_content("お薬名登録")
-    fill_in "薬の名前", with: "薬テスト１"
-    click_button "登録する"
-    expect(current_path).to eq "/prescriptions/#{@prescription.id}/prescriptions_medicines/new"
-    expect(page).to have_content("新しく薬の名前を登録しました")
-  end
-
-  scenario "処方箋薬編集ページから薬品名新規登録" do
-    prescriptions_medicine = create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)
-    visit "/prescriptions/#{@prescription.id}/prescriptions_medicines/#{prescriptions_medicine.id}/edit"
-    click_link "薬の名前が見つからない時はこちら"
-    expect(page).to have_content("お薬名登録")
-    fill_in "薬の名前", with: "薬テスト１"
-    click_button "登録する"
-    expect(current_path).to eq "/prescriptions/#{@prescription.id}/prescriptions_medicines/#{prescriptions_medicine.id}/edit"
-    expect(page).to have_content("新しく薬の名前を登録しました")
+  describe "お薬情報作成" do
+    context "処方箋薬作成ページから薬品名新規登録" do
+      scenario "作成成功時処方箋作成画面へ戻る" do
+        visit "/prescriptions/#{@prescription.id}/prescriptions_medicines/new"
+        click_link "薬の名前が見つからない時はこちら"
+        expect(page).to have_content("お薬名登録")
+        fill_in "薬の名前", with: "薬テスト１"
+        click_button "登録する"
+        expect(current_path).to eq "/prescriptions/#{@prescription.id}/prescriptions_medicines/new"
+        expect(page).to have_content("新しく薬の名前を登録しました")
+      end
+    end
+    
+    context "処方箋薬編集ページから薬品名新規登録" do
+      scenario "作成成功時処方箋編集画面へ戻る" do
+        prescriptions_medicine = create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)
+        visit "/prescriptions/#{@prescription.id}/prescriptions_medicines/#{prescriptions_medicine.id}/edit"
+        click_link "薬の名前が見つからない時はこちら"
+        expect(page).to have_content("お薬名登録")
+        fill_in "薬の名前", with: "薬テスト１"
+        click_button "登録する"
+        expect(current_path).to eq "/prescriptions/#{@prescription.id}/prescriptions_medicines/#{prescriptions_medicine.id}/edit"
+        expect(page).to have_content("新しく薬の名前を登録しました")
+      end
+    end
   end
 
   scenario "お薬情報編集" do

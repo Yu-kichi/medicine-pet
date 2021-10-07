@@ -5,13 +5,9 @@ require "rails_helper"
 RSpec.feature "Pets", type: :system do
   before do
     @user = create(:user)
-    create(:pet_1, user_id: @user.id)
+    login_user(@user.email, @user.password)
+    @pet = create(:pet_1, user_id: @user.id)
   end
-
-  context "ペット" do
-    before do
-      login_user(@user.email, @user.password)
-    end
 
     scenario "ペット一覧表示" do
       create(:pet_2, user_id: @user.id)
@@ -41,17 +37,16 @@ RSpec.feature "Pets", type: :system do
     end
 
     scenario "ペット編集成功" do
-      visit "/pets/1/edit"
+      visit "/pets/#{@pet.id}/edit"
       click_button "更新する"
       expect(page).to have_content("ペットを更新しました")
     end
 
     scenario "ペット削除成功" do
-      visit "/pets/1"
+      visit "/pets/#{@pet.id}"
       click_link "削除する"
       page.driver.browser.switch_to.alert.accept
       expect(page).to have_content("ペットを削除しました")
       expect(current_path).to eq "/pets"
     end
-  end
 end

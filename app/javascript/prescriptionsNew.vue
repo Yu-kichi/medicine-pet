@@ -18,30 +18,26 @@
       </div>
       <div class="form__items">
         <div class="field">
-          <div class="label">
-            <p>診療日 *</p>
-          </div>
-          <div class="control ">
-            <input v-model="date" class="input" type="date">
+          <label for="date" class="label">診療日 *</label>
+          <div class="control">
+            <input v-model="date" class="input" type="date" id="date" name="prescription[date]">
           </div>
           <p v-if="dateError !== null ">
             <p class="has-text-danger">{{ dateError }}</p>
           </p>
         </div>
         <div class="field">
-          <div class="label">
-            <p>県名 *</p>
-          </div>
+          <label for="prefecture" class="label">県名 *</label>
         </div>
         <VueMultiselect v-model="selectedPrefecture" :options="prefectures" @select="onSelect" track-by="name"
-          label="name" placeholder="最初に県名を選択してください">
+          label="name" placeholder="最初に県名を選択してください" id="prefecture">
         </VueMultiselect>
-        <div class="label pt-3">
-          <p>病院名 *</p>
+        <div class="field">
+          <label for="clinic_name" class="label pt-3">病院名 *</label>
         </div>
         <div class="control">
           <VueMultiselect v-model="selectedClinic" :options="clinics" track-by="name" label="name"
-            placeholder="県名を選択した後に選択してください">
+            placeholder="県名を選択した後に選択してください" id="clinic_name" name="prescription[clinic]">
           </VueMultiselect>
           <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください</p>
           <p v-if="clinicError !== null">
@@ -49,21 +45,17 @@
           </p>
         </div>
         <div class="field">
-          <div class="label pt-3">
-            <p>診察料</p>
-          </div>
+          <label for="medical_fee" class="label pt-3">診察料</label>
           <div class="control">
             <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small" type="number"
-              style="width: 50%;" min="0">
+              style="width: 50%;" min="0" id="medical_fee" name="prescription[medical_fee]">
             <span>円</span>
           </div>
         </div>
         <div class="field">
-          <div class="label">
-            <p>処方料</p>
-          </div>
+          <label for="medicine_fee" class="label">処方料</label>
           <div class="control">
-            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number"
+            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" id="medicine_fee" name="prescription[medicine_fee]"
               style="width: 50%;" min="0">
             <span>円</span>
           </div>

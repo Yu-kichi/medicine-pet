@@ -4,5 +4,7 @@ FactoryBot.define do
   factory :prescriptions_medicine, class: PrescriptionsMedicine do
     dose { 2 }
     total_amount { 20 }
+    association :medicine,
+    factory: :medicine
   end
 end

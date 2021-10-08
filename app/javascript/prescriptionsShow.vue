@@ -20,7 +20,7 @@
           :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
         <div class="has-text-right pb-2" @click="showModalPrescription = true">
           <i class="fa fa-trash"></i>
-          <a class="has-text-grey-dark">削除する</a>
+          <a class="prescription-delete has-text-grey-dark">削除する</a>
         </div>
         <modal v-if="showModalPrescription" @cancel="showModalPrescription = false"
           @ok="deletePrescription(); showModalPrescription = false;">
@@ -61,7 +61,7 @@
     <div class="mr-4 ml-4 pb-4 pt-2">
       <a class="button mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold"
          :href='`/prescriptions/${prescriptionId}/prescriptions_medicines/new`'>+ お薬追加登録</a>
-      <a class="button  mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold"
+      <a class="button mt-4 has-text-white is-fullwidth has-background-primary has-text-weight-bold"
          :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescriptionId}`'>+コピー</a>
     </div>
     <div class="mr-4 ml-4 pb-4 pt-2">

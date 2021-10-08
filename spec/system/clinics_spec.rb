@@ -56,6 +56,5 @@ RSpec.feature "Clinics", type: :system do
         expect(page).to have_content("電話番号を入力してください")
       end
     end
-
   end
 end

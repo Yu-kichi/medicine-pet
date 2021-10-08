@@ -32,7 +32,7 @@ RSpec.feature "Medicines", type: :system do
         expect(page).to have_content("新しく薬の名前を登録しました")
       end
     end
-    
+
     context "処方箋薬編集ページから薬品名新規登録" do
       scenario "作成成功時処方箋編集画面へ戻る" do
         prescriptions_medicine = create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)

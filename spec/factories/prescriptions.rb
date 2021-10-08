@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :prescription_1, class: Prescription do
-    date { "20210909" }
+    date { "20210101" }
     medical_fee { 1500 }
     medicine_fee { 2000 }
     association :clinic,
@@ -10,8 +10,7 @@ FactoryBot.define do
   end
 
   factory :prescription_2, class: Prescription do
-    id { 2 }
-    date { "20210909" }
+    date { "20210101" }
     medical_fee { 1500 }
     medicine_fee { 2000 }
     association :clinic,

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_155700) do
+ActiveRecord::Schema.define(version: 2021_10_10_073320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_155700) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.bigint "prefecture_id"
+    t.integer "user_id"
     t.index ["prefecture_id"], name: "index_clinics_on_prefecture_id"
   end
 

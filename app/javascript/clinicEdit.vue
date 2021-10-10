@@ -5,7 +5,7 @@
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
       <div class="has-background-lightseagreen mb-4 p-2">
-        <h1 class="title has-text-white has-text-weight-bold has-text-centered">病院情報登録</h1>
+        <h1 class="title has-text-white has-text-weight-bold has-text-centered">病院情報編集</h1>
       </div>
       <div class="form__items">
         <div class="field">
@@ -45,13 +45,11 @@
           </p>
         </div>
         <div class="actions pt-3">
-          <button @click="createClinic" class="button is-link is-fullwidth has-text-weight-bold">登録する</button>
+          <button @click="editClinic" class="button is-link is-fullwidth has-text-weight-bold">更新する</button>
         </div>
         <div>
-          <a v-if='prescriptionId !== null' class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'>キャンセル</a>
-          <a v-else class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/prescriptions/new`'>キャンセル</a>
+          <a class="button is-fullwidth mt-4 mb-4"
+            :href='`/clinics`'>キャンセル</a>
         </div>
       </div>
     </div>
@@ -81,20 +79,18 @@
       }
     },
     props: {
-      petId: {
+      currentUserId: {
         type: Number,
         required: true
       },
-      prescriptionId: {
-        type: Number
-      },
-      currentUserId: {
+      clinicId: {
         type: Number,
         required: true
       },
     },
     created: function () {
       this.fetchPrefectures();
+      this.fetchClinic();
     },
     methods: {
       fetchPrefectures() {
@@ -103,6 +99,16 @@
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
             this.loaded = true
+          })
+      },
+      fetchClinic(){
+        Axios.get(`/api/clinics/${this.clinicId}/edit`).then(
+          response =>{
+            const responseData = response.data;
+            this.name = responseData.name
+            this.address = responseData.address
+            this.telephone = responseData.telephone_number
+            this.selectedPrefecture = responseData.prefecture
           })
       },
       validation: function () {
@@ -119,9 +125,9 @@
           this.telephoneError = '電話番号を入力してください'
         }
       },
-      createClinic() {
+      editClinic() {
         if (this.validation()) {}
-        Axios.post(`/api/clinics`, {
+        Axios.patch(`/api/clinics/${this.clinicId}`, {
           clinic: {
             name: this.name,
             prefecture_id: this.selectedPrefecture.id,
@@ -130,11 +136,7 @@
             user_id: this.currentUserId
           }
         }).then((response) => {
-          if(this.prescriptionId){
-            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}/edit`
-          } else {
-            window.location.href = `/pets/${this.petId}/prescriptions/new`
-          }
+          window.location.href = `/clinics`
         }, (error) => {
           console.log(error, response)
         })

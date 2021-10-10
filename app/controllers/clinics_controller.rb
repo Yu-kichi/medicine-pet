@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ClinicsController < ApplicationController
-  before_action :set_clinic, only: %i[show edit update destroy]
-  before_action :set_pets, only: %i[new]
+  before_action :set_clinic, only: %i[show edit destroy]
+  before_action :set_pets, only: %i[index new edit]
   before_action :authenticate_user!
   def index
-    @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
+    @clinics = current_user.clinics
   end
 
   def show; end
@@ -17,14 +17,6 @@ class ClinicsController < ApplicationController
   end
 
   def edit; end
-
-  def update
-    if @clinic.update(clinic_params)
-      redirect_to pet_clinic_path(@clinic.pet_id, @clinic), notice: "病院情報を更新しました"
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
 
   def destroy
     @clinic.destroy

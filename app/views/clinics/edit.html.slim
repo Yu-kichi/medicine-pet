@@ -1,10 +1,4 @@
 - title "病院情報編集"
 
-.container
-  = render "shared/errors", obj: @clinic
-  .card.has-background-white-bis
-    h1.is-size-1.has-background-white-ter.mb-4
-      | 病院情報編集
-    = render "form", { clinic: @clinic, pet: @pet }
-
-    = link_to "Back", clinics_path
+= javascript_pack_tag "clinicEdit_vue.js"
+#app(clinic-id="#{@clinic.id}" currentuser-id="#{current_user.id}")

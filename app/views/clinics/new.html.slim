@@ -2,6 +2,6 @@
 
 = javascript_pack_tag "clinicNew_vue.js"
 - if @prescription
-  #app(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}")
+  #app(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}" current-user-id="#{current_user.id}")
 - else
-  #app(pet-id="#{@pet.id}")
+  #app(pet-id="#{@pet.id}" current-user-id="#{current_user.id}")

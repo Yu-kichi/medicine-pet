@@ -2,10 +2,10 @@
 
 class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit update destroy]
-  before_action :set_pets, only: %i[new]
+  before_action :set_pets, only: %i[index new edit]
   before_action :authenticate_user!
   def index
-    @clinics = Clinic.where(prefecture_id: params[:prefecture_id])
+    @clinics = current_user.clinics
   end
 
   def show; end
@@ -37,6 +37,6 @@ class ClinicsController < ApplicationController
     end
 
     def clinic_params
-      params.require(:clinic).permit(:name, :address, :telephone_number, :prefecture_id)
+      params.require(:clinic).permit(:name, :address, :telephone_number, :prefecture_id, :user_id)
     end
 end

@@ -27,6 +27,13 @@
           </li>
           <li class="pb-2 mt-2">
             <p>
+              <a href="/clinics">
+                <i class="far fa-hospital mr-2"></i>病院リストに追加した病院一覧
+              </a>
+            </p>
+          </li>
+          <li class="pb-2 mt-2">
+            <p>
               <a href="/users/sign_out" data-method="delete">
                 <i class="fas fa-sign-out-alt mr-2"></i>Log out
               </a>

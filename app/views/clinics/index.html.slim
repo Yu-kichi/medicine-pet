@@ -1,22 +1,18 @@
 .container
-  h1.is-size-2
-    | 病院一覧
-  table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
-    thead
-      tr
-        th.abbr 番号
-        th.abbr 病院名
-        th.abbr 詳細
-        th.abbr 編集
-        th.abbr 削除
-    tbody
-    - @clinics.each_with_index do |clinic, index|
-      tr
-        th.abbr = index + 1
-        td = clinic.name
-        td = link_to "Show", clinic_path(clinic)
-        td = link_to "Edit", edit_clinic_path(clinic)
-        td = link_to "Destroy", clinic, method: :delete, data: { confirm: "Are you sure?" }
-  / br
-  / .button.is-link
-  /   = link_to "New clinic", new_clinic_path, class:"has-text-white"
+  .box.has-background-white.is-shadowless.contents-body
+    h2.title.has-background-lightseagreen.has-text-white.has-text-centered.p-2.is-bold
+      | 病院リストに追加した病院一覧
+    table class="table is-striped is-striped is-narrow is-hoverable is-fullwidth"
+      thead
+        tr
+          th.abbr 病院名
+          th.abbr 編集
+          th.abbr 削除
+      tbody
+      - @clinics.each do |clinic|
+        tr
+          td = clinic.name
+          td = link_to edit_clinic_path(clinic), method: :get do
+            i.fas.fa-pen
+          td = link_to clinic, method: :delete, data: { confirm: "本当によろしいですか?" }
+            i.fa.fa-trash

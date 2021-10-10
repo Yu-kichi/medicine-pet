@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "medicine_notebook#index"
 
   namespace "api", { format: "json" } do
-    resources :clinics, only: %i[show create]
+    resources :clinics, only: %i[show create edit]
     get "prefectures/index"
     get "medicines/index"
     get "medicine_notebook/index"
@@ -34,6 +34,6 @@ Rails.application.routes.draw do
     resources :prescriptions_medicines
   end
 
-  resources :clinics, only: %i[new show create update edit destroy]
+  resources :clinics
   resources :medicines
 end

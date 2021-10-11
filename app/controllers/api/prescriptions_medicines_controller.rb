@@ -2,7 +2,6 @@
 
 module Api
   class PrescriptionsMedicinesController < ApplicationController
-    skip_before_action :verify_authenticity_token
     before_action :set_prescriptions_medicine, only: %i[edit update destroy]
 
     def show

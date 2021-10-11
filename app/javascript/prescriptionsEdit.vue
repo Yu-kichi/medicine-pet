@@ -69,7 +69,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
 
   export default {
     components: {
@@ -104,8 +104,12 @@
       this.fetchPrefectures();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrescriptions() {
-        Axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
+        axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
           response => {
             const responseData = response.data;
             this.selectedClinic = responseData.clinic
@@ -116,7 +120,7 @@
           })
       },
       fetchPrefectures() {
-        Axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures/index.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
@@ -125,7 +129,7 @@
       },
       fetchClinics(prefecture) {
         const id = prefecture.id
-        Axios.get(`/api/clinics/${id}`).then(
+        axios.get(`/api/clinics/${id}`).then(
           response => {
             const responseData = response.data;
             this.clinics = responseData["clinics"]
@@ -142,7 +146,9 @@
       },
       updatePrescription() {
         if (this.validation()) {}
-        Axios.patch(`/api/prescriptions/${this.prescriptionId}`, {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.patch(`/api/prescriptions/${this.prescriptionId}`, {
           prescription: {
             date: this.date,
             clinic_id: this.selectedClinic.id,

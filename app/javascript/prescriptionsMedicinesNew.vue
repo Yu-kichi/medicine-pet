@@ -84,7 +84,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
   import dayjs from 'dayjs';
   import ja from 'dayjs/locale/ja'
   dayjs.locale(ja)
@@ -122,8 +122,12 @@
       this.fetchPrescriptionsMedicines();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchMedicines() {
-        Axios.get("/api/medicines/index.json").then(
+        axios.get("/api/medicines/index.json").then(
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]
@@ -131,7 +135,7 @@
           })
       },
       fetchPrescriptionsMedicines() {
-        Axios.get(`/api/prescriptions_medicines/${this.prescriptionId}`).then(
+        axios.get(`/api/prescriptions_medicines/${this.prescriptionId}`).then(
           response => {
             const responseData = response.data;
             this.registered = responseData["medicines"]
@@ -146,7 +150,9 @@
       },
       createPrescriptionsMedicines(addition) {
         if (this.validation()) {}
-        Axios.post('/api/prescriptions_medicines', {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.post('/api/prescriptions_medicines', {
           prescriptions_medicine: {
             medicine_id: this.selectedMedicine.id,
             prescription_id: this.prescriptionId,

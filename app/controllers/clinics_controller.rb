@@ -4,6 +4,7 @@ class ClinicsController < ApplicationController
   before_action :set_clinic, only: %i[show edit destroy]
   before_action :set_pets, only: %i[index new edit]
   before_action :authenticate_user!
+
   def index
     @clinics = current_user.clinics
   end

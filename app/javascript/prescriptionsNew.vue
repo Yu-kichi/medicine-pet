@@ -81,7 +81,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
 
   export default {
     components: {
@@ -113,8 +113,12 @@
       this.fetchPrescriptions();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrefectures() {
-        Axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures/index.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
@@ -124,7 +128,7 @@
       fetchPrescriptions() {
         if (location.search) {
           this.prescriptionId = location.search.match(/[0-9]+/)
-          Axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
+          axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
             response => {
               const responseData = response.data;
               this.selectedClinic = responseData.clinic
@@ -137,7 +141,7 @@
       },
       onSelect(prefecture) {
         const id = prefecture.id
-        Axios.get(`/api/clinics/${id}`).then(
+        axios.get(`/api/clinics/${id}`).then(
           response => {
             const responseData = response.data;
             this.clinics = responseData["clinics"]
@@ -154,7 +158,9 @@
       },
       createPrescription() {
         if (this.validation()) {}
-        Axios.post('/api/prescriptions', {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.post('/api/prescriptions', {
           prescription: {
             date: this.date,
             clinic_id: this.selectedClinic.id,
@@ -170,7 +176,9 @@
       },
       copyPrescription() {
         if (this.validation()) {}
-        Axios.post(`/api/prescriptions/?id=${this.prescriptionId}`, {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.post(`/api/prescriptions/?id=${this.prescriptionId}`, {
           prescription: {
             date: this.date,
             clinic_id: this.selectedClinic.id,

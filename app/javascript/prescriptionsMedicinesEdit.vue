@@ -65,7 +65,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
 
   export default {
     components: {
@@ -101,8 +101,12 @@
       this.fetchPrescriptionsMedicine();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrescriptionsMedicine() {
-        Axios.get(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}/edit`).then(
+        axios.get(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}/edit`).then(
           response => {
             const responseData = response.data;
             this.selectedMedicine = responseData.medicine
@@ -112,7 +116,7 @@
           })
       },
       fetchMedicines() {
-        Axios.get("/api/medicines/index.json").then(
+        axios.get("/api/medicines/index.json").then(
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]
@@ -126,7 +130,9 @@
       },
       updatePrescriptionsMedicine() {
         if (this.validation()) {}
-        Axios.patch(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`, {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.patch(`/api/prescriptions_medicines/${this.prescriptionsMedicineId}`, {
           prescriptions_medicine: {
             medicine_id: this.selectedMedicine.id,
             prescription_id: this.prescriptionId,

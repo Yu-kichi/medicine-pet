@@ -60,7 +60,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
 
   export default {
     components: {
@@ -97,8 +97,12 @@
       this.fetchPrefectures();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrefectures() {
-        Axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures/index.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
@@ -121,7 +125,9 @@
       },
       createClinic() {
         if (this.validation()) {}
-        Axios.post(`/api/clinics`, {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.post(`/api/clinics`, {
           clinic: {
             name: this.name,
             prefecture_id: this.selectedPrefecture.id,

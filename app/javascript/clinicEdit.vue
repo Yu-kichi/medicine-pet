@@ -58,7 +58,7 @@
 
 <script>
   import VueMultiselect from 'vue-multiselect'
-  import Axios from "axios";
+  import axios from "axios";
 
   export default {
     components: {
@@ -93,8 +93,12 @@
       this.fetchClinic();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrefectures() {
-        Axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures/index.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
@@ -102,7 +106,7 @@
           })
       },
       fetchClinic(){
-        Axios.get(`/api/clinics/${this.clinicId}/edit`).then(
+        axios.get(`/api/clinics/${this.clinicId}/edit`).then(
           response =>{
             const responseData = response.data;
             this.name = responseData.name
@@ -127,7 +131,9 @@
       },
       editClinic() {
         if (this.validation()) {}
-        Axios.patch(`/api/clinics/${this.clinicId}`, {
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.patch(`/api/clinics/${this.clinicId}`, {
           clinic: {
             name: this.name,
             prefecture_id: this.selectedPrefecture.id,

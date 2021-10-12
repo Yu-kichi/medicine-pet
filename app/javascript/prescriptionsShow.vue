@@ -73,7 +73,7 @@
 
 <script>
   import Modal from 'Modal.vue'
-  import Axios from "axios";
+  import axios from "axios";
   import dayjs from 'dayjs';
   import ja from 'dayjs/locale/ja'
   dayjs.locale(ja)
@@ -117,8 +117,12 @@
       this.fetchPrescriptions();
     },
     methods: {
+      token() {
+        const meta = document.querySelector('meta[name="csrf-token"]')
+        return meta ? meta.getAttribute('content') : ''
+      },
       fetchPrescriptions() {
-        Axios.get(`/api/prescriptions/${this.prescriptionId}`).then(
+        axios.get(`/api/prescriptions/${this.prescriptionId}`).then(
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]
@@ -134,7 +138,9 @@
         return dayjs(date).format('YYYY年MM月DD日(dd)')
       },
       deletePrescription: function () {
-        Axios.delete(`/api/prescriptions/${this.prescriptionId}`)
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.delete(`/api/prescriptions/${this.prescriptionId}`)
           .then(response => {
             window.location.href = `/pets/${this.petId}/medicine_notebook`
           })
@@ -146,7 +152,9 @@
           });
       },
       deletePrescriptionsMedicine: function () {
-        Axios.delete(`/api/prescriptions_medicines/${this.medicineId}`)
+        axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
+        axios.delete(`/api/prescriptions_medicines/${this.medicineId}`)
           .then(response => {
             window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
           })

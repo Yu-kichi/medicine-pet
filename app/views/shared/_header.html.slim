@@ -14,13 +14,10 @@ header
             - if @pet.image.attached? && @pet.image.blob&.persisted?
               = image_tag(@pet.image, class: "pet_image_icon")
         - if user_signed_in? && @pets.present? && @pets.size >= 2
-          = javascript_pack_tag "selectPet_vue.js"
           #select-pet.navber-item.ml-3
         - if user_signed_in?
-          = javascript_pack_tag "menuButton_vue.js"
           #menu-button.navbar-burger(user-id="#{current_user.id}")
         - else
-          = javascript_pack_tag "menuButton_vue.js"
           #menu-button.navbar-burger
       .navbar-menu
         .navbar-end

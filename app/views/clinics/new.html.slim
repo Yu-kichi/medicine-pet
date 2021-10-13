@@ -1,7 +1,6 @@
 - title "病院情報作成"
 
-= javascript_pack_tag "clinicNew_vue.js"
 - if @prescription
-  #app(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}" currentuser-id="#{current_user.id}")
+  #clinic-new(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}" currentuser-id="#{current_user.id}")
 - else
-  #app(pet-id="#{@pet.id}" currentuser-id="#{current_user.id}")
+  #clinic-new(pet-id="#{@pet.id}" currentuser-id="#{current_user.id}")

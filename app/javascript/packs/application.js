@@ -6,6 +6,17 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
+require("../clinicEdit.js")
+require("../clinicNew.js")
+require("../medicineNotebook.js")
+require("../prescriptionsNew.js")
+require("../prescriptionsEdit.js")
+require("../prescriptionsShow.js")
+require("../prescriptionsMedicinesNew.js")
+require("../prescriptionsMedicinesEdit.js")
+require("../menuButton.js")
+require("../selectPet.js")
+
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

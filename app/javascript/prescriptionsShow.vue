@@ -2,7 +2,7 @@
   <div v-if='loaded === false'>
     <p>ロード中</p>
   </div>
-  <div v-else class="container has-background-white">
+  <div v-else class="container has-background-white contents-body">
     <div class="card is-shadowless prescription-header">
       <div class="columns is-mobile">
         <div class="column ml-4 mr-4 pb-2 is-three-quarters-mobile">
@@ -175,3 +175,11 @@
     },
   }
 </script>
+
+<style>
+
+a {
+  color: yellow;
+}
+
+</style>

@@ -175,11 +175,3 @@
     },
   }
 </script>
-
-<style>
-
-a {
-  color: yellow;
-}
-
-</style>

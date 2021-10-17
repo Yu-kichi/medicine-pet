@@ -7,26 +7,32 @@
         = "#{@pet.name}の"
         br
         | プロフィール
-    - if @pet.image.attached?
-      = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
-    .control.label.pt-4
-      = Pet.human_attribute_name(:sex)
-      | :
-      = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
-    .control.label.pt-4
-      = Pet.human_attribute_name(:breed)
-      | :
-      = @pet.breed
-    .control.label.pt-4
-      = Pet.human_attribute_name(:weight)
-      | :
-      = @pet.weight
-      - if @pet.weight
-        | kg
-    .control.label.pt-4
-      = Pet.human_attribute_name(:birthday)
-      | :
-      = l @pet.birthday
+    .columns
+      .column.is-one-third
+        figure.image
+          - if @pet.image.attached?
+            = image_tag @pet.image
+          - else
+            = image_tag "no_image.jpg"
+      .column.content
+        .control.label
+          = Pet.human_attribute_name(:sex)
+          | :
+          = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+        .control.label.pt-4
+          = Pet.human_attribute_name(:breed)
+          | :
+          = @pet.breed
+        .control.label.pt-4
+          = Pet.human_attribute_name(:weight)
+          | :
+          = @pet.weight
+          - if @pet.weight
+            | kg
+        .control.label.pt-4
+          = Pet.human_attribute_name(:birthday)
+          | :
+          = l @pet.birthday
 
     = link_to "内容変更する", edit_pet_path(@pet), class: "button has-text-weight-bold is-fullwidth mt-4"
     = link_to "ペット一覧へ", pets_path, class: "button has-text-weight-bold is-fullwidth has-text-centered mt-4"

@@ -24,7 +24,7 @@ gem "slim"
 gem "webpacker", "~> 4.0"
 gem "rubocop-rspec", require: false
 gem "font-awesome-sass", "~> 5.15.1"
-gem 'aws-sdk-s3', require: false
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -35,7 +35,7 @@
     .label
       = Pet.human_attribute_name(:image)
     - if @pet.image.attached? 
-      = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
+      = image_tag @pet.image, width: "200", height: "200"
     .mt-3.mb-3
       = f.file_field :image
       .is-size-7 * 画像のサイズは2000*2000以下にしてください

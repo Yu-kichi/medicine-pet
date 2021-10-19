@@ -1,20 +1,22 @@
 header
-  nav.navbar.is-green aria-label=("main navigation") role="navigation"
+  nav.navbar aria-label=("main navigation") role="navigation"
     .container
       .navbar-brand.pl-2
         .navbar-item.is-size-4
+          .mr-1
+            = image_tag("MediPet_favicon.png")
           - if @pets.present? && @pet&.id
-            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali"
+            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali "
           - elsif @pets.present?
             = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "Mali"
           - else
             = link_to "MediPet", welcome_path, class: "Mali"
-        .navber-item.mt-2
+        .navber-item.mt-2.ml-4
           - if @pet
             - if @pet.image.attached? && @pet.image.blob&.persisted?
               = image_tag(@pet.image, class: "pet_image_icon")
         - if user_signed_in? && @pets.present? && @pets.size >= 2
-          #select-pet.navber-item.ml-3
+          #select-pet.navber-item.ml-3.mt-1
         - if user_signed_in?
           #menu-button.navbar-burger(user-id="#{current_user.id}")
         - else
@@ -27,7 +29,6 @@ header
                 .dropdown-trigger
                   i.fas.fa-user-edit.fa-2x
                     span.icon.is-small
-                      i.fas.fa-angle-down aria-hidden="true"
                   .dropdown-menu id="dropdown-menu4" role="menu"
                     .dropdown-content
                       .dropdown-item

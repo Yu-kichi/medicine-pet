@@ -38,7 +38,9 @@ header
                       .dropdown-item
                         = link_to "薬品リストに追加したお薬一覧", medicines_path
                       .dropdown-item
-                        = link_to "Log out", destroy_user_session_path, method: :delete
+                        = link_to "病院リストに追加したお薬一覧", clinics_path
+                      .dropdown-item
+                        = link_to "ログアウト", destroy_user_session_path, method: :delete
             - else
               .buttons
                 .button.is-primary.strong

@@ -34,7 +34,7 @@
   .field
     .label
       = Pet.human_attribute_name(:image)
-    - if @pet.image.attached? && @pet.image.blob&.persisted?
+    - if @pet.image.attached? 
       = image_tag @pet.image.variant(resize_to_limit: [200, 200]).processed
     .mt-3.mb-3
       = f.file_field :image

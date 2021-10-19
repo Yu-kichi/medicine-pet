@@ -1,8 +1,18 @@
 - title "welcome"
 
 .welcome.has-text-centered.has-background-white
-  figure
-    = image_tag "MediPet_title.png"
+  .columns.is-centered.ml-6.mr-6.pt-3
+    .column.is-three-fifths
+      = image_tag "MediPet_logo.png", width: "60%", height: "60%"
+      .text.mt-3
+        | お薬手帳を医師・薬剤師に見せることで「飲み合わせの悪い薬」や
+        br
+        |「薬の重複を避ける」ことができます。
+        br
+        | 大切なペットのためにお薬手帳をつけてあげましょう！
+      .button.is-primary.strong.mt-6
+        strong = link_to "アカウント作成", new_user_registration_path, class: "has-text-white"
+  
   .columns.is-centered.p-6
     .column
       figure
@@ -27,5 +37,3 @@
         | 簡単登録
       p.welcome_description.mt-5
         | 全国1万件以上の動物病院と100種類以上のお薬名が既に登録されているので、選ぶだけで簡単に登録できます。
-  .button.is-primary.strong.mb-6
-    strong = link_to "アカウント作成", new_user_registration_path, class: "has-text-white"

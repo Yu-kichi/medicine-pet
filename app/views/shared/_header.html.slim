@@ -4,7 +4,7 @@ header
       .navbar-brand.pl-2
         .navbar-item.is-size-4
           .mr-1
-            = image_tag('MediPet_favicon.png')
+            = image_tag("MediPet_favicon.png")
           - if @pets.present? && @pet&.id
             = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali "
           - elsif @pets.present?

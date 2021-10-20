@@ -2,20 +2,21 @@
 
 .container.has-background-white.contents-body
   .box.is-shadowless
-    .title.has-background-lightseagreen.has-text-centered.mb-4.p-2
+    .title.has-background-lightseagreen.has-text-centered.mb-5.p-2
       h1.has-text-white.has-text-weight-bold ペット一覧
     - if @pets
       - @pets.each do |pet|
         .pet-list
           li
-            ol.mt-5
-              columns
-                = link_to pet
-                  column
+            ol.mt-4
+              .media.mb-3
+                .media-left
+                  = link_to pet
                     - if pet.image.attached? && pet.image.blob&.persisted?
                       = image_tag(pet.image, class: "pet_image_icon")
                     - else
-                      i class="fa fa-address-card fa-3x"
-                  column.is-size-4.ml-4
-                    = pet.name
+                      i class="fa fa-address-card fa-2x mr-1"
+                .media-content.is-size-5
+                  = pet.name
+
     = link_to "New Pet", new_pet_path, class: "has-text-white has-text-weight-bold button is-link is-fullwidth mt-6"

@@ -9,7 +9,7 @@ Dir.foreach("db/seeds/clinics") do |item|
 end
 
 file_names = file_names.sort
-# データ投入できるが時間はかかる。。
+
 file_names.each_with_index do |file, i|
   File.foreach(file) do |line|
     line = line.split(",")

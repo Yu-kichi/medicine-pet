@@ -34,7 +34,7 @@
   .field
     .label
       = Pet.human_attribute_name(:image)
-    - if @pet.image.attached? 
+    - if @pet.image.attached?
       = image_tag @pet.image, width: "200", height: "200"
     .mt-3.mb-3
       = f.file_field :image

@@ -9,6 +9,7 @@ RSpec.feature "Clinics", type: :system do
     @pet = create(:pet_1, user_id: @user.id)
     create(:prefecture_1)
     @prescription = create(:prescription_1, pet_id: @pet.id)
+    @clinic = create(:clinic_1, user_id: @user.id)
   end
 
   describe "病院情報作成" do
@@ -55,6 +56,22 @@ RSpec.feature "Clinics", type: :system do
         expect(page).to have_content("住所を入力してください")
         expect(page).to have_content("電話番号を入力してください")
       end
+    end
+
+    scenario "病院情報編集" do
+      visit "/clinics/#{@clinic.id}/edit"
+      fill_in "病院名 *", with: "いなば動物病院 (北海道)"
+      click_button "更新する"
+      expect(page).to have_content("いなば動物病院 (北海道)")
+    end
+
+    scenario "病院情報削除" do
+      visit "/clinics"
+      expect(page).to have_content("まつい犬猫病院 (北海道)")
+      find(".fa-trash").click
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content("病院情報を削除しました")
+      expect(page).not_to have_content("まつい犬猫病院 (北海道)")
     end
   end
 end

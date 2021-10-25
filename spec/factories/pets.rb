@@ -15,5 +15,8 @@ FactoryBot.define do
     breed { "シャム猫" }
     weight { "7" }
     birthday { "20210101" }
+    after(:build) do |post|
+      post.image.attach(io: File.open("#{Rails.root}/spec/factories/files/pet_profile.png"), filename: "test_image.png", content_type: "image/png")
+    end
   end
 end

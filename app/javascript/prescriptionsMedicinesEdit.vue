@@ -4,18 +4,14 @@
   </div>
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
-      <h1 class="title has-background-lightseagreen has-text-white has-text-centered mb-4 p-2">
-        <p>お薬情報編集</p>
-      </h1>
+      <h1 class="title has-background-lightseagreen has-text-white has-text-centered mb-4 p-2">お薬情報編集</h1>
       <div class="form__items">
         <div class="field">
-          <div class="label">
-            <p>お薬名 *</p>
-          </div>
+          <label for="medicine_name" class="label">お薬名 *</label>
           <div class="control columns">
             <div class="column is-three-fifths">
               <VueMultiselect v-model="selectedMedicine" :options="medicines" track-by="name" label="name"
-                placeholder="お薬を選択してください">
+                placeholder="お薬を選択してください" id="medicine_name">
               </VueMultiselect>
               <p class="is-size-7">*ひらがなで見つからない時はカタカナで検索してください。</p>
               <p v-if="medicineError !== null">
@@ -25,26 +21,20 @@
           </div>
         </div>
         <div class="field">
-          <div class="label">
-            <p>1日の使用量</p>
-          </div>
+          <label for="dose" class="label">1日の使用量</label>
         </div>
         <input v-model="dose" placeholder="数字で入力してください" class="input is-small " type="number" style="width: 50%;"
-          min="0">
+          min="0" id="dose">
         <span>錠</span>
         <div class="field mt-3">
-          <div class="label">
-            <p>総量</p>
-          </div>
+          <label for="total_amount" class="label">総量</label>
         </div>
         <input v-model="total_amount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
-          min="0">
+          min="0" id="total_amount">
         <span>日分</span>
         <div class="field mt-3">
-          <div class="label">
-            <p>メモ</p>
-          </div>
-          <textarea v-model="memo" class="textarea"></textarea>
+          <label for="medicine_memo" class="label">メモ</label>
+          <textarea v-model="memo" class="textarea" id="medicine_memo"></textarea>
         </div>
         <div class="actions mt-4">
           <button @click="updatePrescriptionsMedicine"

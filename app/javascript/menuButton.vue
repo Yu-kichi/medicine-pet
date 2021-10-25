@@ -35,7 +35,7 @@
           <li class="pb-2 mt-2">
             <p>
               <a href="/users/sign_out" data-method="delete">
-                <i class="fas fa-sign-out-alt mr-2"></i>Log out
+                <i class="fas fa-sign-out-alt mr-2"></i>ログアウト
               </a>
             </p>
           </li>

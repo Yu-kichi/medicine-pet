@@ -41,7 +41,7 @@
               <p class="is-size-6">総量:{{medicine.total_amount}}日分</p>
               <p class="is-size-6">メモ:{{medicine.memo}}</p>
             </div>
-            <div class="column mt-6" @click="showOnPrescription(index)">...</div>
+            <div id="medicine-show-button" class="column mt-6" @click="showOnPrescription(index)">...</div>
           </div>
           <div v-show="index === clickedPrescription" class="pl-4 pr-4">
             <a class="mb-4 mt-4 button pb-2 is-fullwidth mr-4"

@@ -44,5 +44,5 @@
           .actions.pt-2
             = f.submit "変更する", class: "button is-link is-fullwidth"
     h3.mt-4
-      = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-outlined"
+      = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当によろしいですか?" }, method: :delete, class: "button is-outlined"
       = link_to "TOPページへ戻る", root_path, class: "button is-outlined is-fullwidth mt-4 mb-4"

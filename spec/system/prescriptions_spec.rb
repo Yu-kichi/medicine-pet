@@ -23,7 +23,7 @@ RSpec.feature "Prescriptions", type: :system do
         @medicine = create(:medicine, user_id: @user.id)
         @prescription_1 = create(:prescription_1, pet_id: @pet.id)
         @prescription_2 = create(:prescription_2, pet_id: @pet.id)
-        create(:prescriptions_medicine, prescription_id: @prescription_1.id, medicine_id:@medicine.id)
+        create(:prescriptions_medicine, prescription_id: @prescription_1.id, medicine_id: @medicine.id)
       end
 
       scenario "処方箋作成リンクが表示される" do
@@ -59,7 +59,7 @@ RSpec.feature "Prescriptions", type: :system do
       @pet = create(:pet_1, user_id: @user.id)
       @prescription = create(:prescription_1, pet_id: @pet.id)
       @medicine = create(:medicine, user_id: @user.id)
-      create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id:@medicine.id)
+      create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)
     end
 
     describe "処方箋作成" do

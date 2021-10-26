@@ -25,7 +25,7 @@ RSpec.feature "Clinics", type: :system do
         fill_in "電話番号 *", with: "0138-47-4773"
         click_button "登録する"
         expect(page).to have_content("処方箋情報登録")
-        expect(Clinic.count).to eq 2
+        expect(Clinic.count).to eq 3
       end
     end
 
@@ -41,7 +41,7 @@ RSpec.feature "Clinics", type: :system do
         fill_in "電話番号 *", with: "0138-47-4773"
         click_button "登録する"
         expect(page).to have_content("処方箋編集")
-        expect(Clinic.count).to eq 2
+        expect(Clinic.count).to eq 3
       end
     end
 

@@ -20,9 +20,10 @@ RSpec.feature "Prescriptions", type: :system do
     context "ペット作成後" do
       before do
         @pet = create(:pet_1, user_id: @user.id)
+        @medicine = create(:medicine, user_id: @user.id)
         @prescription_1 = create(:prescription_1, pet_id: @pet.id)
         @prescription_2 = create(:prescription_2, pet_id: @pet.id)
-        create(:prescriptions_medicine, prescription_id: @prescription_1.id)
+        create(:prescriptions_medicine, prescription_id: @prescription_1.id, medicine_id: @medicine.id)
       end
 
       scenario "処方箋作成リンクが表示される" do
@@ -47,8 +48,8 @@ RSpec.feature "Prescriptions", type: :system do
       scenario "処方箋のheader部分をclickすると詳細ページへ移動する" do
         visit "/"
         first(".prescription-header").click
-        expect(current_path).to eq "/pets/#{@pet.id}/prescriptions/#{@prescription_1.id}"
-        expect(page).to have_content("まつい犬猫病院")
+        expect(current_path).to eq "/pets/#{@pet.id}/prescriptions/#{@prescription_2.id}"
+        expect(page).to have_content("ウェルネス動物病院")
       end
     end
   end
@@ -57,7 +58,8 @@ RSpec.feature "Prescriptions", type: :system do
     before do
       @pet = create(:pet_1, user_id: @user.id)
       @prescription = create(:prescription_1, pet_id: @pet.id)
-      create(:prescriptions_medicine, prescription_id: @prescription.id)
+      @medicine = create(:medicine, user_id: @user.id)
+      create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)
     end
 
     describe "処方箋作成" do

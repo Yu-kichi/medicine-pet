@@ -76,7 +76,7 @@ RSpec.feature "Home", type: :system do
         expect(page).to have_content("ログアウト")
       end
     end
-    
+
     context "非ログイン時" do
       scenario "ログインしていない時はログインとサインアップが表示される" do
         visit "/"

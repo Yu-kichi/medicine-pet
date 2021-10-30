@@ -36,6 +36,22 @@ RSpec.feature "Pets", type: :system do
     expect(page).to have_selector("img[src$='pet_profile.png']")
   end
 
+  scenario "写真のサイズが大きすぎる場合にエラーを表示する" do
+    visit "/pets/new"
+    fill_in "名前", with: "わんきち"
+    attach_file "pet_image", "#{Rails.root}/spec/factories/files/big_picture.jpg"
+    click_button "登録する"
+    expect(page).to have_content("画像が大きすぎます、横と縦の長さを2000以下にしてください")
+  end
+
+  scenario "写真の形式が異なる場合にエラーを表示する" do
+    visit "/pets/new"
+    fill_in "名前", with: "わんきち"
+    attach_file "pet_image", "#{Rails.root}/spec/factories/files/test.pdf"
+    click_button "登録する"
+    expect(page).to have_content("画像はPNG, JPG, GIF形式にしてください")
+  end
+
   scenario "ペット編集成功" do
     visit "/pets/#{@pet.id}/edit"
     click_button "更新する"

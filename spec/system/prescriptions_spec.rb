@@ -37,7 +37,7 @@ RSpec.feature "Prescriptions", type: :system do
         expect(page).to have_content("アイボメック")
       end
 
-      scenario "処方箋一覧画面で登録した病院が検索できる" do
+      scenario "処方箋一覧画面で登録した病院が絞り込みできる" do
         visit "/"
         find(".multiselect__tags").click
         find(".multiselect__input").set("まつい" + "\n")

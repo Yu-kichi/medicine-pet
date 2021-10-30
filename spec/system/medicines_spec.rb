@@ -47,7 +47,7 @@ RSpec.feature "Medicines", type: :system do
     end
   end
 
-  scenario "お薬情報編集" do
+  scenario "お薬情報編集成功" do
     visit "/medicines/#{@medicine.id}/edit"
     fill_in "薬の名前", with: "薬テスト１"
     click_button "編集する"

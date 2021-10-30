@@ -1,9 +1,15 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
  @import "bulma";
  @import "./pets.scss";
  @import "./prescriptions_medicines.scss";
  @import "./prescriptions.scss";
  @import "./medicine_notebook.scss";
- @import "./welcome.scss";
  @import "font-awesome-sprockets";
- @import "font-awesome";
  @import 'partials/*';
+ @import "font-awesome";
+ @import "welcome.scss";
+ 

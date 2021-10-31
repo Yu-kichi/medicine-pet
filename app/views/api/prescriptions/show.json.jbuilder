@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-json.prescription @prescription
-
 json.prescription_clinic @prescription.clinic.name
 json.clinic_address @prescription.clinic.address
 json.clinic_telephone_number @prescription.clinic.telephone_number

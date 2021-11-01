@@ -130,8 +130,8 @@
             this.clinic_addresss = responseData["clinic_address"]
             this.clinic_telephone_number = responseData["clinic_telephone_number"]
             this.prescription_date = responseData["prescription_date"]
-            this.prescription = responseData["prescription"]
             this.loaded = true
+            console.log(responseData)
           })
       },
       prescribedDate(date) {

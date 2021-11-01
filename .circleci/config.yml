@@ -5,29 +5,17 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
-# setup
-commands:
-  setup:
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-
 jobs:
   build:
     docker:
       - image: circleci/ruby:3.0.2-node-browsers
-    steps:
-      - setup
       - image: circleci/postgres:9.6.9-alpine
         name: "db"
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: circle-test_test
     steps:
-      - setup
+      - checkout
       - run:
           name: gem install
           command: gem install bundler:2.2.22

@@ -16,7 +16,7 @@ jobs:
           POSTGRES_DB: circle-test_test
     steps:
       - checkout
-      - run: gem install bundler:2.1.4
+      - run: gem install bundler:2.2.22
       - run:       
           name: rails db:migrate
           command: bundle exec rails db:migrate

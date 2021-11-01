@@ -71,7 +71,7 @@
           response => {
             const responseData = response.data;
             this.clinicName = responseData.clinic_name
-            this.name = responseData.pet.name
+            this.name = responseData.pet_name
             this.prescriptions = responseData.prescriptions
             this.showPrescriptions = this.prescriptions
           })

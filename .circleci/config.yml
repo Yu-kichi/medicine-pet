@@ -31,7 +31,20 @@ jobs:
           command: bundle exec rails db:migrate
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace 
+          command: bundle exec rails db:schema:load --trace
+
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - run:
           name: Rspec
           command: bundle exec rspec

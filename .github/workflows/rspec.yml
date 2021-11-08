@@ -15,9 +15,9 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: <%= ENV["PG_USERNAME"] %>
-          POSTGRES_PASSWORD: <%= ENV["PG_PASSWORD"] %>
-          POSTGRES_DB: medicine_pet_development
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: medicine_pet_test
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5  
     steps:
     # actions/checkoutリポジトリのaction.ymlを利用する

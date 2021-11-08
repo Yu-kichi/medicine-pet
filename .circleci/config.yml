@@ -9,7 +9,7 @@ jobs:
   build:
     working_directory: ~/medicine-pet
     docker:
-      - image: cimg/ruby:2.7.4-browsers
+      - image: circleci/ruby:3.0.2-browsers
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1

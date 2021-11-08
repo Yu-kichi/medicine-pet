@@ -1,26 +1,24 @@
 name: Ruby
 
-# masterブランチへのPR時の実行
 on:
   pull_request:
     branches:
     - master
-    # ex.
-    # # Trigger the workflow on push or pull request
-    # on: [push, pull_request]
-    # # Trigger the workflow on pull request activity
-    # on:
-    #   release
-    #     # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-    #     types: [published, created, edited]
 
 jobs:
   run_spec:
     name: Run spec
-
-    # ジョブを実行する仮想マシンを選択（ubuntu/macOS/Windows)
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: medicine_pet_development
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5  
     steps:
     # actions/checkoutリポジトリのaction.ymlを利用する
     - uses: actions/checkout@v1 # https://github.com/actions/checkout/blob/master/action.yml
@@ -35,6 +33,9 @@ jobs:
       uses: actions/setup-ruby@v1 # https://github.com/actions/setup-ruby/blob/master/action.yml
       with:
         ruby-version: 3.0.2
+    - name: yarn install
+      run: yarn install --check-files
+    
     - name: Test with Rspec
       run: |
         gem install bundler

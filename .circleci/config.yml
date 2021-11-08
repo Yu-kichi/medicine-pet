@@ -9,7 +9,7 @@ jobs:
   build:
     working_directory: ~/medicine-pet
     docker:
-      - image: circleci/ruby:3.0.2-browsers
+      - image: circleci/ruby:3.0.2-node-browsers
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -39,7 +39,7 @@ jobs:
             - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install 
+          command: yarn install --immutable
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}

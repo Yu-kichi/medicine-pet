@@ -100,7 +100,7 @@ RSpec.feature "Prescriptions", type: :system do
       first(".column.mt-6").click
       click_link "内容修正"
       expect(page).to have_content("処方箋編集")
-      fill_in "date", with: "2021-10-06"
+      find("#date").set("2021-10-06")
       click_button "編集する"
       expect(page).to have_content("2021年10月06日(水)")
     end

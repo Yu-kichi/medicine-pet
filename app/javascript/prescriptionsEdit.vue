@@ -11,7 +11,7 @@
         <div class="field">
           <label for="date" class="label">診療日 *</label>
           <div class="control">
-            <input v-model="date" class="input" type="date" id="date" name="prescription[date]">
+            <input v-model="date" class="input" type="date" id="date" name="prescription[date]" max="3000-12-31">
             <p v-if="dateError !== null ">
               <p class="has-text-danger">{{ dateError }}</p>
             </p>

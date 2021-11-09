@@ -24,20 +24,19 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2 
+    - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@master
+    - run: |
+    export DISPLAY=:99
+    chromedriver --url-base=/wd/hub &
+    sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.2
         bundler-cache: true
-
-    - name: install chorme
-      run: |
-        curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-        echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
-        apt-get update -q -y
-        apt-get install -y google-chrome-stable
-
+     
     - name: yarn install
       run: yarn install --check-files
     

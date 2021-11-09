@@ -25,6 +25,9 @@ gem "webpacker", "~> 4.0"
 gem "rubocop-rspec", require: false
 gem "font-awesome-sass", "~> 5.15.1"
 gem "aws-sdk-s3", require: false
+gem "selenium-webdriver"
+gem "webdrivers"
+gem "capybara", ">= 3.26"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,10 +56,6 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem "capybara", ">= 2.15"
-  gem "selenium-webdriver"
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

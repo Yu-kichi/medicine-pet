@@ -151,6 +151,8 @@ GEM
     nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.6-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.1.1)
@@ -325,6 +327,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations (~> 0.8.8)
@@ -333,7 +336,7 @@ DEPENDENCIES
   bullet
   bulma-rails (~> 0.9.1)
   byebug
-  capybara (>= 2.15)
+  capybara (>= 3.26)
   devise
   devise-i18n
   devise-i18n-views

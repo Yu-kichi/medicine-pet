@@ -1,4 +1,4 @@
-name: Ruby
+name: Rspec
 
 on:
   pull_request:
@@ -6,8 +6,7 @@ on:
     - master
 
 jobs:
-  run_spec:
-    name: Run spec
+  spec:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -18,21 +17,27 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: medicine_pet_test
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5  
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+
     steps:
-    # actions/checkoutリポジトリのaction.ymlを利用する
-    - uses: actions/checkout@v1 # https://github.com/actions/checkout/blob/master/action.yml
-        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsuses
-        #   @~でバージョンやブランチ、コミットIDを指定できる
-        #   自リポジトリのaction.ymlがあるディレクトリを相対パスで指定することもできる
-        #     ex. uses: ./.github/actions/my-action
-        #   Dockerhubのイメージを利用することもできる
-        #     ex. uses: docker://alpine:3.8
-    - name: Set up Ruby 3.0.2
-      # actions/checkoutリポジトリのaction.ymlを利用する
-      uses: actions/setup-ruby@v1 # https://github.com/actions/setup-ruby/blob/master/action.yml
+    - uses: actions/checkout@v2 
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.2
+        bundler-cache: true
+
+    - name: install chorme
+        run: |
+          curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+          apt-get update -q -y
+          apt-get install -y google-chrome-stable
+
     - name: yarn install
       run: yarn install --check-files
     

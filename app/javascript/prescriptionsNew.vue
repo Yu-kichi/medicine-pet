@@ -82,10 +82,12 @@
 <script>
   import VueMultiselect from 'vue-multiselect'
   import axios from "axios";
+  import moment from 'moment';
 
   export default {
     components: {
-      VueMultiselect
+      VueMultiselect,
+      moment
     },
     data() {
       return {
@@ -109,10 +111,17 @@
       },
     },
     created: function () {
+      this.today();
       this.fetchPrefectures();
       this.fetchPrescriptions();
     },
+    mounted: function(){
+    },
     methods: {
+     today(){
+       const date = new Date
+       this.date = moment(date).format("YYYY-MM-DD")
+     },
       token() {
         const meta = document.querySelector('meta[name="csrf-token"]')
         return meta ? meta.getAttribute('content') : ''

@@ -7,6 +7,7 @@ RSpec.feature "Prescriptions", type: :system do
     @user = create(:user)
     create(:prefecture_1)
     create(:prefecture_2)
+    create(:clinic_2)
     login_user(@user.email, @user.password)
   end
   describe "一覧ページ" do
@@ -66,7 +67,6 @@ RSpec.feature "Prescriptions", type: :system do
       scenario "作成成功" do
         visit "/pets/#{@pet.id}/prescriptions/new"
         expect(page).to have_content("処方箋情報登録")
-        fill_in "date", with: "002021-10-06"
         first(".multiselect__tags").click
         find(".multiselect__input").set("北海道" + "\n")
         page.all(".multiselect__tags")[1].click
@@ -74,14 +74,12 @@ RSpec.feature "Prescriptions", type: :system do
         fill_in "medical_fee", with: "2000"
         fill_in "medicine_fee", with: "3000"
         click_button "お薬登録へ進む"
-        expect(page).to have_content("2021年10月06日(水)")
         expect(page).to have_content("まつい犬猫病院")
       end
 
       scenario "処方箋作成失敗バリデーション表示" do
         visit "/pets/#{@pet.id}/prescriptions/new"
         click_button "お薬登録へ進む"
-        expect(page).to have_content("診療日を選んでください")
         expect(page).to have_content("病院名を選んでください")
       end
 
@@ -100,9 +98,12 @@ RSpec.feature "Prescriptions", type: :system do
       first(".column.mt-6").click
       click_link "内容修正"
       expect(page).to have_content("処方箋編集")
-      find("#date").set("2021-10-06")
+      first(".multiselect__tags").click
+      find(".multiselect__input").set("青森" + "\n")
+      page.all(".multiselect__tags")[1].click
+      find(".multiselect__input").set("ウェルネス動物病院" + "\n")
       click_button "編集する"
-      expect(page).to have_content("2021年10月06日(水)")
+      expect(page).to have_content("ウェルネス動物病院")
     end
 
     scenario "処方箋削除成功" do

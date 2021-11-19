@@ -19,10 +19,25 @@
 }
 
 .welcome-top-logo{
-  width:80%;
+  width:90%;
+  max-width: 400px;
+}
+
+.welcome-web-image{
+  width:50%;
   max-width: 400px;
 }
 
 .welcome-description-image{
   max-width: 200px;
+}
+
+.logo {
+  font-family: 'Paytone One', sans-serif;
+  color:lightseagreen;
+  font-size:32px;
+}
+
+.main_description {
+  color:#E36DB6;
 }

@@ -3,35 +3,41 @@
 .welcome.has-text-centered.has-background-white
   .columns.is-centered.ml-6.mr-6.pt-3
     .column.is-three-fifths
-      = image_tag "MediPet_logo.png", class: "welcome-top-logo"
+      .columns
+        .column
+          = image_tag "MediPet_logo_new.png", class: "welcome-top-logo"
+        .column  
+          = image_tag "top_image.png", class: "welcome-web-image"
+      .logo.is-size-1
+        | MediPet
+      .main_description.is-size-4
+        | ペットのお薬手帳
       .text.mt-3.has-text-left
         | お薬手帳を医師・薬剤師に見せることで「飲み合わせの悪い薬」や
         |「薬の重複を避ける」ことができます。
         | 大切なペットのためにお薬手帳をつけてあげましょう！
-      .button.is-primary.strong.mt-6
+      .button.is-primary.strong.is-large.mt-6
         strong = link_to "アカウント作成", new_user_registration_path, class: "has-text-white"
   .container.is-max-desktop.p-6
     .columns.is-centered
       .column
         figure
           = image_tag "pet_woman.png", class: "welcome-description-image"
-        h1.welcome_header.is-size-3.has-text-weight-bold
-          | ペットの <br>
-          | お薬を管理
-        p.welcome_description
+        h1.welcome_header.is-size-4.has-text-weight-bold.mt-2
+          | ペットのお薬を管理
+        p.welcome_description.has-text-left.mt-4
           | ペットのお薬手帳では、大切なペットの貰ったお薬の管理ができます。
       .column
         figure
           = image_tag "watch_smartphone.png", class: "welcome-description-image"
-        h1.welcome_header.is-size-3.has-text-weight-bold
-          | スマホで <br>
-          | いつでも確認
-        p.welcome_description
+        h1.welcome_header.is-size-4.has-text-weight-bold.mt-2
+          | スマホでいつでも確認
+        p.welcome_description.has-text-left.mt-4
           | お薬情報をスマートフォンで確認できるため、病院での持参忘れがなく、手帳を持ち歩く必要がありません。
       .column
         figure
           = image_tag "clinic_woman.png", class: "welcome-description-image"
-        h1.welcome_header.is-size-3.has-text-weight-bold.mt-5
+        h1.welcome_header.is-size-4.has-text-weight-bold.mt-2
           | 簡単登録
-        p.welcome_description.mt-5
+        p.welcome_description.has-text-left.mt-4
           | 全国1万件以上の動物病院と100種類以上のお薬名が既に登録されているので、選ぶだけで簡単に登録できます。

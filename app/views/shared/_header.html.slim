@@ -3,14 +3,14 @@ header
     .container
       .navbar-brand.pl-2
         .navbar-item.is-size-4
-          .mr-1
-            = image_tag("MediPet_favicon.png")
+          .mr-1.mt-2
+            = image_tag("MediPet_logo_new.png")
           - if @pets.present? && @pet&.id
-            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "Mali "
+            = link_to "MediPet", pet_medicine_notebook_index_path(@pet), class: "logo"
           - elsif @pets.present?
-            = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "Mali"
+            = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "logo"
           - else
-            = link_to "MediPet", welcome_path, class: "Mali"
+            = link_to "MediPet", welcome_path, class: "logo"
         .navber-item.mt-2.ml-4
           - if @pet
             - if @pet.image.attached? && @pet.image.blob&.persisted?

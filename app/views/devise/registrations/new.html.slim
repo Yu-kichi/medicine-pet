@@ -6,8 +6,8 @@ section
       .columns.is-centered
         .column.is-5.mt-6
           .card
-            h2.title.has-background-primary.has-text-white.has-text-centered.p-2.is-bold
-              | サインアップ
+            h2.title.is-primary.has-text-white.has-text-centered.p-2.is-bold
+              | アカウント作成
             .pl-3.pr-3.mb-3
               = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
                 = render "devise/shared/error_messages", resource: resource
@@ -35,5 +35,5 @@ section
                     span.icon.is-small.is-left
                         i.fa.fa-lock
                 .actions.p-2
-                  = f.submit "サインアップ", class: "button is-success is-fullwidth mt-2 mb-3 has-text-weight-bold"
+                  = f.submit "アカウント作成", class: "button is-primary is-fullwidth mt-2 mb-3 has-text-weight-bold"
               = render "devise/shared/links"

@@ -4,8 +4,8 @@
   </div>
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
-      <div class="title has-background-lightseagreen has-text-centered mb-4 p-2">
-        <h1 class="has-text-white has-text-weight-bold">処方箋編集</h1>
+      <div class="mb-4">
+        <h1 class="has-text-weight-bold is-size-4">処方箋編集</h1>
       </div>
       <div class="form__items">
         <div class="field">
@@ -53,9 +53,9 @@
         </div>
         <div class="mt-4">
           <button @click="updatePrescription"
-            class="button is-link is-fullwidth mt-4 mb-4 has-text-weight-bold">編集する</button>
+            class="button is-primary is-fullwidth mt-4 mb-4 has-text-weight-bold">編集する</button>
         </div>
-        <a :href='`/clinics/new/?pet_id=${petId}&prescription_id=${prescriptionId}`' class="button mt-4 is-fullwidth">
+        <a :href='`/clinics/new/?pet_id=${petId}&prescription_id=${prescriptionId}`' class="mt-4 link">
         病院名が見つからない時はこちら</a>
         <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
         <div>

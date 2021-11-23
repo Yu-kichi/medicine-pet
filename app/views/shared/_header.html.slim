@@ -11,7 +11,7 @@ header
             = link_to "MediPet", pet_medicine_notebook_index_path(@pets.first), class: "logo"
           - else
             = link_to "MediPet", welcome_path, class: "logo"
-        .navber-item.mt-2.ml-4
+        .navber-item.mt-2
           - if @pet
             - if @pet.image.attached? && @pet.image.blob&.persisted?
               = image_tag(@pet.image, class: "pet_image_icon")

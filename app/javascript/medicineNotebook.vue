@@ -1,7 +1,7 @@
 <template>
   <div class="container has-background-white contents-body">
     <div class="box has-background back-color is-shadowless">
-      <h1 class="page-header-title is-size-5 mb-4 has-text-weight-bold">
+      <h1 class="page-header-title mb-4 has-text-weight-bold is-size-4">
         <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
       </h1>
       <VueMultiselect v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect"
@@ -25,7 +25,7 @@
       </div>
       <div v-if="petId">
         <div class="mt-6 mb-4">
-          <a class="button is-fullwidth has-background-primary has-text-white has-text-weight-bold" 
+          <a class="button is-primary is-fullwidth has-text-white has-text-weight-bold" 
           :href='`/pets/${petId}/prescriptions/new`'>新しくお薬手帳に登録する
           </a>
         </div>

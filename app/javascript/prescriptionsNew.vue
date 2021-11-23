@@ -5,16 +5,16 @@
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
       <div v-if="prescriptionId">
-        <div class="title has-background-lightseagreen has-text-centered p-2">
-          <h1 class="has-text-white has-text-weight-bold">前回の情報を元に薬を一括登録する</h1>
+        <div class="">
+          <h1 class="is-size-4 has-text-weight-bold">前回の情報を元に薬を一括登録する</h1>
         </div>
         <div class="is-size-6 mb-3">
-          <p>このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。</p>
+          <p>※このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。</p>
           <p>病院や日付に変更がある場合には再入力をお願い致します。</p>
         </div>
       </div>
-      <div v-else class="title has-background-lightseagreen has-text-white has-text-centered p-2">
-        <h1 class="has-text-white has-text-weight-bold">処方箋情報登録</h1>
+      <div v-else class="is-size-4 mb-4">
+        <h1 class="has-text-weight-bold">処方箋情報登録</h1>
       </div>
       <div class="form__items">
         <div class="field">
@@ -61,18 +61,17 @@
           </div>
         </div>
         <div v-if="prescriptionId" class="actions pt-3">
-          <button @click="copyPrescription" class="button is-link is-fullwidth has-text-weight-bold">一括登録する</button>
+          <button @click="copyPrescription" class="button is-primary is-fullwidth has-text-weight-bold">一括登録する</button>
         </div>
         <div v-else class="actions pt-3">
-          <button @click="createPrescription" class="button is-link is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
+          <button @click="createPrescription" class="button is-primary is-fullwidth has-text-weight-bold">お薬登録へ進む</button>
         </div>
-        <div v-if="!prescriptionId" class="actions">
-          <a :href='`/clinics/new/?pet_id=${petId}`' class="button mt-4 is-fullwidth">病院名が見つからない時はこちら</a>
+        <div v-if="!prescriptionId" class="mt-4">
+          <a :href='`/clinics/new/?pet_id=${petId}`' class="link">病院名が見つからない時はこちら</a>
           <p class="is-size-7">*病院名が見つからない場合にはこちらから新しく病院情報の登録ができます。</p>
         </div>
-        <div>
-          <a class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/medicine_notebook`'>戻る</a>
+        <div class="mt-4 mb-4">
+          <a :href='`/pets/${petId}/medicine_notebook`' class="link">戻る</a>
         </div>
       </div>
     </div>

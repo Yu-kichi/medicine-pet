@@ -4,9 +4,7 @@
   </div>
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
-      <div class="has-background-lightseagreen mb-4 p-2">
-        <h1 class="title has-text-white has-text-weight-bold has-text-centered">病院情報編集</h1>
-      </div>
+      <h1 class="has-text-weight-bold is-size-4 mb-4">病院情報編集</h1>
       <div class="form__items">
         <div class="field">
           <label for="prefecture" class="label">県名 *</label>
@@ -45,7 +43,7 @@
           </p>
         </div>
         <div class="actions pt-3">
-          <button @click="editClinic" class="button is-link is-fullwidth has-text-weight-bold">更新する</button>
+          <button @click="editClinic" class="button is-primary is-fullwidth has-text-weight-bold">更新する</button>
         </div>
         <div>
           <a class="button is-fullwidth mt-4 mb-4"

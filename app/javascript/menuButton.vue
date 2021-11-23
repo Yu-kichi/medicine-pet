@@ -21,14 +21,14 @@
           <li class="pb-2 mt-2">
             <p>
               <a href="/medicines">
-                <i class="fas fa-capsules mr-2"></i>薬品リストに追加したお薬一覧
+                <i class="fas fa-capsules mr-2"></i>薬品リストに追加したお薬
               </a>
             </p>
           </li>
           <li class="pb-2 mt-2">
             <p>
               <a href="/clinics">
-                <i class="far fa-hospital mr-2"></i>病院リストに追加した病院一覧
+                <i class="far fa-hospital mr-2"></i>病院リストに追加した病院
               </a>
             </p>
           </li>

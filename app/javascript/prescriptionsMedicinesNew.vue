@@ -3,20 +3,20 @@
     <p>ロード中</p>
   </div>
   <div v-else class="container">
-    <div class="box is-shadowless has-background-white-bis">
-      <h1 class="title has-text-centered ">既に登録している情報</h1>
-      <div v-if='clinic_name' class="is-size-5 ml-3">
-        <p>{{prescribedDate(prescription_date)}}</p>
-        <p>{{clinic_name}}</p>
-      </div>
-      <div v-if='registered.length'>
-        <div v-for="medicine in registered" :key='medicine.id' class="is-size-5 ml-3">
-          <p>{{medicine.medicine_name}}</p>
-        </div>
-      </div>
-    </div>
     <div class="box has-background-white is-shadowless">
-      <h1 class="title has-background-lightseagreen has-text-white has-text-centered mb-4 p-2">お薬情報登録</h1>
+      <h1 class="mb-4 has-text-weight-bold is-size-4">お薬情報登録</h1>
+        <div class="box is-shadowless has-background-white-bis">
+        <h1 class="has-text-weight-bold">既に登録済み</h1>
+        <div v-if='clinic_name'>
+          <p>{{prescribedDate(prescription_date)}}</p>
+          <p>{{clinic_name}}</p>
+        </div>
+        <div v-if='registered.length'>
+          <div v-for="medicine in registered" :key='medicine.id' class="is-size-5 ml-3">
+            <p>{{medicine.medicine_name}}</p>
+          </div>
+        </div>
+    </div>
       <div class="form__items">
         <div class="field">
           <label for="medicine_name" class="label">お薬名 *</label>
@@ -50,22 +50,20 @@
             <textarea v-model="memo" class="textarea" id="medicine_memo"></textarea>
           </div>
         </div>
-        <div class="actions pt-3">
-          <button @click="createPrescriptionsMedicines()"
-            class="button is-link is-fullwidth has-text-weight-bold">お薬情報を登録する</button>
-        </div>
         <div class="actions pt-4">
           <button @click="createPrescriptionsMedicines('addition')"
-            class="button is-primary is-fullwidth has-text-weight-bold">追加でお薬を登録する</button>
+            class="button is-fullwidth has-text-weight-bold">追加でお薬を登録する</button>
         </div>
-        <div class="actions mt-4">
-          <a :href='`/medicines/new/?prescription_id=${prescriptionId}`'
-            class="button is-outlined is-fullwidth">薬の名前が見つからない時はこちら</a>
+        <div class="actions pt-3">
+          <button @click="createPrescriptionsMedicines()"
+            class="button is-primary is-fullwidth has-text-weight-bold">お薬情報を登録する</button>
+        </div>
+        <div class="mt-4">
+          <a :href='`/medicines/new/?prescription_id=${prescriptionId}`' class="link">薬の名前が見つからない時はこちら</a>
           <p class="is-size-7">*薬の名前が見つからない場合にはこちらから新しくお薬情報の登録ができます。</p>
         </div>
-        <div>
-          <a class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/medicine_notebook`'>お薬手帳に戻る</a>
+        <div class="mt-4 mb-4">
+          <a :href='`/pets/${petId}/medicine_notebook`' class="link">お薬手帳に戻る</a>
         </div>
       </div>
     </div>

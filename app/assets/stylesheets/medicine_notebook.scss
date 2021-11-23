@@ -15,9 +15,34 @@ a {
 }
 
 .page-header-title{
-  color:lightseagreen;
+  color:#4a4a4a;
 }
 
 .contents-body{
   min-height:600px; 
+}
+
+li{
+  display: flex;
+  justify-content: flex-start;
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.container_pre{
+  border: solid 0.1px ;
+  width:100%;
+  border:0.1rem  solid #e1e4e8
+}
+
+.title_pre{
+  background-color:#edf6f1;
+}
+
+.text{
+  color:lightseagreen;
+}
+
+table{
+  width:100%;
 }

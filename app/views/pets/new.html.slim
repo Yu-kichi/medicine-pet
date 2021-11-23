@@ -3,7 +3,7 @@
 .container
   .box.has-background-white.is-shadowless
     = render "shared/errors", obj: @pet
-    h1.is-size-6.has-text-centered.has-text-weight-bold.mb-4
+    h1.is-size-4.has-text-weight-bold.mb-4
       - if current_user.pets.empty?
         | 初めにペット情報を登録しましょう!
       - else

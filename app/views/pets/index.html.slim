@@ -2,8 +2,7 @@
 
 .container.has-background-white.contents-body
   .box.is-shadowless
-    .title.has-background-lightseagreen.has-text-centered.mb-5.p-2
-      h1.has-text-white.has-text-weight-bold ペット一覧
+    h1.has-text-weight-bold.is-size-4.mb-4 ペット一覧
     - if @pets
       - @pets.each do |pet|
         .pet-list
@@ -16,7 +15,7 @@
                       = image_tag(pet.image, class: "pet_image_icon")
                     - else
                       i class="fa fa-address-card fa-2x mr-1"
-                .media-content.is-size-5
+                .media-content
                   = pet.name
 
-    = link_to "New Pet", new_pet_path, class: "has-text-white has-text-weight-bold button is-link is-fullwidth mt-6"
+    = link_to "New Pet", new_pet_path, class: "has-text-white has-text-weight-bold button is-primary is-fullwidth mt-6"

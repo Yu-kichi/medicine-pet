@@ -3,8 +3,7 @@
 .container.has-background-white-bis.contents-body
   .box.is-shadowless.has-background-white
     = render "shared/errors", obj: @medicine
-    .title.has-background-lightseagreen.has-text-white.has-text-centered.mb-4.p-2
-      | お薬名登録
+    h1.mb-4.is-size-4.has-text-weight-bold お薬名登録
     = form_with(model: @medicine, prescription: @prescription, prescription_medicine: @prescription_medicine, local: true) do |f|
       .form__items
         .field
@@ -18,7 +17,7 @@
           .control
             = f.text_field :name, class: "input", required: true
       .actions.mt-5
-        = f.submit "登録する", class: "button is-link is-fullwidth has-text-weight-bold"
+        = f.submit "登録する", class: "button is-primary is-fullwidth has-text-weight-bold"
 
     - if @prescription_medicine
       = link_to "キャンセル", edit_prescription_prescriptions_medicine_path(@prescription, @prescription_medicine), class: "button is-outlined is-fullwidth mt-4"

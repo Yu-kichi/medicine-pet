@@ -2,11 +2,8 @@
 
 .container.contents-body
   .box.has-background-white.is-shadowless
-    .title.has-background-lightseagreen.has-text-centered.mb-4.p-2
-      h1.has-text-white.has-text-weight-bold
-        = "#{@pet.name}の"
-        br
-        | プロフィール
+    h1.has-text-weight-bold.is-size-4.mb-4
+      = "#{@pet.name}のプロフィール"
     .columns
       .column.is-one-third
         figure.image
@@ -35,8 +32,11 @@
           = l @pet.birthday
 
     = link_to "内容変更する", edit_pet_path(@pet), class: "button has-text-weight-bold is-fullwidth mt-4"
-    = link_to "ペット一覧へ", pets_path, class: "button has-text-weight-bold is-fullwidth has-text-centered mt-4"
-    .has-text-right.mt-4
-      = link_to pet_path(@pet), method: :delete, data: { confirm: "#{@pet.name}を削除します。よろしいですか？" } do
+    .mt-4.has-text-weight-bold
+      = link_to "ペット一覧へ", pets_path, class: "link"
+    .mt-4.has-text-weight-bold
+      = link_to "処方箋一覧へ", pet_medicine_notebook_index_path(@pet), class: "link"
+    .has-text-right
+      = link_to pet_path(@pet), method: :delete, class: "link", data: { confirm: "#{@pet.name}を削除します。よろしいですか？" } do
         i class="fa fa-trash"
         | 削除する

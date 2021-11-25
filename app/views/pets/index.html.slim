@@ -14,14 +14,13 @@
                     - if pet.image.attached? && pet.image.blob&.persisted?
                       = image_tag(pet.image, class: "pet_image_index")
                     - else
-                      = image_tag "no_image.jpg",class: "pet_image_index"
+                      = image_tag "no_image.jpg", class: "pet_image_index"
                 .media-content
                   .ml-2
                     .has-text-weight-bold.is-size-5
                       = pet.name
                         .column.has-text-right
                           = "#{pet.prescriptions.count}件"
-                      
                     - if pet.breed
                       = "#{pet.breed}"
                     = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)

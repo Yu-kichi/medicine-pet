@@ -6,48 +6,20 @@
       - if @pet.image.attached?
         = image_tag(@pet.image, class: "pet_image")
       - else
-        = image_tag "no_image.jpg",class: "pet_image"
+        = image_tag "no_image.jpg", class: "pet_image"
     .has-text-weight-bold.is-size-5
       = @pet.name
     .columns.is-centered.is-mobile.mt-1
       = @pet.breed
       .ml-4
         = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
-      .ml-4  
+      .ml-4
         - if @pet.weight
           = "#{@pet.weight}kg"
     .columns.is-centered.is-mobile
       .mr-2
         = "#{l(@pet.birthday)}生まれ"
       = birthday_to_age(@pet.birthday)
-    / .columns
-    /   .column.is-one-third
-    /     figure
-    /       - if @pet.image.attached?
-    /         = image_tag(@pet.image, class: "pet_image")
-    /       - else
-    /         = image_tag "no_image.jpg"
-    /   .column.content
-    /     .control.label
-    /       = Pet.human_attribute_name(:sex)
-    /       | :
-    /       = @pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
-    /     .control.label.pt-4
-    /       = Pet.human_attribute_name(:breed)
-    /       | :
-    /       = @pet.breed
-    /     .control.label.pt-4
-    /       = Pet.human_attribute_name(:weight)
-    /       | :
-    /       = @pet.weight
-    /       - if @pet.weight
-    /         | kg
-    /     .control.label.pt-4
-    /       = Pet.human_attribute_name(:birthday)
-    /       | :
-    /       = l @pet.birthday
-
-
     = link_to "内容変更する", edit_pet_path(@pet), class: "button has-text-weight-bold is-fullwidth mt-4"
     .mt-4.has-text-weight-bold
       = link_to "ペット一覧へ", pets_path, class: "link"

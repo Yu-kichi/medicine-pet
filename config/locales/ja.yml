@@ -19,8 +19,8 @@ ja:
       pet:
         name: 名前
         sex: 性別
-        sex_1: オス
-        sex_2: メス
+        sex_1: ♂
+        sex_2: ♀
         breed: ペットの種類
         weight: 体重
         birthday: 誕生日

@@ -2,7 +2,7 @@
 
 .container.has-background-white.contents-body
   .box.is-shadowless
-    h1.has-text-weight-bold.is-size-4.mb-4 ペット一覧
+    h1.has-text-weight-bold.is-size-4.mb-4.pb-2 ペット一覧
     - if @pets
       - @pets.each do |pet|
         .pet-list
@@ -12,10 +12,26 @@
                 .media-left
                   = link_to pet
                     - if pet.image.attached? && pet.image.blob&.persisted?
-                      = image_tag(pet.image, class: "pet_image_icon")
+                      = image_tag(pet.image, class: "pet_image_index")
                     - else
-                      i class="fa fa-address-card fa-2x mr-1"
+                      = image_tag "no_image.jpg", class: "pet_image_index"
                 .media-content
-                  = pet.name
-
-    = link_to "New Pet", new_pet_path, class: "has-text-white has-text-weight-bold button is-primary is-fullwidth mt-6"
+                  .ml-2
+                    .has-text-weight-bold.is-size-5
+                      = pet.name
+                        .column.has-text-right
+                          = "#{pet.prescriptions.count}件"
+                    - if pet.breed
+                      = "#{pet.breed}"
+                    = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+                    div
+                      - if pet.weight
+                        = "#{pet.weight}kg"
+                    div
+                      - if pet.birthday
+                        = "#{l(pet.birthday)}生まれ"
+                        div
+                          = birthday_to_age(pet.birthday)
+                .media-left
+                  = link_to "#{pet.prescriptions.count}件", pet_medicine_notebook_index_path(pet), class: "link"
+    = link_to "新規にペットを追加", new_pet_path, class: "has-text-white has-text-weight-bold button is-primary is-fullwidth mt-6"

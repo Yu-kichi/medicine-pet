@@ -4,7 +4,7 @@
       = f.label :name
       | *
     .control
-      = f.text_field :name, class: "input", required: true
+      = f.text_field :name, class: "input", required: true, placeholder:"ポチ"
   .field
     .label
       = Pet.human_attribute_name(:sex)
@@ -17,12 +17,12 @@
     .label
       = f.label :breed
     .control
-      = f.text_field :breed, class: "input"
+      = f.text_field :breed, class: "input", placeholder:"犬 チワワ"
   .field
     .label
       = f.label :weight
     .control
-      = f.text_field :weight, class: "input is-small", style: "width: 50%;"
+      = f.text_field :weight, class: "input is-small", style: "width: 50%;", placeholder:"3.5"
       span.is-size-5.ml-3 kg
   .field
     .label
@@ -35,7 +35,7 @@
     .label
       = Pet.human_attribute_name(:image)
     - if @pet.image.attached?
-      = image_tag @pet.image, width: "200", height: "200"
+      = image_tag @pet.image, width: "200", height: "200",class: "pet_image"
     .mt-3.mb-3
       = f.file_field :image
       .is-size-7 * 画像のサイズは2000*2000以下にしてください

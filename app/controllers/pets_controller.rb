@@ -26,7 +26,7 @@ class PetsController < ApplicationController
   def edit; end
 
   def update
-    @pet.image.purge if params[:pet][:remove_image]
+    @pet.image.purge if params[:pet][:remove_image] == "1"
     if @pet.update(pet_params)
       redirect_to @pet, notice: "ペットを更新しました"
     else

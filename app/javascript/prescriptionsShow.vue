@@ -7,11 +7,11 @@
       <div class="columns is-mobile">
         <div class="column ml-4 mr-4 pb-2 is-three-quarters-mobile">
           <h1 class="is-size-4 has-text-weight-bold pt-4"><i class="far fa-hospital"></i>
-            {{prescribedDate(prescription_date)}}<br>{{clinic_name}}</h1>
-          <p>住所:{{clinic_addresss}}</p>
-          <p>電話番号:{{clinic_telephone_number}}</p>
-          <p>診察料:{{prescription.medical_fee}}円</p>
-          <p>処方料:{{prescription.medicine_fee}}円</p>
+            {{prescribedDate(prescriptions.date)}}<br>{{clinics.name}}</h1>
+          <p>住所:{{clinics.address}}</p>
+          <p>電話番号:{{clinics.telephone_number}}</p>
+          <p>診察料:{{prescriptions.medical_fee}}円</p>
+          <p>処方料:{{prescriptions.medicine_fee}}円</p>
         </div>
         <div class="column mt-6" @click="showOnClinicButton = !showOnClinicButton">...</div>
       </div>
@@ -37,7 +37,8 @@
             <div class="column pb-2 is-three-quarters-mobile ml-4 mr-4">
               <p class="is-size-5 mt-2 has-text-weight-bold"><i class="fas fa-capsules"></i>{{medicine.medicine_name}}
               </p>
-              <p class="is-size-6" v-if="`${medicine.dose}`">1日の使用量:{{medicine.dose}}錠</p>
+              <p class="is-size-6">単位:{{medicine.unit}}</p>
+              <p class="is-size-6" v-if="`${medicine.dose}`">1日の服用回数:{{medicine.dose}}回</p>
               <p class="is-size-6">総量:{{medicine.total_amount}}日分</p>
               <p class="is-size-6">メモ:{{medicine.memo}}</p>
             </div>
@@ -84,19 +85,12 @@
         clickedPrescription: "",
         selectedMedicine: '',
         medicines: [],
-        dose: null,
-        total_amount: null,
-        memo: '',
+        clinics: [],
+        prescriptions: [],
         loaded: false,
-        medicines: [],
-        clinic_name: null,
-        prescription_date: "",
-        clinic_addresss: "",
-        clinic_telephone_number: "",
         showModal: false,
         showModalPrescription: false,
         medicineId: "",
-        prescription: [],
       }
     },
     components: {
@@ -125,12 +119,9 @@
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]
-            this.clinic_name = responseData["prescription_clinic"]
-            this.clinic_addresss = responseData["clinic_address"]
-            this.clinic_telephone_number = responseData["clinic_telephone_number"]
-            this.prescription_date = responseData["prescription_date"]
+            this.clinics = responseData["clinics"]
+            this.prescriptions = responseData["prescriptions"]
             this.loaded = true
-            console.log(responseData)
           })
       },
       prescribedDate(date) {

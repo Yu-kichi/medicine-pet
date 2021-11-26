@@ -12,5 +12,8 @@ json.prescriptions @pet.prescriptions.each do |prescription|
   json.clinic_name prescription.clinic.name
   json.medicines prescription.prescriptions_medicines.each do  |medicine|
     json.medicine_name medicine.medicine.name
+    json.medicine_memo medicine.memo
+    json.medicine_dose medicine.dose
+    json.medicine_unit medicine.unit
   end
 end

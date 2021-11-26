@@ -21,15 +21,20 @@
           </div>
         </div>
         <div class="field">
-          <label for="dose" class="label">1日の使用量</label>
+          <label for="unit" class="label">単位</label>
         </div>
-        <input v-model="dose" placeholder="数字で入力してください" class="input is-small " type="number" style="width: 50%;"
+        <input v-model="unit" placeholder="5mg" class="input is-small" style="width: 50%;"
+         id="unit">
+        <div class="field mt-3">
+          <label for="dose" class="label">服用回数</label>
+        </div>
+        <input v-model="dose" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
           min="0" id="dose">
-        <span>錠</span>
+        <span>回</span>
         <div class="field mt-3">
           <label for="total_amount" class="label">総量</label>
         </div>
-        <input v-model="total_amount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
+        <input v-model="totalAmount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
           min="0" id="total_amount">
         <span>日分</span>
         <div class="field mt-3">
@@ -65,8 +70,9 @@
         medicineError: null,
         selectedMedicine: '',
         medicines: [],
+        unit: null,
         dose: null,
-        total_amount: null,
+        totalAmount: null,
         memo: '',
         loaded: false,
       }
@@ -99,8 +105,9 @@
           response => {
             const responseData = response.data;
             this.selectedMedicine = responseData.medicine
+            this.unit = responseData.prescriptions_medicine.unit
             this.dose = responseData.prescriptions_medicine.dose
-            this.total_amount = responseData.prescriptions_medicine.total_amount
+            this.totalAmount = responseData.prescriptions_medicine.total_amount
             this.memo = responseData.prescriptions_medicine.memo
           })
       },
@@ -125,8 +132,9 @@
           prescriptions_medicine: {
             medicine_id: this.selectedMedicine.id,
             prescription_id: this.prescriptionId,
+            unit: this.unit,
             dose: this.dose,
-            total_amount: this.total_amount,
+            total_amount: this.totalAmount,
             memo: this.memo,
           }
         }).then((response) => {

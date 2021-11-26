@@ -5,7 +5,7 @@ module Api
     before_action :set_prescriptions_medicine, only: %i[edit update destroy]
 
     def show
-      @prescription = Prescription.find(params[:id])
+      @prescription = Prescription.includes([:clinic, { prescriptions_medicines: :medicine }]).find(params[:id])
     end
 
     def create
@@ -34,7 +34,7 @@ module Api
 
     private
       def prescriptions_medicine_params
-        params.require(:prescriptions_medicine).permit(:dose, :total_amount, :memo, :medicine_id, :prescription_id)
+        params.require(:prescriptions_medicine).permit(:dose, :total_amount, :memo, :medicine_id, :prescription_id, :unit)
       end
 
       def set_prescriptions_medicine

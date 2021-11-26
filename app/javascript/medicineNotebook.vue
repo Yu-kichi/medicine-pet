@@ -2,7 +2,7 @@
   <div class="container has-background-white contents-body">
     <div class="box has-background back-color is-shadowless">
       <h1 class="page-header-title mb-4 has-text-weight-bold is-size-4">
-        <i class="fas fa-notes-medical mr-2"></i>{{`${name}のお薬手帳`}}
+        <i class="fas fa-notes-medical mr-2"></i>{{`${petName}のお薬手帳`}}
       </h1>
       <VueMultiselect v-model="searchTarget" :options="clinicName" @select="onSelect" @remove="offSelect"
         placeholder="病院名で絞り込み" class="mb-4">
@@ -14,12 +14,22 @@
             <p class="pb-2">{{prescription.clinic_name}}</p>
           </div>
         </a>
-        <div class="is-mobile pb-4 has-text-grey-darker">
+        <div class="is-mobile has-text-grey-darker is-size-7 ">
           <div class="pl-4">
-            <span class="is-size-7">お薬名:</span>
-            <span v-for='(medicine, index) in prescription.medicines' :key='medicine.id' class="is-size-7">
-              <span>{{medicine.medicine_name}},</span>
-            </span>
+            <table>
+              <tr>
+                <th class="medicine_name">お薬名</th>
+                <th class="medicine_unit">単位</th>
+                <th class="medicine_doze">服用回数</th>
+                <th class="medicine_memo">備考</th>
+              </tr>
+              <tr v-for='(medicine, index) in prescription.medicines' :key='medicine.id'>
+                <td>{{medicine.medicine_name}}</td>
+                <td>{{medicine.medicine_unit}}</td>
+                <td v-if='medicine.medicine_dose'>1日{{medicine.medicine_dose}}回</td>
+                <td >{{truncate(medicine.medicine_memo)}}</td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -45,7 +55,7 @@
   export default {
     data() {
       return {
-        name: "",
+        petName: "",
         loaded: false,
         prescriptions: [],
         searchTarget: "",
@@ -71,7 +81,7 @@
           response => {
             const responseData = response.data;
             this.clinicName = responseData.clinic_name
-            this.name = responseData.pet_name
+            this.petName = responseData.pet_name
             this.prescriptions = responseData.prescriptions
             this.showPrescriptions = this.prescriptions
           })
@@ -92,6 +102,14 @@
       prescribedDate(date) {
         return dayjs(date).format('YYYY年MM月DD日(dd)')
       },
+      truncate(string) {
+        const maxLength = 6
+        if (string.length >= maxLength){
+          return string.substr(0, maxLength) + '..';
+        }else{
+          return string
+        }
+      }
     }
   }
 </script>

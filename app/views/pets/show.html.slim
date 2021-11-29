@@ -1,7 +1,7 @@
 - title "#{@pet.name}のプロフィール"
 
-.container.contents-body.has-text-centered
-  .box.has-background-white.is-shadowless
+.container.has-text-centered.contents-body.has-background-white
+  .box.is-shadowless
     figure
       - if @pet.image.attached?
         = image_tag(@pet.image, class: "pet_image")
@@ -19,12 +19,12 @@
     .columns.is-centered.is-mobile
       .mr-2
         = "#{l(@pet.birthday)}生まれ"
-      = birthday_to_age(@pet.birthday)
+      = convert_to_age(@pet.birthday)
     = link_to "内容変更する", edit_pet_path(@pet), class: "button has-text-weight-bold is-fullwidth mt-4"
     .mt-4.has-text-weight-bold
       = link_to "ペット一覧へ", pets_path, class: "link"
     .mt-4.has-text-weight-bold
-      = link_to "処方箋一覧へ", pet_medicine_notebook_index_path(@pet), class: "link"
+      = link_to "お薬手帳のページへ", pet_medicine_notebook_index_path(@pet), class: "link"
     .has-text-right
       = link_to pet_path(@pet), method: :delete, class: "link", data: { confirm: "#{@pet.name}を削除します。よろしいですか？" } do
         i class="fa fa-trash"

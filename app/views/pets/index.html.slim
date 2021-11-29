@@ -21,9 +21,11 @@
                       = pet.name
                         .column.has-text-right
                           = "#{pet.prescriptions.count}件"
-                    - if pet.breed
-                      = "#{pet.breed}"
-                    = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+                    div
+                      - if pet.breed
+                        = "#{pet.breed}"
+                        .is-inline.ml-3
+                          = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
                     div
                       - if pet.weight
                         = "#{pet.weight}kg"
@@ -31,7 +33,7 @@
                       - if pet.birthday
                         = "#{l(pet.birthday)}生まれ"
                         div
-                          = birthday_to_age(pet.birthday)
+                          = convert_to_age(pet.birthday)
                 .media-left
                   = link_to "#{pet.prescriptions.count}件", pet_medicine_notebook_index_path(pet), class: "link"
     = link_to "新規にペットを追加", new_pet_path, class: "has-text-white has-text-weight-bold button is-primary is-fullwidth mt-6"

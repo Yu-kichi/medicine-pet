@@ -16,24 +16,35 @@ RSpec.feature "Pets", type: :system do
     expect(page).to have_content("ねこみ")
   end
 
-  scenario "ペット作成成功" do
-    visit "/pets/new"
-    fill_in "名前", with: "わんきち"
-    choose "オス"
-    fill_in "品種", with: "雑種"
-    fill_in "体重", with: "7"
-    find("#pet_birthday_1i").find("option[value='2000']").select_option
-    find("#pet_birthday_2i").find("option[value='1']").select_option
-    find("#pet_birthday_3i").find("option[value='1']").select_option
-    attach_file "pet_image", "#{Rails.root}/spec/factories/files/pet_profile.png"
-    click_button "登録する"
-    expect(page).to have_content("ペットを作成しました")
-    expect(page).to have_content("わんきち")
-    expect(page).to have_content("オス")
-    expect(page).to have_content("雑種")
-    expect(page).to have_content("体重:7.0kg")
-    expect(page).to have_content("誕生日:2000年01月01日")
-    expect(page).to have_selector("img[src$='pet_profile.png']")
+  describe "ペット作成" do
+    before do
+      visit "/pets/new"
+      fill_in "名前", with: "わんきち"
+      choose "♂"
+      fill_in "ペットの種類", with: "雑種"
+      fill_in "体重", with: "7"
+      find("#pet_birthday_1i").find("option[value='2000']").select_option
+      find("#pet_birthday_2i").find("option[value='1']").select_option
+      find("#pet_birthday_3i").find("option[value='1']").select_option
+      attach_file "pet_image", "#{Rails.root}/spec/factories/files/pet_profile.png"
+      click_button "登録する"
+    end
+
+    scenario "ペットを登録するとお薬手帳のページへ遷移する" do
+      expect(page).to have_content("ペットを登録しました")
+      expect(page).to have_content("わんきちのお薬手帳")
+    end
+
+    scenario "ペットの登録した情報が表示できる" do
+      visit "/pets/"
+      expect(page).to have_content("わんきち")
+      expect(page).to have_content("♂")
+      expect(page).to have_content("雑種")
+      expect(page).to have_content("7.0kg")
+      expect(page).to have_content("2000年01月01日生まれ")
+      expect(page).to have_content("21歳10ヶ月")
+      expect(page).to have_selector("img[src$='pet_profile.png']")
+    end
   end
 
   scenario "写真のサイズが大きすぎる場合にエラーを表示する" do

@@ -21,9 +21,11 @@
                       = pet.name
                         .column.has-text-right
                           = "#{pet.prescriptions.count}件"
-                    - if pet.breed
-                      = "#{pet.breed}"
-                    = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
+                    div
+                      - if pet.breed
+                        = "#{pet.breed}"
+                        .is-inline.ml-3
+                          = pet.sex == 1 ? Pet.human_attribute_name(:sex_1) : Pet.human_attribute_name(:sex_2)
                     div
                       - if pet.weight
                         = "#{pet.weight}kg"

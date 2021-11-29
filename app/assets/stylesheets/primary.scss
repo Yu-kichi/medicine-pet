@@ -5,3 +5,7 @@
 .link{
   border-bottom:0.2px solid grey;
 }
+
+.notification:not(:last-child){
+  margin-bottom: 0px;
+}

@@ -19,7 +19,7 @@
     .columns.is-centered.is-mobile
       .mr-2
         = "#{l(@pet.birthday)}生まれ"
-      = birthday_to_age(@pet.birthday)
+      = convert_to_age(@pet.birthday)
     = link_to "内容変更する", edit_pet_path(@pet), class: "button has-text-weight-bold is-fullwidth mt-4"
     .mt-4.has-text-weight-bold
       = link_to "ペット一覧へ", pets_path, class: "link"

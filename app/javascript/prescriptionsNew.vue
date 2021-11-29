@@ -5,9 +5,7 @@
   <div v-else class="container">
     <div class="box has-background-white is-shadowless">
       <div v-if="prescriptionId">
-        <div class="">
-          <h1 class="is-size-4 has-text-weight-bold">前回の情報を元に薬を一括登録する</h1>
-        </div>
+        <h1 class="is-size-4 has-text-weight-bold">前回の情報を元に薬を一括登録する</h1>
         <div class="is-size-6 mb-3">
           <p>※このページでは過去に貰ったお薬の情報をコピーして新しく登録することができます。</p>
           <p>病院や日付に変更がある場合には再入力をお願い致します。</p>
@@ -47,7 +45,7 @@
         <div class="field">
           <label for="medical_fee" class="label pt-3">診察料</label>
           <div class="control">
-            <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small" type="number"
+            <input v-model="medicalFee" placeholder="数字を入力してください" class="input is-small" type="number"
               style="width: 50%;" min="0" id="medical_fee" name="prescription[medical_fee]">
             <span>円</span>
           </div>
@@ -55,7 +53,7 @@
         <div class="field">
           <label for="medicine_fee" class="label">処方料</label>
           <div class="control">
-            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number" id="medicine_fee" name="prescription[medicine_fee]"
+            <input v-model="medicineFee" placeholder="数字を入力してください" class="input is-small" type="number" id="medicine_fee" name="prescription[medicine_fee]"
               style="width: 50%;" min="0">
             <span>円</span>
           </div>
@@ -95,8 +93,8 @@
         prefectures: [],
         clinics: [],
         date: '',
-        medical_fee: '',
-        medicine_fee: '',
+        medicalFee: '',
+        medicineFee: '',
         loaded: false,
         prescriptionId: '',
       }
@@ -133,8 +131,8 @@
               this.selectedClinic = responseData.clinic
               this.selectedPrefecture = responseData.prefecture
               this.date = responseData.prescription.date
-              this.medical_fee = responseData.prescription.medical_fee
-              this.medicine_fee = responseData.prescription.medicine_fee
+              this.medicalFee = responseData.prescription.medical_fee
+              this.medicineFee = responseData.prescription.medicine_fee
             })
         }
       },
@@ -164,8 +162,8 @@
             date: this.date,
             clinic_id: this.selectedClinic.id,
             pet_id: this.petId,
-            medical_fee: this.medical_fee,
-            medicine_fee: this.medicine_fee,
+            medical_fee: this.medicalFee,
+            medicine_fee: this.medicineFee,
           }
         }).then((response) => {
           window.location.href = response.data.location
@@ -182,8 +180,8 @@
             date: this.date,
             clinic_id: this.selectedClinic.id,
             pet_id: this.petId,
-            medical_fee: this.medical_fee,
-            medicine_fee: this.medicine_fee,
+            medical_fee: this.medicalFee,
+            medicine_fee: this.medicineFee,
           }
         }).then((response) => {
           window.location.href = `/pets/${this.petId}/medicine_notebook`

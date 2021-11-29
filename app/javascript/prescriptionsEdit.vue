@@ -39,14 +39,14 @@
           <label for="medical_fee" class="label">診察料</label>
         </div>
         <div class="control">
-          <input v-model="medical_fee" placeholder="数字を入力してください" class="input is-small " type="number"
+          <input v-model="medicalFee" placeholder="数字を入力してください" class="input is-small " type="number"
             style="width: 50%;" min="0" id="medical_fee" name="prescription[medical_fee]">
           <span>円</span>
         </div>
         <div class="field mt-3">
           <label for="medicine_fee" class="label">処方料</label>
           <div class="control">
-            <input v-model="medicine_fee" placeholder="数字を入力してください" class="input is-small" type="number"
+            <input v-model="medicineFee" placeholder="数字を入力してください" class="input is-small" type="number"
               style="width: 50%;" min="0" id="medicine_fee" name="prescription[medicine_fee]">
             <span>円</span>
           </div>
@@ -84,8 +84,8 @@
         prefectures: [],
         clinics: [],
         date: '',
-        medical_fee: '',
-        medicine_fee: '',
+        medicalFee: '',
+        medicineFee: '',
         loaded: false,
       }
     },
@@ -115,8 +115,8 @@
             this.selectedClinic = responseData.clinic
             this.selectedPrefecture = responseData.prefecture
             this.date = responseData.prescription.date
-            this.medical_fee = responseData.prescription.medical_fee
-            this.medicine_fee = responseData.prescription.medicine_fee
+            this.medicalFee = responseData.prescription.medical_fee
+            this.medicineFee = responseData.prescription.medicine_fee
           })
       },
       fetchPrefectures() {
@@ -153,8 +153,8 @@
             date: this.date,
             clinic_id: this.selectedClinic.id,
             pet_id: this.petId,
-            medical_fee: this.medical_fee,
-            medicine_fee: this.medicine_fee,
+            medical_fee: this.medicalFee,
+            medicine_fee: this.medicineFee,
           }
         }).then((response) => {
           window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`

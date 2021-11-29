@@ -71,8 +71,8 @@ RSpec.feature "Home", type: :system do
         find("#menu-button").click
         expect(page).to have_content("ペット一覧")
         expect(page).to have_content("ユーザー情報編集")
-        expect(page).to have_content("薬品リストに追加したお薬一覧")
-        expect(page).to have_content("病院リストに追加した病院一覧")
+        expect(page).to have_content("薬品リストに追加したお薬")
+        expect(page).to have_content("病院リストに追加した病院")
         expect(page).to have_content("ログアウト")
       end
     end

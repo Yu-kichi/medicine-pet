@@ -18,12 +18,14 @@ RSpec.feature "Prescriptions_medicines", type: :system do
       expect(page).to have_content("まつい犬猫病院")
       first(".multiselect__tags").click
       find(".multiselect__input").set("アイボメック" + "\n")
+      fill_in "unit", with: "5mg"
       fill_in "dose", with: "2"
       fill_in "total_amount", with: "21"
       fill_in "medicine_memo", with: "これはテストです"
       click_button "お薬情報を登録する"
       expect(page).to have_content("アイボメック")
-      expect(page).to have_content("2錠")
+      expect(page).to have_content("5mg")
+      expect(page).to have_content("2回")
       expect(page).to have_content("21日")
       expect(page).to have_content("これはテストです")
       expect(current_path).to eq "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"

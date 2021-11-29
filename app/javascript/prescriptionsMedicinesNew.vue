@@ -7,12 +7,12 @@
       <h1 class="mb-4 has-text-weight-bold is-size-4">お薬情報登録</h1>
         <div class="box is-shadowless has-background-white-bis">
         <h1 class="has-text-weight-bold">既に登録済み</h1>
-        <div v-if='clinic_name'>
-          <p>{{prescribedDate(prescription_date)}}</p>
-          <p>{{clinic_name}}</p>
+        <div v-if='clinicName'>
+          <p>{{prescribedDate(prescriptionDate)}}</p>
+          <p>{{clinicName}}</p>
         </div>
         <div v-if='registered.length'>
-          <div v-for="medicine in registered" :key='medicine.id' class="is-size-5 ml-3">
+          <div v-for="medicine in registered" :key='medicine.id'>
             <p>{{medicine.medicine_name}}</p>
           </div>
         </div>
@@ -33,15 +33,20 @@
           </div>
         </div>
         <div class="field">
-          <label for="dose" class="label">1日の使用量</label>
+          <label for="unit" class="label">単位</label>
         </div>
-        <input v-model="dose" placeholder="数字で入力してください" class="input is-small " type="number" style="width: 50%;"
+        <input v-model="unit" placeholder="5mmg" class="input is-small" style="width: 50%;"
+         id="unit">
+        <div class="field mt-3">
+          <label for="dose" class="label">服用回数</label>
+        </div>
+        <input v-model="dose" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
           min="0" id="dose">
-        <span>錠</span>
+        <span>回</span>
         <div class="field">
           <label for="total_amount" class="label pt-3">総量</label>
         </div>
-        <input v-model="total_amount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
+        <input v-model="totalAmount" placeholder="数字で入力してください" class="input is-small" type="number" style="width: 50%;"
           min="0" id="total_amount">
         <span>日分</span>
         <div class="field">
@@ -86,13 +91,14 @@
         medicineError: null,
         selectedMedicine: '',
         medicines: [],
+        unit: null,
         dose: null,
-        total_amount: null,
+        totalAmount: null,
         memo: '',
         loaded: false,
         registered: [],
-        clinic_name: null,
-        prescription_date: "",
+        clinicName: null,
+        prescriptionDate: "",
       }
     },
     props: {
@@ -127,8 +133,8 @@
           response => {
             const responseData = response.data;
             this.registered = responseData["medicines"]
-            this.clinic_name = responseData["prescription_clinic"]
-            this.prescription_date = responseData["prescription_date"]
+            this.clinicName = responseData["prescription_clinic"]
+            this.prescriptionDate = responseData["prescription_date"]
           })
       },
       validation: function () {
@@ -144,8 +150,9 @@
           prescriptions_medicine: {
             medicine_id: this.selectedMedicine.id,
             prescription_id: this.prescriptionId,
+            unit: this.unit,
             dose: this.dose,
-            total_amount: this.total_amount,
+            total_amount: this.totalAmount,
             memo: this.memo,
           }
         }).then((response) => {

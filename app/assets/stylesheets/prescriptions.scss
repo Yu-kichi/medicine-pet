@@ -13,3 +13,26 @@
 .has-background-lightseagreen{
   background-color: lightseagreen; 
 }
+
+table{
+  table-layout: fixed;  
+}
+
+th.medicine_name{
+  width:100px;
+}
+
+th.medicine_memo{
+  width:60px;
+}
+th.medicine_unit{
+  width:30px;
+}
+
+th.medicine_doze{
+  width:40px
+}
+
+tr{
+  border-bottom: solid 0.1px ghostwhite;
+}

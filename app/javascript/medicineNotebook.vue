@@ -27,7 +27,7 @@
                 <td>{{medicine.medicine_name}}</td>
                 <td>{{medicine.medicine_unit}}</td>
                 <td v-if='medicine.medicine_dose'>1日{{medicine.medicine_dose}}回</td>
-                <td >{{truncate(medicine.medicine_memo)}}</td>
+                <td v-if="medicine.medicine_memo">{{truncate(medicine.medicine_memo)}}</td>
               </tr>
             </table>
           </div>

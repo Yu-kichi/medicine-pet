@@ -13,7 +13,7 @@ RSpec.feature "Prescriptions_medicines", type: :system do
   end
 
   describe "処方箋に薬を登録する" do
-    scenario "登録成功" do
+    before do
       visit "prescriptions/#{@prescription.id}/prescriptions_medicines/new"
       expect(page).to have_content("まつい犬猫病院")
       first(".multiselect__tags").click
@@ -22,6 +22,9 @@ RSpec.feature "Prescriptions_medicines", type: :system do
       fill_in "dose", with: "2"
       fill_in "total_amount", with: "21"
       fill_in "medicine_memo", with: "これはテストです"
+    end
+
+    scenario "登録成功" do
       click_button "お薬情報を登録する"
       expect(page).to have_content("アイボメック")
       expect(page).to have_content("5mg")
@@ -32,23 +35,16 @@ RSpec.feature "Prescriptions_medicines", type: :system do
     end
 
     scenario "追加でお薬登録すると登録が成功し、さらに次の薬登録画面へ移動する" do
-      visit "prescriptions/#{@prescription.id}/prescriptions_medicines/new"
-      expect(page).to have_content("まつい犬猫病院")
-      first(".multiselect__tags").click
-      find(".multiselect__input").set("アイボメック" + "\n")
-      fill_in "dose", with: "2"
-      fill_in "total_amount", with: "21"
-      fill_in "medicine_memo", with: "これはテストです"
       click_button "追加でお薬を登録する"
       expect(page).to have_content("アイボメック")
       expect(current_path).to eq "/prescriptions/#{@prescription.id}/prescriptions_medicines/new"
     end
+  end
 
-    scenario "登録失敗でバリデーションを表示" do
-      visit "prescriptions/#{@prescription.id}/prescriptions_medicines/new"
-      click_button "お薬情報を登録する"
-      expect(page).to have_content("お薬を選んでください")
-    end
+  scenario "登録失敗でバリデーションを表示" do
+    visit "prescriptions/#{@prescription.id}/prescriptions_medicines/new"
+    click_button "お薬情報を登録する"
+    expect(page).to have_content("お薬を選んでください")
   end
 
   describe "処方箋に登録したお薬の編集削除" do

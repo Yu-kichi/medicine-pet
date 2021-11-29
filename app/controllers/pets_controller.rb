@@ -17,7 +17,7 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     if @pet.save
-      redirect_to @pet, notice: "ペットを作成しました"
+      redirect_to pet_medicine_notebook_index_path(@pet), notice: "ペットを登録しました"
     else
       render :new, status: :unprocessable_entity
     end

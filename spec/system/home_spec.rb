@@ -5,7 +5,6 @@ require "rails_helper"
 RSpec.feature "Home", type: :system do
   before do
     @user = create(:user)
-    @pet = create(:pet_1, user_id: @user.id)
   end
 
   describe "Homeページ" do
@@ -17,15 +16,25 @@ RSpec.feature "Home", type: :system do
     end
 
     context "ログイン後" do
-      scenario "ログイン後はお薬手帳ページが表示される" do
+      scenario "ペット登録後はお薬手帳ページが表示される" do
+        @pet = create(:pet_1, user_id: @user.id)
         login_user(@user.email, @user.password)
         visit "/"
         expect(page).to have_content("たろうのお薬手帳")
+      end
+
+      scenario "ペット登録前はペット登録ページへ飛ばされる" do
+        login_user(@user.email, @user.password)
+        visit "/"
+        expect(page).to have_content("初めにペット情報を登録しましょう")
       end
     end
   end
 
   describe "ヘッダー" do
+    before do
+      @pet = create(:pet_1, user_id: @user.id)
+    end
     context "ペットに写真が登録されている" do
       scenario "ヘッダーに写真が表示される" do
         @pet_2 = create(:pet_2, user_id: @user.id)

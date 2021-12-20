@@ -3,6 +3,7 @@
 module Api
   class PrescriptionsController < ApplicationController
     before_action :set_prescription, only: %i[edit update destroy]
+    before_action :authenticate_user!
 
     def show
       @prescription = Prescription.includes([:clinic, { prescriptions_medicines: :medicine }]).find(params[:id])
@@ -28,7 +29,7 @@ module Api
 
     def update
       if @prescription.update(prescription_params)
-        head :no_content
+        render json: { status: "SUCCESS", message: "Updated the prescription", data: @prescription }
       else
         head :bad_request
       end
@@ -36,7 +37,7 @@ module Api
 
     def destroy
       @prescription.destroy!
-      head :no_content
+      render json: { status: "SUCCESS", message: "Updated the prescription", data: @prescription }
     end
 
     private

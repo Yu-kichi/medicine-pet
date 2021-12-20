@@ -5,6 +5,7 @@ class Prescription < ApplicationRecord
   belongs_to :clinic
   has_many :prescriptions_medicines, dependent: :destroy
   has_many :medicines, through: :prescriptions_medicines
+  validates :date, presence: true
 
   def copy_from(source_prescription)
     source_prescription.prescriptions_medicines.each do |prescriptions_medicine|

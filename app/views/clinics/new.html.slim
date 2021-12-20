@@ -1,4 +1,4 @@
-- title "病院情報作成"
+- content_for(:title) { "病院情報作成" }
 
 - if @prescription
   #clinic-new(pet-id="#{@pet.id}" prescription-id="#{@prescription.id}" currentuser-id="#{current_user.id}")

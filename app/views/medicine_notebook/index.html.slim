@@ -1,4 +1,4 @@
-- title "お薬手帳"
+- content_for(:title) { "#{@pet.name}のお薬手帳" }
 
 - if @pet
   #medicine-notebook(pet-id="#{@pet.id}")

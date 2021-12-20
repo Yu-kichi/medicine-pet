@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | MediPet
+      = content_for?(:title) ? yield(:title) + " | MediPet" : "MediPet"
     meta content=("text/html") http-equiv="Content-Type" /
     meta name="viewport" content="width=device-width,initial-scale=1"
     meta name="description" content="無料で使えるペットのオンラインお薬手帳サービスです。あなたの大切な家族の健康のために、病院が変わっても安心してお薬が貰えるようにしてあげてください。"

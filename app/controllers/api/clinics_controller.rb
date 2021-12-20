@@ -6,14 +6,13 @@ module Api
     before_action :set_clinic, only: %i[edit update]
 
     def show
-      prefecture = Prefecture.find(params[:id])
-      @clinics = prefecture.clinics.select(:id, :name)
+      @clinics = Clinic.where(prefecture_id: params[:id]).select(:id, :name)
     end
 
     def create
       @clinic = Clinic.new(clinic_params)
       if @clinic.save
-        head :no_content
+        render json: { status: "SUCCESS", message: "Updated the clinic", data: @clinic }
       else
         head :bad_request
       end
@@ -23,7 +22,7 @@ module Api
 
     def update
       if @clinic.update(clinic_params)
-        head :no_content
+        render json: { status: "SUCCESS", message: "Updated the clinic", data: @clinic }
       else
         head :bad_request
       end

@@ -42,7 +42,6 @@ RSpec.feature "Pets", type: :system do
       expect(page).to have_content("雑種")
       expect(page).to have_content("7.0kg")
       expect(page).to have_content("2000年01月01日生まれ")
-      expect(page).to have_content("21歳10ヶ月")
       expect(page).to have_selector("img[src$='pet_profile.png']")
     end
   end

@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     get "medicines/index"
     get "medicine_notebook/index"
     get "pets/index"
-    resources :prescriptions, only: %i[index show create update edit destroy]
-    resources :prescriptions_medicines, only: %i[index create update edit destroy show]
+    resources :prescriptions, only: %i[show create update edit destroy]
+    resources :prescriptions_medicines, only: %i[ create update edit destroy show]
   end
 
   devise_for :users, controllers: {

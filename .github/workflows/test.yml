@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  spec:
+  test:
+
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -24,18 +25,18 @@ jobs:
           --health-timeout 5s 
           --health-retries 5
     steps:
-      - uses: actions/checkout@v2 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.0.2
-          bundler-cache: true
+    - uses: actions/checkout@v2 
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.2
+        bundler-cache: true
 
-      - name: yarn install
-        run: yarn install --check-files
+    - name: yarn install
+      run: yarn install --check-files
 
-      - name: Setup test DB
-        run: bundle exec rails db:setup
+    - name: Setup test DB
+      run: bundle exec rails db:setup
     
-      - name: Run spec
-        run: bundle exec rspec
+    - name: Run test
+      run: bundle exec rspec

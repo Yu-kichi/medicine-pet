@@ -8,34 +8,34 @@ on:
 
 jobs:
   spec:
-  runs-on: ubuntu-latest
-  services:
-    postgres:
-      image: postgres
-      ports:
-        - 5432:5432
-      env:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: medicine_pet_test
-      options: >-
-        --health-cmd pg_isready 
-        --health-interval 10s 
-        --health-timeout 5s 
-        --health-retries 5
-  steps:
-    - uses: actions/checkout@v2 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.0.2
-        bundler-cache: true
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: medicine_pet_test
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.2
+          bundler-cache: true
 
-    - name: yarn install
-      run: yarn install --check-files
+      - name: yarn install
+        run: yarn install --check-files
 
-    - name: Setup test DB
-      run: bundle exec rails db:setup
+      - name: Setup test DB
+        run: bundle exec rails db:setup
     
-    - name: Run spec
-      run: bundle exec rspec
+      - name: Run spec
+        run: bundle exec rspec

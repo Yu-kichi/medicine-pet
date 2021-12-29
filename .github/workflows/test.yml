@@ -33,12 +33,12 @@ jobs:
         ruby-version: 3.0.2
         bundler-cache: true
 
-    - name: Install chrome
-      run: |
-        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-        echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
-        apt update -y
-        apt install -y google-chrome-stable
+    # - name: Install chrome
+    #   run: |
+    #     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+    #     echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+    #     apt update -y
+    #     apt install -y google-chrome-stable
         
     - name: Setup test DB
       run: bundle exec rails db:setup

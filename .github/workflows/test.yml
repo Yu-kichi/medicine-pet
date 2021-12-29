@@ -33,9 +33,6 @@ jobs:
         ruby-version: 3.0.2
         bundler-cache: true
 
-    - name: yarn install
-      run: yarn install --check-files
-
     - name: Install chrome
       run: |
         wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -

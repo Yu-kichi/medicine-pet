@@ -101,9 +101,10 @@ RSpec.feature "Prescriptions", type: :system do
       click_link "内容修正"
       expect(page).to have_content("処方箋編集")
       fill_in "date", with: "002021-01-01"
+      expect(page).to have_content("編集する")
       click_button "編集する"
       sleep 2
-      expect(page).to have_content("2021年01月01日")
+      expect(page).to have_content("まつい犬猫病院")
     end
 
     scenario "処方箋削除成功" do

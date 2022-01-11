@@ -59,6 +59,7 @@ RSpec.feature "Prescriptions", type: :system do
       @pet = create(:pet_1, user_id: @user.id)
       @prescription = create(:prescription_1, pet_id: @pet.id)
       @medicine = create(:medicine, user_id: @user.id)
+      create(:clinic_2, user_id: @user.id)
       create(:prescriptions_medicine, prescription_id: @prescription.id, medicine_id: @medicine.id)
     end
 
@@ -74,7 +75,6 @@ RSpec.feature "Prescriptions", type: :system do
         fill_in "medical_fee", with: "2000"
         fill_in "medicine_fee", with: "3000"
         click_button "お薬登録へ進む"
-        expect(page).to have_content("2021年10月06日(水)")
         expect(page).to have_content("まつい犬猫病院")
       end
 
@@ -100,11 +100,12 @@ RSpec.feature "Prescriptions", type: :system do
       first(".column.mt-6").click
       click_link "内容修正"
       expect(page).to have_content("処方箋編集")
-      fill_in "date", with: "002021-01-01"
-      expect(page).to have_content("編集する")
+      first(".multiselect__tags").click
+      find(".multiselect__input").set("青森" + "\n")
+      page.all(".multiselect__tags")[1].click
+      find(".multiselect__input").set("ウェルネス動物病院" + "\n")
       click_button "編集する"
-      sleep 2
-      expect(page).to have_content("まつい犬猫病院")
+      expect(page).to have_content("ウェルネス動物病院")
     end
 
     scenario "処方箋削除成功" do

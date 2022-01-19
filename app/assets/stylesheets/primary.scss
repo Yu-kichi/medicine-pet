@@ -1,5 +1,6 @@
 .is-primary{
   background-color:lightseagreen;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 .link{
@@ -8,4 +9,8 @@
 
 .notification:not(:last-child){
   margin-bottom: 0px;
+}
+
+body{
+  font-family: 'Kosugi Maru', sans-serif;
 }

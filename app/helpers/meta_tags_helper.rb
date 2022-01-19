@@ -6,20 +6,21 @@ module MetaTagsHelper
       site: "MediPet",
       reverse: true,
       charset: "utf-8",
-      description: "ペットのお薬手帳",
+      description: "ペットの薬の登録管理サービス",
       og: {
         title: :title,
         description: :description,
         type: "website",
-        url: "", # デプロイ後に設定
+        url: "https://medi-pet.herokuapp.com",
         image: "",  # デプロイ後に設定
         locale: "ja_JP"
       },
       twitter: {
-        card: "summary",
         title: "MediPet",
+        card: "summary",
         image: "",  # デプロイ後に設定
-        description: :description
+        description: :description,
+        domain: "https://medi-pet.herokuapp.com"
       }
     }
   end

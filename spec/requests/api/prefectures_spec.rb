@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Api::Prefectures", type: :request do
+RSpec.describe "API::Prefectures", type: :request do
   before do
     @user = create(:user)
   end

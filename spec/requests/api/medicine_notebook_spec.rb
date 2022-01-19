@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Api::Medicine_notebook", type: :request do
+RSpec.describe "API::Medicine_notebook", type: :request do
   before do
     @user = create(:user)
     @pet = create(:pet_1, user_id: @user.id)

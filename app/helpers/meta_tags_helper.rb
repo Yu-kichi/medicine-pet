@@ -8,17 +8,17 @@ module MetaTagsHelper
       charset: "utf-8",
       description: "ペットの薬の登録管理サービス",
       og: {
-        title: :title,
+        title: "MediPet",
         description: :description,
         type: "website",
         url: "https://medi-pet.herokuapp.com",
-        image: "",  # デプロイ後に設定
+        image: "MediPet.png",
         locale: "ja_JP"
       },
       twitter: {
         title: "MediPet",
         card: "summary",
-        image: "",  # デプロイ後に設定
+        image: "MediPet.png",
         description: :description,
         domain: "https://medi-pet.herokuapp.com"
       }

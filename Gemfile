@@ -49,6 +49,7 @@ group :development do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "slim_lint"
+  gem "letter_opener_web", "~> 2.0"
 end
 
 group :test do

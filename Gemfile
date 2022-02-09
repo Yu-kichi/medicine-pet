@@ -33,6 +33,7 @@ group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
   gem "factory_bot_rails"
   gem "spring-commands-rspec"
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -49,6 +50,7 @@ group :development do
   gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "slim_lint"
+  gem "letter_opener_web", "~> 2.0"
 end
 
 group :test do

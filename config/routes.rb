@@ -36,4 +36,5 @@ Rails.application.routes.draw do
 
   resources :clinics
   resources :medicines
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

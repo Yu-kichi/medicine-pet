@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 
   namespace "api", { format: "json" } do
     resources :clinics, only: %i[edit update show create]
-    get "prefectures/index"
-    get "medicines/index"
-    get "medicine_notebook/index"
-    get "pets/index"
+    resources :prefectures, only: %i[index]
+    resources :medicines, only: %i[index]
+    resources :medicine_notebook, only: %i[index show]
+    resources :pets, only: %i[index]
     resources :prescriptions, only: %i[show create update edit destroy]
     resources :prescriptions_medicines, only: %i[ create update edit destroy show]
   end

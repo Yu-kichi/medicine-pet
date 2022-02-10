@@ -121,7 +121,7 @@
         return meta ? meta.getAttribute('content') : ''
       },
       fetchMedicines() {
-        axios.get("/api/medicines/index.json").then(
+        axios.get("/api/medicines.json").then(
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]

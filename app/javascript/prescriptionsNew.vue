@@ -115,7 +115,7 @@
         return meta ? meta.getAttribute('content') : ''
       },
       fetchPrefectures() {
-        axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]

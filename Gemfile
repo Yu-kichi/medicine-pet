@@ -22,7 +22,6 @@ gem "rails-i18n"
 gem "sass-rails", ">= 6"
 gem "slim"
 gem "webpacker", "~> 5.0"
-gem "rubocop-rspec", require: false
 gem "font-awesome-sass", "~> 5.15.1"
 gem "aws-sdk-s3", require: false
 
@@ -33,6 +32,7 @@ group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
   gem "factory_bot_rails"
   gem "spring-commands-rspec"
+  gem "rubocop-rspec", require: false
 end
 
 group :development do

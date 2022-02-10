@@ -19,7 +19,7 @@ module MetaTagsHelper
         title: "MediPet",
         card: "summary_large_image",
         description: :description,
-        image: 'https://medi-pet.herokuapp.com/ogp/ogp.png',
+        image: "https://medi-pet.herokuapp.com/ogp/ogp.png",
         domain: "https://medi-pet.herokuapp.com"
       }
     }

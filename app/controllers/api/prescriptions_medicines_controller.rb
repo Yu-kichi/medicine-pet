@@ -28,7 +28,7 @@ class API::PrescriptionsMedicinesController < API::BaseController
   end
 
   def destroy
-    @prescriptions_medicine.destroy!
+    @prescriptions_medicine.destroy
     render json: { status: "SUCCESS", message: "Updated the prescriptions_medicine", data: @prescriptions_medicine }
   end
 

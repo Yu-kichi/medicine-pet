@@ -56,13 +56,8 @@ class MedicinesController < ApplicationController
   end
 
   def destroy
-    @pet = Pet.find_by(id: params[:pet_id])
     @medicine.destroy
-    if @pet
-      redirect_to pet_medicine_notebook_index_path(@pet), notice: "薬の名前を削除しました"
-    else
-      redirect_to medicines_url, notice: "薬の名前を削除しました"
-    end
+    redirect_to medicines_url, notice: "薬の名前を削除しました"
   end
 
   private

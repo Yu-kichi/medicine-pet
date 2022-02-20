@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.describe "API::Prescriptions", type: :request do
+  let(:json) { JSON.parse(response.body) }
+
   before do
     @user = create(:user)
     create(:prefecture_1)
@@ -35,8 +37,10 @@ RSpec.describe "API::Prescriptions", type: :request do
 
     scenario "データが欠けていると登録ができない" do
       sign_in @user
+      prescription["date"] = nil
       prescription["clinic_id"] = nil
       expect { post api_prescriptions_path, params: { prescription: prescription } }.not_to change(Prescription, :count)
+      expect(json).to match("message" => ["病院名を入力してください", "診療日を入力してください"], "status" => "Bad Request")
     end
   end
 
@@ -46,6 +50,12 @@ RSpec.describe "API::Prescriptions", type: :request do
       put api_prescription_path(id: @prescription_1.id), params: { prescription: { medicine_fee: "11111" } }
       expect(response.status).to eq(200)
       expect(Prescription.first.medicine_fee).to eq(11111)
+    end
+
+    scenario "データが欠けていると更新できない" do
+      sign_in @user
+      put api_prescription_path(id: @prescription_1.id), params: { prescription: { clinic_id: nil, date: nil, medicine_fee: "11111" } }
+      expect(json).to match("message" => ["病院名を入力してください", "診療日を入力してください"], "status" => "Bad Request")
     end
   end
 

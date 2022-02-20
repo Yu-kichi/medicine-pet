@@ -157,9 +157,13 @@
             medicine_fee: this.medicineFee,
           }
         }).then((response) => {
-          window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+          if (response.data.status == "Success") {
+            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+          } else {
+            console.log(response.data)
+          }
         }, (error) => {
-          console.log(error, response)
+          console.log(error.response)
         })
       },
     },

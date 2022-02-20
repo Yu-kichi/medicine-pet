@@ -156,13 +156,17 @@
             memo: this.memo,
           }
         }).then((response) => {
-          if (addition) {
-            window.location.href = `/prescriptions/${this.prescriptionId}/prescriptions_medicines/new`
+          if (response.data.status == "Success") {
+            if (addition) {
+              window.location.href = `/prescriptions/${this.prescriptionId}/prescriptions_medicines/new`
+            } else {
+              window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+            }          
           } else {
-            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+            console.log(response.data)
           }
         }, (error) => {
-          console.log(error, response)
+          console.log(error.response)
         })
       },
       prescribedDate(date) {

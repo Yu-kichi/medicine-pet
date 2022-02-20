@@ -160,15 +160,19 @@
         axios.post('/api/prescriptions', {
           prescription: {
             date: this.date,
-            clinic_id: this.selectedClinic.id,
+            clinic_id: this.selectedClinic,
             pet_id: this.petId,
             medical_fee: this.medicalFee,
             medicine_fee: this.medicineFee,
           }
         }).then((response) => {
-          window.location.href = response.data.location
+          if (response.data.status == "Success") {
+            window.location.href = response.data.location
+          } else {
+            console.log(response.data)
+          }
         }, (error) => {
-          console.log(error, response)
+          console.log(error.response)
         })
       },
       copyPrescription() {
@@ -184,7 +188,11 @@
             medicine_fee: this.medicineFee,
           }
         }).then((response) => {
-          window.location.href = `/pets/${this.petId}/medicine_notebook`
+          if (response.data.status == "Success") {
+            window.location.href = `/pets/${this.petId}/medicine_notebook`
+          } else {
+            console.log(response.data)
+          }
         }, (error) => {
           console.log(error, response)
         })

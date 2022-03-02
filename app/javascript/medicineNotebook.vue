@@ -77,7 +77,7 @@
     },
     methods: {
       fetchMedicineNotebook() {
-        Axios.get(`/api/medicine_notebook/index/?pet_id=${this.petId}`).then(
+        Axios.get(`/api/medicine_notebook/?pet_id=${this.petId}`).then(
           response => {
             const responseData = response.data;
             this.clinicName = responseData.clinic_name

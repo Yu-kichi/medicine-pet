@@ -11,9 +11,9 @@ class API::ClinicsController < API::BaseController
   def create
     @clinic = Clinic.new(clinic_params)
     if @clinic.save
-      render json: { status: "SUCCESS", message: "Updated the clinic", data: @clinic }
+      render json: { status: "Success", message: "Created the clinic", data: @clinic }
     else
-      head :bad_request
+      render json: { status: "Bad Request", message: @clinic.errors.full_messages }
     end
   end
 
@@ -21,9 +21,9 @@ class API::ClinicsController < API::BaseController
 
   def update
     if @clinic.update(clinic_params)
-      render json: { status: "SUCCESS", message: "Updated the clinic", data: @clinic }
+      render json: { status: "Success", message: "Updated the clinic", data: @clinic }
     else
-      head :bad_request
+      render json: { status: "Bad Request", message: @clinic.errors.full_messages }
     end
   end
 

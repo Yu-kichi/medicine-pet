@@ -9,12 +9,12 @@ RSpec.describe "API::Prefectures", type: :request do
 
   it "ログインしている時は200が返る" do
     sign_in @user
-    get api_prefectures_index_path
+    get api_prefectures_path
     expect(response).to have_http_status(:success)
   end
 
   it "ログインしていないと401が返る" do
-    get api_prefectures_index_path
+    get api_prefectures_path
     expect(response).to have_http_status(:unauthorized)
   end
 end

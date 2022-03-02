@@ -11,15 +11,26 @@
             = f.label :name
             | *
           .control
-            = f.hidden_field :prescription, value: @prescription.id
+            - if @prescription
+              = f.hidden_field :prescription, value: @prescription.id
             - if @prescription_medicine
               = f.hidden_field :prescription_medicine, value: @prescription_medicine.id
+            - if @prescription_medicine_id
+              = f.hidden_field :prescription_medicine, value: @prescription_medicine_id
+              = f.hidden_field :prescription, value: @prescription_id
+            - if @prescription_id
+              = f.hidden_field :prescription, value: @prescription_id
           .control
-            = f.text_field :name, class: "input", required: true
+            = f.text_field :name, class: "input"
       .actions.mt-5
         = f.submit "登録する", class: "button is-primary is-fullwidth has-text-weight-bold"
 
     - if @prescription_medicine
       = link_to "キャンセル", edit_prescription_prescriptions_medicine_path(@prescription, @prescription_medicine), class: "button is-outlined is-fullwidth mt-4"
     - else
-      = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription), class: "button is-outlined is-fullwidth mt-4"
+      - if @prescription
+        = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription), class: "button is-outlined is-fullwidth mt-4"
+      - elsif @prescription_medicine_id
+        = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription_id, @prescription_medicine_id), class: "button is-outlined is-fullwidth mt-4"
+      - else
+        = link_to "キャンセル", new_prescription_prescriptions_medicine_path(@prescription_id), class: "button is-outlined is-fullwidth mt-4"

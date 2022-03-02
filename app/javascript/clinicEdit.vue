@@ -96,7 +96,7 @@
         return meta ? meta.getAttribute('content') : ''
       },
       fetchPrefectures() {
-        axios.get("/api/prefectures/index.json").then(
+        axios.get("/api/prefectures.json").then(
           response => {
             const responseData = response.data;
             this.prefectures = responseData["prefectures"]
@@ -140,9 +140,13 @@
             user_id: this.currentUserId
           }
         }).then((response) => {
-          window.location.href = `/clinics`
+          if (response.data.status == "Success") {
+            window.location.href = `/clinics`
+          } else {
+            console.log(response.data)
+          }
         }, (error) => {
-          console.log(error, response)
+          console.log(error.response)
         })
       },
     },

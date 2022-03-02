@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const petId = JSON.parse(prescriptionsMedicinesNew.getAttribute("pet-id"));
       const prescriptionId = JSON.parse(prescriptionsMedicinesNew.getAttribute("prescription-id"));
       const app = createApp(PrescriptionsMedicinesNew, { petId: petId, prescriptionId: prescriptionId})
-      app.mount("#prescriptions-medicines-new");
+      app.mount(selector);
     }
 });

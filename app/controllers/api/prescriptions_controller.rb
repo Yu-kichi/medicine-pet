@@ -18,9 +18,9 @@ class API::PrescriptionsController < API::BaseController
     end
 
     if @prescription.save
-      render json: { location: new_prescription_prescriptions_medicine_path(@prescription) }
+      render json: { status: "Success", location: new_prescription_prescriptions_medicine_path(@prescription) }
     else
-      head :bad_request
+      render json: { status: "Bad Request", message: @prescription.errors.full_messages }
     end
   end
 
@@ -28,15 +28,15 @@ class API::PrescriptionsController < API::BaseController
 
   def update
     if @prescription.update(prescription_params)
-      render json: { status: "SUCCESS", message: "Updated the prescription", data: @prescription }
+      render json: { status: "Success", message: "Updated the prescription", data: @prescription }
     else
-      head :bad_request
+      render json: { status: "Bad Request", message: @prescription.errors.full_messages }
     end
   end
 
   def destroy
-    @prescription.destroy!
-    render json: { status: "SUCCESS", message: "Updated the prescription", data: @prescription }
+    @prescription.destroy
+    render json: { status: "Success", message: "Destroyed the prescription", data: @prescription }
   end
 
   private

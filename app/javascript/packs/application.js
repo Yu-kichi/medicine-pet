@@ -5,7 +5,6 @@
 
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
-require("channels")
 require("../clinicEdit.js")
 require("../clinicNew.js")
 require("../medicineNotebook.js")
@@ -16,6 +15,7 @@ require("../prescriptionsMedicinesNew.js")
 require("../prescriptionsMedicinesEdit.js")
 require("../menuButton.js")
 require("../selectPet.js")
+require("../imagePreview.js")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

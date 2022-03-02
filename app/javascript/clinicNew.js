@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentUserId = JSON.parse(clinicNew.getAttribute("currentuser-id"));
       const prescriptionId = JSON.parse(clinicNew.getAttribute("prescription-id"));
       const app = createApp(ClinicNew, {petId: petId, currentUserId: currentUserId, prescriptionId: prescriptionId })
-      app.mount("#clinic-new");
+      app.mount(selector);
     }
 });

@@ -29,7 +29,7 @@
     },
     methods: {
       fetchPets() {
-        Axios.get(`/api/pets/index`).then(
+        Axios.get(`/api/pets`).then(
           response => {
             const responseData = response.data;
             this.pets = responseData["pets"]

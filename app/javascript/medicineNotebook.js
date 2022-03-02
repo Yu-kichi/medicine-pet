@@ -7,6 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (medicineNotebook) {
       const petId = JSON.parse(medicineNotebook.getAttribute("pet-id"));
       const app = createApp(MedicineNotebook, { petId: petId})
-      app.mount("#medicine-notebook");
+      app.mount(selector);
     }
 });

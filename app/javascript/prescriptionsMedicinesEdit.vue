@@ -112,7 +112,7 @@
           })
       },
       fetchMedicines() {
-        axios.get("/api/medicines/index.json").then(
+        axios.get("/api/medicines.json").then(
           response => {
             const responseData = response.data;
             this.medicines = responseData["medicines"]
@@ -138,9 +138,13 @@
             memo: this.memo,
           }
         }).then((response) => {
-          window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+          if (response.data.status == "Success") {
+            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+          } else {
+            console.log(response.data)
+          }
         }, (error) => {
-          console.log(error, response)
+          console.log(error.response)
         })
       },
     },

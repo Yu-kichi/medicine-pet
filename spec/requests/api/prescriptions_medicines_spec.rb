@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.describe "API::Prescriptions_medicines", type: :request do
+  let(:json) { JSON.parse(response.body) }
+
   before do
     @user = create(:user)
     create(:prefecture_1)
@@ -32,10 +34,11 @@ RSpec.describe "API::Prescriptions_medicines", type: :request do
       expect { post api_prescriptions_medicines_path, params: { prescriptions_medicine: prescriptions_medicine } }.to change(PrescriptionsMedicine, :count).by(1)
     end
 
-    scenario "データが欠けていると登録ができない" do
+    scenario "必要なデータが欠けていると登録ができない" do
       sign_in @user
       prescriptions_medicine["medicine_id"] = nil
       expect { post api_prescriptions_medicines_path, params: { prescriptions_medicine: prescriptions_medicine } }.not_to change(PrescriptionsMedicine, :count)
+      expect(json).to match("message" => ["Medicineを入力してください"], "status" => "Bad Request")
     end
   end
 
@@ -45,6 +48,13 @@ RSpec.describe "API::Prescriptions_medicines", type: :request do
       put api_prescriptions_medicine_path(id: @prescription_medicine.id), params: { prescriptions_medicine: { unit: "1mg" } }
       expect(response.status).to eq(200)
       expect(PrescriptionsMedicine.first.unit).to eq("1mg")
+    end
+
+    scenario "必要なデータが欠けていると更新ができない" do
+      sign_in @user
+      put api_prescriptions_medicine_path(id: @prescription_medicine.id), params: { prescriptions_medicine: { medicine_id: nil } }
+      expect(PrescriptionsMedicine.first.unit).to eq("5mg")
+      expect(json).to match("message" => ["Medicineを入力してください"], "status" => "Bad Request")
     end
   end
 

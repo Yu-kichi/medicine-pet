@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectPet = document.querySelector(selector);
     if (selectPet) {
       const app = createApp(SelectPet)
-      app.mount("#select-pet");
+      app.mount(selector);
     }
 });

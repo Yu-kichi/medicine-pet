@@ -7,6 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (menuButton) {
       const userId = JSON.parse(menuButton.getAttribute("user-id"));
       const app = createApp(MenuButton, { userId: userId})
-      app.mount("#menu-button");
+      app.mount(selector);
     }
 });

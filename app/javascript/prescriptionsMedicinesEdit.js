@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const prescriptionId = JSON.parse(prescriptionsMedicinesEdit.getAttribute("prescription-id"));
       const prescriptionsMedicineId = JSON.parse(prescriptionsMedicinesEdit.getAttribute("prescriptions-medicine-id"));
       const app = createApp(PrescriptionsMedicinesEdit, { petId: petId, prescriptionId: prescriptionId, prescriptionsMedicineId: prescriptionsMedicineId})
-      app.mount("#prescriptions-medicines-edit");
+      app.mount(selector);
     }
 });

@@ -15,11 +15,11 @@ class MedicinesController < ApplicationController
 
   def new
     @medicine = Medicine.new
-    if params[:prescription_id]
-      @prescription = Prescription.find_by(id: params[:prescription_id])
-    else
+    if params[:prescriptions_medicine_id]
       @prescription_medicine = PrescriptionsMedicine.find_by(id: params[:prescriptions_medicine_id])
       @prescription = @prescription_medicine.prescription
+    else
+      @prescription = Prescription.find_by(id: params[:prescription_id])
     end
     @pet = @prescription.pet
   end
@@ -27,20 +27,19 @@ class MedicinesController < ApplicationController
   def create
     @medicine = Medicine.new(medicine_params)
     @medicine.user_id = current_user.id
-    prescription = params[:medicine][:prescription]
-    prescription_medicine = params[:medicine][:prescription_medicine]
+    @prescription_id = params[:medicine][:prescription]
+    @prescription_medicine_id = params[:medicine][:prescription_medicine]
     if @medicine.save
-      if prescription_medicine
-        redirect_to edit_prescription_prescriptions_medicine_path(prescription, prescription_medicine),
+      if @prescription_medicine_id
+        redirect_to edit_prescription_prescriptions_medicine_path(@prescription_id, @prescription_medicine_id),
                     notice: "新しく薬の名前を登録しました"
       else
-        redirect_to new_prescription_prescriptions_medicine_path(prescription), notice: "新しく薬の名前を登録しました"
+        redirect_to new_prescription_prescriptions_medicine_path(@prescription_id), notice: "新しく薬の名前を登録しました"
       end
-    elsif prescription_medicine
-      redirect_to "/medicines/new/?prescriptions_medicine_id=#{prescription_medicine}",
-                  alert: @medicine.errors.full_messages[0]
+    elsif @prescription_medicine_id
+      render :new, status: :unprocessable_entity, locals: { prescription_medicine_id: @prescription_medicine_id, prescription_id: @prescription_id }
     else
-      redirect_to "/medicines/new/?prescription_id=#{prescription}", alert: @medicine.errors.full_messages[0]
+      render :new, status: :unprocessable_entity, prescription_id: @prescription_id
     end
   end
 

@@ -17,7 +17,7 @@
       </div>
       <div v-show="showOnClinicButton" class="pl-4 pr-4">
         <a class="mb-2 mt-4 button is-fullwidth"
-          :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
+          :href='`/prescriptions/${prescriptionId}/edit`'><i class="fas fa-pen mr-2"></i>内容修正</a>
         <div class="has-text-right pb-2" @click="showModalPrescription = true">
           <i class="fa fa-trash"></i>
           <a class="prescription-delete has-text-grey-dark link">削除する</a>
@@ -63,7 +63,7 @@
       <a class="button mt-4 has-text-white is-fullwidth is-primary has-text-weight-bold"
          :href='`/prescriptions/${prescriptionId}/prescriptions_medicines/new`'>+ お薬追加登録</a>
       <a class="button mt-4 is-fullwidth has-text-weight-bold"
-         :href='`/pets/${petId}/prescriptions/new/?prescription_id=${prescriptionId}`'>+コピー</a>
+         :href='`/prescriptions/new/?prescription_id=${prescriptionId}&pet_id=${petId}`'>+コピー</a>
     </div>
     <div class="ml-4 pb-4 pt-2">
       <a :href='`/pets/${petId}/medicine_notebook`' class="link">お薬手帳に戻る</a>
@@ -146,7 +146,7 @@
         axios.defaults.headers['X-CSRF-TOKEN'] = this.token()
         axios.delete(`/api/prescriptions_medicines/${this.medicineId}`)
           .then(response => {
-            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+            window.location.href = `/prescriptions/${this.prescriptionId}`
           })
           .catch(error => {
             console.error(error);

@@ -48,7 +48,7 @@ RSpec.feature "Prescriptions", type: :system do
       scenario "処方箋のheader部分をclickすると詳細ページへ移動する" do
         visit "/"
         first(".prescription-header").click
-        expect(current_path).to eq "/pets/#{@pet.id}/prescriptions/#{@prescription_2.id}"
+        expect(current_path).to eq "/prescriptions/#{@prescription_2.id}"
         expect(page).to have_content("ウェルネス動物病院")
       end
     end
@@ -65,7 +65,8 @@ RSpec.feature "Prescriptions", type: :system do
 
     describe "処方箋作成" do
       scenario "作成成功" do
-        visit "/pets/#{@pet.id}/prescriptions/new"
+        visit "/pets/#{@pet.id}/medicine_notebook"
+        click_link "新しくお薬手帳に登録する"
         expect(page).to have_content("処方箋情報登録")
         fill_in "date", with: "002021-10-06"
         first(".multiselect__tags").click
@@ -79,14 +80,16 @@ RSpec.feature "Prescriptions", type: :system do
       end
 
       scenario "処方箋作成失敗バリデーション表示" do
-        visit "/pets/#{@pet.id}/prescriptions/new"
+        visit "/pets/#{@pet.id}/medicine_notebook"
+        click_link "新しくお薬手帳に登録する"
+        expect(page).to have_content("処方箋情報登録")
         click_button "お薬登録へ進む"
         expect(page).to have_content("診療日を選んでください")
         expect(page).to have_content("病院名を選んでください")
       end
 
       scenario "処方箋コピー成功" do
-        visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+        visit "/prescriptions/#{@prescription.id}"
         click_link "コピー"
         expect(page).to have_content("前回の情報を元に薬を一括登録する")
         click_button "一括登録する"
@@ -96,7 +99,7 @@ RSpec.feature "Prescriptions", type: :system do
     end
 
     scenario "処方箋編集成功" do
-      visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+      visit "/prescriptions/#{@prescription.id}"
       first(".column.mt-6").click
       click_link "内容修正"
       expect(page).to have_content("処方箋編集")
@@ -109,7 +112,7 @@ RSpec.feature "Prescriptions", type: :system do
     end
 
     scenario "処方箋削除成功" do
-      visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+      visit "/prescriptions/#{@prescription.id}"
       first(".column.mt-6").click
       find(".has-text-grey-dark").click
       within(".modal-container") do

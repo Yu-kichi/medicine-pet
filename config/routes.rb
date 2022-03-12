@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   root "medicine_notebook#index"
 
   namespace "api", { format: "json" } do
-    resources :clinics, only: %i[edit update show create]
+    resources :clinics, only: %i[show create edit update]
     resources :prefectures, only: %i[index]
     resources :medicines, only: %i[index]
     resources :medicine_notebook, only: %i[index show]
     resources :pets, only: %i[index]
-    resources :prescriptions, only: %i[show create update edit destroy]
-    resources :prescriptions_medicines, only: %i[ create update edit destroy show]
+    resources :prescriptions, only: %i[show create edit update destroy]
+    resources :prescriptions_medicines, only: %i[show create edit update destroy]
   end
 
   devise_for :users, controllers: {
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :medicine_notebook, only: %i[index]
   end
 
-  resources :prescriptions, only: %i[index new edit show] do
+  resources :prescriptions, only: %i[index show new edit] do
     resources :prescriptions_medicines
   end
 

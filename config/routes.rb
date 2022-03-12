@@ -21,19 +21,14 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
 
-  resources :prefectures, only: [] do
-    resources :clinics, only: :index
-  end
-
   resources :pets do
-    resources :prescriptions, only: %i[show new create edit update destroy]
     resources :medicine_notebook, only: %i[index]
   end
 
-  resources :prescriptions, only: [] do
+  resources :prescriptions, only: %i[index new edit show] do
     resources :prescriptions_medicines
   end
 
-  resources :clinics
+  resources :clinics, only: %i[index show new edit destroy]
   resources :medicines
 end

@@ -160,13 +160,13 @@
             if (addition) {
               window.location.href = `/prescriptions/${this.prescriptionId}/prescriptions_medicines/new`
             } else {
-              window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+              window.location.href = `/prescriptions/${this.prescriptionId}`
             }          
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
       prescribedDate(date) {

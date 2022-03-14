@@ -49,9 +49,9 @@
         </div>
         <div>
           <a v-if='prescriptionId !== null' class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/prescriptions/${prescriptionId}/edit`'>キャンセル</a>
+            :href='`/prescriptions/${prescriptionId}/edit`'>キャンセル</a>
           <a v-else class="button is-fullwidth mt-4 mb-4"
-            :href='`/pets/${petId}/prescriptions/new`'>キャンセル</a>
+            :href='`/prescriptions/new/?pet_id=${this.petId}`'>キャンセル</a>
         </div>
       </div>
     </div>
@@ -138,15 +138,15 @@
         }).then((response) => {
           if (response.data.status == "Success") {
             if(this.prescriptionId){
-              window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}/edit`
+              window.location.href = `/prescriptions/${this.prescriptionId}/edit`
               } else {
-              window.location.href = `/pets/${this.petId}/prescriptions/new`
+              window.location.href = `/prescriptions/new/?pet_id=${this.petId}`
               }
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
     },

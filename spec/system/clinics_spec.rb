@@ -15,7 +15,9 @@ RSpec.feature "Clinics", type: :system do
   describe "病院情報作成" do
     context "処方箋作成画面から病院情報作成へ移動した時" do
       scenario "作成成功時処方箋作成画面へ戻る" do
-        visit "/pets/#{@pet.id}/prescriptions/new"
+        visit "/pets/#{@pet.id}/medicine_notebook"
+        click_link "新しくお薬手帳に登録する"
+        expect(page).to have_content "処方箋情報登録"
         click_link "病院名が見つからない時はこちら"
         expect(page).to have_content "病院情報登録"
         find(".multiselect__tags").click
@@ -31,7 +33,7 @@ RSpec.feature "Clinics", type: :system do
 
     context "処方箋編集画面から病院情報作成へ移動した時" do
       scenario "作成成功時処方箋編集画面へ戻る" do
-        visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}/edit"
+        visit "/prescriptions/#{@prescription.id}/edit"
         click_link "病院名が見つからない時はこちら"
         expect(page).to have_content "病院情報登録"
         find(".multiselect__tags").click
@@ -47,7 +49,7 @@ RSpec.feature "Clinics", type: :system do
 
     context "病院登録失敗" do
       scenario "バリデーション表示" do
-        visit "/pets/#{@pet.id}/prescriptions/new"
+        visit "/prescriptions/new/?pet_id=#{@pet.id}"
         click_link "病院名が見つからない時はこちら"
         expect(page).to have_content "病院情報登録"
         click_button "登録する"

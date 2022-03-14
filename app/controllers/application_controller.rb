@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   helper_method :admin_login?
+
   protected
     def set_pets
       @pets = current_user.pets

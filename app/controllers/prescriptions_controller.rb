@@ -26,6 +26,10 @@ class PrescriptionsController < ApplicationController
     end
 
     def set_selected_pet
-      @pet = Pet.find_by(id: params[:pet_id])
+      if params[:pet_id]
+        @pet = Pet.find_by(id: params[:pet_id])
+      else
+        @pet = @prescription.pet
+      end
     end
 end

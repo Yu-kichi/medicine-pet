@@ -123,8 +123,9 @@
           })
       },
       fetchPrescriptions() {
-        if (location.search) {
-          this.prescriptionId = location.search.match(/[0-9]+/)
+        if (location.search.match(/prescription_id/)) {
+          const results = location.search.match(/prescription_id=([0-9]+)/)
+          this.prescriptionId = results[1]
           axios.get(`/api/prescriptions/${this.prescriptionId}/edit`).then(
             response => {
               const responseData = response.data;
@@ -160,7 +161,7 @@
         axios.post('/api/prescriptions', {
           prescription: {
             date: this.date,
-            clinic_id: this.selectedClinic,
+            clinic_id: this.selectedClinic.id,
             pet_id: this.petId,
             medical_fee: this.medicalFee,
             medicine_fee: this.medicineFee,
@@ -169,10 +170,10 @@
           if (response.data.status == "Success") {
             window.location.href = response.data.location
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
       copyPrescription() {
@@ -191,10 +192,10 @@
           if (response.data.status == "Success") {
             window.location.href = `/pets/${this.petId}/medicine_notebook`
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error, response)
+          console.warn(error, response)
         })
       }
     },

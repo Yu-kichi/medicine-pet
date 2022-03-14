@@ -18,7 +18,7 @@
         <div class="field">
           <label for="clinic_name" class="label pt-3">病院名 *</label>
           <div class="control">
-            <input v-model="name" class="input   is-fullwidth" name="clinic[name]" id="clinic_name">
+            <input v-model="name" class="input is-fullwidth" name="clinic[name]" id="clinic_name">
           </div>  
           <p v-if="clinicError!== null">
             <p class="has-text-danger">{{clinicError}}</p>

@@ -31,7 +31,7 @@ RSpec.feature "Prescriptions_medicines", type: :system do
       expect(page).to have_content("2回")
       expect(page).to have_content("21日")
       expect(page).to have_content("これはテストです")
-      expect(current_path).to eq "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+      expect(current_path).to eq "/prescriptions/#{@prescription.id}"
     end
 
     scenario "追加でお薬登録すると登録が成功し、さらに次の薬登録画面へ移動する" do
@@ -53,7 +53,7 @@ RSpec.feature "Prescriptions_medicines", type: :system do
     end
 
     scenario "処方箋のお薬編集" do
-      visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+      visit "/prescriptions/#{@prescription.id}"
       find("#medicine-show-button").click
       click_link "内容修正"
       expect(page).to have_content("お薬情報編集")
@@ -63,7 +63,7 @@ RSpec.feature "Prescriptions_medicines", type: :system do
     end
 
     scenario "処方箋のお薬削除" do
-      visit "/pets/#{@pet.id}/prescriptions/#{@prescription.id}"
+      visit "/prescriptions/#{@prescription.id}"
       find("#medicine-show-button").click
       find(".has-text-grey-dark").click
       within(".modal-container") do

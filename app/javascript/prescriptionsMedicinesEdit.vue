@@ -50,7 +50,7 @@
           <p class="is-size-7">*薬の名前が見つからない場合にはこちらから新しくお薬情報の登録ができます。</p>
         </div>
         <a class="button is-fullwidth mt-4 mb-4"
-          :href='`/pets/${petId}/prescriptions/${prescriptionId}`'>キャンセル
+          :href='`/prescriptions/${prescriptionId}`'>キャンセル
         </a>
       </div>
     </div>
@@ -139,12 +139,12 @@
           }
         }).then((response) => {
           if (response.data.status == "Success") {
-            window.location.href = `/pets/${this.petId}/prescriptions/${this.prescriptionId}`
+            window.location.href = `/prescriptions/${this.prescriptionId}`
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
     },

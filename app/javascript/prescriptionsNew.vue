@@ -170,10 +170,10 @@
           if (response.data.status == "Success") {
             window.location.href = response.data.location
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
       copyPrescription() {
@@ -192,10 +192,10 @@
           if (response.data.status == "Success") {
             window.location.href = `/pets/${this.petId}/medicine_notebook`
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error, response)
+          console.warn(error, response)
         })
       }
     },

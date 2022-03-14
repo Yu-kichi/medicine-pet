@@ -143,10 +143,10 @@
               window.location.href = `/prescriptions/new/?pet_id=${this.petId}`
               }
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
     },

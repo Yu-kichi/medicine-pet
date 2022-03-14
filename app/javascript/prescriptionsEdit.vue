@@ -160,10 +160,10 @@
           if (response.data.status == "Success") {
             window.location.href = `/prescriptions/${this.prescriptionId}`
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
     },

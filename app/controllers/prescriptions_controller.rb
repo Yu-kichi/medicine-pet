@@ -18,7 +18,9 @@ class PrescriptionsController < ApplicationController
 
   private
     def set_prescription
-      @prescription = Prescription.find(params[:id])
+      if Prescription.find(params[:id]).pet.user == current_user
+        @prescription = Prescription.find(params[:id])
+      end
     end
 
     def prescription_params
@@ -27,7 +29,7 @@ class PrescriptionsController < ApplicationController
 
     def set_selected_pet
       if params[:pet_id]
-        @pet = Pet.find_by(id: params[:pet_id])
+        @pet = current_user.pets.find_by(id: params[:pet_id])
       else
         @pet = @prescription.pet
       end

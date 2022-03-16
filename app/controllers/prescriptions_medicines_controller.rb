@@ -23,7 +23,9 @@ class PrescriptionsMedicinesController < ApplicationController
 
   private
     def set_prescriptions_medicine
-      @prescriptions_medicine = PrescriptionsMedicine.find(params[:id])
+      if PrescriptionsMedicine.find(params[:id]).prescription.pet.user == current_user
+        @prescriptions_medicine = PrescriptionsMedicine.find(params[:id])
+      end
     end
 
     def prescriptions_medicine_params

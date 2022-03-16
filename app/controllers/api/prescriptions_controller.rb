@@ -5,7 +5,9 @@ class API::PrescriptionsController < API::BaseController
   before_action :authenticate_user!
 
   def show
-    @prescription = Prescription.includes([:clinic, { prescriptions_medicines: :medicine }]).find(params[:id])
+    if Prescription.find(params[:id]).pet.user == current_user
+      @prescription = Prescription.includes([:clinic, { prescriptions_medicines: :medicine }]).find(params[:id])
+    end
   end
 
   def create
@@ -45,6 +47,8 @@ class API::PrescriptionsController < API::BaseController
     end
 
     def set_prescription
-      @prescription = Prescription.find(params[:id])
+      if Prescription.find(params[:id]).pet.user == current_user
+        @prescription = Prescription.find(params[:id])
+      end
     end
 end

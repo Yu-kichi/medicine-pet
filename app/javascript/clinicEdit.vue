@@ -143,10 +143,10 @@
           if (response.data.status == "Success") {
             window.location.href = `/clinics`
           } else {
-            console.log(response.data)
+            console.warn(response.data)
           }
         }, (error) => {
-          console.log(error.response)
+          console.warn(error.response)
         })
       },
     },

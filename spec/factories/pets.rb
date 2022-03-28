@@ -19,4 +19,13 @@ FactoryBot.define do
       post.image.attach(io: File.open("#{Rails.root}/spec/factories/files/pet_profile.png"), filename: "test_image.png", content_type: "image/png")
     end
   end
+
+  factory :pet_3, class: Pet do
+    name { "ゴン太" }
+    sex { "1" }
+    breed { "ブルドッグ" }
+    weight { "10" }
+    birthday { "20201210" }
+    association :user
+  end
 end

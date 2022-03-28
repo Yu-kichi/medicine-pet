@@ -10,4 +10,9 @@ FactoryBot.define do
     id { 2 }
     name { "青森" }
   end
+
+  factory :prefecture_3, class: Prefecture do
+    id { 3 }
+    name { "岩手" }
+  end
 end

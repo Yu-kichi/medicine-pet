@@ -18,4 +18,15 @@ FactoryBot.define do
     association :user,
     factory: :user
   end
+
+  factory :clinic_3, class: Clinic do
+    prefecture_id { 3 }
+    name { "盛岡グリーン動物病院 (岩手県)" }
+    address { "岩手県盛岡市北飯岡3-4-38" }
+    telephone_number { "019-601-6644" }
+    association :user,
+    factory: :user
+    association :prefecture,
+    factory: :prefecture_3
+  end
 end

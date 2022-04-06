@@ -4,8 +4,8 @@
     <div class="ml-2 is-size-7">手帳切り替え</div>
     <transition name="fade">
       <div class="menu-pets-bar" v-show="showPets">
-        <ul v-for="pet in pets" :key='pet.id' class="mt-2 ml-3 mr-3">
-          <li class="pb-2 mt-2">
+        <ul v-for="pet in pets" :key='pet.id' class="ml-3 mr-3 mt-4">
+          <li class="mb-4 mt-2">
             <p><a :href='`/pets/${pet.id}/medicine_notebook`'>{{pet.name}}</a></p>
           </li>
         </ul>

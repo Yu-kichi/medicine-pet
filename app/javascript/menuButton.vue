@@ -4,7 +4,7 @@
     <transition name="fade">
       <div class="menu-bar" v-show="showMenu">
         <ul v-if="userId" class="mt-2 ml-3 mr-3">
-          <li class="pb-2 mt-2">
+          <li class="pb-2 mt-4">
             <p>
               <a href="/pets">
                 <i class="fas fa-cat mr-2"></i>ペット一覧
@@ -32,7 +32,7 @@
               </a>
             </p>
           </li>
-          <li class="pb-2 mt-2">
+          <li class="mt-2 mb-4">
             <p>
               <a href="/users/sign_out" data-method="delete">
                 <i class="fas fa-sign-out-alt mr-2"></i>ログアウト
@@ -41,14 +41,14 @@
           </li>
         </ul>
         <ul v-else class="mt-2 ml-3 mr-3">
-          <li class="pb-2 mt-2">
+          <li class="pb-2 mt-4">
             <p>
               <a href="/users/sign_in">
                 <i class="fas fa-sign-in-alt mr-2"></i>ログイン
               </a>
             </p>
           </li>
-          <li class="pb-2 mt-2">
+          <li class="mt-2 mb-4">
             <p>
               <a href="/users/sign_up">
                 <i class="far fa-thumbs-up mr-2"></i>アカウント作成

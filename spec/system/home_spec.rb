@@ -60,7 +60,7 @@ RSpec.feature "Home", type: :system do
         visit "/"
         expect(page).to have_content("たろうのお薬手帳")
         find("#select-pet").click
-        all("li.pb-2")[1].click
+        all("li.mb-4")[1].click
         expect(page).to have_content("ねこみのお薬手帳")
       end
     end

@@ -4,7 +4,7 @@
 
  .menu-bar{
   position: absolute;
-  top: 57px;
+  top: 61px;
   right: 2px;
   z-index: 300;
   width:180px;
@@ -28,8 +28,9 @@
   opacity: 0;
 }
 
-.menu-bar{
-  li{
-    border-bottom: 1px solid #e8e8e8;
-  }
+.pb-2 {
+    padding-bottom: 1rem !important;
+}
+.li{
+  border-bottom: none;
 }

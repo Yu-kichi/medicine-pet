@@ -1,17 +1,14 @@
 <template>
-  <transition name="modal">
-    <div class="modal-mask">
+  <Transition name="modal">
+    <div v-if="show" class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-
           <div class="modal-header">
-            <slot name="header">
-            </slot>
+            <slot name="header"></slot>
           </div>
 
           <div class="modal-body">
-            <slot name="body">
-            </slot>
+            <slot name="body"></slot>
           </div>
 
           <div class="modal-footer">
@@ -27,9 +24,13 @@
         </div>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script>
-  export default {}
+  export default {
+    props: {
+      show: Boolean,
+    }
+  }
 </script>

@@ -5,8 +5,10 @@ require "rails_helper"
 RSpec.feature "Pets", type: :system do
   before do
     @user = create(:user)
+    # @other_user = create(:user)
     login_user(@user.email, @user.password)
     @pet = create(:pet_1, user_id: @user.id)
+    @other_user_pet = create(:pet_3)
   end
 
   scenario "ペット一覧表示" do
@@ -74,5 +76,24 @@ RSpec.feature "Pets", type: :system do
     page.driver.browser.switch_to.alert.accept
     expect(page).to have_content("ペットを削除しました")
     expect(current_path).to eq "/pets"
+  end
+
+  describe "他人のペットの場合" do
+    around do |example|
+      original = Capybara.raise_server_errors
+      Capybara.raise_server_errors = false
+      example.run
+      Capybara.raise_server_errors = original
+    end
+
+    scenario "詳細画面を見ることができない" do
+      visit "/pets/#{@other_user_pet.id}"
+      expect(page).to have_text "ActiveRecord::RecordNotFound"
+    end
+
+    scenario "編集画面を見ることができない" do
+      visit "/pets/#{@other_user_pet.id}/edit"
+      expect(page).to have_text "ActiveRecord::RecordNotFound"
+    end
   end
 end

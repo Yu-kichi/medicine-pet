@@ -22,7 +22,7 @@
           <i class="fa fa-trash"></i>
           <a class="prescription-delete has-text-grey-dark link">削除する</a>
         </div>
-        <modal v-if="showModalPrescription" @cancel="showModalPrescription = false"
+        <modal :show="showModalPrescription" @cancel="showModalPrescription = false"
           @ok="deletePrescription(); showModalPrescription = false;">
           <template v-slot:body>本当に削除しますか？</template>
         </modal>
@@ -52,7 +52,7 @@
               <a class="has-text-grey-dark link">削除する</a>
               <div class="line mt-2"></div>
             </div>
-            <modal v-if="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">
+            <modal :show="showModal" @cancel="showModal = false" @ok="deletePrescriptionsMedicine(); showModal = false;">
               <template v-slot:body>本当に削除しますか？</template>
             </modal>
           </div>
